@@ -1,0 +1,23 @@
+{
+  "schema": "selcal.official-journal-contract-validation-binding.v1",
+  "generatedAt": "2026-08-31T17:37:35+08:00",
+  "status": "BOUND_RAW_VALIDATOR_HOLD",
+  "validatedArtifact": {
+    "path": "docs/official_contract/softwarex_product_contract_20260831.json",
+    "sha256": "09bf918a5847a8723b383b3cfed78b0d8beeaa236e6ab316d414c54c0a75b37d"
+  },
+  "validator": {
+    "sourceIdentity": "workspace-root/official_journal_contract/validate_official_journal_product_contract.py",
+    "sha256": "9a411830ac88cd86e53249110bb2060b8e5e36b0987051f0dd6c2a529fde6506"
+  },
+  "rawReport": {
+    "path": "docs/official_contract/softwarex_product_contract_validation_20260831.json",
+    "sha256": "3c95214570c156154eee7c8db8a356a826aa2df7eba4d5f40b2d877f35db3eb8",
+    "status": "HOLD",
+    "errors": 0,
+    "warnings": 0
+  },
+  "verificationCommand": "python VALIDATOR CONTRACT --report TEMP_REPORT; compare TEMP_REPORT byte-for-byte with rawReport.path",
+  "verificationResult": "PASS",
+  "evidenceBoundary": "This binding proves which contract bytes and validator bytes produced a raw report identical to the stored report. HOLD remains HOLD. It does not verify official-source interpretation, project conformance, scientific validity, release readiness, live portal configuration or submission readiness."
+}

@@ -1,0 +1,302 @@
+{
+  "$defs": {
+    "artifactBinding": {
+      "additionalProperties": false,
+      "properties": {
+        "path": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "role": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "sha256": {
+          "pattern": "^[0-9a-f]{64}$",
+          "type": "string"
+        }
+      },
+      "required": [
+        "path",
+        "role",
+        "sha256"
+      ],
+      "type": "object"
+    },
+    "decisionTarget": {
+      "additionalProperties": false,
+      "properties": {
+        "authoring_guard_sha256": {
+          "pattern": "^[0-9a-f]{64}$",
+          "type": "string"
+        },
+        "authority_anchor": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "decision_id": {
+          "pattern": "^T10-G18-DD-[0-9]{3}$",
+          "type": "string"
+        },
+        "forbidden_expansion": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "mode": {
+          "enum": [
+            "CLARIFY_EXISTING_AUTHORITY",
+            "NEW_NORMATIVE_DECISION"
+          ]
+        },
+        "negative_mutation": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "normative_delta_summary": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "normative_projection_sha256": {
+          "pattern": "^[0-9a-f]{64}$",
+          "type": "string"
+        },
+        "post_state": {
+          "const": "SUCCESSOR_CANDIDATE_NOT_ADOPTED"
+        },
+        "pre_state": {
+          "const": "REVIEW_DECISION_INPUT_NOT_AUTHORITY"
+        },
+        "preserve_clause": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "registry_pointer": {
+          "pattern": "^/decisions_by_id/T10-G18-DD-[0-9]{3}$",
+          "type": "string"
+        }
+      },
+      "required": [
+        "authority_anchor",
+        "authoring_guard_sha256",
+        "decision_id",
+        "forbidden_expansion",
+        "mode",
+        "negative_mutation",
+        "normative_delta_summary",
+        "normative_projection_sha256",
+        "post_state",
+        "pre_state",
+        "preserve_clause",
+        "registry_pointer"
+      ],
+      "type": "object"
+    }
+  },
+  "$id": "selcal.task10.g18.authority-amendment-target-map.v1",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "authoring_guard_contract": {
+      "additionalProperties": false,
+      "properties": {
+        "algorithm": {
+          "const": "SHA-256"
+        },
+        "canonicalization": {
+          "const": "UTF8_JSON_SORT_KEYS_INDENT_2_TRAILING_LF"
+        },
+        "enforcement": {
+          "const": "PER_DECISION_EXPECTED_DIGEST_FIXED_IN_SCOPE_VALIDATOR"
+        },
+        "fields": {
+          "const": [
+            "forbidden_expansion",
+            "negative_mutation",
+            "preserve_clause"
+          ]
+        }
+      },
+      "required": [
+        "algorithm",
+        "canonicalization",
+        "enforcement",
+        "fields"
+      ],
+      "type": "object"
+    },
+    "decision_targets": {
+      "items": {
+        "$ref": "#/$defs/decisionTarget"
+      },
+      "maxItems": 23,
+      "minItems": 23,
+      "type": "array"
+    },
+    "effect": {
+      "const": "AUTHORING_SCOPE_ONLY_NO_AUTHORITY_PROMOTION"
+    },
+    "format": {
+      "const": "selcal.task10.g18.authority-amendment-target-map.v1"
+    },
+    "lifecycle_status": {
+      "const": "TARGET_MAP_CANDIDATE_NOT_AUTHORITY"
+    },
+    "normative_projection_contract": {
+      "additionalProperties": false,
+      "properties": {
+        "algorithm": {
+          "const": "SHA-256"
+        },
+        "canonicalization": {
+          "const": "UTF8_JSON_SORT_KEYS_INDENT_2_TRAILING_LF"
+        },
+        "fields": {
+          "const": [
+            "affected_owner_paths",
+            "exact_chosen_wire_or_matrix",
+            "expected_rl_universe_effect",
+            "negative_mutations",
+            "reference_contract"
+          ]
+        },
+        "future_candidate_binding": {
+          "const": "EACH_SELF_CONTAINED_NORMATIVE_BLOCK_MUST_REPRODUCE_THIS_PROJECTION"
+        }
+      },
+      "required": [
+        "algorithm",
+        "canonicalization",
+        "fields",
+        "future_candidate_binding"
+      ],
+      "type": "object"
+    },
+    "predecessor_authority_binding": {
+      "additionalProperties": false,
+      "properties": {
+        "byte_length": {
+          "const": 298339
+        },
+        "mutation_forbidden": {
+          "const": true
+        },
+        "path": {
+          "const": "docs/superpowers/specs/2026-08-29-task10-deny-by-default-provider-proof-design.md"
+        },
+        "sha256": {
+          "const": "74891e7b1a5190d64da5d2fd74e8ef0d74e671fc81600875995c2dbc7ee057ff"
+        }
+      },
+      "required": [
+        "byte_length",
+        "mutation_forbidden",
+        "path",
+        "sha256"
+      ],
+      "type": "object"
+    },
+    "required_decision_count": {
+      "const": 23
+    },
+    "review_input_bindings": {
+      "items": {
+        "$ref": "#/$defs/artifactBinding"
+      },
+      "maxItems": 3,
+      "minItems": 3,
+      "type": "array"
+    },
+    "stop_boundary": {
+      "additionalProperties": false,
+      "properties": {
+        "authority_idl_allowed": {
+          "const": false
+        },
+        "implementation_allowed": {
+          "const": false
+        },
+        "kats_allowed": {
+          "const": false
+        },
+        "machine_stop_decision": {
+          "const": "STOP_BEFORE_AUTHORITY_IDL_AND_KATS"
+        }
+      },
+      "required": [
+        "authority_idl_allowed",
+        "implementation_allowed",
+        "kats_allowed",
+        "machine_stop_decision"
+      ],
+      "type": "object"
+    },
+    "transfer_rule": {
+      "const": "SELF_CONTAINED_NORMATIVE_RESTATEMENT_REQUIRED; IDS_HASHES_AND_RULE_PROJECTIONS_ARE_PROVENANCE_ONLY"
+    },
+    "write_scope": {
+      "additionalProperties": false,
+      "properties": {
+        "current_scope_outputs": {
+          "items": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "maxItems": 7,
+          "minItems": 7,
+          "type": "array",
+          "uniqueItems": true
+        },
+        "future_candidate_outputs": {
+          "items": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "maxItems": 5,
+          "minItems": 5,
+          "type": "array",
+          "uniqueItems": true
+        },
+        "modify_existing": {
+          "maxItems": 0,
+          "type": "array"
+        },
+        "prior_downstream_plan_status": {
+          "const": "FROZEN_NONEXECUTABLE_DOWNSTREAM_DRAFT"
+        },
+        "protected_path_patterns": {
+          "items": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "minItems": 1,
+          "type": "array",
+          "uniqueItems": true
+        }
+      },
+      "required": [
+        "current_scope_outputs",
+        "future_candidate_outputs",
+        "modify_existing",
+        "prior_downstream_plan_status",
+        "protected_path_patterns"
+      ],
+      "type": "object"
+    }
+  },
+  "required": [
+    "authoring_guard_contract",
+    "decision_targets",
+    "effect",
+    "format",
+    "lifecycle_status",
+    "normative_projection_contract",
+    "predecessor_authority_binding",
+    "required_decision_count",
+    "review_input_bindings",
+    "stop_boundary",
+    "transfer_rule",
+    "write_scope"
+  ],
+  "title": "Task 10 authority-amendment target map",
+  "type": "object"
+}

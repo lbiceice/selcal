@@ -1,0 +1,170 @@
+{
+  "claimCeiling": "READ_ONLY_STATIC_AND_LOCAL_TEST_EVIDENCE_NOT_SCIENTIFIC_VALIDATION",
+  "environmentObservation": {
+    "detail": "A read-only audit command caused uv to rebuild the ignored shared environment; no tracked source or document bytes were modified. The environment is excluded from test or metadata authority for this receipt.",
+    "sharedProjectVenvAuthoritative": false,
+    "status": "VOLATILE_EXCLUDED_FROM_AUTHORITY",
+    "trackedRepositoryBytesChangedByAudit": false
+  },
+  "findings": [
+    {
+      "evidence": "Opt-in Ruff C901 reported 12 functions; measured maxima were 64, 46, and 42. AST inspection found individual verifier functions of roughly 486-573 lines.",
+      "evidenceClass": "TOOL_MEASURED",
+      "id": "SCI-MAJOR-VERIFIER-COMPLEXITY",
+      "impact": "Builder and verifier changes can share omissions; high aggregate coverage does not prove every combined branch is independently checked.",
+      "locations": [
+        "src/selcal/contracts_v2.py:1117-1625",
+        "src/selcal/resolution_v2.py:1188-1673",
+        "src/selcal/resolution_v2.py:2422-2994",
+        "src/selcal/calibration_v2.py:1831-2040",
+        "src/selcal/calibration_v2.py:2374-2720"
+      ],
+      "severity": "MAJOR",
+      "smallestRepairSlice": "Without changing semantics, extract scalar, vector, token, terminal-state, and frozen-dependency pure validators; retain current mutation and known-answer tests before enabling a complexity gate.",
+      "title": "Integrity verifier capsules are too long and branch-complex for safe extension"
+    },
+    {
+      "evidence": "Three registries or WeakKeyDictionaries are mutated during calls; resolution also uses id-keyed storage and weakref callbacks. A public verifier is installed dynamically and a bootstrap name is later removed.",
+      "evidenceClass": "STATIC_CONFIRMED",
+      "id": "SCI-MAJOR-HIDDEN-RUNTIME-STATE",
+      "impact": "Validity depends on interpreter memory and import order. Concurrency is undefined and M3 cross-process resume cannot rely on this implicit state.",
+      "locations": [
+        "src/selcal/migration_v1_to_v2.py:358-360,394-424,652",
+        "src/selcal/calibration_v2.py:762-764,1778-1789,2314",
+        "src/selcal/resolution_v2.py:1963,3492-3513,3585-3602,3640-3653",
+        "src/selcal/contracts_v2.py:1628-1667"
+      ],
+      "severity": "MAJOR",
+      "smallestRepairSlice": "First freeze a single-process and non-thread-safe contract. Then introduce an explicit RuntimeContext or session ownership store with concurrency and cross-process negative tests, and replace global injection with a stable definition or explicit initializer.",
+      "title": "Object ownership and public verifier installation depend on hidden process state"
+    },
+    {
+      "evidence": "Broad TypeError, ValueError, and OverflowError catches return one numeric-failure diagnostic even though the module defines narrower expected numeric and zero-variance exceptions.",
+      "evidenceClass": "STATIC_CONFIRMED",
+      "id": "SCI-MAJOR-PEARSON-EXCEPTION-COLLAPSE",
+      "impact": "Signature drift, invalid dtype handling, or a programming defect can be counted and interpreted as a data-level NOT_EVALUABLE result.",
+      "locations": [
+        "src/selcal/statistics/lagged_pearson.py:241-244",
+        "src/selcal/statistics/lagged_pearson.py:269-283"
+      ],
+      "severity": "MAJOR",
+      "smallestRepairSlice": "Map only documented numeric and zero-variance failures plus expected FloatingPointError to analytic failure; propagate or wrap unexpected TypeError and ValueError as V2IntegrityError while preserving the cause.",
+      "title": "Lagged Pearson can collapse implementation defects into analytic failure"
+    },
+    {
+      "evidence": "CSV loading retains whole-file bytes, decoded text, split lines, and column lists. NPZ loading passes whole-file bytes to numpy without member-count, compressed-size, expanded-size, row, element, or total-byte limits. No targeted over-limit or archive-expansion tests were found.",
+      "evidenceClass": "STATIC_CONFIRMED",
+      "id": "SCI-MAJOR-INPUT-RESOURCE-BOUNDS",
+      "impact": "Large CSV or highly compressed NPZ input can exhaust memory before the existing B/C/N calibration execution budget applies.",
+      "locations": [
+        "src/selcal/inputs.py:93-180",
+        "src/selcal/inputs.py:189-245"
+      ],
+      "severity": "MAJOR",
+      "smallestRepairSlice": "Add versioned input byte, row, array element, member, and total expanded-size caps. Validate NPZ names, counts, declared sizes, and CRC before array decoding; fail with ResourceLimitError.",
+      "title": "CSV and NPZ input loading has no pre-calibration resource caps"
+    },
+    {
+      "evidence": "Production calibration uses the private random capsule while ReplicateRandomSource remains exported, and both null modules repeat ownership and token-envelope checks despite a shared owned-transform layer. Current targeted randomness and API tests did not show drift.",
+      "evidenceClass": "STATIC_CONFIRMED",
+      "id": "SCI-MINOR-DUPLICATE-RNG-NULL-VALIDATION",
+      "impact": "A future one-sided repair can split public and production RNG behavior or the two null ownership paths.",
+      "locations": [
+        "src/selcal/randomness.py:67-168",
+        "src/selcal/randomness.py:252-383",
+        "src/selcal/nulls/circular_shift_v2.py:413-504",
+        "src/selcal/nulls/block_shuffle_v2.py:479-578",
+        "src/selcal/nulls/owned_transform_v2.py:133-230"
+      ],
+      "severity": "MINOR",
+      "smallestRepairSlice": "Single-source the seed preimage, rejection primitive, and common owner/token envelope checks. If a second RNG is an independent oracle, internalize and name it as such and retain cross-implementation vectors.",
+      "title": "Random primitives and null-token envelope validation have duplicated implementations"
+    },
+    {
+      "evidence": "NumPy norm, dot, and sum may vary in final bits by BLAS, CPU, or thread reduction path, while backend identity records only NumPy version. No cross-platform counterexample was executed.",
+      "evidenceClass": "STATIC_RISK_INFERENCE",
+      "id": "SCI-MINOR-NUMERIC-BACKEND-IDENTITY",
+      "impact": "Near tie or rejection boundaries, unrecorded backend differences may alter a decision without enough provenance to explain it.",
+      "locations": [
+        "src/selcal/statistics/lagged_pearson.py:72-109,197-198",
+        "src/selcal/statistics/binned_nette.py:75-110,337-340"
+      ],
+      "severity": "MINOR",
+      "smallestRepairSlice": "Record NumPy build, BLAS, CPU, and thread configuration, then add cross-backend boundary vectors or use a fixed-order reduction kernel for decision-critical quantities.",
+      "title": "Backend identity is insufficient to diagnose cross-platform floating-point boundaries"
+    }
+  ],
+  "observedAt": "2026-08-31T18:08:47+08:00",
+  "repositoryIdentity": {
+    "state": "DIRTY_UNCOMMITTED_IMPLEMENTATION_CANDIDATE",
+    "trackedBase": "94f993bfd5240739f23dd5f5309a51e51034b962"
+  },
+  "schemaVersion": "selcal-scientific-code-smell-audit-v1",
+  "sourceIdentity": [
+    {
+      "path": "src/selcal/calibration_v2.py",
+      "sha256": "a5249d5facfbcfa8f28b98a70115dbd5ae197e9c1743796fb2fe7e32371e3900"
+    },
+    {
+      "path": "src/selcal/contracts_v2.py",
+      "sha256": "9e4cb4a945602c3ca8e299aefa73b01e753d3b90bdaa465b849d81bcc2b80ef5"
+    },
+    {
+      "path": "src/selcal/inputs.py",
+      "sha256": "258f1cfe0e50feacbec54d63ce2039e797f8c9fb0a9d98023bd7947ca89eabf5"
+    },
+    {
+      "path": "src/selcal/migration_v1_to_v2.py",
+      "sha256": "8d7354b60a23ad8ca0a24b39b68474b86d72b37443d41dff5c1bd8ca2a7787c2"
+    },
+    {
+      "path": "src/selcal/nulls/block_shuffle_v2.py",
+      "sha256": "15b41c65385899d246c08d8dc4cfaccf71ce8b603e0ca8818b2d761790735898"
+    },
+    {
+      "path": "src/selcal/nulls/circular_shift_v2.py",
+      "sha256": "af3e42e133568498cbfd292661e26c2f8b7cb32c43c07f9d43a909fd6909bb3e"
+    },
+    {
+      "path": "src/selcal/nulls/owned_transform_v2.py",
+      "sha256": "c801929c02f1eed07c917aceabc14fd9134285f34316c41fe500c31fbc5c26aa"
+    },
+    {
+      "path": "src/selcal/randomness.py",
+      "sha256": "f825d233087e07e4988fc68549217dcfedb3591f96357fcdafdccb92f0283ef9"
+    },
+    {
+      "path": "src/selcal/resolution_v2.py",
+      "sha256": "762738aac50a609e282ffb00ec74626d2b2aed1daa9aeea2e7716ebac409dfd3"
+    },
+    {
+      "path": "src/selcal/statistics/binned_nette.py",
+      "sha256": "d99f4e4e2767dd10efafe8a84073b72cd827eff0510cb8b400f98c349877efa9"
+    },
+    {
+      "path": "src/selcal/statistics/lagged_pearson.py",
+      "sha256": "0eb5318264a854f7af3c5ca6342c9259d38eab9fc1b37f4dae03c64de72a5e69"
+    }
+  ],
+  "status": "MAJOR_REMEDIATION_REQUIRED_BEFORE_M3_M6_EXTENSION",
+  "summary": {
+    "blocker": 0,
+    "major": 4,
+    "minor": 2
+  },
+  "verification": {
+    "crossPlatformNumericCounterexample": "NOT_EXECUTED",
+    "defaultRuff": "PASS",
+    "freshMypyEvidence": "NOT_OBTAINED",
+    "optInComplexityAudit": "12 C901 findings",
+    "repositoryHygiene": "PASS_ZERO_FINDINGS",
+    "targetedTests": "225 passed, 1 skipped",
+    "task10HistoricalScopeV1FailuresIncluded": false,
+    "verifiedNonFindings": [
+      "No production network calls found",
+      "No production file writes found",
+      "No production imports from tests or docs found",
+      "Random seed derivation binds plan SHA and replicate id"
+    ]
+  }
+}

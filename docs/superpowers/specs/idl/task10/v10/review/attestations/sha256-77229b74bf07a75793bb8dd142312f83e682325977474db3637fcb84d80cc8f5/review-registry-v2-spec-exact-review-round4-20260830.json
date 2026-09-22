@@ -1,0 +1,79 @@
+{
+  "attestation_id": "registry-v2-spec-exact-review-round4-20260830",
+  "created_at": "2026-08-30T13:36:47Z",
+  "effect": "NO_AUTHORITY_PROMOTION",
+  "finding_counts": {
+    "blocker": 0,
+    "major": 0,
+    "minor": 0,
+    "total": 0
+  },
+  "format": "selcal.task10.g18.authority-design-decision-review-attestation.v1",
+  "registry_schema_binding": {
+    "path": "docs/superpowers/specs/idl/task10/v10/review/schema/authority-design-decision-registry-v2.schema.json",
+    "sha256": "81f8e1e68fc1a8cecf964a542feaeb601431b7c2e74726f4e0940f163b23b967"
+  },
+  "review_scope": [
+    "EXACT_BYTE_IDENTITY_AND_V1_V2_V1_ROUNDTRIP",
+    "RULE_AND_SEMANTIC_PROJECTION_EQUIVALENCE_AND_DETERMINISTIC_REGENERATION",
+    "COUNT_PARTITION_AND_EVIDENCE_SOURCE_BINDING",
+    "FIXED_TEN_ARTIFACT_PACKAGE_AND_CANONICAL_REPOSITORY_TOPOLOGY",
+    "ATTESTATION_SCHEMA_VALIDATOR_PREWRITE_READBACK_AND_SUPERSESSION",
+    "FALSE_GREEN_MUTATION_AND_BASELINE_DRIFT_ENFORCEMENT",
+    "BASELINE_BEFORE_ANY_SEMANTIC_READ_ORDERING",
+    "STOP_NO_AUTHORITY_NO_IDL_NO_KAT_BOUNDARY"
+  ],
+  "reviewed_artifact_bindings": {
+    "ATTESTATION_README": {
+      "path": "docs/superpowers/specs/idl/task10/v10/review/attestations/README.md",
+      "sha256": "5bba149267a8c24dea408e0b0f39e5066c3669196bbd3f39490ebb33ff61c3f7"
+    },
+    "ATTESTATION_SCHEMA": {
+      "path": "docs/superpowers/specs/idl/task10/v10/review/schema/authority-design-decision-review-attestation-v1.schema.json",
+      "sha256": "547cb56f7fc74278186fd7bf554c120a839f07c191d854664df7d9607e0622af"
+    },
+    "FOCUSED_TEST": {
+      "path": "tests/task10/test_authority_review_package_v2.py",
+      "sha256": "1b99553b6ef522c2f94db4e1836b4ee5b0d3ec93a60b9999ea39252b25494826"
+    },
+    "MARKDOWN_INDEX": {
+      "path": "docs/superpowers/specs/idl/task10/v10/review/authority-design-decision-index-v2.md",
+      "sha256": "3b6d6abd23173086c2eb3d8b93ad349a0153aafab0fd181e9df3f4866e65dfcc"
+    },
+    "MIGRATOR": {
+      "path": "docs/superpowers/specs/idl/task10/v10/review/migrate_authority_decision_registry_v1_to_v2.py",
+      "sha256": "4bfc9c4a475bc6814b680b281db66180ca3bf3824e89a328e45b78a237b2340c"
+    },
+    "REGISTRY_SCHEMA": {
+      "path": "docs/superpowers/specs/idl/task10/v10/review/schema/authority-design-decision-registry-v2.schema.json",
+      "sha256": "81f8e1e68fc1a8cecf964a542feaeb601431b7c2e74726f4e0940f163b23b967"
+    },
+    "V1_MATRIX": {
+      "path": "docs/superpowers/specs/idl/task10/v10/review/authority-design-decision-matrix-v1.md",
+      "sha256": "8b75baf1db9425daddcfd150f0f3c4638684e42e15fa717c2c2044fb3a8f3287"
+    },
+    "V1_REGISTRY": {
+      "path": "docs/superpowers/specs/idl/task10/v10/review/authority-design-decision-registry-v1.json",
+      "sha256": "047c53aed2250790f403c1aa57563fa1c933c0294dda8d2b5f6fb535b097a398"
+    },
+    "V2_REGISTRY": {
+      "path": "docs/superpowers/specs/idl/task10/v10/review/authority-design-decision-registry-v2.json",
+      "sha256": "77229b74bf07a75793bb8dd142312f83e682325977474db3637fcb84d80cc8f5"
+    },
+    "VALIDATOR": {
+      "path": "docs/superpowers/specs/idl/task10/v10/review/validate_authority_review_package_v2.py",
+      "sha256": "edc0ee49fda614b89353631788bafa67fc6c72c3d11c4e1b4da6f66a4bdd0278"
+    }
+  },
+  "reviewer": {
+    "identity": "/root/registry_v2_spec_exact_review",
+    "independence_declaration": "Independent read-only reviewer. I did not author, edit, regenerate, or write any reviewed artifact, test, plan, scope, baseline, or attestation. All adverse mutations and sequencing probes were memory-only and no repository file was changed.",
+    "role": "SPECIFICATION_AND_SEMANTIC_EQUIVALENCE_REVIEWER",
+    "type": "INDEPENDENT_AGENT"
+  },
+  "subject_binding": {
+    "path": "docs/superpowers/specs/idl/task10/v10/review/authority-design-decision-registry-v2.json",
+    "sha256": "77229b74bf07a75793bb8dd142312f83e682325977474db3637fcb84d80cc8f5"
+  },
+  "verdict": "PASS"
+}

@@ -1,0 +1,407 @@
+{
+ "schema": "selcal.clean-install-acceptance.v1",
+ "script_sha256": "73171b7f672a51215570684d4d2e19eb9a7c18eb231fc10a1ea3d3b0497d408c",
+ "host": {
+  "platform": "macOS-27.0-arm64-arm-64bit",
+  "machine": "arm64"
+ },
+ "artifacts": {
+  "selcal-0.1.0-py3-none-any.whl": "b9ae721c2dacbe6003598c9c56a7559bfbb7112643744581425634a40a7c1297",
+  "selcal-0.1.0.tar.gz": "159203042232014fc9211d3d7394a1252e23199b5dc7c46f1879b431ab146505"
+ },
+ "runs": [
+  {
+   "python_requested": "3.11",
+   "artifact": "selcal-0.1.0-py3-none-any.whl",
+   "venv_exit": 0,
+   "install_exit": 0,
+   "install_stderr_tail": "",
+   "runtime": {
+    "python": "3.11.12",
+    "numpy": "2.4.6",
+    "selcal": "0.1.0"
+   },
+   "imports_from_site_packages": true,
+   "problems": [],
+   "summary": {
+    "sampling": [
+     [
+      "validate",
+      0,
+      "PASS",
+      null
+     ],
+     [
+      "run",
+      0,
+      "COMPLETE",
+      null
+     ],
+     [
+      "verify",
+      0,
+      "COMPLETE",
+      null
+     ],
+     [
+      "verify",
+      0,
+      "COMPLETE",
+      null
+     ],
+     [
+      "report",
+      0,
+      "COMPLETE",
+      null
+     ]
+    ],
+    "exact": [
+     [
+      "validate",
+      0,
+      "PASS",
+      null
+     ],
+     [
+      "run",
+      0,
+      "COMPLETE",
+      null
+     ],
+     [
+      "verify",
+      0,
+      "COMPLETE",
+      null
+     ],
+     [
+      "verify",
+      0,
+      "COMPLETE",
+      null
+     ],
+     [
+      "report",
+      0,
+      "COMPLETE",
+      null
+     ]
+    ],
+    "refused": [
+     [
+      "validate",
+      2,
+      "PLAN_NOT_EXECUTABLE",
+      "REFUSE_NULL_STATES_TOO_FEW"
+     ],
+     [
+      "run",
+      2,
+      "INVALID_REQUEST",
+      "unattainable_plan"
+     ]
+    ]
+   },
+   "p_values": {
+    "sampling": 0.015,
+    "exact": 0.03
+   }
+  },
+  {
+   "python_requested": "3.12",
+   "artifact": "selcal-0.1.0-py3-none-any.whl",
+   "venv_exit": 0,
+   "install_exit": 0,
+   "install_stderr_tail": "",
+   "runtime": {
+    "python": "3.12.10",
+    "numpy": "2.4.6",
+    "selcal": "0.1.0"
+   },
+   "imports_from_site_packages": true,
+   "problems": [],
+   "summary": {
+    "sampling": [
+     [
+      "validate",
+      0,
+      "PASS",
+      null
+     ],
+     [
+      "run",
+      0,
+      "COMPLETE",
+      null
+     ],
+     [
+      "verify",
+      0,
+      "COMPLETE",
+      null
+     ],
+     [
+      "verify",
+      0,
+      "COMPLETE",
+      null
+     ],
+     [
+      "report",
+      0,
+      "COMPLETE",
+      null
+     ]
+    ],
+    "exact": [
+     [
+      "validate",
+      0,
+      "PASS",
+      null
+     ],
+     [
+      "run",
+      0,
+      "COMPLETE",
+      null
+     ],
+     [
+      "verify",
+      0,
+      "COMPLETE",
+      null
+     ],
+     [
+      "verify",
+      0,
+      "COMPLETE",
+      null
+     ],
+     [
+      "report",
+      0,
+      "COMPLETE",
+      null
+     ]
+    ],
+    "refused": [
+     [
+      "validate",
+      2,
+      "PLAN_NOT_EXECUTABLE",
+      "REFUSE_NULL_STATES_TOO_FEW"
+     ],
+     [
+      "run",
+      2,
+      "INVALID_REQUEST",
+      "unattainable_plan"
+     ]
+    ]
+   },
+   "p_values": {
+    "sampling": 0.015,
+    "exact": 0.03
+   }
+  },
+  {
+   "python_requested": "3.13",
+   "artifact": "selcal-0.1.0-py3-none-any.whl",
+   "venv_exit": 0,
+   "install_exit": 0,
+   "install_stderr_tail": "",
+   "runtime": {
+    "python": "3.13.12",
+    "numpy": "2.4.6",
+    "selcal": "0.1.0"
+   },
+   "imports_from_site_packages": true,
+   "problems": [],
+   "summary": {
+    "sampling": [
+     [
+      "validate",
+      0,
+      "PASS",
+      null
+     ],
+     [
+      "run",
+      0,
+      "COMPLETE",
+      null
+     ],
+     [
+      "verify",
+      0,
+      "COMPLETE",
+      null
+     ],
+     [
+      "verify",
+      0,
+      "COMPLETE",
+      null
+     ],
+     [
+      "report",
+      0,
+      "COMPLETE",
+      null
+     ]
+    ],
+    "exact": [
+     [
+      "validate",
+      0,
+      "PASS",
+      null
+     ],
+     [
+      "run",
+      0,
+      "COMPLETE",
+      null
+     ],
+     [
+      "verify",
+      0,
+      "COMPLETE",
+      null
+     ],
+     [
+      "verify",
+      0,
+      "COMPLETE",
+      null
+     ],
+     [
+      "report",
+      0,
+      "COMPLETE",
+      null
+     ]
+    ],
+    "refused": [
+     [
+      "validate",
+      2,
+      "PLAN_NOT_EXECUTABLE",
+      "REFUSE_NULL_STATES_TOO_FEW"
+     ],
+     [
+      "run",
+      2,
+      "INVALID_REQUEST",
+      "unattainable_plan"
+     ]
+    ]
+   },
+   "p_values": {
+    "sampling": 0.015,
+    "exact": 0.03
+   }
+  },
+  {
+   "python_requested": "3.13",
+   "artifact": "selcal-0.1.0.tar.gz",
+   "venv_exit": 0,
+   "install_exit": 0,
+   "install_stderr_tail": "",
+   "runtime": {
+    "python": "3.13.12",
+    "numpy": "2.4.6",
+    "selcal": "0.1.0"
+   },
+   "imports_from_site_packages": true,
+   "problems": [],
+   "summary": {
+    "sampling": [
+     [
+      "validate",
+      0,
+      "PASS",
+      null
+     ],
+     [
+      "run",
+      0,
+      "COMPLETE",
+      null
+     ],
+     [
+      "verify",
+      0,
+      "COMPLETE",
+      null
+     ],
+     [
+      "verify",
+      0,
+      "COMPLETE",
+      null
+     ],
+     [
+      "report",
+      0,
+      "COMPLETE",
+      null
+     ]
+    ],
+    "exact": [
+     [
+      "validate",
+      0,
+      "PASS",
+      null
+     ],
+     [
+      "run",
+      0,
+      "COMPLETE",
+      null
+     ],
+     [
+      "verify",
+      0,
+      "COMPLETE",
+      null
+     ],
+     [
+      "verify",
+      0,
+      "COMPLETE",
+      null
+     ],
+     [
+      "report",
+      0,
+      "COMPLETE",
+      null
+     ]
+    ],
+    "refused": [
+     [
+      "validate",
+      2,
+      "PLAN_NOT_EXECUTABLE",
+      "REFUSE_NULL_STATES_TOO_FEW"
+     ],
+     [
+      "run",
+      2,
+      "INVALID_REQUEST",
+      "unattainable_plan"
+     ]
+    ]
+   },
+   "p_values": {
+    "sampling": 0.015,
+    "exact": 0.03
+   }
+  }
+ ],
+ "all_passed": true
+}

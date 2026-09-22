@@ -1,0 +1,88 @@
+{
+  "schema": "selcal.softwarex-template-source-checkpoint.v1",
+  "paperId": "P3-SELCAL",
+  "targetJournal": "SoftwareX",
+  "observedAt": "2026-08-31T14:17:31+08:00",
+  "status": "CURRENT_TEMPLATE_BYTE_IDENTITY_RECONFIRMED_PRODUCT_HOLD",
+  "source": {
+    "title": "SoftwareX article template Version 6 (March 2026)",
+    "url": "https://legacyfileshare.elsevier.com/promis_misc/softwarex-osp-template.docx",
+    "httpStatus": 200,
+    "contentType": "application/octet-stream",
+    "contentLength": 44823,
+    "lastModified": "2026-04-17T10:28:21Z",
+    "etag": "6f2615cedc7d9f798f9323bab325d7fd"
+  },
+  "downloadedArtifact": {
+    "mediaType": "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+    "fileSignature": "Microsoft Word 2007+",
+    "bytes": 44823,
+    "sha256": "9fcf40ede96a2f188ee4ef77134e0596d01e1b65fd9db63f2874d29f2ecb916d",
+    "zipIntegrity": "PASS"
+  },
+  "structuralInspection": {
+    "paragraphs": 81,
+    "tables": 1,
+    "sections": 1,
+    "inlineShapes": 0,
+    "renderedPages": 4,
+    "allPagesVisuallyInspected": true,
+    "renderGate": "PASS"
+  },
+  "templateContract": {
+    "articleType": "Original Software Publication",
+    "publicCodeRequired": true,
+    "metadataRepository": "GitHub",
+    "repositoryFilesRequiredByTemplate": [
+      "README.md",
+      "Licence.txt"
+    ],
+    "wordLimit": 4000,
+    "mainBodyPageGuidance": 6,
+    "wordLimitTakesPriorityOverPageGuidance": true,
+    "maximumFigures": 6,
+    "abstractTargetWords": 100,
+    "maximumKeywords": 6,
+    "metadataFields": [
+      "C1 Current code version",
+      "C2 Permanent GitHub link to the submitted code version",
+      "C3 Legal code license",
+      "C4 Code versioning system",
+      "C5 Languages, tools and services",
+      "C6 Compilation requirements, environments and dependencies",
+      "C7 Developer documentation or manual link",
+      "C8 Support email"
+    ],
+    "mandatorySections": [
+      "Motivation and significance",
+      "Software description",
+      "Illustrative examples",
+      "Impact",
+      "Conclusions"
+    ],
+    "impactIsMainReviewerWeightedSection": true
+  },
+  "deltaAgainst20260827Checkpoint": {
+    "byteIdentityChanged": false,
+    "templateVersionChanged": false,
+    "templateRuleChanged": false,
+    "guideContractRuleChanged": "outside_template_checkpoint_scope",
+    "conclusion": "The current official DOCX is byte-identical to the template frozen on 2026-08-27."
+  },
+  "closedByThisCheckpoint": [
+    "Current SoftwareX OSP DOCX URL resolves successfully.",
+    "The retrieved object is an intact DOCX with the previously frozen SHA-256.",
+    "All four rendered pages were inspected and the five-section structure was reconfirmed."
+  ],
+  "notClosedByThisCheckpoint": [
+    "SoftwareX Guide-for-Authors interpretation beyond the template itself",
+    "SelCal scientific impact or M6 evidence",
+    "public GitHub repository and frozen release",
+    "author-selected legal code licence",
+    "independent clean installation and documented reproduction",
+    "research-data, authorship, rights or declaration facts",
+    "live Editorial Manager field and upload-slot verification",
+    "manuscript conformity or submission readiness"
+  ],
+  "evidenceBoundary": "This checkpoint proves only the identity, integrity, extracted structure and rendered legibility of the official DOCX retrieved on the stated date. It does not prove that SelCal satisfies the template or that any downstream product, scientific, release or submission gate has passed."
+}

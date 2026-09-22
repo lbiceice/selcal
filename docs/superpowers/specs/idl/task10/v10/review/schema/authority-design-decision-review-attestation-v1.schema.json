@@ -1,0 +1,251 @@
+{
+  "$defs": {
+    "artifactBinding": {
+      "additionalProperties": false,
+      "properties": {
+        "path": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "sha256": {
+          "pattern": "^[0-9a-f]{64}$",
+          "type": "string"
+        }
+      },
+      "required": [
+        "path",
+        "sha256"
+      ],
+      "type": "object"
+    },
+    "reviewedPackageBindings": {
+      "additionalProperties": false,
+      "properties": {
+        "ATTESTATION_README": {
+          "$ref": "#/$defs/artifactBinding"
+        },
+        "ATTESTATION_SCHEMA": {
+          "$ref": "#/$defs/artifactBinding"
+        },
+        "FOCUSED_TEST": {
+          "$ref": "#/$defs/artifactBinding"
+        },
+        "MARKDOWN_INDEX": {
+          "$ref": "#/$defs/artifactBinding"
+        },
+        "MIGRATOR": {
+          "$ref": "#/$defs/artifactBinding"
+        },
+        "REGISTRY_SCHEMA": {
+          "$ref": "#/$defs/artifactBinding"
+        },
+        "V1_MATRIX": {
+          "$ref": "#/$defs/artifactBinding"
+        },
+        "V1_REGISTRY": {
+          "$ref": "#/$defs/artifactBinding"
+        },
+        "V2_REGISTRY": {
+          "$ref": "#/$defs/artifactBinding"
+        },
+        "VALIDATOR": {
+          "$ref": "#/$defs/artifactBinding"
+        }
+      },
+      "required": [
+        "ATTESTATION_README",
+        "ATTESTATION_SCHEMA",
+        "FOCUSED_TEST",
+        "MARKDOWN_INDEX",
+        "MIGRATOR",
+        "REGISTRY_SCHEMA",
+        "V1_MATRIX",
+        "V1_REGISTRY",
+        "V2_REGISTRY",
+        "VALIDATOR"
+      ],
+      "type": "object"
+    },
+    "supersededAttestationBinding": {
+      "additionalProperties": false,
+      "properties": {
+        "path": {
+          "pattern": "^docs/superpowers/specs/idl/task10/v10/review/attestations/sha256-[0-9a-f]{64}/review-[a-z0-9][a-z0-9-]{2,127}\\.json$",
+          "type": "string"
+        },
+        "sha256": {
+          "pattern": "^[0-9a-f]{64}$",
+          "type": "string"
+        }
+      },
+      "required": [
+        "path",
+        "sha256"
+      ],
+      "type": "object"
+    }
+  },
+  "$id": "selcal.task10.g18.authority-design-decision-review-attestation.v1",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "oneOf": [
+    {
+      "properties": {
+        "verdict": {
+          "enum": [
+            "HOLD",
+            "REPRESENTATION_EQUIVALENT_ONLY"
+          ]
+        }
+      },
+      "required": [
+        "verdict"
+      ],
+      "type": "object"
+    },
+    {
+      "properties": {
+        "reviewer": {
+          "properties": {
+            "type": {
+              "const": "INDEPENDENT_AGENT"
+            }
+          },
+          "required": [
+            "type"
+          ],
+          "type": "object"
+        },
+        "verdict": {
+          "const": "PASS"
+        }
+      },
+      "required": [
+        "reviewer",
+        "verdict"
+      ],
+      "type": "object"
+    }
+  ],
+  "properties": {
+    "attestation_id": {
+      "pattern": "^[a-z0-9][a-z0-9-]{2,127}$",
+      "type": "string"
+    },
+    "created_at": {
+      "pattern": "^[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}Z$",
+      "type": "string"
+    },
+    "effect": {
+      "const": "NO_AUTHORITY_PROMOTION"
+    },
+    "finding_counts": {
+      "additionalProperties": false,
+      "properties": {
+        "blocker": {
+          "minimum": 0,
+          "type": "integer"
+        },
+        "major": {
+          "minimum": 0,
+          "type": "integer"
+        },
+        "minor": {
+          "minimum": 0,
+          "type": "integer"
+        },
+        "total": {
+          "minimum": 0,
+          "type": "integer"
+        }
+      },
+      "required": [
+        "blocker",
+        "major",
+        "minor",
+        "total"
+      ],
+      "type": "object"
+    },
+    "format": {
+      "const": "selcal.task10.g18.authority-design-decision-review-attestation.v1"
+    },
+    "registry_schema_binding": {
+      "$ref": "#/$defs/artifactBinding"
+    },
+    "review_scope": {
+      "items": {
+        "minLength": 1,
+        "pattern": "[^\\s]",
+        "type": "string"
+      },
+      "minItems": 1,
+      "type": "array",
+      "uniqueItems": true
+    },
+    "reviewed_artifact_bindings": {
+      "$ref": "#/$defs/reviewedPackageBindings"
+    },
+    "reviewer": {
+      "additionalProperties": false,
+      "properties": {
+        "identity": {
+          "minLength": 1,
+          "pattern": "[^\\s]",
+          "type": "string"
+        },
+        "independence_declaration": {
+          "minLength": 1,
+          "pattern": "[^\\s]",
+          "type": "string"
+        },
+        "role": {
+          "minLength": 1,
+          "pattern": "[^\\s]",
+          "type": "string"
+        },
+        "type": {
+          "enum": [
+            "INDEPENDENT_AGENT",
+            "IMPLEMENTER_SELF_CHECK"
+          ]
+        }
+      },
+      "required": [
+        "identity",
+        "type",
+        "role",
+        "independence_declaration"
+      ],
+      "type": "object"
+    },
+    "subject_binding": {
+      "$ref": "#/$defs/artifactBinding"
+    },
+    "supersedes": {
+      "$ref": "#/$defs/supersededAttestationBinding"
+    },
+    "verdict": {
+      "enum": [
+        "PASS",
+        "HOLD",
+        "REPRESENTATION_EQUIVALENT_ONLY"
+      ]
+    }
+  },
+  "required": [
+    "format",
+    "attestation_id",
+    "subject_binding",
+    "registry_schema_binding",
+    "reviewed_artifact_bindings",
+    "reviewer",
+    "review_scope",
+    "verdict",
+    "finding_counts",
+    "effect",
+    "created_at"
+  ],
+  "title": "Detached exact-byte Task 10 review attestation",
+  "type": "object"
+}

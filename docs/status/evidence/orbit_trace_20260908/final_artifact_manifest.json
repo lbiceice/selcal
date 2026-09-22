@@ -1,0 +1,126 @@
+{
+  "status": "CURRENT_LOCAL_ARTIFACT_IDENTITY_FROZEN",
+  "checked_at_utc": "2026-09-08T16:13:25.843754+00:00",
+  "paper": "P3",
+  "software": "SelCal",
+  "scope": "Local disclosed trace continuation only; not a new submission package or journal compliance audit.",
+  "selected_test_suites": [
+    {
+      "file": "product_suite_final.xml",
+      "tests": 3334,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 1
+    },
+    {
+      "file": "extracted_diagnostic_tests.xml",
+      "tests": 84,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    }
+  ],
+  "review": "Root scoped SPEC; separately assigned same-team AI QUALITY closed two reproduced P2 issues",
+  "filter_net": {
+    "new": 4,
+    "repeat_new": 0,
+    "repeat_dup": 4,
+    "bad": 0,
+    "new_cells": 0,
+    "unique_readback": 4,
+    "old_trace_issue_retained": true,
+    "fixed": 3,
+    "open": 1
+  },
+  "corpus": {
+    "records": 94,
+    "own_case_followup_added": true,
+    "check": "STRUCTURE_PASS_NOT_SCIENCE_PASS",
+    "previous_research_manifest_corpus_binding": "HISTORICAL_AFTER_APPEND"
+  },
+  "sdist": {
+    "regular_files_matching_current_tree": 139,
+    "build_generated_metadata": [
+      "PKG-INFO",
+      "setup.cfg"
+    ],
+    "source_execution": true,
+    "new_wheel_install": false,
+    "public_release": false
+  },
+  "scientific_study_executed": false,
+  "external_human_validation": false,
+  "submission_ready": false,
+  "artifacts": [
+    {
+      "path": "/Users/vincent/.cache/selcal-worktrees/contract-resolution-pearson/docs/status/p3_orbit_trace_closure_20260908.md",
+      "bytes": 8659,
+      "sha256": "7a923ab3fd657b808ad59dd4fab1c345ca73853ccf4e1dc5ce098f96312fb2e8"
+    },
+    {
+      "path": "/Users/vincent/.cache/selcal-worktrees/contract-resolution-pearson/docs/superpowers/plans/2026-09-08-pearson-diagnostic-slice.md",
+      "bytes": 11169,
+      "sha256": "6c69e86e548d4ddd9bf44e7ded1545a80f614434621f495dbee825ccb3a3d82b"
+    },
+    {
+      "path": "/Users/vincent/.cache/selcal-worktrees/contract-resolution-pearson/scripts/compare_pearson_diagnostic.py",
+      "bytes": 22023,
+      "sha256": "c8902689251b02230c620a02b081086477867d5a92e8a5053e250dfe2bcb3da9"
+    },
+    {
+      "path": "/Users/vincent/.cache/selcal-worktrees/contract-resolution-pearson/scripts/m6_pearson_diagnostic.py",
+      "bytes": 10015,
+      "sha256": "7b261c34eb9c2777667ac64f556e4e73d51829c629276f4ed354f08afb58b722"
+    },
+    {
+      "path": "/Users/vincent/.cache/selcal-worktrees/contract-resolution-pearson/tests/test_m6_pearson_orbit_trace.py",
+      "bytes": 20042,
+      "sha256": "405bc7bd87a7e8a113e65186a25b7ef4d982b3601bc6519d583a68b452e06079"
+    },
+    {
+      "path": "/Users/vincent/.cache/selcal-worktrees/contract-resolution-pearson/docs/benchmarks/2026-09-08-pearson-orbit-trace-verified.json",
+      "bytes": 7288616,
+      "sha256": "6f5e9edecc22c1863933173eb8934dee5d24216b8bdfcc9e6b24fa73dda5a768"
+    },
+    {
+      "path": "/Users/vincent/.cache/selcal-worktrees/contract-resolution-pearson/docs/benchmarks/2026-09-08-pearson-basic-trace-verified.json",
+      "bytes": 211040,
+      "sha256": "2e60bfe50414bc49a0f2c25ca48169c9d1634f53702b33e10d626bf280a403af"
+    },
+    {
+      "path": "/Users/vincent/.cache/selcal-worktrees/contract-resolution-pearson/docs/status/evidence/orbit_trace_20260908/root_replay_final.json",
+      "bytes": 6634,
+      "sha256": "5fc8a3bcab587ae466a1888be9bb58bbdaf7be2841204e5cee9631f55afccbdc"
+    },
+    {
+      "path": "/Users/vincent/.cache/selcal-worktrees/contract-resolution-pearson/docs/status/evidence/orbit_trace_20260908/product_suite_final.xml",
+      "bytes": 512538,
+      "sha256": "93ea7ee39af684545fd914a84cac805c6ac31717e036a90821cdf6c31f8c7a38"
+    },
+    {
+      "path": "/Users/vincent/.cache/selcal-worktrees/contract-resolution-pearson/docs/status/evidence/orbit_trace_20260908/extracted_diagnostic_tests.xml",
+      "bytes": 12287,
+      "sha256": "ee056fd12a63fb0f37bc630b8b81cf237ac7bc4942e22ff36fb74fe4ec73e43b"
+    },
+    {
+      "path": "/Users/vincent/.cache/selcal-worktrees/contract-resolution-pearson/docs/status/evidence/orbit_trace_20260908/extracted_orbit_trace.json",
+      "bytes": 7289723,
+      "sha256": "5161296e1c9d76f6f37ca07436d1d44562d691a8d82507a101c6010b1efc6546"
+    },
+    {
+      "path": "/Users/vincent/.cache/selcal-worktrees/contract-resolution-pearson/docs/status/evidence/orbit_trace_20260908/selcal-0.1.0.dev0-tested-local.tar.gz",
+      "bytes": 881342,
+      "sha256": "e628df292904fb0b6ea403b00938d9b1e00fc4c5c87af65a722d8964a605a2b0"
+    },
+    {
+      "path": "/Users/vincent/Documents/顶刊论文工作流搭建/_filternet_20260716/issues_P3_20260908_orbit_trace_closure.json",
+      "bytes": 4696,
+      "sha256": "3dc42363b09987a3f6d834bed6ca82b0ce822caadb9192bec7394340146c625b"
+    },
+    {
+      "path": "/Users/vincent/Documents/顶刊论文工作流搭建/exemplar_corpus/corpus.json",
+      "bytes": 447798,
+      "sha256": "fed78919cdfb6b300eaff9e2f05b2d1fac9272d8d8e0cd143498698c5bd7c12b"
+    }
+  ]
+}

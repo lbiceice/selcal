@@ -1,0 +1,212 @@
+{
+  "artifact_status": "HASH_BOUND_SCOPE_BASELINE_NOT_AUTHORITY",
+  "baseline_id": "SELCAL-TASK10-G18-AUTHORITY-AMENDMENT-SCOPE-BASELINE-20260830",
+  "deny_by_default_manifest": {
+    "excluded_current_outputs": [
+      "docs/superpowers/plans/2026-08-30-task10-authority-prose-amendment-exact-review.md",
+      "docs/superpowers/specs/task10/v10/authority-amendment/review/authority-amendment-scope-addendum-v1.md",
+      "docs/superpowers/specs/task10/v10/authority-amendment/review/authority-amendment-baseline-v1.json",
+      "docs/superpowers/specs/task10/v10/authority-amendment/review/authority-amendment-target-map-v1.json",
+      "docs/superpowers/specs/task10/v10/authority-amendment/review/schema/authority-amendment-target-map-v1.schema.json",
+      "docs/superpowers/specs/task10/v10/authority-amendment/review/validate_authority_amendment_scope_v1.py",
+      "tests/task10/test_authority_amendment_scope_v1.py"
+    ],
+    "file_count": 109,
+    "inventory": "GIT_LS_FILES_CACHED_AND_OTHERS_EXCLUDE_STANDARD_NUL",
+    "path_set_sha256": "0d393386d050050f8fb232e2a078bf5339eb2bd465b9d7b8304483bcbe601ddd",
+    "tree_record_format": "UTF8_PATH_NUL_REGULAR_NUL_MODE_OCTAL_NUL_SHA256_LF_SORTED_BY_PATH",
+    "tree_sha256": "6cee2a35f42935f5097775babce94e6d0ca051193c806a4e8fe32c7103e96ff1"
+  },
+  "expected_absent_outputs": [
+    "docs/superpowers/specs/2026-08-30-task10-deny-by-default-provider-proof-design-g18-authority-candidate.md",
+    "docs/superpowers/specs/task10/v10/authority-amendment/authority-prose-amendment-result-v1.json",
+    "docs/superpowers/specs/task10/v10/authority-amendment/build_authority_prose_candidate_v1.py",
+    "docs/superpowers/specs/task10/v10/authority-amendment/validate_authority_prose_candidate_v1.py",
+    "tests/task10/test_authority_prose_amendment_v1.py"
+  ],
+  "files": [
+    {
+      "logical_role": "SCOPE_PLAN",
+      "path": "docs/superpowers/plans/2026-08-30-task10-authority-prose-amendment-exact-review.md",
+      "sha256": "15ae657557ed28e9bb15df6c0b07df09bb8faeadb1d3375b5c320985e7242024"
+    },
+    {
+      "logical_role": "SCOPE_ADDENDUM",
+      "path": "docs/superpowers/specs/task10/v10/authority-amendment/review/authority-amendment-scope-addendum-v1.md",
+      "sha256": "35211324908ba377b43daeb61d4ff731ea5351382366b777e003f854df1fe7b0"
+    },
+    {
+      "logical_role": "TARGET_MAP",
+      "path": "docs/superpowers/specs/task10/v10/authority-amendment/review/authority-amendment-target-map-v1.json",
+      "sha256": "3c946476b29f5ae21f2b43c37f9c3103943a48f7179ad511a5ec3218508a850e"
+    },
+    {
+      "logical_role": "TARGET_MAP_SCHEMA",
+      "path": "docs/superpowers/specs/task10/v10/authority-amendment/review/schema/authority-amendment-target-map-v1.schema.json",
+      "sha256": "15aa9533e70d323f139f8838de3d408c032b69c962785c8e8131fddd439b02e9"
+    },
+    {
+      "logical_role": "SCOPE_VALIDATOR",
+      "path": "docs/superpowers/specs/task10/v10/authority-amendment/review/validate_authority_amendment_scope_v1.py",
+      "sha256": "130b90a07e366713cbb9b7a0105b43e2f53bde944a89451f43c4cbb90aac53de"
+    },
+    {
+      "logical_role": "SCOPE_FOCUSED_TEST",
+      "path": "tests/task10/test_authority_amendment_scope_v1.py",
+      "sha256": "07596e4ac95d4add609bac923d5e6bb99011b0d302f8408fcd66621fd79baf3a"
+    },
+    {
+      "logical_role": "AUTHORITY_PREDECESSOR",
+      "path": "docs/superpowers/specs/2026-08-29-task10-deny-by-default-provider-proof-design.md",
+      "sha256": "74891e7b1a5190d64da5d2fd74e8ef0d74e671fc81600875995c2dbc7ee057ff"
+    },
+    {
+      "logical_role": "FROZEN_DOWNSTREAM_DRAFT",
+      "path": "docs/superpowers/plans/2026-08-30-task10-authoritative-provider-idl-implementation.md",
+      "sha256": "c03bd64635713c8c1cea2dc65070205a1ad6afc364087c087d8bcfd0091c2ffb"
+    },
+    {
+      "logical_role": "V1_REVIEW_REGISTRY",
+      "path": "docs/superpowers/specs/idl/task10/v10/review/authority-design-decision-registry-v1.json",
+      "sha256": "047c53aed2250790f403c1aa57563fa1c933c0294dda8d2b5f6fb535b097a398"
+    },
+    {
+      "logical_role": "V1_REVIEW_MATRIX",
+      "path": "docs/superpowers/specs/idl/task10/v10/review/authority-design-decision-matrix-v1.md",
+      "sha256": "8b75baf1db9425daddcfd150f0f3c4638684e42e15fa717c2c2044fb3a8f3287"
+    },
+    {
+      "logical_role": "V2_REVIEW_REGISTRY",
+      "path": "docs/superpowers/specs/idl/task10/v10/review/authority-design-decision-registry-v2.json",
+      "sha256": "77229b74bf07a75793bb8dd142312f83e682325977474db3637fcb84d80cc8f5"
+    },
+    {
+      "logical_role": "V2_REGISTRY_SCHEMA",
+      "path": "docs/superpowers/specs/idl/task10/v10/review/schema/authority-design-decision-registry-v2.schema.json",
+      "sha256": "81f8e1e68fc1a8cecf964a542feaeb601431b7c2e74726f4e0940f163b23b967"
+    },
+    {
+      "logical_role": "V2_ATTESTATION_SCHEMA",
+      "path": "docs/superpowers/specs/idl/task10/v10/review/schema/authority-design-decision-review-attestation-v1.schema.json",
+      "sha256": "547cb56f7fc74278186fd7bf554c120a839f07c191d854664df7d9607e0622af"
+    },
+    {
+      "logical_role": "V2_MIGRATOR",
+      "path": "docs/superpowers/specs/idl/task10/v10/review/migrate_authority_decision_registry_v1_to_v2.py",
+      "sha256": "4bfc9c4a475bc6814b680b281db66180ca3bf3824e89a328e45b78a237b2340c"
+    },
+    {
+      "logical_role": "V2_VALIDATOR",
+      "path": "docs/superpowers/specs/idl/task10/v10/review/validate_authority_review_package_v2.py",
+      "sha256": "edc0ee49fda614b89353631788bafa67fc6c72c3d11c4e1b4da6f66a4bdd0278"
+    },
+    {
+      "logical_role": "V2_INDEX",
+      "path": "docs/superpowers/specs/idl/task10/v10/review/authority-design-decision-index-v2.md",
+      "sha256": "3b6d6abd23173086c2eb3d8b93ad349a0153aafab0fd181e9df3f4866e65dfcc"
+    },
+    {
+      "logical_role": "V2_ATTESTATION_README",
+      "path": "docs/superpowers/specs/idl/task10/v10/review/attestations/README.md",
+      "sha256": "5bba149267a8c24dea408e0b0f39e5066c3669196bbd3f39490ebb33ff61c3f7"
+    },
+    {
+      "logical_role": "V2_FOCUSED_TEST",
+      "path": "tests/task10/test_authority_review_package_v2.py",
+      "sha256": "1b99553b6ef522c2f94db4e1836b4ee5b0d3ec93a60b9999ea39252b25494826"
+    },
+    {
+      "logical_role": "V2_PLAN",
+      "path": "docs/superpowers/plans/2026-08-30-task10-authority-review-package-v2-quality-closure.md",
+      "sha256": "bf4a41f7f9c7418e6229cb32df094f9531f890b19c5262b63ae14b66fd14c529"
+    },
+    {
+      "logical_role": "V2_SCOPE",
+      "path": "docs/superpowers/specs/idl/task10/v10/review/authority-review-package-v2-scope-addendum.md",
+      "sha256": "a98fedc1cc873333b4da9b0e586c634c2900b54e67de81b5c867a420bf2f2073"
+    },
+    {
+      "logical_role": "V2_BASELINE",
+      "path": "docs/superpowers/specs/idl/task10/v10/review/authority-review-package-v2-baseline.json",
+      "sha256": "24d52f573f566317c973cd74e3e52779b987e2055c8df90a92a09040ca0bf7ea"
+    },
+    {
+      "logical_role": "V2_SPEC_ATTESTATION",
+      "path": "docs/superpowers/specs/idl/task10/v10/review/attestations/sha256-77229b74bf07a75793bb8dd142312f83e682325977474db3637fcb84d80cc8f5/review-registry-v2-spec-exact-review-round4-20260830.json",
+      "sha256": "1c986a5d8e0325d93f2888bd4f3a8d773c102dc399519c32f32bfe09845ffd7f"
+    },
+    {
+      "logical_role": "V2_QUALITY_ATTESTATION",
+      "path": "docs/superpowers/specs/idl/task10/v10/review/attestations/sha256-77229b74bf07a75793bb8dd142312f83e682325977474db3637fcb84d80cc8f5/review-data-code-quality-review-20260830-004.json",
+      "sha256": "4d5391d89974850e22caad046fbc30274f4aa31c0c40b3893d52f558e44388d8"
+    },
+    {
+      "logical_role": "OWNER_INVENTORY_00_20",
+      "path": "docs/superpowers/specs/idl/task10/v10/review/owner-inventory-00-20.json",
+      "sha256": "940ee3e82c93a466076e9a4391b04b43a94d4e52d42e541db7eb903b32fc7487"
+    },
+    {
+      "logical_role": "OWNER_INVENTORY_21_44",
+      "path": "docs/superpowers/specs/idl/task10/v10/review/owner-inventory-21-44.json",
+      "sha256": "13d32e76f1da286214b936bc80e2b46322d92aae1d718f8af13a78c287e0aec2"
+    },
+    {
+      "logical_role": "OWNER_INVENTORY_45_65",
+      "path": "docs/superpowers/specs/idl/task10/v10/review/owner-inventory-45-65.json",
+      "sha256": "b820c503f6233ac61d3e168f637ce7b9246f0d034ac5e49577f9e988af2d560b"
+    },
+    {
+      "logical_role": "INVENTORY_GAP_LEDGER",
+      "path": "docs/superpowers/specs/idl/task10/v10/review/inventory-gap-ledger.json",
+      "sha256": "fddfb19bba9985f831712777a4bd4a2b5e59e11ee031366442d047be1c9721e8"
+    },
+    {
+      "logical_role": "ADVERSE_PARTIAL_SCHEMA",
+      "path": "docs/superpowers/specs/fixtures/task10-reference-schema-v10.json",
+      "sha256": "8f3326145154860bc64c99835c90eded014fd89ba764d9b3903d48508929090d"
+    },
+    {
+      "logical_role": "ADVERSE_PARTIAL_SCHEMA_MANIFEST",
+      "path": "docs/superpowers/specs/fixtures/2026-08-30-task10-reference-schema-v10-manifest.md",
+      "sha256": "47d904992196a90dcffbeb52ad3702dcdf710f4466464681f229f05f43b070cb"
+    },
+    {
+      "logical_role": "ADVERSE_COVERAGE",
+      "path": "docs/superpowers/specs/fixtures/task10-provider-audit-full-kat-coverage.json",
+      "sha256": "7f1b5112f400ad2fa8f8c9191a2cdcda3141a2cc99760d343a35031dff38fb01"
+    },
+    {
+      "logical_role": "ADVERSE_KAT_MANIFEST",
+      "path": "docs/superpowers/specs/fixtures/2026-08-30-task10-provider-audit-full-kat-manifest.md",
+      "sha256": "b3f79e661991f27c8f297ec0625238cdf1c685748a83382f57f00febcb5c4ca9"
+    }
+  ],
+  "git_head": "94f993bfd5240739f23dd5f5309a51e51034b962",
+  "identity_rule": "Read evidence through component-wise no-follow descriptors; verify fstat ordinary-file kind, permission mode, stable identity and exact bytes; then confirm the path still maps to that inode before semantic inputs. The dirty worktree is preserved; git status is not a content-identity substitute.",
+  "machine_stop_decision": "STOP_ON_ANY_BASELINE_HASH_DRIFT",
+  "protected_trees": [
+    {
+      "file_count": 35,
+      "glob": "**/*",
+      "logical_role": "PRODUCTION_SOURCE_TREE",
+      "root": "src",
+      "sha256": "3fc27e631086c2a4a1faa592f98f34163c955a6bfde3ab4a931e0e4c55c5b686"
+    },
+    {
+      "file_count": 39,
+      "glob": "**/*",
+      "logical_role": "TEST_TREE",
+      "root": "tests",
+      "sha256": "87a1760d42a8a8207970214180409f694730ece6755ad06d714294c7d1419da4"
+    },
+    {
+      "file_count": 17,
+      "glob": "**/*",
+      "logical_role": "V2_REVIEW_TREE",
+      "root": "docs/superpowers/specs/idl/task10/v10/review",
+      "sha256": "9d2e1fc6d80be07c7f9b8a0b344dfc6e5e793ccd35a77afd7b1c62efb98a462b"
+    }
+  ],
+  "schema": "selcal.task10.g18.authority-amendment-scope-baseline.v1",
+  "scope": "SCOPE_REVIEW_ONLY_APPEND_ONLY_SUCCESSOR_PREWRITE"
+}

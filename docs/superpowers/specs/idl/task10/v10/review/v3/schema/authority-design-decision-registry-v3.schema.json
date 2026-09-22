@@ -1,0 +1,784 @@
+{
+  "$defs": {
+    "aliasRecord": {
+      "additionalProperties": false,
+      "properties": {
+        "alias_id": {
+          "pattern": "^ALS-[0-9]{4}$",
+          "type": "string"
+        },
+        "decision_id": {
+          "pattern": "^T10-G18-DD-[0-9]{3}$",
+          "type": "string"
+        },
+        "payload": {
+          "$ref": "#/$defs/jsonObject"
+        }
+      },
+      "required": [
+        "alias_id",
+        "decision_id",
+        "payload"
+      ],
+      "type": "object"
+    },
+    "branchRecord": {
+      "additionalProperties": false,
+      "properties": {
+        "branch_id": {
+          "pattern": "^(BR-[0-9]{4}|T10-G18-DD-[0-9]{3}-BR3-[0-9]{4})$",
+          "type": "string"
+        },
+        "consumer_rule_ids": {
+          "$ref": "#/$defs/ruleIds"
+        },
+        "payload": {
+          "$ref": "#/$defs/jsonObject"
+        },
+        "predicate": {
+          "$ref": "#/$defs/jsonObject"
+        }
+      },
+      "required": [
+        "branch_id",
+        "predicate",
+        "consumer_rule_ids",
+        "payload"
+      ],
+      "type": "object"
+    },
+    "coverageRecord": {
+      "additionalProperties": false,
+      "properties": {
+        "compiled_rule_ids": {
+          "$ref": "#/$defs/ruleIds"
+        },
+        "coverage_row_id": {
+          "pattern": "^ROW-[0-9]{4}$",
+          "type": "string"
+        },
+        "evidence_ref_ids": {
+          "$ref": "#/$defs/evidenceIds"
+        },
+        "ordinal": {
+          "minimum": 0,
+          "type": "integer"
+        },
+        "payload": {
+          "$ref": "#/$defs/jsonObject"
+        }
+      },
+      "required": [
+        "coverage_row_id",
+        "ordinal",
+        "compiled_rule_ids",
+        "evidence_ref_ids",
+        "payload"
+      ],
+      "type": "object"
+    },
+    "decisionRecord": {
+      "additionalProperties": false,
+      "oneOf": [
+        {"properties": {"decision_id": {"const": "T10-G18-DD-001"}}},
+        {"properties": {"decision_id": {"const": "T10-G18-DD-002"}}},
+        {"properties": {"decision_id": {"const": "T10-G18-DD-003"}}},
+        {"properties": {"decision_id": {"const": "T10-G18-DD-004"}}},
+        {"properties": {"decision_id": {"const": "T10-G18-DD-005"}}},
+        {"properties": {"decision_id": {"const": "T10-G18-DD-006"}}},
+        {"properties": {"decision_id": {"const": "T10-G18-DD-007"}}},
+        {"properties": {"decision_id": {"const": "T10-G18-DD-008"}}},
+        {"properties": {"decision_id": {"const": "T10-G18-DD-009"}}},
+        {"properties": {"decision_id": {"const": "T10-G18-DD-010"}}},
+        {"properties": {"decision_id": {"const": "T10-G18-DD-011"}}},
+        {"properties": {"decision_id": {"const": "T10-G18-DD-012"}}},
+        {"properties": {"decision_id": {"const": "T10-G18-DD-013"}}},
+        {"properties": {"decision_id": {"const": "T10-G18-DD-014"}}},
+        {"properties": {"decision_id": {"const": "T10-G18-DD-015"}}},
+        {"properties": {"decision_id": {"const": "T10-G18-DD-016"}}},
+        {"properties": {"decision_id": {"const": "T10-G18-DD-017"}}},
+        {"properties": {"decision_id": {"const": "T10-G18-DD-018"}}},
+        {"properties": {"decision_id": {"const": "T10-G18-DD-019"}}},
+        {"properties": {"decision_id": {"const": "T10-G18-DD-020"}}},
+        {"properties": {"decision_id": {"const": "T10-G18-DD-021"}}},
+        {"properties": {"decision_id": {"const": "T10-G18-DD-022"}}},
+        {"properties": {"decision_id": {"const": "T10-G18-DD-023"}}}
+      ],
+      "properties": {
+        "compiled_rule_ids": {
+          "$ref": "#/$defs/ruleIds"
+        },
+        "decision_id": {
+          "pattern": "^T10-G18-DD-[0-9]{3}$",
+          "type": "string"
+        },
+        "design_payload": {
+          "additionalProperties": false,
+          "properties": {
+            "branch_instance_ids": {
+              "items": {
+                "type": "string"
+              },
+              "type": "array",
+              "uniqueItems": true
+            },
+            "case_labels": {
+              "items": {
+                "type": "string"
+              },
+              "type": "array",
+              "uniqueItems": true
+            }
+          },
+          "required": [
+            "branch_instance_ids",
+            "case_labels"
+          ],
+          "type": "object"
+        },
+        "evidence_ref_ids": {
+          "$ref": "#/$defs/evidenceIds"
+        },
+        "ordinal": {
+          "minimum": 0,
+          "type": "integer"
+        },
+        "payload": {
+          "$ref": "#/$defs/jsonObject"
+        },
+        "reference_kinds": {
+          "items": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "minItems": 1,
+          "type": "array",
+          "uniqueItems": true
+        }
+      },
+      "required": [
+        "decision_id",
+        "ordinal",
+        "reference_kinds",
+        "compiled_rule_ids",
+        "evidence_ref_ids",
+        "design_payload",
+        "payload"
+      ],
+      "type": "object"
+    },
+    "evidenceIds": {
+      "items": {
+        "pattern": "^EV-[0-9a-f]{64}$",
+        "type": "string"
+      },
+      "type": "array",
+      "uniqueItems": true
+    },
+    "evidenceRecord": {
+      "additionalProperties": false,
+      "properties": {
+        "claim_role": {
+          "enum": [
+            "AUTHORITY_FACT",
+            "DESIGN_DECISION",
+            "INVENTORY_FACT"
+          ]
+        },
+        "locator": {
+          "oneOf": [
+            {
+              "additionalProperties": false,
+              "properties": {
+                "kind": {"const": "LINE_RANGE"},
+                "ranges": {
+                  "items": {"pattern": "^L[0-9]+(-L[0-9]+)?$", "type": "string"},
+                  "minItems": 1,
+                  "type": "array"
+                },
+                "sections": {
+                  "items": {"type": "string"},
+                  "type": "array"
+                }
+              },
+              "required": ["kind", "ranges", "sections"],
+              "type": "object"
+            },
+            {
+              "additionalProperties": false,
+              "properties": {
+                "kind": {"const": "JSON_POINTER"},
+                "pointer": {"pattern": "^/", "type": "string"}
+              },
+              "required": ["kind", "pointer"],
+              "type": "object"
+            },
+            {
+              "additionalProperties": false,
+              "properties": {
+                "decision_id": {
+                  "pattern": "^T10-G18-DD-[0-9]{3}$",
+                  "type": "string"
+                },
+                "kind": {"const": "DECISION_ONLY"}
+              },
+              "required": ["kind", "decision_id"],
+              "type": "object"
+            }
+          ]
+        },
+        "rehydration": {
+          "$ref": "#/$defs/jsonObject"
+        },
+        "source_binding_id": {
+          "pattern": "^SRC-[0-9a-f]{64}$",
+          "type": "string"
+        }
+      },
+      "required": ["claim_role", "locator", "source_binding_id"],
+      "type": "object"
+    },
+    "fieldRecord": {
+      "additionalProperties": false,
+      "properties": {
+        "field_id": {"pattern": "^FLD-[0-9]{4}$", "type": "string"},
+        "order_key": {
+          "items": {"minimum": 0, "type": "integer"},
+          "minItems": 4,
+          "type": "array"
+        },
+        "payload": {"$ref": "#/$defs/jsonObject"}
+      },
+      "required": ["field_id", "order_key", "payload"],
+      "type": "object"
+    },
+    "allMatchAssertion": {
+      "additionalProperties": false,
+      "properties": {
+        "checks": {
+          "items": {"$ref": "#/$defs/invariantCheck"},
+          "minItems": 1,
+          "type": "array"
+        }
+      },
+      "required": ["checks"],
+      "type": "object"
+    },
+    "canonicalOrderAssertion": {
+      "additionalProperties": false,
+      "properties": {
+        "collection": {"minLength": 1, "type": "string"},
+        "ordinal_path": {"$ref": "#/$defs/stringPath"},
+        "start": {"minimum": 0, "type": "integer"}
+      },
+      "required": ["collection", "ordinal_path", "start"],
+      "type": "object"
+    },
+    "countEqualsAssertion": {
+      "additionalProperties": false,
+      "properties": {
+        "collection": {"minLength": 1, "type": "string"},
+        "expected": {"minimum": 0, "type": "integer"}
+      },
+      "required": ["collection", "expected"],
+      "type": "object"
+    },
+    "exactPartitionAssertion": {
+      "additionalProperties": false,
+      "properties": {
+        "member_collection": {"minLength": 1, "type": "string"},
+        "member_path": {"$ref": "#/$defs/stringPath"},
+        "partition_collection": {"minLength": 1, "type": "string"},
+        "partition_path": {"$ref": "#/$defs/stringPath"},
+        "partition_value": {"minLength": 1, "type": "string"}
+      },
+      "required": [
+        "member_collection",
+        "member_path",
+        "partition_collection",
+        "partition_path",
+        "partition_value"
+      ],
+      "type": "object"
+    },
+    "foreignKeyAssertion": {
+      "additionalProperties": false,
+      "properties": {
+        "source_collection": {"minLength": 1, "type": "string"},
+        "source_path": {"$ref": "#/$defs/stringPath"},
+        "target_collection": {"minLength": 1, "type": "string"}
+      },
+      "required": ["source_collection", "source_path", "target_collection"],
+      "type": "object"
+    },
+    "invariantCheck": {
+      "additionalProperties": false,
+      "properties": {
+        "equals": {},
+        "path": {"$ref": "#/$defs/stringPath"}
+      },
+      "required": ["equals", "path"],
+      "type": "object"
+    },
+    "invariantRecord": {
+      "additionalProperties": false,
+      "oneOf": [
+        {
+          "properties": {
+            "assertion": {"$ref": "#/$defs/countEqualsAssertion"},
+            "kind": {"const": "COUNT_EQUALS"}
+          },
+          "required": ["assertion", "kind"],
+          "type": "object"
+        },
+        {
+          "properties": {
+            "assertion": {"$ref": "#/$defs/uniqueKeyAssertion"},
+            "kind": {"const": "UNIQUE_KEY"}
+          },
+          "required": ["assertion", "kind"],
+          "type": "object"
+        },
+        {
+          "properties": {
+            "assertion": {"$ref": "#/$defs/foreignKeyAssertion"},
+            "kind": {"const": "FOREIGN_KEY"}
+          },
+          "required": ["assertion", "kind"],
+          "type": "object"
+        },
+        {
+          "properties": {
+            "assertion": {"$ref": "#/$defs/setEqualsAssertion"},
+            "kind": {"const": "SET_EQUALS"}
+          },
+          "required": ["assertion", "kind"],
+          "type": "object"
+        },
+        {
+          "properties": {
+            "assertion": {"$ref": "#/$defs/exactPartitionAssertion"},
+            "kind": {"const": "EXACT_PARTITION"}
+          },
+          "required": ["assertion", "kind"],
+          "type": "object"
+        },
+        {
+          "properties": {
+            "assertion": {"$ref": "#/$defs/partitionCountsAssertion"},
+            "kind": {"const": "PARTITION_COUNTS"}
+          },
+          "required": ["assertion", "kind"],
+          "type": "object"
+        },
+        {
+          "properties": {
+            "assertion": {"$ref": "#/$defs/allMatchAssertion"},
+            "kind": {"const": "ALL_MATCH"}
+          },
+          "required": ["assertion", "kind"],
+          "type": "object"
+        },
+        {
+          "properties": {
+            "assertion": {"$ref": "#/$defs/sumEqualsAssertion"},
+            "kind": {"const": "SUM_EQUALS"}
+          },
+          "required": ["assertion", "kind"],
+          "type": "object"
+        },
+        {
+          "properties": {
+            "assertion": {"$ref": "#/$defs/sourceDigestAssertion"},
+            "kind": {"const": "SOURCE_DIGEST_MATCH"}
+          },
+          "required": ["assertion", "kind"],
+          "type": "object"
+        },
+        {
+          "properties": {
+            "assertion": {"$ref": "#/$defs/canonicalOrderAssertion"},
+            "kind": {"const": "CANONICAL_ORDER"}
+          },
+          "required": ["assertion", "kind"],
+          "type": "object"
+        }
+      ],
+      "properties": {
+        "assertion": {"$ref": "#/$defs/jsonObject"},
+        "description": {"minLength": 1, "type": "string"},
+        "invariant_id": {"pattern": "^INV-[0-9]{4}$", "type": "string"},
+        "kind": {
+          "enum": [
+            "COUNT_EQUALS",
+            "UNIQUE_KEY",
+            "FOREIGN_KEY",
+            "SET_EQUALS",
+            "EXACT_PARTITION",
+            "PARTITION_COUNTS",
+            "ALL_MATCH",
+            "SUM_EQUALS",
+            "SOURCE_DIGEST_MATCH",
+            "CANONICAL_ORDER"
+          ]
+        }
+      },
+      "required": ["invariant_id", "kind", "description", "assertion"],
+      "type": "object"
+    },
+    "partitionCountsAssertion": {
+      "additionalProperties": false,
+      "properties": {
+        "collection": {"minLength": 1, "type": "string"},
+        "expected": {
+          "additionalProperties": {"minimum": 0, "type": "integer"},
+          "type": "object"
+        },
+        "value_path": {"$ref": "#/$defs/stringPath"}
+      },
+      "required": ["collection", "expected", "value_path"],
+      "type": "object"
+    },
+    "setEqualsAssertion": {
+      "additionalProperties": false,
+      "properties": {
+        "collection": {"minLength": 1, "type": "string"},
+        "end": {"minimum": 0, "type": "integer"},
+        "prefix": {"type": "string"},
+        "start": {"minimum": 0, "type": "integer"},
+        "width": {"minimum": 1, "type": "integer"}
+      },
+      "required": ["collection", "end", "prefix", "start", "width"],
+      "type": "object"
+    },
+    "sourceDigestAssertion": {
+      "additionalProperties": false,
+      "properties": {
+        "collection": {"minLength": 1, "type": "string"}
+      },
+      "required": ["collection"],
+      "type": "object"
+    },
+    "stringPath": {
+      "items": {"minLength": 1, "type": "string"},
+      "minItems": 1,
+      "type": "array"
+    },
+    "stringPaths": {
+      "items": {"$ref": "#/$defs/stringPath"},
+      "minItems": 1,
+      "type": "array"
+    },
+    "sumEqualsAssertion": {
+      "additionalProperties": false,
+      "properties": {
+        "expected": {"minimum": 0, "type": "integer"},
+        "partition_invariant_id": {
+          "pattern": "^INV-[0-9]{4}$",
+          "type": "string"
+        }
+      },
+      "required": ["expected", "partition_invariant_id"],
+      "type": "object"
+    },
+    "uniqueKeyAssertion": {
+      "additionalProperties": false,
+      "properties": {
+        "collection": {"minLength": 1, "type": "string"},
+        "value_paths": {"$ref": "#/$defs/stringPaths"}
+      },
+      "required": ["collection", "value_paths"],
+      "type": "object"
+    },
+    "jsonObject": {
+      "type": "object"
+    },
+    "legacyRehydration": {
+      "additionalProperties": false,
+      "properties": {
+        "design_status_rule": {"minLength": 1, "type": "string"},
+        "input_binding_ids": {
+          "items": {"pattern": "^SRC-[0-9a-f]{64}$", "type": "string"},
+          "minItems": 5,
+          "type": "array",
+          "uniqueItems": true
+        },
+        "null_row_summary": {"$ref": "#/$defs/jsonObject"},
+        "machine_verifiable_invariants": {"$ref": "#/$defs/jsonObject"},
+        "predecessor_format": {
+          "const": "selcal.task10.g18.authority-design-decision-registry.v1"
+        },
+        "review_gate": {"$ref": "#/$defs/jsonObject"},
+        "scope_boundary": {"$ref": "#/$defs/jsonObject"}
+      },
+      "required": [
+        "predecessor_format",
+        "design_status_rule",
+        "input_binding_ids",
+        "null_row_summary",
+        "machine_verifiable_invariants",
+        "review_gate",
+        "scope_boundary"
+      ],
+      "type": "object"
+    },
+    "ownerRecord": {
+      "additionalProperties": false,
+      "properties": {
+        "ordinal": {"minimum": 0, "type": "integer"},
+        "owner_id": {"pattern": "^OWN-[0-9]{4}$", "type": "string"},
+        "owner_table": {"minLength": 1, "type": "string"},
+        "payload": {"$ref": "#/$defs/jsonObject"}
+      },
+      "required": ["owner_id", "ordinal", "owner_table", "payload"],
+      "type": "object"
+    },
+    "ruleIds": {
+      "items": {"pattern": "^PCR-[0-9]{4}$", "type": "string"},
+      "type": "array",
+      "uniqueItems": true
+    },
+    "ruleRecord": {
+      "additionalProperties": false,
+      "properties": {
+        "evidence_ref_ids": {"$ref": "#/$defs/evidenceIds"},
+        "ordinal": {"minimum": 0, "type": "integer"},
+        "payload": {"$ref": "#/$defs/jsonObject"},
+        "provenance": {
+          "additionalProperties": false,
+          "properties": {
+            "class": {
+              "enum": [
+                "COVERAGE_DERIVED",
+                "POST_SCHEMA_EXTRA",
+                "AUTHORITY_CLOSED_INVENTORY"
+              ]
+            }
+          },
+          "required": ["class"],
+          "type": "object"
+        },
+        "rule_id": {"pattern": "^PCR-[0-9]{4}$", "type": "string"}
+      },
+      "required": ["rule_id", "ordinal", "provenance", "evidence_ref_ids", "payload"],
+      "type": "object"
+    },
+    "sourceRecord": {
+      "additionalProperties": false,
+      "properties": {
+        "logical_source": {"minLength": 1, "type": "string"},
+        "sha256": {"pattern": "^[0-9a-f]{64}$", "type": "string"}
+      },
+      "required": ["logical_source", "sha256"],
+      "type": "object"
+    },
+    "templateRecord": {
+      "additionalProperties": false,
+      "properties": {
+        "payload": {"$ref": "#/$defs/jsonObject"},
+        "semantic_key": {"minLength": 1, "type": "string"},
+        "template_id": {"pattern": "^TPL-[0-9]{4}$", "type": "string"}
+      },
+      "required": ["template_id", "semantic_key", "payload"],
+      "type": "object"
+    }
+  },
+  "$id": "selcal.task10.g18.authority-design-decision-registry.v3",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "artifact_state": {"const": "REVIEW_DECISION_INPUT_NOT_AUTHORITY"},
+    "authority_amendment_scope_v1_authoring_authority": {
+      "const": false,
+      "type": "boolean"
+    },
+    "authority_amendment_status": {"const": "AUTHORITY_AMENDMENT_NOT_YET_REVIEWED"},
+    "compiled_rules_by_id": {
+      "additionalProperties": false,
+      "patternProperties": {"^PCR-[0-9]{4}$": {"$ref": "#/$defs/ruleRecord"}},
+      "type": "object"
+    },
+    "coverage_rows_by_id": {
+      "additionalProperties": false,
+      "patternProperties": {"^ROW-[0-9]{4}$": {"$ref": "#/$defs/coverageRecord"}},
+      "type": "object"
+    },
+    "decisions_by_id": {
+      "additionalProperties": false,
+      "patternProperties": {"^T10-G18-DD-[0-9]{3}$": {"$ref": "#/$defs/decisionRecord"}},
+      "type": "object"
+    },
+    "discriminator_branches_by_id": {
+      "additionalProperties": false,
+      "patternProperties": {
+        "^(BR-[0-9]{4}|T10-G18-DD-[0-9]{3}-BR3-[0-9]{4})$": {
+          "$ref": "#/$defs/branchRecord"
+        }
+      },
+      "type": "object"
+    },
+    "evidence_refs_by_id": {
+      "additionalProperties": false,
+      "patternProperties": {"^EV-[0-9a-f]{64}$": {"$ref": "#/$defs/evidenceRecord"}},
+      "type": "object"
+    },
+    "evidence_binding_expectations_by_key": {
+      "additionalProperties": false,
+      "patternProperties": {
+        "^EBK-[0-9a-f]{64}$": {
+          "pattern": "^SRC-[0-9a-f]{64}$",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "correction_class": {
+      "const": "NORMATIVE_REVIEW_INPUT_CORRECTION_NOT_REPRESENTATION_ONLY"
+    },
+    "format": {"const": "selcal.task10.g18.authority-design-decision-registry.v3"},
+    "invariants_by_id": {
+      "additionalProperties": false,
+      "patternProperties": {"^INV-[0-9]{4}$": {"$ref": "#/$defs/invariantRecord"}},
+      "type": "object"
+    },
+    "legacy_aliases_by_id": {
+      "additionalProperties": false,
+      "patternProperties": {"^ALS-[0-9]{4}$": {"$ref": "#/$defs/aliasRecord"}},
+      "type": "object"
+    },
+    "legacy_rehydration": {"$ref": "#/$defs/legacyRehydration"},
+    "machine_stop_decision": {"const": "STOP_BEFORE_AUTHORITY_IDL_AND_KATS"},
+    "normative_projection_digests_by_decision": {
+      "additionalProperties": false,
+      "properties": {
+        "T10-G18-DD-001": {"pattern": "^[0-9a-f]{64}$", "type": "string"},
+        "T10-G18-DD-004": {"pattern": "^[0-9a-f]{64}$", "type": "string"},
+        "T10-G18-DD-006": {"pattern": "^[0-9a-f]{64}$", "type": "string"},
+        "T10-G18-DD-007": {"pattern": "^[0-9a-f]{64}$", "type": "string"},
+        "T10-G18-DD-009": {"pattern": "^[0-9a-f]{64}$", "type": "string"},
+        "T10-G18-DD-011": {"pattern": "^[0-9a-f]{64}$", "type": "string"},
+        "T10-G18-DD-016": {"pattern": "^[0-9a-f]{64}$", "type": "string"},
+        "T10-G18-DD-020": {"pattern": "^[0-9a-f]{64}$", "type": "string"}
+      },
+      "required": [
+        "T10-G18-DD-001",
+        "T10-G18-DD-004",
+        "T10-G18-DD-006",
+        "T10-G18-DD-007",
+        "T10-G18-DD-009",
+        "T10-G18-DD-011",
+        "T10-G18-DD-016",
+        "T10-G18-DD-020"
+      ],
+      "type": "object"
+    },
+    "normative_projection_digests_by_collection": {
+      "additionalProperties": false,
+      "properties": {
+        "coverage_rows_by_id": {
+          "pattern": "^[0-9a-f]{64}$",
+          "type": "string"
+        }
+      },
+      "required": ["coverage_rows_by_id"],
+      "type": "object"
+    },
+    "normative_registry_projection_sha256": {
+      "pattern": "^[0-9a-f]{64}$",
+      "type": "string"
+    },
+    "owners_by_id": {
+      "additionalProperties": false,
+      "patternProperties": {"^OWN-[0-9]{4}$": {"$ref": "#/$defs/ownerRecord"}},
+      "type": "object"
+    },
+    "predecessor_binding": {
+      "additionalProperties": false,
+      "properties": {
+        "bytes": {"const": 4282426, "type": "integer"},
+        "format": {
+          "const": "selcal.task10.g18.authority-design-decision-registry.v2"
+        },
+        "mode": {"const": "0644"},
+        "path": {
+          "const": "docs/superpowers/specs/idl/task10/v10/review/authority-design-decision-registry-v2.json"
+        },
+        "sha256": {
+          "const": "77229b74bf07a75793bb8dd142312f83e682325977474db3637fcb84d80cc8f5"
+        }
+      },
+      "required": ["format", "path", "bytes", "mode", "sha256"],
+      "type": "object"
+    },
+    "predecessor_v2_attestations_inherited": {
+      "const": false,
+      "type": "boolean"
+    },
+    "reference_fields_by_id": {
+      "additionalProperties": false,
+      "patternProperties": {"^FLD-[0-9]{4}$": {"$ref": "#/$defs/fieldRecord"}},
+      "type": "object"
+    },
+    "schema_binding": {
+      "additionalProperties": false,
+      "properties": {
+        "path": {
+          "const": "docs/superpowers/specs/idl/task10/v10/review/v3/schema/authority-design-decision-registry-v3.schema.json"
+        },
+        "sha256": {"pattern": "^[0-9a-f]{64}$", "type": "string"}
+      },
+      "required": ["path", "sha256"],
+      "type": "object"
+    },
+    "schema_templates_by_id": {
+      "additionalProperties": false,
+      "patternProperties": {"^TPL-[0-9]{4}$": {"$ref": "#/$defs/templateRecord"}},
+      "type": "object"
+    },
+    "scope_boundary": {
+      "additionalProperties": false,
+      "properties": {
+        "authority_idl_allowed": {"const": false, "type": "boolean"},
+        "implementation_allowed": {"const": false, "type": "boolean"},
+        "kats_allowed": {"const": false, "type": "boolean"}
+      },
+      "required": ["authority_idl_allowed", "implementation_allowed", "kats_allowed"],
+      "type": "object"
+    },
+    "source_bindings_by_id": {
+      "additionalProperties": false,
+      "patternProperties": {"^SRC-[0-9a-f]{64}$": {"$ref": "#/$defs/sourceRecord"}},
+      "type": "object"
+    }
+  },
+  "required": [
+    "format",
+    "artifact_state",
+    "correction_class",
+    "predecessor_v2_attestations_inherited",
+    "authority_amendment_scope_v1_authoring_authority",
+    "predecessor_binding",
+    "normative_projection_digests_by_collection",
+    "normative_projection_digests_by_decision",
+    "normative_registry_projection_sha256",
+    "authority_amendment_status",
+    "machine_stop_decision",
+    "scope_boundary",
+    "schema_binding",
+    "source_bindings_by_id",
+    "evidence_refs_by_id",
+    "evidence_binding_expectations_by_key",
+    "owners_by_id",
+    "schema_templates_by_id",
+    "reference_fields_by_id",
+    "discriminator_branches_by_id",
+    "decisions_by_id",
+    "coverage_rows_by_id",
+    "compiled_rules_by_id",
+    "legacy_aliases_by_id",
+    "invariants_by_id",
+    "legacy_rehydration"
+  ],
+  "title": "SelCal Task 10 authority decision review registry v3 semantic correction",
+  "type": "object"
+}

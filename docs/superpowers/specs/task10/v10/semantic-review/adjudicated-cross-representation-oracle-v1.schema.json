@@ -1,0 +1,722 @@
+{
+  "$defs": {
+    "binding": {
+      "additionalProperties": false,
+      "properties": {
+        "path": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "sha256": {
+          "pattern": "^[0-9a-f]{64}$",
+          "type": "string"
+        }
+      },
+      "required": [
+        "path",
+        "sha256"
+      ],
+      "type": "object"
+    },
+    "integer_value": {
+      "type": "integer"
+    },
+    "object_array": {
+      "items": {
+        "type": "object"
+      },
+      "minItems": 1,
+      "type": "array"
+    },
+    "object_value": {
+      "minProperties": 1,
+      "type": "object"
+    },
+    "source_pointer": {
+      "additionalProperties": false,
+      "properties": {
+        "correction_spec_line_range": {
+          "pattern": "^L[0-9]+-L[0-9]+$",
+          "type": "string"
+        },
+        "registry_json_pointers": {
+          "items": {
+            "pattern": "^/",
+            "type": "string"
+          },
+          "minItems": 1,
+          "type": "array",
+          "uniqueItems": true
+        }
+      },
+      "required": [
+        "correction_spec_line_range",
+        "registry_json_pointers"
+      ],
+      "type": "object"
+    },
+    "string_array": {
+      "items": {
+        "minLength": 1,
+        "type": "string"
+      },
+      "minItems": 1,
+      "type": "array"
+    },
+    "string_value": {
+      "minLength": 1,
+      "type": "string"
+    }
+  },
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "adjudication_provenance": {
+      "additionalProperties": false,
+      "properties": {
+        "decision_source_pointers": {
+          "additionalProperties": false,
+          "properties": {
+            "GLOBAL_STRUCTURAL_CLOSURE": {
+              "$ref": "#/$defs/source_pointer"
+            },
+            "T10-G18-DD-001": {
+              "$ref": "#/$defs/source_pointer"
+            },
+            "T10-G18-DD-004": {
+              "$ref": "#/$defs/source_pointer"
+            },
+            "T10-G18-DD-006": {
+              "$ref": "#/$defs/source_pointer"
+            },
+            "T10-G18-DD-007": {
+              "$ref": "#/$defs/source_pointer"
+            },
+            "T10-G18-DD-009": {
+              "$ref": "#/$defs/source_pointer"
+            },
+            "T10-G18-DD-011": {
+              "$ref": "#/$defs/source_pointer"
+            },
+            "T10-G18-DD-016": {
+              "$ref": "#/$defs/source_pointer"
+            }
+          },
+          "required": [
+            "GLOBAL_STRUCTURAL_CLOSURE",
+            "T10-G18-DD-001",
+            "T10-G18-DD-004",
+            "T10-G18-DD-006",
+            "T10-G18-DD-007",
+            "T10-G18-DD-009",
+            "T10-G18-DD-011",
+            "T10-G18-DD-016"
+          ],
+          "type": "object"
+        },
+        "decision_source_pointers_sha256": {
+          "const": "edbf9c354fdba1ddb1c9e5eb686990ef67925b1bae920afd947293225430767b"
+        },
+        "independent_review_status": {
+          "const": "PENDING_REREVIEW_AFTER_FALSE_GREEN_CORRECTION"
+        },
+        "method": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "normative_correction_spec": {
+          "additionalProperties": false,
+          "properties": {
+            "path": {
+              "minLength": 1,
+              "type": "string"
+            },
+            "relevant_sections": {
+              "items": {
+                "minLength": 1,
+                "type": "string"
+              },
+              "minItems": 2,
+              "type": "array",
+              "uniqueItems": true
+            },
+            "sha256": {
+              "pattern": "^[0-9a-f]{64}$",
+              "type": "string"
+            },
+            "status": {
+              "const": "APPROVED_WRITTEN_SPEC_FOR_IMPLEMENTATION_NOT_AUTHORITY"
+            }
+          },
+          "required": [
+            "path",
+            "relevant_sections",
+            "sha256",
+            "status"
+          ],
+          "type": "object"
+        },
+        "review_scope": {
+          "minLength": 1,
+          "type": "string"
+        }
+      },
+      "required": [
+        "decision_source_pointers",
+        "decision_source_pointers_sha256",
+        "independent_review_status",
+        "method",
+        "normative_correction_spec",
+        "review_scope"
+      ],
+      "type": "object"
+    },
+    "artifact_state": {
+      "const": "FROZEN_CANDIDATE_SEMANTIC_ORACLE_PENDING_INDEPENDENT_REREVIEW_NOT_AUTHORITY"
+    },
+    "checks_by_decision": {
+      "additionalProperties": false,
+      "properties": {
+        "T10-G18-DD-001": {
+          "additionalProperties": false,
+          "properties": {
+            "affected_owner_paths": {
+              "$ref": "#/$defs/string_array"
+            },
+            "assigned_null_rows": {
+              "$ref": "#/$defs/integer_value"
+            },
+            "census_row_count": {
+              "$ref": "#/$defs/integer_value"
+            },
+            "duplicate_path": {
+              "$ref": "#/$defs/string_value"
+            },
+            "duplicate_path_row_count": {
+              "$ref": "#/$defs/integer_value"
+            },
+            "duplicate_path_row_keys": {
+              "$ref": "#/$defs/string_array"
+            },
+            "exact_census_row_keys": {
+              "$ref": "#/$defs/string_array"
+            },
+            "exact_retyped_path_count": {
+              "$ref": "#/$defs/integer_value"
+            },
+            "exact_retyped_paths": {
+              "$ref": "#/$defs/string_array"
+            },
+            "expected_rl_universe_effect": {
+              "$ref": "#/$defs/object_value"
+            },
+            "removed_from_rl_classification": {
+              "$ref": "#/$defs/integer_value"
+            },
+            "required_wording_fragments": {
+              "$ref": "#/$defs/string_array"
+            },
+            "unique_affected_path_count": {
+              "$ref": "#/$defs/integer_value"
+            }
+          },
+          "required": [
+            "affected_owner_paths",
+            "assigned_null_rows",
+            "census_row_count",
+            "duplicate_path",
+            "duplicate_path_row_count",
+            "duplicate_path_row_keys",
+            "exact_census_row_keys",
+            "exact_retyped_path_count",
+            "exact_retyped_paths",
+            "expected_rl_universe_effect",
+            "removed_from_rl_classification",
+            "required_wording_fragments",
+            "unique_affected_path_count"
+          ],
+          "type": "object"
+        },
+        "T10-G18-DD-004": {
+          "additionalProperties": false,
+          "properties": {
+            "branch_count": {
+              "$ref": "#/$defs/integer_value"
+            },
+            "compiled_rule_count": {
+              "$ref": "#/$defs/integer_value"
+            },
+            "consumer_containing_record": {
+              "$ref": "#/$defs/string_value"
+            },
+            "containing_record": {
+              "$ref": "#/$defs/string_value"
+            },
+            "containing_wire": {
+              "$ref": "#/$defs/string_value"
+            },
+            "coverage_manifest_rule_count": {
+              "$ref": "#/$defs/integer_value"
+            },
+            "expected_emitted_reference_rules": {
+              "$ref": "#/$defs/integer_value"
+            },
+            "field_path": {
+              "$ref": "#/$defs/string_value"
+            },
+            "field_wires": {
+              "$ref": "#/$defs/object_value"
+            },
+            "fields": {
+              "$ref": "#/$defs/string_array"
+            },
+            "forbidden_roles": {
+              "$ref": "#/$defs/string_array"
+            },
+            "ordering": {
+              "$ref": "#/$defs/string_value"
+            },
+            "owner_table": {
+              "$ref": "#/$defs/string_value"
+            },
+            "owner_tuple": {
+              "$ref": "#/$defs/string_array"
+            },
+            "owner_tuple_interpretation": {
+              "$ref": "#/$defs/string_value"
+            },
+            "role_owner": {
+              "$ref": "#/$defs/object_value"
+            },
+            "selector_namespace": {
+              "$ref": "#/$defs/string_value"
+            },
+            "selector_path": {
+              "$ref": "#/$defs/string_array"
+            }
+          },
+          "required": [
+            "branch_count",
+            "compiled_rule_count",
+            "consumer_containing_record",
+            "containing_record",
+            "containing_wire",
+            "coverage_manifest_rule_count",
+            "expected_emitted_reference_rules",
+            "field_path",
+            "field_wires",
+            "fields",
+            "forbidden_roles",
+            "ordering",
+            "owner_table",
+            "owner_tuple",
+            "owner_tuple_interpretation",
+            "role_owner",
+            "selector_namespace",
+            "selector_path"
+          ],
+          "type": "object"
+        },
+        "T10-G18-DD-006": {
+          "additionalProperties": false,
+          "properties": {
+            "owner_tuple": {
+              "$ref": "#/$defs/string_array"
+            },
+            "owner_tuple_interpretation": {
+              "$ref": "#/$defs/string_value"
+            }
+          },
+          "required": [
+            "owner_tuple",
+            "owner_tuple_interpretation"
+          ],
+          "type": "object"
+        },
+        "T10-G18-DD-007": {
+          "additionalProperties": false,
+          "properties": {
+            "forbidden_type_name": {
+              "$ref": "#/$defs/string_value"
+            },
+            "owner_tuple": {
+              "$ref": "#/$defs/string_array"
+            },
+            "owner_tuple_interpretation": {
+              "$ref": "#/$defs/string_value"
+            },
+            "required_type_name": {
+              "$ref": "#/$defs/string_value"
+            }
+          },
+          "required": [
+            "forbidden_type_name",
+            "owner_tuple",
+            "owner_tuple_interpretation",
+            "required_type_name"
+          ],
+          "type": "object"
+        },
+        "T10-G18-DD-009": {
+          "additionalProperties": false,
+          "properties": {
+            "branch_count": {
+              "$ref": "#/$defs/integer_value"
+            },
+            "compiled_presence_template_contract": {
+              "$ref": "#/$defs/object_value"
+            },
+            "compiled_rule_count": {
+              "$ref": "#/$defs/integer_value"
+            },
+            "coverage_manifest_rule_count": {
+              "$ref": "#/$defs/integer_value"
+            },
+            "embedded_record_fields": {
+              "$ref": "#/$defs/object_value"
+            },
+            "embedded_record_wires": {
+              "$ref": "#/$defs/object_value"
+            },
+            "expected_emitted_reference_rules": {
+              "$ref": "#/$defs/integer_value"
+            },
+            "forbidden_record_types": {
+              "$ref": "#/$defs/string_array"
+            },
+            "load_containing_record": {
+              "$ref": "#/$defs/string_value"
+            },
+            "load_field_path": {
+              "$ref": "#/$defs/string_value"
+            },
+            "load_kind_owner": {
+              "$ref": "#/$defs/object_value"
+            },
+            "load_presence": {
+              "$ref": "#/$defs/object_value"
+            },
+            "load_selector_namespace": {
+              "$ref": "#/$defs/string_value"
+            },
+            "load_selector_path": {
+              "$ref": "#/$defs/string_array"
+            },
+            "load_source_kinds": {
+              "$ref": "#/$defs/string_array"
+            },
+            "non_matrix_rule_contracts": {
+              "$ref": "#/$defs/object_array"
+            },
+            "owner_wires": {
+              "$ref": "#/$defs/object_value"
+            },
+            "transfer_direction": {
+              "$ref": "#/$defs/object_array"
+            },
+            "transfer_rule_contracts": {
+              "$ref": "#/$defs/object_array"
+            },
+            "value_containing_records": {
+              "$ref": "#/$defs/string_array"
+            },
+            "value_record_field_paths": {
+              "$ref": "#/$defs/object_value"
+            },
+            "value_role_owner": {
+              "$ref": "#/$defs/object_value"
+            },
+            "value_selector_namespace": {
+              "$ref": "#/$defs/string_value"
+            },
+            "value_selector_path": {
+              "$ref": "#/$defs/string_array"
+            }
+          },
+          "required": [
+            "branch_count",
+            "compiled_presence_template_contract",
+            "compiled_rule_count",
+            "coverage_manifest_rule_count",
+            "embedded_record_fields",
+            "embedded_record_wires",
+            "expected_emitted_reference_rules",
+            "forbidden_record_types",
+            "load_containing_record",
+            "load_field_path",
+            "load_kind_owner",
+            "load_presence",
+            "load_selector_namespace",
+            "load_selector_path",
+            "load_source_kinds",
+            "non_matrix_rule_contracts",
+            "owner_wires",
+            "transfer_direction",
+            "transfer_rule_contracts",
+            "value_containing_records",
+            "value_record_field_paths",
+            "value_role_owner",
+            "value_selector_namespace",
+            "value_selector_path"
+          ],
+          "type": "object"
+        },
+        "T10-G18-DD-011": {
+          "additionalProperties": false,
+          "properties": {
+            "canonical_value_hash": {
+              "$ref": "#/$defs/string_value"
+            },
+            "compiled_operation_rule_contract_digest_set_sha256": {
+              "$ref": "#/$defs/string_value"
+            },
+            "operation_exact_role_matrix_sha256": {
+              "$ref": "#/$defs/string_value"
+            },
+            "operation_family_allowed_roles_sha256": {
+              "$ref": "#/$defs/string_value"
+            },
+            "operation_role_sources": {
+              "$ref": "#/$defs/string_array"
+            },
+            "provider_role_owner": {
+              "$ref": "#/$defs/object_value"
+            }
+          },
+          "required": [
+            "canonical_value_hash",
+            "compiled_operation_rule_contract_digest_set_sha256",
+            "operation_exact_role_matrix_sha256",
+            "operation_family_allowed_roles_sha256",
+            "operation_role_sources",
+            "provider_role_owner"
+          ],
+          "type": "object"
+        },
+        "T10-G18-DD-016": {
+          "additionalProperties": false,
+          "properties": {
+            "canonical_value_hash": {
+              "$ref": "#/$defs/string_value"
+            },
+            "operation_role_sources": {
+              "$ref": "#/$defs/string_array"
+            },
+            "protocol_provider_allowed_roles_sha256": {
+              "$ref": "#/$defs/string_value"
+            },
+            "provider_role_owner": {
+              "$ref": "#/$defs/object_value"
+            }
+          },
+          "required": [
+            "canonical_value_hash",
+            "operation_role_sources",
+            "protocol_provider_allowed_roles_sha256",
+            "provider_role_owner"
+          ],
+          "type": "object"
+        }
+      },
+      "required": [
+        "T10-G18-DD-001",
+        "T10-G18-DD-004",
+        "T10-G18-DD-006",
+        "T10-G18-DD-007",
+        "T10-G18-DD-009",
+        "T10-G18-DD-011",
+        "T10-G18-DD-016"
+      ],
+      "type": "object"
+    },
+    "cli_exit_contract": {
+      "additionalProperties": false,
+      "properties": {
+        "audit_error": {
+          "const": 3
+        },
+        "findings_hold": {
+          "const": 1
+        },
+        "usage_error": {
+          "const": 2
+        }
+      },
+      "required": [
+        "audit_error",
+        "findings_hold",
+        "usage_error"
+      ],
+      "type": "object"
+    },
+    "format": {
+      "const": "selcal.task10.g18.cross-representation-semantic-oracle.v1"
+    },
+    "machine_semantic_scope": {
+      "additionalProperties": false,
+      "properties": {
+        "checked_decision_ids": {
+          "items": {
+            "type": "string"
+          },
+          "maxItems": 7,
+          "minItems": 7,
+          "type": "array",
+          "uniqueItems": true
+        },
+        "not_semantically_audited_by_this_instrument": {
+          "items": {
+            "type": "string"
+          },
+          "maxItems": 16,
+          "minItems": 16,
+          "type": "array",
+          "uniqueItems": true
+        }
+      },
+      "required": [
+        "checked_decision_ids",
+        "not_semantically_audited_by_this_instrument"
+      ],
+      "type": "object"
+    },
+    "source_bindings": {
+      "additionalProperties": false,
+      "properties": {
+        "correction_specification": {
+          "$ref": "#/$defs/binding"
+        },
+        "oracle_schema": {
+          "$ref": "#/$defs/binding"
+        },
+        "predecessor_authority": {
+          "$ref": "#/$defs/binding"
+        },
+        "review_registry_v2": {
+          "$ref": "#/$defs/binding"
+        }
+      },
+      "required": [
+        "correction_specification",
+        "oracle_schema",
+        "predecessor_authority",
+        "review_registry_v2"
+      ],
+      "type": "object"
+    },
+    "stop_boundary": {
+      "const": "STOP_BEFORE_AUTHORITY_IDL_AND_KATS"
+    },
+    "structural_closure": {
+      "additionalProperties": false,
+      "properties": {
+        "allowed_validator_only_branch_ids_by_decision": {
+          "additionalProperties": false,
+          "properties": {
+            "T10-G18-DD-007": {
+              "items": {
+                "type": "string"
+              },
+              "maxItems": 5,
+              "minItems": 5,
+              "type": "array",
+              "uniqueItems": true
+            },
+            "T10-G18-DD-016": {
+              "items": {
+                "type": "string"
+              },
+              "maxItems": 2,
+              "minItems": 2,
+              "type": "array",
+              "uniqueItems": true
+            }
+          },
+          "required": [
+            "T10-G18-DD-007",
+            "T10-G18-DD-016"
+          ],
+          "type": "object"
+        },
+        "expected_counts": {
+          "additionalProperties": false,
+          "properties": {
+            "branches": {
+              "const": 461
+            },
+            "coverage_rows": {
+              "const": 264
+            },
+            "decisions": {
+              "const": 23
+            },
+            "owner_field_rows": {
+              "const": 1070
+            },
+            "owners": {
+              "const": 66
+            },
+            "reference_fields": {
+              "const": 312
+            },
+            "rules": {
+              "const": 570
+            },
+            "schema_templates": {
+              "const": 209
+            }
+          },
+          "required": [
+            "branches",
+            "coverage_rows",
+            "decisions",
+            "owner_field_rows",
+            "owners",
+            "reference_fields",
+            "rules",
+            "schema_templates"
+          ],
+          "type": "object"
+        },
+        "global_branch_catalog_decision_id": {
+          "const": "T10-G18-DD-018"
+        },
+        "manifest_contract": {
+          "type": "string"
+        },
+        "ordinal_contract": {
+          "type": "string"
+        },
+        "validator_only_branch_ids_sha256": {
+          "const": "3f333629a02f952f96336daf7b221fd11a49fcc20323226b5180da0a61554221"
+        },
+        "validator_only_branch_projection_sha256": {
+          "const": "ffea529edf3fe20362a3a86a1deea11bae9b787d086c02fd3332a2f973214082"
+        }
+      },
+      "required": [
+        "allowed_validator_only_branch_ids_by_decision",
+        "expected_counts",
+        "global_branch_catalog_decision_id",
+        "manifest_contract",
+        "ordinal_contract",
+        "validator_only_branch_ids_sha256",
+        "validator_only_branch_projection_sha256"
+      ],
+      "type": "object"
+    }
+  },
+  "required": [
+    "adjudication_provenance",
+    "artifact_state",
+    "checks_by_decision",
+    "cli_exit_contract",
+    "format",
+    "machine_semantic_scope",
+    "source_bindings",
+    "stop_boundary",
+    "structural_closure"
+  ],
+  "title": "SelCal Task 10 cross-representation semantic oracle v1",
+  "type": "object"
+}

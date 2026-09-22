@@ -1,0 +1,15 @@
+{
+ "script_sha256": "72a50104aa603c7753c40e7c13b237965830be77d07e9e1978b2b419d7270728",
+ "protocol_sha256": "61066622c5527b671f7025d361eb4940067859961c733feab2a306b476c851af",
+ "python": "3.11.12",
+ "versions": {
+  "idtxl": "1.6",
+  "numpy": "1.26.4",
+  "scipy": "1.13.1",
+  "statsmodels": "0.14.2",
+  "jpype1": "1.7.1",
+  "h5py": "3.11.0"
+ },
+ "java_home": "/private/tmp/claude-501/-Users-vincent/c06ce93c-0819-478c-9b9b-68eaafcc9993/scratchpad/jre/jdk-21.0.12.1+1-jre/Contents/Home",
+ "elapsed_seconds_this_invocation": 6189.928680125
+}

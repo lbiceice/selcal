@@ -1,0 +1,68 @@
+{
+  "schema": "selcal.dependency-lock-verification.v1",
+  "observedAt": "2026-08-31T16:59:08+08:00",
+  "status": "LOCAL_LOCKED_ENVIRONMENT_PASS_PRODUCT_HOLD",
+  "project": {
+    "name": "selcal",
+    "version": "0.1.0.dev0",
+    "requiresPython": ">=3.11"
+  },
+  "lock": {
+    "path": "uv.lock",
+    "formatVersion": 1,
+    "revision": 2,
+    "sha256": "4ccc4c47ede6fd04ef436fac56d8e1f9d91284c82b30b18b87044015f7227067",
+    "tool": "uv 0.7.6",
+    "checkCommand": "uv lock --check",
+    "checkStatus": "PASS",
+    "resolvedPackageCount": 51,
+    "includedOptionalSurfaces": [
+      "benchmark",
+      "dev",
+      "docs"
+    ]
+  },
+  "isolatedSourceEnvironment": {
+    "platform": "Darwin arm64",
+    "python": "CPython 3.11.12",
+    "syncCommand": "uv sync --locked --all-extras",
+    "syncStatus": "PASS",
+    "coreTestStatus": "PASS",
+    "coreTestsPassed": 2463,
+    "coreTestsSkipped": 1,
+    "coreTestsFailed": 0,
+    "documentationCommand": "python -m sphinx -W --keep-going -b html docs/api OUTPUT",
+    "documentationStatus": "PASS",
+    "distributionBuildCommand": "python -m build --outdir OUTPUT",
+    "distributionBuildStatus": "PASS"
+  },
+  "isolatedWheelEnvironment": {
+    "platform": "Darwin arm64",
+    "python": "CPython 3.12.10",
+    "wheelInstallStatus": "PASS",
+    "dependencyCheckStatus": "PASS",
+    "deterministicExampleCount": 3,
+    "deterministicExamplesStatus": "PASS",
+    "wheelSha256": "3f378d0008901ef534bac8ab2c91f4d6bb44d969224c5f0eff7cf699013e4e9f",
+    "sdistSha256": "ac2aee8702dce602e7667946768d1ea4d335936e77120219dbd8edd12b827c3a",
+    "artifactPersistence": "EPHEMERAL_VERIFICATION_OUTPUT_NOT_A_RELEASE"
+  },
+  "adverseFindingsResolvedInCandidate": [
+    "Python 3.11 rejected a mappingproxy dataclass fixture default; the fixture now uses a default factory.",
+    "Python 3.11 PRECALL bytecode prevented exact getattr reachability detection; the exact two-argument pattern now handles PRECALL without enabling arbitrary dynamic lookup.",
+    "A test treated a Python 3.12 code-constant index as cross-version authority; it now binds the sole nested randbelow code object at its actual interpreter-specific index.",
+    "The locked development environment lacked pip while two wheel-install tests invoke python -m pip; pip is now an explicit development dependency."
+  ],
+  "notClosed": [
+    "Task-10 authority scope-v2 and exact review",
+    "Linux or Windows locked-environment execution",
+    "independent external installation or usability review",
+    "CI workflow execution",
+    "container build or execution; the local Docker daemon was unavailable",
+    "author-selected open-source licence",
+    "public repository, release or persistent identifier",
+    "M6 scientific validation, comparison or real-case evidence",
+    "SoftwareX manuscript or submission readiness"
+  ],
+  "evidenceBoundary": "This receipt proves one same-machine locked source-environment run on CPython 3.11 and one wheel-install run on CPython 3.12. It does not establish cross-platform support, external reproducibility, public release, scientific validity or submission readiness."
+}

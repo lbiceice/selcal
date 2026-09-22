@@ -1,0 +1,724 @@
+{
+  "schema": "selcal.task10-reference-schema.v10.draft1",
+  "status": "PARTIAL_GAP_ARTIFACT_NOT_AUTHORITY",
+  "authority": {
+    "path": "docs/superpowers/specs/2026-08-29-task10-deny-by-default-provider-proof-design.md",
+    "ordinary_sha256": "c263646e5b64c0aa3eb52e33fc31a0f5b87e2e08492e38cc884bebdf55c8e137",
+    "relevant_sections": [
+      "5.5",
+      "5.6.1",
+      "5.6.3",
+      "5.6.4",
+      "5.6.6",
+      "5.6.8.1"
+    ]
+  },
+  "decision_inputs": {
+    "g14": "Exact target-table and discriminator closure must be explicit and must not be inferred from policy values, label spelling, or the observed target owner.",
+    "g15": "Reciprocal authority edges are split into an authoritative forward reference and a non-authorizing VALIDATES backlink.",
+    "g18": "Not present in the authoritative bytes; every rule that still needs the missing closed reference-alias or discriminator IDL is marked blocked_by_G18.",
+    "runtime_binding_override": "runtime_state_reference_bindings.source_label is VALIDATES; target_label is RUNTIME_REF; RuntimeStateReferenceBinding.reference_ordinal binds only target_label."
+  },
+  "non_inference_guards": {
+    "policy_values_examined": false,
+    "observed_target_owner_used": false,
+    "label_prefix_or_spelling_used": false,
+    "any_table_alias_present": false,
+    "closed_owner_table_full_set_used_as_target_alias": false,
+    "unknown_fields_are_null": true
+  },
+  "idl": {
+    "ClosedReferenceAlias": {
+      "field_order": [
+        "alias",
+        "allowed_target_tables",
+        "evidence"
+      ],
+      "constraints": {
+        "alias": "unique non-empty artifact-local enum literal",
+        "allowed_target_tables": "non-empty proper exact subset of ClosedOwnerTable; ANY_TABLE and the 66-table universe are forbidden",
+        "evidence": "one or more authority line ranges that prove the target record/table identity"
+      }
+    },
+    "ReferenceLeafRuleDraft": {
+      "field_order": [
+        "owner_table",
+        "record",
+        "record_discriminator",
+        "field_path",
+        "cardinality",
+        "allowed_target_alias",
+        "allowed_target_tables",
+        "kind",
+        "schema_field_order",
+        "schema_order_path",
+        "reference_ordinal_binding",
+        "closure_status",
+        "blocked_by",
+        "evidence"
+      ],
+      "constraints": {
+        "record_discriminator": "ANY or an artifact-local exact discriminator over declared schema fields; never a target-label or observed-owner discriminator",
+        "cardinality": [
+          "SCALAR",
+          "OPTIONAL",
+          "ORDERED_TUPLE"
+        ],
+        "allowed_target_alias": "ClosedReferenceAlias literal or null",
+        "allowed_target_tables": "exact alias expansion or null when it is not closed",
+        "kind": [
+          "AUTH_REQUIRES",
+          "VALIDATES",
+          "RUNTIME_REF"
+        ],
+        "schema_field_order": "zero-based position of the leaf in its containing record in this draft",
+        "schema_order_path": "zero-based declared-field positions from owner record through embedded records",
+        "reference_ordinal_binding": "null except where an existing record field explicitly binds the emitted reference ordinal"
+      }
+    }
+  },
+  "schema_order_convention": {
+    "basis": "ARTIFACT_LOCAL_ZERO_BASED_DECLARED_FIELD_POSITION",
+    "nested_representation": "schema_order_path records the complete owner-to-leaf position path; schema_field_order repeats its last component",
+    "authority_status": "DERIVED_FROM_DECLARED_FIELD_SEQUENCE_NOT_YET_FROZEN_AS_G18_IDL"
+  },
+  "closed_reference_aliases": [
+    {
+      "alias": "BEHAVIOR_SLOT_MANIFEST_ONLY",
+      "allowed_target_tables": [
+        "behavior_slot_manifests"
+      ],
+      "evidence": [
+        "authority:2139-2155",
+        "authority:3091-3093"
+      ]
+    },
+    {
+      "alias": "PROJECT_CLASS_ONLY",
+      "allowed_target_tables": [
+        "project_classes"
+      ],
+      "evidence": [
+        "authority:2139-2155",
+        "authority:3091-3093"
+      ]
+    },
+    {
+      "alias": "EXTERNAL_ABC_STATE_ONLY",
+      "allowed_target_tables": [
+        "external_abc_states"
+      ],
+      "evidence": [
+        "authority:2156-2171",
+        "authority:3092-3094"
+      ]
+    },
+    {
+      "alias": "EXTERNAL_CLASS_ONLY",
+      "allowed_target_tables": [
+        "external_classes"
+      ],
+      "evidence": [
+        "authority:2156-2171",
+        "authority:2721-2734",
+        "authority:3092-3094"
+      ]
+    },
+    {
+      "alias": "EXTERNAL_ABC_BOOTSTRAP_RECIPE_ONLY",
+      "allowed_target_tables": [
+        "external_abc_bootstrap_recipes"
+      ],
+      "evidence": [
+        "authority:2721-2734",
+        "authority:3092-3094"
+      ]
+    },
+    {
+      "alias": "GENERATED_METHOD_ONLY",
+      "allowed_target_tables": [
+        "generated_methods"
+      ],
+      "evidence": [
+        "authority:2181-2197",
+        "authority:3094-3096"
+      ]
+    },
+    {
+      "alias": "GENERATED_ARTIFACT_ONLY",
+      "allowed_target_tables": [
+        "generated_artifacts"
+      ],
+      "evidence": [
+        "authority:2181-2197",
+        "authority:3094-3096"
+      ]
+    },
+    {
+      "alias": "GENERATED_FIELD_ACCESSOR_ONLY",
+      "allowed_target_tables": [
+        "generated_field_accessors"
+      ],
+      "evidence": [
+        "authority:2187-2197",
+        "authority:3094-3096"
+      ]
+    },
+    {
+      "alias": "GENERATED_CALLBACK_TRANSFER_ONLY",
+      "allowed_target_tables": [
+        "generated_callback_transfers"
+      ],
+      "evidence": [
+        "authority:2261-2270",
+        "authority:2822-2843",
+        "authority:3094-3102"
+      ]
+    },
+    {
+      "alias": "GENERATED_STDLIB_CALLBACK_ONLY",
+      "allowed_target_tables": [
+        "generated_stdlib_callbacks"
+      ],
+      "evidence": [
+        "authority:2261-2270",
+        "authority:2822-2843",
+        "authority:3094-3102"
+      ]
+    },
+    {
+      "alias": "PROJECT_DESCRIPTOR_ONLY",
+      "allowed_target_tables": [
+        "project_descriptors"
+      ],
+      "evidence": [
+        "authority:2148-2150",
+        "authority:2215-2219",
+        "authority:3095-3097"
+      ]
+    }
+  ],
+  "closed_reference_leaf_rules": [
+    {
+      "owner_table": "project_classes",
+      "record": "ProjectClassBinding",
+      "record_discriminator": "ANY",
+      "field_path": "behavior_slot_manifest_label",
+      "cardinality": "SCALAR",
+      "allowed_target_alias": "BEHAVIOR_SLOT_MANIFEST_ONLY",
+      "allowed_target_tables": [
+        "behavior_slot_manifests"
+      ],
+      "kind": "AUTH_REQUIRES",
+      "schema_field_order": 11,
+      "schema_order_path": [
+        11
+      ],
+      "reference_ordinal_binding": null,
+      "closure_status": "CLOSED_DRAFT_BLOCKED_BY_G18_AUTHORITY",
+      "blocked_by": [
+        "G18"
+      ],
+      "evidence": [
+        "authority:2139-2155",
+        "confirmed:G15_RECIPROCAL_SPLIT"
+      ]
+    },
+    {
+      "owner_table": "behavior_slot_manifests",
+      "record": "BehaviorSlotManifest",
+      "record_discriminator": "ANY",
+      "field_path": "project_class_label",
+      "cardinality": "SCALAR",
+      "allowed_target_alias": "PROJECT_CLASS_ONLY",
+      "allowed_target_tables": [
+        "project_classes"
+      ],
+      "kind": "VALIDATES",
+      "schema_field_order": 1,
+      "schema_order_path": [
+        1
+      ],
+      "reference_ordinal_binding": null,
+      "closure_status": "CLOSED_DRAFT_BLOCKED_BY_G18_AUTHORITY",
+      "blocked_by": [
+        "G18"
+      ],
+      "evidence": [
+        "authority:2139-2155",
+        "authority:787-795",
+        "confirmed:G15_RECIPROCAL_SPLIT"
+      ]
+    },
+    {
+      "owner_table": "behavior_slot_manifests",
+      "record": "BehaviorSlotEntry",
+      "record_discriminator": "state=OWN",
+      "field_path": "entries[*].defining_class_label",
+      "cardinality": "OPTIONAL",
+      "allowed_target_alias": "PROJECT_CLASS_ONLY",
+      "allowed_target_tables": [
+        "project_classes"
+      ],
+      "kind": "VALIDATES",
+      "schema_field_order": 2,
+      "schema_order_path": [
+        3,
+        2
+      ],
+      "reference_ordinal_binding": null,
+      "closure_status": "CLOSED_DRAFT_BLOCKED_BY_G18_AUTHORITY",
+      "blocked_by": [
+        "G18"
+      ],
+      "evidence": [
+        "authority:2151-2155",
+        "confirmed:G15_BEHAVIOR_SLOT_OWN_SPLIT"
+      ]
+    },
+    {
+      "owner_table": "external_classes",
+      "record": "ExternalClassBinding",
+      "record_discriminator": "ANY",
+      "field_path": "abc_state_binding_label",
+      "cardinality": "OPTIONAL",
+      "allowed_target_alias": "EXTERNAL_ABC_STATE_ONLY",
+      "allowed_target_tables": [
+        "external_abc_states"
+      ],
+      "kind": "AUTH_REQUIRES",
+      "schema_field_order": 10,
+      "schema_order_path": [
+        10
+      ],
+      "reference_ordinal_binding": null,
+      "closure_status": "CLOSED_DRAFT_BLOCKED_BY_G18_AUTHORITY",
+      "blocked_by": [
+        "G18"
+      ],
+      "evidence": [
+        "authority:2156-2171",
+        "confirmed:G15_RECIPROCAL_SPLIT"
+      ]
+    },
+    {
+      "owner_table": "external_abc_states",
+      "record": "ExternalAbcStateBinding",
+      "record_discriminator": "ANY",
+      "field_path": "external_class_label",
+      "cardinality": "SCALAR",
+      "allowed_target_alias": "EXTERNAL_CLASS_ONLY",
+      "allowed_target_tables": [
+        "external_classes"
+      ],
+      "kind": "VALIDATES",
+      "schema_field_order": 2,
+      "schema_order_path": [
+        2
+      ],
+      "reference_ordinal_binding": null,
+      "closure_status": "CLOSED_DRAFT_BLOCKED_BY_G18_AUTHORITY",
+      "blocked_by": [
+        "G18"
+      ],
+      "evidence": [
+        "authority:2729-2734",
+        "authority:787-795",
+        "confirmed:G15_RECIPROCAL_SPLIT"
+      ]
+    },
+    {
+      "owner_table": "external_abc_states",
+      "record": "ExternalAbcStateBinding",
+      "record_discriminator": "ANY",
+      "field_path": "bootstrap_recipe_label",
+      "cardinality": "SCALAR",
+      "allowed_target_alias": "EXTERNAL_ABC_BOOTSTRAP_RECIPE_ONLY",
+      "allowed_target_tables": [
+        "external_abc_bootstrap_recipes"
+      ],
+      "kind": "AUTH_REQUIRES",
+      "schema_field_order": 7,
+      "schema_order_path": [
+        7
+      ],
+      "reference_ordinal_binding": null,
+      "closure_status": "CLOSED_DRAFT_BLOCKED_BY_G18_AUTHORITY",
+      "blocked_by": [
+        "G18"
+      ],
+      "evidence": [
+        "authority:2721-2734",
+        "confirmed:G15_ABC_RECIPE_SPLIT"
+      ]
+    },
+    {
+      "owner_table": "external_abc_bootstrap_recipes",
+      "record": "ExternalAbcBootstrapRecipe",
+      "record_discriminator": "ANY",
+      "field_path": "external_class_label",
+      "cardinality": "SCALAR",
+      "allowed_target_alias": "EXTERNAL_CLASS_ONLY",
+      "allowed_target_tables": [
+        "external_classes"
+      ],
+      "kind": "VALIDATES",
+      "schema_field_order": 1,
+      "schema_order_path": [
+        1
+      ],
+      "reference_ordinal_binding": null,
+      "closure_status": "CLOSED_DRAFT_BLOCKED_BY_G18_AUTHORITY",
+      "blocked_by": [
+        "G18"
+      ],
+      "evidence": [
+        "authority:2721-2734",
+        "authority:787-795",
+        "confirmed:G15_ABC_RECIPE_SPLIT"
+      ]
+    },
+    {
+      "owner_table": "generated_artifacts",
+      "record": "GeneratedProjectArtifactBinding",
+      "record_discriminator": "ANY",
+      "field_path": "generated_method_labels[*]",
+      "cardinality": "ORDERED_TUPLE",
+      "allowed_target_alias": "GENERATED_METHOD_ONLY",
+      "allowed_target_tables": [
+        "generated_methods"
+      ],
+      "kind": "AUTH_REQUIRES",
+      "schema_field_order": 11,
+      "schema_order_path": [
+        11
+      ],
+      "reference_ordinal_binding": null,
+      "closure_status": "CLOSED_DRAFT_BLOCKED_BY_G18_AUTHORITY",
+      "blocked_by": [
+        "G18"
+      ],
+      "evidence": [
+        "authority:2181-2197",
+        "confirmed:G15_RECIPROCAL_SPLIT"
+      ]
+    },
+    {
+      "owner_table": "generated_methods",
+      "record": "GeneratedMethodRecord",
+      "record_discriminator": "ANY",
+      "field_path": "owner_artifact_label",
+      "cardinality": "SCALAR",
+      "allowed_target_alias": "GENERATED_ARTIFACT_ONLY",
+      "allowed_target_tables": [
+        "generated_artifacts"
+      ],
+      "kind": "VALIDATES",
+      "schema_field_order": 1,
+      "schema_order_path": [
+        1
+      ],
+      "reference_ordinal_binding": null,
+      "closure_status": "CLOSED_DRAFT_BLOCKED_BY_G18_AUTHORITY",
+      "blocked_by": [
+        "G18"
+      ],
+      "evidence": [
+        "authority:2181-2197",
+        "authority:787-795",
+        "confirmed:G15_RECIPROCAL_SPLIT"
+      ]
+    },
+    {
+      "owner_table": "generated_artifacts",
+      "record": "GeneratedProjectArtifactBinding",
+      "record_discriminator": "ANY",
+      "field_path": "field_accessor_labels[*]",
+      "cardinality": "ORDERED_TUPLE",
+      "allowed_target_alias": "GENERATED_FIELD_ACCESSOR_ONLY",
+      "allowed_target_tables": [
+        "generated_field_accessors"
+      ],
+      "kind": "AUTH_REQUIRES",
+      "schema_field_order": 12,
+      "schema_order_path": [
+        12
+      ],
+      "reference_ordinal_binding": null,
+      "closure_status": "CLOSED_DRAFT_BLOCKED_BY_G18_AUTHORITY",
+      "blocked_by": [
+        "G18"
+      ],
+      "evidence": [
+        "authority:2187-2197",
+        "confirmed:G15_RECIPROCAL_SPLIT"
+      ]
+    },
+    {
+      "owner_table": "generated_field_accessors",
+      "record": "GeneratedFieldAccessorRecord",
+      "record_discriminator": "ANY",
+      "field_path": "owner_artifact_label",
+      "cardinality": "SCALAR",
+      "allowed_target_alias": "GENERATED_ARTIFACT_ONLY",
+      "allowed_target_tables": [
+        "generated_artifacts"
+      ],
+      "kind": "VALIDATES",
+      "schema_field_order": 1,
+      "schema_order_path": [
+        1
+      ],
+      "reference_ordinal_binding": null,
+      "closure_status": "CLOSED_DRAFT_BLOCKED_BY_G18_AUTHORITY",
+      "blocked_by": [
+        "G18"
+      ],
+      "evidence": [
+        "authority:2187-2197",
+        "authority:787-795",
+        "confirmed:G15_RECIPROCAL_SPLIT"
+      ]
+    },
+    {
+      "owner_table": "generated_stdlib_callbacks",
+      "record": "GeneratedStdlibCallbackBinding",
+      "record_discriminator": "ANY",
+      "field_path": "transfer_label",
+      "cardinality": "SCALAR",
+      "allowed_target_alias": "GENERATED_CALLBACK_TRANSFER_ONLY",
+      "allowed_target_tables": [
+        "generated_callback_transfers"
+      ],
+      "kind": "AUTH_REQUIRES",
+      "schema_field_order": 11,
+      "schema_order_path": [
+        11
+      ],
+      "reference_ordinal_binding": null,
+      "closure_status": "CLOSED_DRAFT_BLOCKED_BY_G18_AUTHORITY",
+      "blocked_by": [
+        "G18"
+      ],
+      "evidence": [
+        "authority:2822-2843",
+        "confirmed:G15_RECIPROCAL_SPLIT"
+      ]
+    },
+    {
+      "owner_table": "generated_callback_transfers",
+      "record": "GeneratedStdlibCallbackTransfer",
+      "record_discriminator": "ANY",
+      "field_path": "callback_binding_label",
+      "cardinality": "SCALAR",
+      "allowed_target_alias": "GENERATED_STDLIB_CALLBACK_ONLY",
+      "allowed_target_tables": [
+        "generated_stdlib_callbacks"
+      ],
+      "kind": "VALIDATES",
+      "schema_field_order": 1,
+      "schema_order_path": [
+        1
+      ],
+      "reference_ordinal_binding": null,
+      "closure_status": "CLOSED_DRAFT_BLOCKED_BY_G18_AUTHORITY",
+      "blocked_by": [
+        "G18"
+      ],
+      "evidence": [
+        "authority:2267-2270",
+        "authority:2822-2843",
+        "authority:787-795",
+        "confirmed:G15_RECIPROCAL_SPLIT"
+      ]
+    },
+    {
+      "owner_table": "project_descriptors",
+      "record": "ProjectDescriptorBinding",
+      "record_discriminator": "ANY",
+      "field_path": "project_class_label",
+      "cardinality": "SCALAR",
+      "allowed_target_alias": "PROJECT_CLASS_ONLY",
+      "allowed_target_tables": [
+        "project_classes"
+      ],
+      "kind": "VALIDATES",
+      "schema_field_order": 3,
+      "schema_order_path": [
+        3
+      ],
+      "reference_ordinal_binding": null,
+      "closure_status": "CLOSED_DRAFT_BLOCKED_BY_G18_AUTHORITY",
+      "blocked_by": [
+        "G18"
+      ],
+      "evidence": [
+        "authority:2148-2150",
+        "authority:2215-2219",
+        "authority:787-795",
+        "confirmed:G15_DESCRIPTOR_BACKLINK_SPLIT"
+      ]
+    }
+  ],
+  "blocked_reference_leaf_rules": [
+    {
+      "owner_table": "behavior_slot_manifests",
+      "record": "BehaviorSlotEntry",
+      "record_discriminator": "state=INHERITED",
+      "field_path": "entries[*].defining_class_label",
+      "cardinality": "OPTIONAL",
+      "allowed_target_alias": null,
+      "allowed_target_tables": null,
+      "kind": "AUTH_REQUIRES",
+      "schema_field_order": 2,
+      "schema_order_path": [
+        3,
+        2
+      ],
+      "reference_ordinal_binding": null,
+      "closure_status": "BLOCKED_TARGET_ALIAS_NOT_CLOSED",
+      "blocked_by": [
+        "G14",
+        "G18"
+      ],
+      "evidence": [
+        "authority:2151-2155",
+        "confirmed:G15_BEHAVIOR_SLOT_INHERITED_SPLIT"
+      ]
+    },
+    {
+      "owner_table": "project_classes",
+      "record": "ClassMemberRecord",
+      "record_discriminator": "state=PRESENT;value_kind=BINDING",
+      "field_path": "class_member_records[*].binding_label",
+      "cardinality": "OPTIONAL",
+      "allowed_target_alias": null,
+      "allowed_target_tables": null,
+      "confirmed_target_table_subset": [
+        "project_descriptors"
+      ],
+      "confirmed_target_alias_fragment": "PROJECT_DESCRIPTOR_ONLY",
+      "kind": "AUTH_REQUIRES",
+      "schema_field_order": 4,
+      "schema_order_path": [
+        10,
+        4
+      ],
+      "reference_ordinal_binding": null,
+      "closure_status": "BLOCKED_POLYMORPHIC_TARGET_DISCRIMINATOR_NOT_CLOSED",
+      "blocked_by": [
+        "G14",
+        "G18"
+      ],
+      "evidence": [
+        "authority:2148-2150",
+        "authority:2215-2219",
+        "confirmed:G15_DESCRIPTOR_FORWARD_AUTH"
+      ]
+    },
+    {
+      "owner_table": "runtime_state_reference_bindings",
+      "record": "RuntimeStateReferenceBinding",
+      "record_discriminator": "ANY",
+      "field_path": "source_label",
+      "cardinality": "SCALAR",
+      "allowed_target_alias": null,
+      "allowed_target_tables": null,
+      "kind": "VALIDATES",
+      "schema_field_order": 1,
+      "schema_order_path": [
+        1
+      ],
+      "reference_ordinal_binding": null,
+      "closure_status": "BLOCKED_RUNTIME_BEARING_ALIAS_AND_AUTHORITY_KIND_CONFLICT",
+      "blocked_by": [
+        "G14",
+        "G16",
+        "G18",
+        "AUTHORITY_LINES_2659_2661_STILL_SAY_RUNTIME_REF"
+      ],
+      "evidence": [
+        "authority:2640-2662",
+        "authority:2689-2698",
+        "confirmed:G15_RUNTIME_SOURCE_VALIDATES"
+      ]
+    },
+    {
+      "owner_table": "runtime_state_reference_bindings",
+      "record": "RuntimeStateReferenceBinding",
+      "record_discriminator": "ANY",
+      "field_path": "target_label",
+      "cardinality": "SCALAR",
+      "allowed_target_alias": null,
+      "allowed_target_tables": null,
+      "kind": "RUNTIME_REF",
+      "schema_field_order": 6,
+      "schema_order_path": [
+        6
+      ],
+      "reference_ordinal_binding": "RuntimeStateReferenceBinding.reference_ordinal",
+      "closure_status": "BLOCKED_RUNTIME_BEARING_ALIAS_NOT_CLOSED",
+      "blocked_by": [
+        "G14",
+        "G16",
+        "G18"
+      ],
+      "evidence": [
+        "authority:2659-2662",
+        "authority:2689-2700",
+        "confirmed:G15_RUNTIME_TARGET_RUNTIME_REF_ORDINAL_ONLY"
+      ]
+    }
+  ],
+  "gaps": [
+    {
+      "code": "G14_REFERENCE_RULE_TARGET_TABLE_AND_DISCRIMINATOR_DERIVATION_MISSING",
+      "status": "PARTIALLY_REDUCED_NOT_CLOSED",
+      "remaining_rows": [
+        "behavior_slot_manifests|state=INHERITED|entries[*].defining_class_label",
+        "project_classes|state=PRESENT;value_kind=BINDING|class_member_records[*].binding_label",
+        "runtime_state_reference_bindings|ANY|source_label",
+        "runtime_state_reference_bindings|ANY|target_label"
+      ]
+    },
+    {
+      "code": "G15_DEFAULT_AUTH_REQUIRES_FORCES_MANDATORY_CYCLES",
+      "status": "DRAFT_SPLIT_ENCODED_BUT_AUTHORITY_NOT_UPDATED",
+      "authority_conflicts": [
+        "Backlinks in this draft are VALIDATES although authority 5.6.3 still defaults every unlisted RL leaf to AUTH_REQUIRES.",
+        "runtime_state_reference_bindings.source_label is VALIDATES in this draft although authority lines 2659-2661 still list it as RUNTIME_REF."
+      ]
+    },
+    {
+      "code": "G16_RUNTIME_BEARING_OWNER_ENUM_MISSING",
+      "status": "OPEN",
+      "effect": "No exact ClosedReferenceAlias can be emitted for RuntimeStateReferenceBinding.source_label or target_label."
+    },
+    {
+      "code": "G18_CLOSED_REFERENCE_ALIAS_AND_LEAF_IDL_NOT_IN_AUTHORITY",
+      "status": "OPEN_NOT_IN_AUTHORITY_BYTES",
+      "effect": "This artifact can preserve confirmed fragments but cannot claim exhaustive RL-leaf closure or normative schema-order/discriminator encoding."
+    },
+    {
+      "code": "EXHAUSTIVE_RL_LEAF_ENUMERATION_NOT_ATTEMPTED_AS_COMPLETE",
+      "status": "OPEN",
+      "effect": "The Section 5.5 schema plus incremental 5.6 replacements is not a single bare machine schema, so omitted polymorphic leaves remain unknown rather than inferred."
+    }
+  ],
+  "coverage": {
+    "closed_reference_alias_count": 11,
+    "closed_reference_leaf_rule_count": 14,
+    "blocked_reference_leaf_rule_count": 4,
+    "covered_reciprocal_groups": [
+      "project_class_to_behavior_manifest_and_backlink",
+      "external_class_to_abc_state_to_bootstrap_recipe_and_backlinks",
+      "generated_artifact_to_methods_and_accessors_and_backlinks",
+      "generated_stdlib_callback_to_transfer_and_backlink",
+      "project_descriptor_backlink_with_forward_fragment_retained_as_gap"
+    ],
+    "runtime_binding_kind_split_recorded": true,
+    "runtime_reference_ordinal_binds_target_only": true,
+    "all_rl_leaves_exhaustively_enumerated": false,
+    "sufficient_to_become_specification_authority": false
+  }
+}

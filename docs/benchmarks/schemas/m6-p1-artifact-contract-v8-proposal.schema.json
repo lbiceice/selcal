@@ -1,0 +1,1899 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://selcal.invalid/schemas/m6-p1-artifact-contract-v8-proposal.schema.json",
+  "title": "SelCal M6-P1 artifact contract v8 proposal",
+  "description": "PROPOSAL / NOT APPROVED / NOT FROZEN / NOT IMPLEMENTED / M6 NOT EXECUTED. This schema closes local shapes, discriminated unions, and hard bounds only. Dynamic arithmetic, cross-artifact identity, exhaustive comparison reconstruction, failure-automaton arithmetic, and lifecycle authority belong exclusively to selcal.m6-p1.semantic-validator.v8, which does not yet exist.",
+  "x-proposalStatus": {
+    "formulaStatus": "REVISION8_PROPOSAL",
+    "schemaStatus": "REVISION8_PROPOSAL_NOT_APPROVED",
+    "approvalStatus": "ABSENT",
+    "freezeStatus": "NOT_FROZEN",
+    "semanticValidatorStatus": "NOT_IMPLEMENTED",
+    "m6Status": "NOT_EXECUTED",
+    "softwareXReadiness": "UNCHANGED_HOLD"
+  },
+  "x-semanticValidatorContract": {
+    "contractId": "selcal.m6-p1.semantic-validator.v8",
+    "language": "PYTHON_STDLIB_ONLY",
+    "authority": "SOLE_DYNAMIC_AND_CROSS_ARTIFACT_VALIDATOR",
+    "failClosed": true,
+    "repairsArtifacts": false,
+    "requiredChecks": [
+      "CANONICAL_BYTES_AND_HASHES",
+      "LIFECYCLE_AND_SINGLE_EXTERNAL_BINDING",
+      "SOURCE_SET_NORMALIZATION_ORDER_AND_CLOSURE",
+      "BRANCH_AND_FAILURE_POINT_AUTOMATON",
+      "Q_N_DIV_BLOCK_LENGTH_AND_STATE_PERMUTATION",
+      "EXHAUSTIVE_ORDERED_COMPARISON_RECONSTRUCTION",
+      "DISAGREEMENT_DIAGNOSTIC_GLOBAL_BIJECTION",
+      "AGGREGATE_ARITHMETIC",
+      "RAW_COUNTER_TO_EXECUTED_WORK",
+      "PARAMETERIZED_ROW_AND_LEDGER_BYTE_UPPERS",
+      "MODE_ADMISSION_AND_SELECTED_EXECUTED_IO",
+      "PHASE_MEMORY_AND_TWO_CANDIDATE_VECTORS",
+      "PACKAGE_AND_NAMED_CAPS"
+    ]
+  },
+  "oneOf": [
+    {"$ref": "#/$defs/OriginalInput"},
+    {"$ref": "#/$defs/ReferenceSpec"},
+    {"$ref": "#/$defs/PrimaryRecord"},
+    {"$ref": "#/$defs/PrimaryManifest"},
+    {"$ref": "#/$defs/ComparisonRecord"},
+    {"$ref": "#/$defs/DiagnosticRecord"},
+    {"$ref": "#/$defs/DiagnosticManifest"},
+    {"$ref": "#/$defs/ComparisonManifestSuccess"},
+    {"$ref": "#/$defs/FailureManifest"},
+    {"$ref": "#/$defs/BudgetProfileProjection"},
+    {"$ref": "#/$defs/ExternalApprovalContract"}
+  ],
+  "$defs": {
+    "Sha256": {
+      "type": "string",
+      "minLength": 64,
+      "maxLength": 64,
+      "pattern": "^[0-9a-f]{64}$"
+    },
+    "NullableSha256": {
+      "oneOf": [
+        {"$ref": "#/$defs/Sha256"},
+        {"type": "null"}
+      ]
+    },
+    "FloatHex": {
+      "type": "string",
+      "minLength": 8,
+      "maxLength": 26,
+      "pattern": "^-?0x[0-9a-f]\\.[0-9a-f]{1,13}p[+-][0-9]{1,4}$"
+    },
+    "NullableFloatHex": {
+      "oneOf": [
+        {"$ref": "#/$defs/FloatHex"},
+        {"type": "null"}
+      ]
+    },
+    "AsciiId": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 128,
+      "pattern": "^[A-Za-z0-9][A-Za-z0-9._:-]{0,127}$"
+    },
+    "RunId": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 64,
+      "pattern": "^[A-Za-z0-9][A-Za-z0-9._-]{0,63}$"
+    },
+    "NormalizedRelativePath": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 512,
+      "pattern": "^(?!/)(?!.*//)(?!.*(?:^|/)\\.{1,2}(?:/|$))(?!.*\\\\)(?!.*[^\\x20-\\x7e])[A-Za-z0-9._-]+(?:/[A-Za-z0-9._-]+)*$"
+    },
+    "CanonicalizationVersion": {
+      "const": "selcal-m6-p1-jsonl-v1"
+    },
+    "CalculationMode": {
+      "enum": ["ALL_STATE_EXACT", "FINITE_B_COMPLETED_STATE_REPLAY"]
+    },
+    "ExecutionBranchResolved": {
+      "enum": [
+        "ALL_STATE_EXACT_COMPONENT",
+        "FINITE_NORMAL",
+        "FINITE_REPLICATE_FAILURE",
+        "FINITE_OBSERVED_ANALYTIC_FAILURE",
+        "NULL_BIND_DISABLED"
+      ]
+    },
+    "NullableIndex": {
+      "oneOf": [
+        {"type": "integer", "minimum": 0, "maximum": 100000},
+        {"type": "null"}
+      ]
+    },
+    "NullableChunkIndex": {
+      "oneOf": [
+        {"type": "integer", "minimum": 0, "maximum": 999999},
+        {"type": "null"}
+      ]
+    },
+    "ArtifactIdentity": {
+      "type": "object",
+      "properties": {
+        "path": {"$ref": "#/$defs/NormalizedRelativePath"},
+        "bytes": {"type": "integer", "minimum": 1, "maximum": 536870912},
+        "sha256": {"$ref": "#/$defs/Sha256"}
+      },
+      "required": ["path", "bytes", "sha256"],
+      "additionalProperties": false
+    },
+    "RuntimeIdentity": {
+      "type": "object",
+      "properties": {
+        "pythonImplementation": {"type": "string", "minLength": 1, "maxLength": 64, "pattern": "^[A-Za-z0-9._+:-]+$"},
+        "pythonVersion": {"type": "string", "minLength": 1, "maxLength": 64, "pattern": "^[A-Za-z0-9._+:-]+$"},
+        "platform": {"type": "string", "minLength": 1, "maxLength": 256, "pattern": "^[A-Za-z0-9._/+:-]+$"}
+      },
+      "required": ["pythonImplementation", "pythonVersion", "platform"],
+      "additionalProperties": false
+    },
+    "RuntimeLayoutConstants": {
+      "type": "object",
+      "properties": {
+        "containerBasePeakBytes": {"const": 512},
+        "floatValuePeakBytes": {"const": 64},
+        "integerValuePeakBytes": {"const": 64},
+        "candidateRecordPeakBytes": {"const": 2048},
+        "selectionRecordPeakBytes": {"const": 4096},
+        "fieldComparisonPeakBytes": {"const": 1024},
+        "failureCodeValuePeakBytes": {"const": 128},
+        "counterEntryPeakBytes": {"const": 512},
+        "sortEntryPeakBytes": {"const": 64},
+        "sourceEntryPeakBytes": {"const": 1024},
+        "dependencyPolicyPeakBytes": {"const": 1024},
+        "chunkDescriptorPeakBytes": {"const": 1024},
+        "failureDescriptorPeakBytes": {"const": 1024},
+        "encoderFramePeakBytes": {"const": 4096},
+        "maxCanonicalTokenBytes": {"const": 4096},
+        "streamWriteBufferBytes": {"const": 1048576},
+        "streamReadBufferBytes": {"const": 1048576},
+        "hashScratchBytes": {"const": 65536},
+        "decoderScratchBytes": {"const": 262144},
+        "fixedPhaseOverheadBytes": {"const": 8388608}
+      },
+      "required": [
+        "containerBasePeakBytes", "floatValuePeakBytes", "integerValuePeakBytes",
+        "candidateRecordPeakBytes", "selectionRecordPeakBytes", "fieldComparisonPeakBytes",
+        "failureCodeValuePeakBytes", "counterEntryPeakBytes", "sortEntryPeakBytes",
+        "sourceEntryPeakBytes", "dependencyPolicyPeakBytes", "chunkDescriptorPeakBytes", "failureDescriptorPeakBytes",
+        "encoderFramePeakBytes", "maxCanonicalTokenBytes", "streamWriteBufferBytes",
+        "streamReadBufferBytes", "hashScratchBytes", "decoderScratchBytes",
+        "fixedPhaseOverheadBytes"
+      ],
+      "additionalProperties": false
+    },
+    "RuntimeProfileProposal": {
+      "type": "object",
+      "properties": {
+        "runtimeLayoutProfileId": {"const": "m6-p1-runtime-layout-v8"},
+        "profileState": {"const": "PROPOSAL"},
+        "constants": {"$ref": "#/$defs/RuntimeLayoutConstants"},
+        "probeStatus": {"const": "NOT_EXECUTED"},
+        "runtimeIdentity": {"type": "null"},
+        "probeArtifact": {"type": "null"}
+      },
+      "required": ["runtimeLayoutProfileId", "profileState", "constants", "probeStatus", "runtimeIdentity", "probeArtifact"],
+      "additionalProperties": false
+    },
+    "RuntimeProfileApproved": {
+      "type": "object",
+      "properties": {
+        "runtimeLayoutProfileId": {"const": "m6-p1-runtime-layout-v8"},
+        "profileState": {"const": "APPROVED"},
+        "constants": {"$ref": "#/$defs/RuntimeLayoutConstants"},
+        "probeStatus": {"const": "PASSED"},
+        "runtimeIdentity": {"$ref": "#/$defs/RuntimeIdentity"},
+        "probeArtifact": {"$ref": "#/$defs/ArtifactIdentity"}
+      },
+      "required": ["runtimeLayoutProfileId", "profileState", "constants", "probeStatus", "runtimeIdentity", "probeArtifact"],
+      "additionalProperties": false
+    },
+    "Lifecycle": {
+      "oneOf": [
+        {
+          "type": "object",
+          "properties": {
+            "artifactStatus": {"const": "PROPOSAL_UNAPPROVED"},
+            "externalBindingId": {"type": "null"},
+            "runtimeProfile": {"$ref": "#/$defs/RuntimeProfileProposal"}
+          },
+          "required": ["artifactStatus", "externalBindingId", "runtimeProfile"],
+          "additionalProperties": false
+        },
+        {
+          "type": "object",
+          "properties": {
+            "artifactStatus": {"const": "APPROVED_FROZEN"},
+            "externalBindingId": {"$ref": "#/$defs/AsciiId"},
+            "runtimeProfile": {"$ref": "#/$defs/RuntimeProfileApproved"}
+          },
+          "required": ["artifactStatus", "externalBindingId", "runtimeProfile"],
+          "additionalProperties": false
+        }
+      ]
+    },
+    "SourceSetEntry": {
+      "type": "object",
+      "properties": {
+        "ordinal": {"type": "integer", "minimum": 0, "maximum": 255},
+        "path": {"$ref": "#/$defs/NormalizedRelativePath"},
+        "mediaType": {"enum": ["text/x-python", "application/json", "application/octet-stream"]},
+        "bytes": {"type": "integer", "minimum": 1, "maximum": 16777216},
+        "sha256": {"$ref": "#/$defs/Sha256"}
+      },
+      "required": ["ordinal", "path", "mediaType", "bytes", "sha256"],
+      "additionalProperties": false
+    },
+    "DependencyPolicy": {
+      "oneOf": [
+        {
+          "type": "object",
+          "properties": {
+            "policy": {"const": "STANDARD_LIBRARY_ONLY"},
+            "declaredDependencyCount": {"const": 0},
+            "unresolvedDependencyCount": {"const": 0},
+            "dependencyManifestSha256": {"type": "null"}
+          },
+          "required": ["policy", "declaredDependencyCount", "unresolvedDependencyCount", "dependencyManifestSha256"],
+          "additionalProperties": false
+        },
+        {
+          "type": "object",
+          "properties": {
+            "policy": {"const": "CLOSED_DISTRIBUTION_MANIFEST"},
+            "declaredDependencyCount": {"type": "integer", "minimum": 1, "maximum": 256},
+            "unresolvedDependencyCount": {"const": 0},
+            "dependencyManifestSha256": {"$ref": "#/$defs/Sha256"}
+          },
+          "required": ["policy", "declaredDependencyCount", "unresolvedDependencyCount", "dependencyManifestSha256"],
+          "additionalProperties": false
+        }
+      ]
+    },
+    "SourceSetManifest": {
+      "type": "object",
+      "properties": {
+        "role": {"enum": ["REFERENCE_SOURCE", "PRODUCTION_SOURCE", "COMPARISON_DRIVER"]},
+        "entries": {
+          "type": "array",
+          "minItems": 1,
+          "maxItems": 256,
+          "uniqueItems": true,
+          "items": {"$ref": "#/$defs/SourceSetEntry"}
+        },
+        "sourceCount": {"type": "integer", "minimum": 1, "maximum": 256},
+        "totalSourceBytes": {"type": "integer", "minimum": 1, "maximum": 67108864},
+        "dependencyPolicy": {"$ref": "#/$defs/DependencyPolicy"},
+        "sourceSetId": {"$ref": "#/$defs/Sha256"}
+      },
+      "required": ["role", "entries", "sourceCount", "totalSourceBytes", "dependencyPolicy", "sourceSetId"],
+      "additionalProperties": false
+    },
+    "ImplementationSourceSets": {
+      "type": "object",
+      "properties": {
+        "reference": {"$ref": "#/$defs/SourceSetManifest"},
+        "production": {"$ref": "#/$defs/SourceSetManifest"},
+        "comparisonDriver": {"$ref": "#/$defs/SourceSetManifest"}
+      },
+      "required": ["reference", "production", "comparisonDriver"],
+      "additionalProperties": false,
+      "x-semanticInvariant": "roles are respectively REFERENCE_SOURCE, PRODUCTION_SOURCE, COMPARISON_DRIVER; embedded source sets have no lifecycle field and inherit the terminal root lifecycle"
+    },
+    "SourceIdentityProgress": {
+      "type": "object",
+      "properties": {
+        "activeRole": {"enum": ["REFERENCE_SOURCE", "PRODUCTION_SOURCE", "COMPARISON_DRIVER"]},
+        "entryOrdinal": {"type": "integer", "minimum": 0, "maximum": 255},
+        "entryPath": {"$ref": "#/$defs/NormalizedRelativePath"},
+        "entryBytesExpected": {"type": "integer", "minimum": 1, "maximum": 16777216},
+        "entryByteOffset": {"type": "integer", "minimum": 0, "maximum": 16777216},
+        "sourceBytesReadTotal": {"type": "integer", "minimum": 0, "maximum": 201326592},
+        "completedReferenceEntries": {"type": "integer", "minimum": 0, "maximum": 256},
+        "completedProductionEntries": {"type": "integer", "minimum": 0, "maximum": 256},
+        "completedComparisonDriverEntries": {"type": "integer", "minimum": 0, "maximum": 256},
+        "currentEntryPrefixSha256": {"$ref": "#/$defs/NullableSha256"}
+      },
+      "required": [
+        "activeRole", "entryOrdinal", "entryPath", "entryBytesExpected", "entryByteOffset",
+        "sourceBytesReadTotal", "completedReferenceEntries", "completedProductionEntries",
+        "completedComparisonDriverEntries", "currentEntryPrefixSha256"
+      ],
+      "additionalProperties": false
+    },
+    "SourceIdentityState": {
+      "oneOf": [
+        {
+          "type": "object",
+          "properties": {
+            "status": {"const": "NOT_STARTED"},
+            "progress": {"type": "null"},
+            "implementationSourceSets": {"type": "null"}
+          },
+          "required": ["status", "progress", "implementationSourceSets"],
+          "additionalProperties": false
+        },
+        {
+          "type": "object",
+          "properties": {
+            "status": {"const": "IN_PROGRESS"},
+            "progress": {"$ref": "#/$defs/SourceIdentityProgress"},
+            "implementationSourceSets": {"type": "null"}
+          },
+          "required": ["status", "progress", "implementationSourceSets"],
+          "additionalProperties": false
+        },
+        {
+          "type": "object",
+          "properties": {
+            "status": {"const": "COMPLETE"},
+            "progress": {"type": "null"},
+            "implementationSourceSets": {"$ref": "#/$defs/ImplementationSourceSets"}
+          },
+          "required": ["status", "progress", "implementationSourceSets"],
+          "additionalProperties": false
+        }
+      ]
+    },
+    "PearsonStatistic": {
+      "type": "object",
+      "properties": {
+        "family": {"const": "LAGGED_PEARSON"},
+        "absoluteToleranceHex": {"const": "0x1.0000000000000p-46"}
+      },
+      "required": ["family", "absoluteToleranceHex"],
+      "additionalProperties": false
+    },
+    "NetTEStatistic": {
+      "type": "object",
+      "properties": {
+        "family": {"const": "NET_TRANSFER_ENTROPY"},
+        "bins": {"type": "integer", "minimum": 2, "maximum": 4096},
+        "absoluteToleranceHex": {"const": "0x1.0000000000000p-46"}
+      },
+      "required": ["family", "bins", "absoluteToleranceHex"],
+      "additionalProperties": false
+    },
+    "StatisticSpec": {
+      "oneOf": [
+        {"$ref": "#/$defs/PearsonStatistic"},
+        {"$ref": "#/$defs/NetTEStatistic"}
+      ]
+    },
+    "CircularNull": {
+      "type": "object",
+      "properties": {
+        "family": {"const": "CIRCULAR_SHIFT"},
+        "minimumShift": {"type": "integer", "minimum": 1, "maximum": 2500000}
+      },
+      "required": ["family", "minimumShift"],
+      "additionalProperties": false
+    },
+    "BlockNull": {
+      "type": "object",
+      "properties": {
+        "family": {"const": "BLOCK_SHUFFLE"},
+        "blockLength": {"type": "integer", "minimum": 1, "maximum": 1250000}
+      },
+      "required": ["family", "blockLength"],
+      "additionalProperties": false
+    },
+    "NullSpec": {
+      "oneOf": [
+        {"$ref": "#/$defs/CircularNull"},
+        {"$ref": "#/$defs/BlockNull"}
+      ]
+    },
+    "CircularState": {
+      "type": "object",
+      "properties": {
+        "kind": {"const": "CIRCULAR_SHIFT"},
+        "offset": {"type": "integer", "minimum": 0, "maximum": 2499999},
+        "isIdentity": {"type": "boolean"}
+      },
+      "required": ["kind", "offset", "isIdentity"],
+      "additionalProperties": false
+    },
+    "BlockState": {
+      "type": "object",
+      "properties": {
+        "kind": {"const": "BLOCK_SHUFFLE"},
+        "q": {"type": "integer", "minimum": 2, "maximum": 4096},
+        "order": {
+          "type": "array",
+          "minItems": 2,
+          "maxItems": 4096,
+          "uniqueItems": true,
+          "items": {"type": "integer", "minimum": 0, "maximum": 4095}
+        },
+        "isIdentity": {"type": "boolean"}
+      },
+      "required": ["kind", "q", "order", "isIdentity"],
+      "additionalProperties": false,
+      "x-semanticInvariant": "q=n//blockLength, n%blockLength=0, len(order)=q, and sorted(order)==list(range(q))"
+    },
+    "State": {
+      "oneOf": [
+        {"$ref": "#/$defs/CircularState"},
+        {"$ref": "#/$defs/BlockState"}
+      ]
+    },
+    "CandidateRecord": {
+      "oneOf": [
+        {
+          "type": "object",
+          "properties": {
+            "candidateIndex": {"type": "integer", "minimum": 0, "maximum": 2499},
+            "candidate": {"type": "integer", "minimum": 0, "maximum": 2500000},
+            "status": {"const": "VALID"},
+            "estimateHex": {"$ref": "#/$defs/FloatHex"},
+            "failureCode": {"type": "null"}
+          },
+          "required": ["candidateIndex", "candidate", "status", "estimateHex", "failureCode"],
+          "additionalProperties": false
+        },
+        {
+          "type": "object",
+          "properties": {
+            "candidateIndex": {"type": "integer", "minimum": 0, "maximum": 2499},
+            "candidate": {"type": "integer", "minimum": 0, "maximum": 2500000},
+            "status": {"const": "ANALYTIC_FAILURE"},
+            "estimateHex": {"type": "null"},
+            "failureCode": {"$ref": "#/$defs/FailureCode"}
+          },
+          "required": ["candidateIndex", "candidate", "status", "estimateHex", "failureCode"],
+          "additionalProperties": false
+        }
+      ]
+    },
+    "Selection": {
+      "oneOf": [
+        {
+          "type": "object",
+          "properties": {
+            "status": {"const": "SELECTED"},
+            "selectedCandidateIndex": {"type": "integer", "minimum": 0, "maximum": 2499},
+            "tiedCandidateIndices": {
+              "type": "array", "minItems": 1, "maxItems": 2500, "uniqueItems": true,
+              "items": {"type": "integer", "minimum": 0, "maximum": 2499}
+            }
+          },
+          "required": ["status", "selectedCandidateIndex", "tiedCandidateIndices"],
+          "additionalProperties": false
+        },
+        {
+          "type": "object",
+          "properties": {
+            "status": {"const": "NOT_AVAILABLE"},
+            "selectedCandidateIndex": {"type": "null"},
+            "tiedCandidateIndices": {"type": "array", "maxItems": 0}
+          },
+          "required": ["status", "selectedCandidateIndex", "tiedCandidateIndices"],
+          "additionalProperties": false
+        }
+      ]
+    },
+    "ChunkDescriptor": {
+      "type": "object",
+      "properties": {
+        "chunkIndex": {"type": "integer", "minimum": 0, "maximum": 999999},
+        "path": {"$ref": "#/$defs/NormalizedRelativePath"},
+        "rowCount": {"type": "integer", "minimum": 1, "maximum": 256},
+        "bytes": {"type": "integer", "minimum": 1, "maximum": 268435456},
+        "sha256": {"$ref": "#/$defs/Sha256"}
+      },
+      "required": ["chunkIndex", "path", "rowCount", "bytes", "sha256"],
+      "additionalProperties": false
+    },
+    "RecordLocator": {
+      "type": "object",
+      "properties": {
+        "path": {"$ref": "#/$defs/NormalizedRelativePath"},
+        "rowIndex": {"$ref": "#/$defs/NullableIndex"},
+        "recordSha256": {"$ref": "#/$defs/Sha256"}
+      },
+      "required": ["path", "rowIndex", "recordSha256"],
+      "additionalProperties": false
+    },
+    "OriginalInput": {
+      "type": "object",
+      "properties": {
+        "schemaVersion": {"const": "selcal.m6-p1.original-input.v8"},
+        "artifactType": {"const": "ORIGINAL_INPUT"},
+        "runId": {"$ref": "#/$defs/RunId"},
+        "canonicalizationVersion": {"$ref": "#/$defs/CanonicalizationVersion"},
+        "x": {"type": "array", "minItems": 1, "maxItems": 2500000, "items": {"$ref": "#/$defs/FloatHex"}},
+        "y": {"type": "array", "minItems": 1, "maxItems": 2500000, "items": {"$ref": "#/$defs/FloatHex"}}
+      },
+      "required": ["schemaVersion", "artifactType", "runId", "canonicalizationVersion", "x", "y"],
+      "additionalProperties": false
+    },
+    "ReferenceSpec": {
+      "type": "object",
+      "properties": {
+        "schemaVersion": {"const": "selcal.m6-p1.reference-spec.v8"},
+        "artifactType": {"const": "REFERENCE_SPEC"},
+        "runId": {"$ref": "#/$defs/RunId"},
+        "canonicalizationVersion": {"$ref": "#/$defs/CanonicalizationVersion"},
+        "calculationMode": {"$ref": "#/$defs/CalculationMode"},
+        "candidates": {
+          "type": "array", "minItems": 1, "maxItems": 2500, "uniqueItems": true,
+          "items": {"type": "integer", "minimum": 0, "maximum": 2500000}
+        },
+        "replicateCount": {
+          "oneOf": [
+            {"type": "integer", "minimum": 1, "maximum": 1000},
+            {"type": "null"}
+          ]
+        },
+        "alphaHex": {"$ref": "#/$defs/FloatHex"},
+        "statistic": {"$ref": "#/$defs/StatisticSpec"},
+        "null": {"$ref": "#/$defs/NullSpec"}
+      },
+      "required": [
+        "schemaVersion", "artifactType", "runId", "canonicalizationVersion",
+        "calculationMode", "candidates", "replicateCount", "alphaHex", "statistic", "null"
+      ],
+      "additionalProperties": false,
+      "allOf": [
+        {
+          "oneOf": [
+            {
+              "properties": {
+                "calculationMode": {"const": "ALL_STATE_EXACT"},
+                "replicateCount": {"type": "null"}
+              },
+              "required": ["calculationMode", "replicateCount"]
+            },
+            {
+              "properties": {
+                "calculationMode": {"const": "FINITE_B_COMPLETED_STATE_REPLAY"},
+                "replicateCount": {"type": "integer", "minimum": 1, "maximum": 1000}
+              },
+              "required": ["calculationMode", "replicateCount"]
+            }
+          ]
+        }
+      ]
+    },
+    "PrimaryRecord": {
+      "type": "object",
+      "properties": {
+        "schemaVersion": {"const": "selcal.m6-p1.primary-record.v8"},
+        "artifactType": {"const": "PRIMARY_RECORD"},
+        "runId": {"$ref": "#/$defs/RunId"},
+        "canonicalizationVersion": {"$ref": "#/$defs/CanonicalizationVersion"},
+        "calculationMode": {"$ref": "#/$defs/CalculationMode"},
+        "recordIndex": {"type": "integer", "minimum": 0, "maximum": 99999},
+        "state": {"$ref": "#/$defs/State"},
+        "recordStatus": {"enum": ["COMPLETE", "ANALYTIC_FAILURE"]},
+        "candidateRecords": {
+          "type": "array", "minItems": 1, "maxItems": 2500,
+          "items": {"$ref": "#/$defs/CandidateRecord"}
+        },
+        "selection": {"$ref": "#/$defs/Selection"},
+        "tailIndicator": {
+          "oneOf": [{"type": "boolean"}, {"type": "null"}]
+        }
+      },
+      "required": [
+        "schemaVersion", "artifactType", "runId", "canonicalizationVersion", "calculationMode",
+        "recordIndex", "state", "recordStatus", "candidateRecords", "selection", "tailIndicator"
+      ],
+      "additionalProperties": false
+    },
+    "PrimaryManifest": {
+      "type": "object",
+      "properties": {
+        "schemaVersion": {"const": "selcal.m6-p1.primary-manifest.v8"},
+        "artifactType": {"const": "PRIMARY_MANIFEST"},
+        "runId": {"$ref": "#/$defs/RunId"},
+        "canonicalizationVersion": {"$ref": "#/$defs/CanonicalizationVersion"},
+        "calculationMode": {"$ref": "#/$defs/CalculationMode"},
+        "executionBranch": {"$ref": "#/$defs/ExecutionBranchResolved"},
+        "terminalStatus": {"enum": ["COMPLETE", "NULL_DISABLED", "OBSERVED_ANALYTICAL_FAILURE", "REPLICATE_FAILURE", "EXACT_ANALYTICAL_FAILURE"]},
+        "chunks": {
+          "type": "array", "maxItems": 1000000, "uniqueItems": true,
+          "items": {"$ref": "#/$defs/ChunkDescriptor"}
+        },
+        "recordCount": {"type": "integer", "minimum": 0, "maximum": 100000},
+        "primaryLedgerBytes": {"type": "integer", "minimum": 0, "maximum": 268435456},
+        "primaryLedgerSha256": {"$ref": "#/$defs/NullableSha256"}
+      },
+      "required": [
+        "schemaVersion", "artifactType", "runId", "canonicalizationVersion", "calculationMode",
+        "executionBranch", "terminalStatus", "chunks", "recordCount", "primaryLedgerBytes", "primaryLedgerSha256"
+      ],
+      "additionalProperties": false
+    },
+    "ExactScalar": {
+      "oneOf": [
+        {"type": "integer", "minimum": 0, "maximum": 115792089237316195423570985008687907853269984665640564039457584007913129639935},
+        {"type": "boolean"},
+        {"type": "string", "minLength": 1, "maxLength": 256, "pattern": "^[\\x20-\\x7e]+$"},
+        {"type": "null"}
+      ]
+    },
+    "FieldPath": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 160,
+      "pattern": "^[A-Za-z][A-Za-z0-9_.\\[\\]-]{0,159}$"
+    },
+    "FieldComparison": {
+      "oneOf": [
+        {
+          "type": "object",
+          "properties": {
+            "fieldPath": {"$ref": "#/$defs/FieldPath"},
+            "pathClass": {"const": "APPROXIMATE_FLOAT"},
+            "comparisonRule": {"const": "FLOAT_ABS_TOL"},
+            "referenceValue": {"$ref": "#/$defs/FloatHex"},
+            "productionValue": {"$ref": "#/$defs/FloatHex"},
+            "residualHex": {"$ref": "#/$defs/FloatHex"},
+            "toleranceHex": {"const": "0x1.0000000000000p-46"},
+            "matches": {"type": "boolean"}
+          },
+          "required": ["fieldPath", "pathClass", "comparisonRule", "referenceValue", "productionValue", "residualHex", "toleranceHex", "matches"],
+          "additionalProperties": false
+        },
+        {
+          "type": "object",
+          "properties": {
+            "fieldPath": {"$ref": "#/$defs/FieldPath"},
+            "pathClass": {"const": "OPTIONAL_APPROXIMATE_FLOAT"},
+            "comparisonRule": {"const": "OPTIONAL_FLOAT_ABS_TOL"},
+            "referenceValue": {"$ref": "#/$defs/NullableFloatHex"},
+            "productionValue": {"$ref": "#/$defs/NullableFloatHex"},
+            "residualHex": {"$ref": "#/$defs/NullableFloatHex"},
+            "toleranceHex": {"const": "0x1.0000000000000p-46"},
+            "matches": {"type": "boolean"}
+          },
+          "required": ["fieldPath", "pathClass", "comparisonRule", "referenceValue", "productionValue", "residualHex", "toleranceHex", "matches"],
+          "additionalProperties": false
+        },
+        {
+          "type": "object",
+          "properties": {
+            "fieldPath": {"$ref": "#/$defs/FieldPath"},
+            "pathClass": {"const": "CANONICAL_FLOAT"},
+            "comparisonRule": {"const": "FLOAT_HEX_EXACT"},
+            "referenceValue": {"$ref": "#/$defs/FloatHex"},
+            "productionValue": {"$ref": "#/$defs/FloatHex"},
+            "residualHex": {"type": "null"},
+            "toleranceHex": {"type": "null"},
+            "matches": {"type": "boolean"}
+          },
+          "required": ["fieldPath", "pathClass", "comparisonRule", "referenceValue", "productionValue", "residualHex", "toleranceHex", "matches"],
+          "additionalProperties": false
+        },
+        {
+          "type": "object",
+          "properties": {
+            "fieldPath": {"$ref": "#/$defs/FieldPath"},
+            "pathClass": {"const": "TAIL"},
+            "comparisonRule": {"const": "TAIL_EXACT"},
+            "referenceValue": {"oneOf": [{"type": "boolean"}, {"type": "null"}]},
+            "productionValue": {"oneOf": [{"type": "boolean"}, {"type": "null"}]},
+            "residualHex": {"type": "null"},
+            "toleranceHex": {"type": "null"},
+            "matches": {"type": "boolean"}
+          },
+          "required": ["fieldPath", "pathClass", "comparisonRule", "referenceValue", "productionValue", "residualHex", "toleranceHex", "matches"],
+          "additionalProperties": false
+        },
+        {
+          "type": "object",
+          "properties": {
+            "fieldPath": {"$ref": "#/$defs/FieldPath"},
+            "pathClass": {"const": "EXACT_SCALAR"},
+            "comparisonRule": {"const": "EXACT"},
+            "referenceValue": {"$ref": "#/$defs/ExactScalar"},
+            "productionValue": {"$ref": "#/$defs/ExactScalar"},
+            "residualHex": {"type": "null"},
+            "toleranceHex": {"type": "null"},
+            "matches": {"type": "boolean"}
+          },
+          "required": ["fieldPath", "pathClass", "comparisonRule", "referenceValue", "productionValue", "residualHex", "toleranceHex", "matches"],
+          "additionalProperties": false
+        }
+      ]
+    },
+    "AggregateProjection": {
+      "type": "object",
+      "properties": {
+        "E": {"$ref": "#/$defs/NullableIndex"},
+        "F": {"$ref": "#/$defs/NullableIndex"},
+        "validReplicateCount": {"$ref": "#/$defs/NullableIndex"},
+        "numerator": {"$ref": "#/$defs/NullableIndex"},
+        "lowerNumerator": {"$ref": "#/$defs/NullableIndex"},
+        "upperNumerator": {"$ref": "#/$defs/NullableIndex"},
+        "denominator": {"$ref": "#/$defs/NullableIndex"},
+        "pValueHex": {"$ref": "#/$defs/NullableFloatHex"},
+        "lowerBoundHex": {"$ref": "#/$defs/NullableFloatHex"},
+        "upperBoundHex": {"$ref": "#/$defs/NullableFloatHex"},
+        "decision": {"oneOf": [{"type": "boolean"}, {"type": "null"}]}
+      },
+      "required": [
+        "E", "F", "validReplicateCount", "numerator", "lowerNumerator", "upperNumerator",
+        "denominator", "pValueHex", "lowerBoundHex", "upperBoundHex", "decision"
+      ],
+      "additionalProperties": false
+    },
+    "NullableState": {
+      "oneOf": [{"$ref": "#/$defs/State"}, {"type": "null"}]
+    },
+    "NullableSelection": {
+      "oneOf": [{"$ref": "#/$defs/Selection"}, {"type": "null"}]
+    },
+    "ComparedProjection": {
+      "type": "object",
+      "properties": {
+        "projectionKind": {"enum": ["OBSERVED", "STATE", "AGGREGATE", "NULL_AGGREGATE"]},
+        "terminalStatus": {"enum": ["COMPLETE", "NULL_DISABLED", "OBSERVED_ANALYTICAL_FAILURE", "REPLICATE_FAILURE", "EXACT_ANALYTICAL_FAILURE"]},
+        "state": {"$ref": "#/$defs/NullableState"},
+        "candidateRecords": {"type": "array", "maxItems": 2500, "items": {"$ref": "#/$defs/CandidateRecord"}},
+        "selection": {"$ref": "#/$defs/NullableSelection"},
+        "tailIndicator": {"oneOf": [{"type": "boolean"}, {"type": "null"}]},
+        "aggregate": {"oneOf": [{"$ref": "#/$defs/AggregateProjection"}, {"type": "null"}]}
+      },
+      "required": ["projectionKind", "terminalStatus", "state", "candidateRecords", "selection", "tailIndicator", "aggregate"],
+      "additionalProperties": false
+    },
+    "ComparisonRecord": {
+      "type": "object",
+      "properties": {
+        "schemaVersion": {"const": "selcal.m6-p1.comparison-record.v8"},
+        "artifactType": {"const": "COMPARISON_RECORD"},
+        "runId": {"$ref": "#/$defs/RunId"},
+        "canonicalizationVersion": {"$ref": "#/$defs/CanonicalizationVersion"},
+        "projectionContractId": {"const": "selcal.m6-p1.comparison-projection.v8"},
+        "calculationMode": {"$ref": "#/$defs/CalculationMode"},
+        "comparisonIndex": {"type": "integer", "minimum": 0, "maximum": 100000},
+        "recordKind": {"enum": ["OBSERVED", "STATE", "AGGREGATE", "NULL_AGGREGATE"]},
+        "rowIndex": {"$ref": "#/$defs/NullableIndex"},
+        "referenceLocator": {"$ref": "#/$defs/RecordLocator"},
+        "referenceProjection": {"$ref": "#/$defs/ComparedProjection"},
+        "productionLocator": {"$ref": "#/$defs/RecordLocator"},
+        "productionProjection": {"$ref": "#/$defs/ComparedProjection"},
+        "fieldComparisons": {
+          "type": "array",
+          "minItems": 1,
+          "maxItems": 22516,
+          "uniqueItems": true,
+          "items": {"$ref": "#/$defs/FieldComparison"}
+        },
+        "comparisonStatus": {"enum": ["AGREEMENT", "DISAGREEMENT", "NOT_COMPARABLE"]},
+        "disagreementCodes": {
+          "type": "array", "maxItems": 32, "uniqueItems": true,
+          "items": {"$ref": "#/$defs/FailureCode"}
+        },
+        "diagnosticIndices": {
+          "type": "array", "maxItems": 1, "uniqueItems": true,
+          "items": {"type": "integer", "minimum": 0, "maximum": 255}
+        }
+      },
+      "required": [
+        "schemaVersion", "artifactType", "runId", "canonicalizationVersion", "projectionContractId",
+        "calculationMode", "comparisonIndex", "recordKind", "rowIndex", "referenceLocator",
+        "referenceProjection", "productionLocator", "productionProjection", "fieldComparisons",
+        "comparisonStatus", "disagreementCodes", "diagnosticIndices"
+      ],
+      "additionalProperties": false,
+      "x-semanticInvariant": "validator reconstructs the exact ordered projection from both source artifacts; rejects empty, removed, duplicated-path, reordered, extra, or rule-substituted fields; DISAGREEMENT has exactly one diagnostic index and all other statuses have zero"
+    },
+    "DiagnosticPayload": {
+      "oneOf": [
+        {
+          "type": "object",
+          "properties": {
+            "payloadKind": {"const": "HEADER"},
+            "productionCountersStatus": {"enum": ["AVAILABLE", "NOT_EXPOSED"]},
+            "notExposedReason": {
+              "oneOf": [
+                {"enum": ["PRODUCTION_API_NOT_EXPOSED", "PRODUCTION_COUNTER_TRACE_NOT_AVAILABLE", "PRODUCTION_COUNTER_SCHEMA_INCOMPATIBLE"]},
+                {"type": "null"}
+              ]
+            }
+          },
+          "required": ["payloadKind", "productionCountersStatus", "notExposedReason"],
+          "additionalProperties": false
+        },
+        {
+          "type": "object",
+          "properties": {
+            "payloadKind": {"const": "EDGE"},
+            "series": {"enum": ["SOURCE", "TARGET"]},
+            "edgeIndex": {"type": "integer", "minimum": 0, "maximum": 65535},
+            "valueHex": {"$ref": "#/$defs/FloatHex"}
+          },
+          "required": ["payloadKind", "series", "edgeIndex", "valueHex"],
+          "additionalProperties": false
+        },
+        {
+          "type": "object",
+          "properties": {
+            "payloadKind": {"const": "CODE"},
+            "candidateIndex": {"type": "integer", "minimum": 0, "maximum": 2499},
+            "valueIndex": {"type": "integer", "minimum": 0, "maximum": 2499999},
+            "code": {"type": "integer", "minimum": 0, "maximum": 4095}
+          },
+          "required": ["payloadKind", "candidateIndex", "valueIndex", "code"],
+          "additionalProperties": false
+        },
+        {
+          "type": "object",
+          "properties": {
+            "payloadKind": {"const": "COUNTER"},
+            "counterFamily": {"enum": ["ABZ", "AZ", "BZ", "Z"]},
+            "key": {
+              "type": "array", "minItems": 1, "maxItems": 3,
+              "items": {"type": "integer", "minimum": 0, "maximum": 4095}
+            },
+            "count": {"type": "integer", "minimum": 0, "maximum": 2500000}
+          },
+          "required": ["payloadKind", "counterFamily", "key", "count"],
+          "additionalProperties": false
+        },
+        {
+          "type": "object",
+          "properties": {
+            "payloadKind": {"const": "NUMERICAL"},
+            "boundaryKind": {"enum": ["ESTIMATE", "SELECTION_TIE", "TAIL"]},
+            "referenceHex": {"$ref": "#/$defs/NullableFloatHex"},
+            "productionHex": {"$ref": "#/$defs/NullableFloatHex"},
+            "residualHex": {"$ref": "#/$defs/NullableFloatHex"}
+          },
+          "required": ["payloadKind", "boundaryKind", "referenceHex", "productionHex", "residualHex"],
+          "additionalProperties": false
+        },
+        {
+          "type": "object",
+          "properties": {
+            "payloadKind": {"const": "FOOTER"},
+            "diagnosticRowCount": {"type": "integer", "minimum": 2, "maximum": 524288},
+            "diagnosticGroupSha256": {"$ref": "#/$defs/Sha256"}
+          },
+          "required": ["payloadKind", "diagnosticRowCount", "diagnosticGroupSha256"],
+          "additionalProperties": false
+        }
+      ]
+    },
+    "DiagnosticRecord": {
+      "type": "object",
+      "properties": {
+        "schemaVersion": {"const": "selcal.m6-p1.diagnostic-record.v8"},
+        "artifactType": {"const": "DIAGNOSTIC_RECORD"},
+        "runId": {"$ref": "#/$defs/RunId"},
+        "canonicalizationVersion": {"$ref": "#/$defs/CanonicalizationVersion"},
+        "diagnosticIndex": {"type": "integer", "minimum": 0, "maximum": 255},
+        "comparisonIndex": {"type": "integer", "minimum": 0, "maximum": 100000},
+        "diagnosticRowIndex": {"type": "integer", "minimum": 0, "maximum": 524287},
+        "diagnosticKind": {"enum": ["HEADER", "EDGE", "CODE", "COUNTER", "NUMERICAL", "FOOTER"]},
+        "payload": {"$ref": "#/$defs/DiagnosticPayload"}
+      },
+      "required": [
+        "schemaVersion", "artifactType", "runId", "canonicalizationVersion", "diagnosticIndex",
+        "comparisonIndex", "diagnosticRowIndex", "diagnosticKind", "payload"
+      ],
+      "additionalProperties": false,
+      "allOf": [
+        {
+          "oneOf": [
+            {"properties": {"diagnosticKind": {"const": "HEADER"}, "payload": {"properties": {"payloadKind": {"const": "HEADER"}}, "required": ["payloadKind"]}}},
+            {"properties": {"diagnosticKind": {"const": "EDGE"}, "payload": {"properties": {"payloadKind": {"const": "EDGE"}}, "required": ["payloadKind"]}}},
+            {"properties": {"diagnosticKind": {"const": "CODE"}, "payload": {"properties": {"payloadKind": {"const": "CODE"}}, "required": ["payloadKind"]}}},
+            {"properties": {"diagnosticKind": {"const": "COUNTER"}, "payload": {"properties": {"payloadKind": {"const": "COUNTER"}}, "required": ["payloadKind"]}}},
+            {"properties": {"diagnosticKind": {"const": "NUMERICAL"}, "payload": {"properties": {"payloadKind": {"const": "NUMERICAL"}}, "required": ["payloadKind"]}}},
+            {"properties": {"diagnosticKind": {"const": "FOOTER"}, "payload": {"properties": {"payloadKind": {"const": "FOOTER"}}, "required": ["payloadKind"]}}}
+          ]
+        }
+      ]
+    },
+    "DiagnosticManifest": {
+      "type": "object",
+      "properties": {
+        "schemaVersion": {"const": "selcal.m6-p1.diagnostic-manifest.v8"},
+        "artifactType": {"const": "DIAGNOSTIC_MANIFEST"},
+        "runId": {"$ref": "#/$defs/RunId"},
+        "canonicalizationVersion": {"$ref": "#/$defs/CanonicalizationVersion"},
+        "chunks": {
+          "type": "array", "minItems": 1, "maxItems": 1000000, "uniqueItems": true,
+          "items": {"$ref": "#/$defs/ChunkDescriptor"}
+        },
+        "diagnosticGroupCount": {"type": "integer", "minimum": 1, "maximum": 256},
+        "diagnosticRecordCount": {"type": "integer", "minimum": 2, "maximum": 524288},
+        "diagnosticLedgerBytes": {"type": "integer", "minimum": 1, "maximum": 67108864},
+        "diagnosticLedgerSha256": {"$ref": "#/$defs/Sha256"}
+      },
+      "required": [
+        "schemaVersion", "artifactType", "runId", "canonicalizationVersion", "chunks",
+        "diagnosticGroupCount", "diagnosticRecordCount", "diagnosticLedgerBytes", "diagnosticLedgerSha256"
+      ],
+      "additionalProperties": false
+    },
+    "FailureCode": {
+      "enum": [
+        "INVALID_OR_OVERSIZE_UNSIGNED_INTEGER",
+        "OPERAND_BITS_LIMIT",
+        "ZERO_DIVISOR",
+        "INVALID_UNSIGNED_SUBTRACTION",
+        "NONFINITE_INPUT",
+        "INVALID_CANDIDATE_SET",
+        "NULL_NOT_APPLICABLE",
+        "BLOCK_LENGTH_NOT_DIVISOR",
+        "BLOCK_COUNT_OUT_OF_RANGE",
+        "INVALID_BLOCK_PERMUTATION",
+        "EXACT_STATE_LIMIT",
+        "COMPUTE_LIMIT",
+        "IO_LIMIT",
+        "MEMORY_LIMIT",
+        "LEDGER_LIMIT",
+        "PACKAGE_LIMIT",
+        "SOURCE_IDENTITY_MISMATCH",
+        "SOURCE_DEPENDENCY_UNRESOLVED",
+        "PRODUCTION_STATE_IDENTITY_INVALID",
+        "COMPARISON_PROJECTION_MISMATCH",
+        "DIAGNOSTIC_BIJECTION_MISMATCH",
+        "AGGREGATE_ARITHMETIC_MISMATCH",
+        "CANONICAL_BYTES_MISMATCH",
+        "HASH_MISMATCH",
+        "LIFECYCLE_BINDING_MISMATCH",
+        "INTERRUPTED"
+      ]
+    },
+    "InterruptedCause": {
+      "oneOf": [
+        {
+          "type": "object",
+          "properties": {
+            "kind": {"const": "SIGNAL"},
+            "signal": {"enum": ["SIGINT", "SIGTERM", "SIGHUP"]}
+          },
+          "required": ["kind", "signal"],
+          "additionalProperties": false
+        },
+        {
+          "type": "object",
+          "properties": {
+            "kind": {"const": "CANCELLATION"},
+            "source": {"enum": ["USER", "ORCHESTRATOR"]}
+          },
+          "required": ["kind", "source"],
+          "additionalProperties": false
+        },
+        {
+          "type": "object",
+          "properties": {
+            "kind": {"const": "TIMEOUT"},
+            "clock": {"const": "MONOTONIC"},
+            "limitMilliseconds": {"type": "integer", "minimum": 1, "maximum": 4294967295}
+          },
+          "required": ["kind", "clock", "limitMilliseconds"],
+          "additionalProperties": false
+        }
+      ]
+    },
+    "FailureCause": {
+      "oneOf": [
+        {
+          "type": "object",
+          "properties": {
+            "failureClass": {"const": "RESOURCE_LIMIT"},
+            "failureCode": {"enum": ["OPERAND_BITS_LIMIT", "EXACT_STATE_LIMIT", "COMPUTE_LIMIT", "IO_LIMIT", "MEMORY_LIMIT", "LEDGER_LIMIT", "PACKAGE_LIMIT"]},
+            "interruptedCause": {"type": "null"}
+          },
+          "required": ["failureClass", "failureCode", "interruptedCause"],
+          "additionalProperties": false
+        },
+        {
+          "type": "object",
+          "properties": {
+            "failureClass": {"const": "INTEGRITY_FAILURE"},
+            "failureCode": {
+              "enum": [
+                "INVALID_OR_OVERSIZE_UNSIGNED_INTEGER", "ZERO_DIVISOR", "INVALID_UNSIGNED_SUBTRACTION",
+                "NONFINITE_INPUT", "INVALID_CANDIDATE_SET", "NULL_NOT_APPLICABLE", "BLOCK_LENGTH_NOT_DIVISOR",
+                "BLOCK_COUNT_OUT_OF_RANGE", "INVALID_BLOCK_PERMUTATION", "SOURCE_IDENTITY_MISMATCH",
+                "SOURCE_DEPENDENCY_UNRESOLVED", "PRODUCTION_STATE_IDENTITY_INVALID",
+                "COMPARISON_PROJECTION_MISMATCH", "DIAGNOSTIC_BIJECTION_MISMATCH",
+                "AGGREGATE_ARITHMETIC_MISMATCH", "CANONICAL_BYTES_MISMATCH", "HASH_MISMATCH",
+                "LIFECYCLE_BINDING_MISMATCH"
+              ]
+            },
+            "interruptedCause": {"type": "null"}
+          },
+          "required": ["failureClass", "failureCode", "interruptedCause"],
+          "additionalProperties": false
+        },
+        {
+          "type": "object",
+          "properties": {
+            "failureClass": {"const": "INTERRUPTED"},
+            "failureCode": {"const": "INTERRUPTED"},
+            "interruptedCause": {"$ref": "#/$defs/InterruptedCause"}
+          },
+          "required": ["failureClass", "failureCode", "interruptedCause"],
+          "additionalProperties": false
+        }
+      ]
+    },
+    "ResolvedBranch": {
+      "oneOf": [
+        {
+          "type": "object",
+          "properties": {
+            "branchResolutionStatus": {"const": "RESOLVED"},
+            "calculationMode": {"const": "ALL_STATE_EXACT"},
+            "executionBranch": {"const": "ALL_STATE_EXACT_COMPONENT"},
+            "primaryTerminalClass": {"enum": ["COMPLETE", "EXACT_ANALYTICAL_FAILURE"]}
+          },
+          "required": ["branchResolutionStatus", "calculationMode", "executionBranch", "primaryTerminalClass"],
+          "additionalProperties": false
+        },
+        {
+          "type": "object",
+          "properties": {
+            "branchResolutionStatus": {"const": "RESOLVED"},
+            "calculationMode": {"const": "ALL_STATE_EXACT"},
+            "executionBranch": {"const": "NULL_BIND_DISABLED"},
+            "primaryTerminalClass": {"const": "NULL_DISABLED"}
+          },
+          "required": ["branchResolutionStatus", "calculationMode", "executionBranch", "primaryTerminalClass"],
+          "additionalProperties": false
+        },
+        {
+          "type": "object",
+          "properties": {
+            "branchResolutionStatus": {"const": "RESOLVED"},
+            "calculationMode": {"const": "FINITE_B_COMPLETED_STATE_REPLAY"},
+            "executionBranch": {"const": "FINITE_NORMAL"},
+            "primaryTerminalClass": {"const": "COMPLETE"}
+          },
+          "required": ["branchResolutionStatus", "calculationMode", "executionBranch", "primaryTerminalClass"],
+          "additionalProperties": false
+        },
+        {
+          "type": "object",
+          "properties": {
+            "branchResolutionStatus": {"const": "RESOLVED"},
+            "calculationMode": {"const": "FINITE_B_COMPLETED_STATE_REPLAY"},
+            "executionBranch": {"const": "FINITE_REPLICATE_FAILURE"},
+            "primaryTerminalClass": {"const": "REPLICATE_FAILURE"}
+          },
+          "required": ["branchResolutionStatus", "calculationMode", "executionBranch", "primaryTerminalClass"],
+          "additionalProperties": false
+        },
+        {
+          "type": "object",
+          "properties": {
+            "branchResolutionStatus": {"const": "RESOLVED"},
+            "calculationMode": {"const": "FINITE_B_COMPLETED_STATE_REPLAY"},
+            "executionBranch": {"const": "FINITE_OBSERVED_ANALYTIC_FAILURE"},
+            "primaryTerminalClass": {"const": "OBSERVED_ANALYTICAL_FAILURE"}
+          },
+          "required": ["branchResolutionStatus", "calculationMode", "executionBranch", "primaryTerminalClass"],
+          "additionalProperties": false
+        },
+        {
+          "type": "object",
+          "properties": {
+            "branchResolutionStatus": {"const": "RESOLVED"},
+            "calculationMode": {"const": "FINITE_B_COMPLETED_STATE_REPLAY"},
+            "executionBranch": {"const": "NULL_BIND_DISABLED"},
+            "primaryTerminalClass": {"const": "NULL_DISABLED"}
+          },
+          "required": ["branchResolutionStatus", "calculationMode", "executionBranch", "primaryTerminalClass"],
+          "additionalProperties": false
+        }
+      ]
+    },
+    "UnresolvedBranch": {
+      "oneOf": [
+        {
+          "type": "object",
+          "properties": {
+            "branchResolutionStatus": {"const": "UNRESOLVED"},
+            "calculationMode": {"const": "ALL_STATE_EXACT"},
+            "executionBranch": {"const": "EXACT_BRANCH_UNRESOLVED"},
+            "primaryTerminalClass": {"type": "null"}
+          },
+          "required": ["branchResolutionStatus", "calculationMode", "executionBranch", "primaryTerminalClass"],
+          "additionalProperties": false
+        },
+        {
+          "type": "object",
+          "properties": {
+            "branchResolutionStatus": {"const": "UNRESOLVED"},
+            "calculationMode": {"const": "FINITE_B_COMPLETED_STATE_REPLAY"},
+            "executionBranch": {"const": "FINITE_BRANCH_UNRESOLVED"},
+            "primaryTerminalClass": {"type": "null"}
+          },
+          "required": ["branchResolutionStatus", "calculationMode", "executionBranch", "primaryTerminalClass"],
+          "additionalProperties": false
+        }
+      ]
+    },
+    "BranchState": {
+      "oneOf": [
+        {"$ref": "#/$defs/ResolvedBranch"},
+        {"$ref": "#/$defs/UnresolvedBranch"}
+      ]
+    },
+    "FailurePoint": {
+      "type": "object",
+      "properties": {
+        "stage": {
+          "enum": [
+            "PREFLIGHT", "SOURCE_IDENTITY", "SIDECAR_WRITE", "NULL_BIND", "PRODUCTION_CALL",
+            "OBSERVED_SCAN", "STATE_SCAN", "PRIMARY_FINALIZE", "COMPARISON", "DIAGNOSTIC",
+            "SUCCESS_ROOT_WRITE", "SUCCESS_ROOT_INSTALL"
+          ]
+        },
+        "substage": {"enum": ["BEFORE", "READ", "COMPUTE", "WRITE", "VERIFY", "FSYNC", "INSTALL", "WAIT"]},
+        "writerCursor": {
+          "enum": [
+            "BEFORE_OPERAND_NORMALIZATION", "READING_SOURCE_IDENTITY", "NULL_BIND_CHECK",
+            "WAITING_FOR_PRODUCTION_RESULT", "COMPUTING_OBSERVED_RECORD", "COMPUTING_PRIMARY_RECORD",
+            "COMPARING_CURRENT_RECORD", "COMPUTING_DIAGNOSTIC_GROUP", "WRITING_NODE",
+            "VERIFYING_NODE", "FSYNCING_NODE", "INSTALLING_NODE"
+          ]
+        },
+        "activeNodeKind": {
+          "enum": [
+            "NONE", "SOURCE_ENTRY", "ORIGINAL_INPUT", "REFERENCE_SPEC", "NULL_BIND", "PRODUCTION_CALL",
+            "OBSERVED_RECORD", "PRIMARY_RECORD", "STATE_CHUNK", "PRIMARY_MANIFEST", "COMPARISON_RECORD",
+            "COMPARISON_CHUNK", "DIAGNOSTIC_GROUP", "DIAGNOSTIC_CHUNK", "DIAGNOSTIC_MANIFEST",
+            "COMPARISON_MANIFEST"
+          ]
+        },
+        "chunkIndex": {"$ref": "#/$defs/NullableChunkIndex"},
+        "currentRecordIndex": {"$ref": "#/$defs/NullableIndex"},
+        "currentFieldIndex": {
+          "oneOf": [
+            {"type": "integer", "minimum": 0, "maximum": 22515},
+            {"type": "null"}
+          ]
+        },
+        "currentScanProgress": {
+          "oneOf": [
+            {"type": "integer", "minimum": 0, "maximum": 90000000},
+            {"type": "null"}
+          ]
+        },
+        "chunkRowsCompleted": {
+          "oneOf": [
+            {"type": "integer", "minimum": 0, "maximum": 256},
+            {"type": "null"}
+          ]
+        },
+        "partialDisposition": {
+          "enum": [
+            "NOT_CREATED_BEFORE_FAILURE_ROOT", "DELETED_BEFORE_FAILURE_ROOT",
+            "PRESERVED_VERIFIED_PARTIAL_EVIDENCE", "PRESERVED_UNVERIFIED_PARTIAL_EVIDENCE"
+          ]
+        },
+        "currentWriterPartialPresent": {"type": "boolean"}
+      },
+      "required": [
+        "stage", "substage", "writerCursor", "activeNodeKind", "chunkIndex", "currentRecordIndex",
+        "currentFieldIndex", "currentScanProgress", "chunkRowsCompleted", "partialDisposition",
+        "currentWriterPartialPresent"
+      ],
+      "additionalProperties": false,
+      "allOf": [
+        {
+          "oneOf": [
+            {"properties": {"stage": {"const": "PREFLIGHT"}, "substage": {"const": "BEFORE"}, "writerCursor": {"const": "BEFORE_OPERAND_NORMALIZATION"}, "activeNodeKind": {"const": "NONE"}}},
+            {"properties": {"stage": {"const": "SOURCE_IDENTITY"}, "substage": {"const": "READ"}, "writerCursor": {"const": "READING_SOURCE_IDENTITY"}, "activeNodeKind": {"const": "SOURCE_ENTRY"}}},
+            {"properties": {"stage": {"const": "SIDECAR_WRITE"}, "substage": {"enum": ["WRITE", "VERIFY", "FSYNC", "INSTALL"]}, "activeNodeKind": {"enum": ["ORIGINAL_INPUT", "REFERENCE_SPEC"]}}},
+            {"properties": {"stage": {"const": "NULL_BIND"}, "substage": {"const": "COMPUTE"}, "writerCursor": {"const": "NULL_BIND_CHECK"}, "activeNodeKind": {"const": "NULL_BIND"}}},
+            {"properties": {"stage": {"const": "PRODUCTION_CALL"}, "substage": {"const": "WAIT"}, "writerCursor": {"const": "WAITING_FOR_PRODUCTION_RESULT"}, "activeNodeKind": {"const": "PRODUCTION_CALL"}}},
+            {"properties": {"stage": {"const": "OBSERVED_SCAN"}, "substage": {"const": "COMPUTE"}, "writerCursor": {"const": "COMPUTING_OBSERVED_RECORD"}, "activeNodeKind": {"const": "OBSERVED_RECORD"}}},
+            {"properties": {"stage": {"const": "OBSERVED_SCAN"}, "substage": {"enum": ["WRITE", "VERIFY", "FSYNC", "INSTALL"]}, "activeNodeKind": {"const": "OBSERVED_RECORD"}}},
+            {"properties": {"stage": {"const": "STATE_SCAN"}, "substage": {"const": "COMPUTE"}, "writerCursor": {"const": "COMPUTING_PRIMARY_RECORD"}, "activeNodeKind": {"const": "PRIMARY_RECORD"}}},
+            {"properties": {"stage": {"const": "STATE_SCAN"}, "substage": {"enum": ["WRITE", "VERIFY", "FSYNC", "INSTALL"]}, "activeNodeKind": {"const": "STATE_CHUNK"}}},
+            {"properties": {"stage": {"const": "PRIMARY_FINALIZE"}, "substage": {"enum": ["WRITE", "VERIFY", "FSYNC", "INSTALL"]}, "activeNodeKind": {"const": "PRIMARY_MANIFEST"}}},
+            {"properties": {"stage": {"const": "COMPARISON"}, "substage": {"const": "COMPUTE"}, "writerCursor": {"const": "COMPARING_CURRENT_RECORD"}, "activeNodeKind": {"const": "COMPARISON_RECORD"}}},
+            {"properties": {"stage": {"const": "COMPARISON"}, "substage": {"enum": ["WRITE", "VERIFY", "FSYNC", "INSTALL"]}, "activeNodeKind": {"const": "COMPARISON_CHUNK"}}},
+            {"properties": {"stage": {"const": "DIAGNOSTIC"}, "substage": {"const": "COMPUTE"}, "writerCursor": {"const": "COMPUTING_DIAGNOSTIC_GROUP"}, "activeNodeKind": {"const": "DIAGNOSTIC_GROUP"}}},
+            {"properties": {"stage": {"const": "DIAGNOSTIC"}, "substage": {"enum": ["WRITE", "VERIFY", "FSYNC", "INSTALL"]}, "activeNodeKind": {"enum": ["DIAGNOSTIC_CHUNK", "DIAGNOSTIC_MANIFEST"]}}},
+            {"properties": {"stage": {"const": "SUCCESS_ROOT_WRITE"}, "substage": {"enum": ["WRITE", "VERIFY", "FSYNC"]}, "activeNodeKind": {"const": "COMPARISON_MANIFEST"}}},
+            {"properties": {"stage": {"const": "SUCCESS_ROOT_INSTALL"}, "substage": {"const": "INSTALL"}, "writerCursor": {"const": "INSTALLING_NODE"}, "activeNodeKind": {"const": "COMPARISON_MANIFEST"}}}
+          ]
+        },
+        {
+          "oneOf": [
+            {"properties": {"substage": {"const": "WRITE"}, "writerCursor": {"const": "WRITING_NODE"}}},
+            {"properties": {"substage": {"const": "VERIFY"}, "writerCursor": {"const": "VERIFYING_NODE"}}},
+            {"properties": {"substage": {"const": "FSYNC"}, "writerCursor": {"const": "FSYNCING_NODE"}}},
+            {"properties": {"substage": {"const": "INSTALL"}, "writerCursor": {"const": "INSTALLING_NODE"}}},
+            {"properties": {"substage": {"enum": ["BEFORE", "READ", "COMPUTE", "WAIT"]}}}
+          ]
+        },
+        {
+          "oneOf": [
+            {"properties": {"partialDisposition": {"enum": ["NOT_CREATED_BEFORE_FAILURE_ROOT", "DELETED_BEFORE_FAILURE_ROOT"]}, "currentWriterPartialPresent": {"const": false}}},
+            {"properties": {"partialDisposition": {"enum": ["PRESERVED_VERIFIED_PARTIAL_EVIDENCE", "PRESERVED_UNVERIFIED_PARTIAL_EVIDENCE"]}, "currentWriterPartialPresent": {"const": true}}}
+          ]
+        }
+      ]
+    },
+    "KnownOperands": {
+      "type": "object",
+      "properties": {
+        "n": {"type": "integer", "minimum": 1, "maximum": 2500000},
+        "h": {"type": "integer", "minimum": 0, "maximum": 2500000},
+        "C": {"type": "integer", "minimum": 1, "maximum": 2500},
+        "blockLength": {"type": "integer", "minimum": 1, "maximum": 1250000},
+        "q": {"type": "integer", "minimum": 2, "maximum": 4096},
+        "B": {"type": "integer", "minimum": 1, "maximum": 1000}
+      },
+      "additionalProperties": false
+    },
+    "PreDerivationProof": {
+      "type": "object",
+      "properties": {
+        "proofKind": {"const": "PRE_DERIVATION_FAILURE"},
+        "firstUnavailableOperand": {"enum": ["n", "h", "N", "C", "T", "B", "blockLength", "q", "WState", "bins", "U", "M", "Q"]},
+        "unavailableReason": {"$ref": "#/$defs/FailureCode"},
+        "knownOperands": {"$ref": "#/$defs/KnownOperands"}
+      },
+      "required": ["proofKind", "firstUnavailableOperand", "unavailableReason", "knownOperands"],
+      "additionalProperties": false
+    },
+    "BaseOperands": {
+      "type": "object",
+      "properties": {
+        "n": {"type": "integer", "minimum": 1, "maximum": 2500000},
+        "h": {"type": "integer", "minimum": 0, "maximum": 2499999},
+        "N": {"type": "integer", "minimum": 1, "maximum": 2500000},
+        "C": {"type": "integer", "minimum": 1, "maximum": 2500},
+        "T": {"oneOf": [{"type": "integer", "minimum": 1, "maximum": 100000}, {"type": "null"}]},
+        "B": {"oneOf": [{"type": "integer", "minimum": 1, "maximum": 1000}, {"type": "null"}]},
+        "statisticFamily": {"enum": ["LAGGED_PEARSON", "NET_TRANSFER_ENTROPY"]},
+        "bins": {"oneOf": [{"type": "integer", "minimum": 2, "maximum": 4096}, {"type": "null"}]},
+        "nullFamily": {"enum": ["CIRCULAR_SHIFT", "BLOCK_SHUFFLE"]},
+        "blockLength": {"oneOf": [{"type": "integer", "minimum": 1, "maximum": 1250000}, {"type": "null"}]},
+        "q": {"oneOf": [{"type": "integer", "minimum": 2, "maximum": 4096}, {"type": "null"}]},
+        "WState": {"type": "integer", "minimum": 1, "maximum": 4096},
+        "U": {"oneOf": [{"type": "integer", "minimum": 1, "maximum": 250000}, {"type": "null"}]},
+        "M": {"type": "integer", "minimum": 1, "maximum": 2500000},
+        "QAdmit": {"type": "integer", "minimum": 0, "maximum": 100001},
+        "QExecuted": {"type": "integer", "minimum": 0, "maximum": 100001},
+        "XAdmit": {"type": "integer", "minimum": 0, "maximum": 100000},
+        "XExecuted": {"type": "integer", "minimum": 0, "maximum": 100000},
+        "LAdmit": {"type": "integer", "minimum": 0, "maximum": 100000},
+        "LExecuted": {"type": "integer", "minimum": 0, "maximum": 100000},
+        "RAdmit": {"type": "integer", "minimum": 1, "maximum": 100001},
+        "RExecuted": {"type": "integer", "minimum": 0, "maximum": 100001},
+        "DAdmit": {"type": "integer", "minimum": 0, "maximum": 256},
+        "DStarted": {"type": "integer", "minimum": 0, "maximum": 256},
+        "DCompleted": {"type": "integer", "minimum": 0, "maximum": 256},
+        "ZAdmit": {"type": "integer", "minimum": 0, "maximum": 524288},
+        "ZExecuted": {"type": "integer", "minimum": 0, "maximum": 524288},
+        "H": {"type": "integer", "minimum": 25, "maximum": 22516},
+        "J": {"const": 256},
+        "G": {"const": 32},
+        "calculationMode": {"$ref": "#/$defs/CalculationMode"},
+        "executionBranch": {"$ref": "#/$defs/ExecutionBranchResolved"}
+      },
+      "required": [
+        "n", "h", "N", "C", "T", "B", "statisticFamily", "bins", "nullFamily",
+        "blockLength", "q", "WState", "U", "M", "QAdmit", "QExecuted", "XAdmit",
+        "XExecuted", "LAdmit", "LExecuted", "RAdmit", "RExecuted", "DAdmit",
+        "DStarted", "DCompleted", "ZAdmit", "ZExecuted", "H", "J", "G",
+        "calculationMode", "executionBranch"
+      ],
+      "additionalProperties": false,
+      "allOf": [
+        {
+          "oneOf": [
+            {"properties": {"calculationMode": {"const": "ALL_STATE_EXACT"}, "executionBranch": {"const": "ALL_STATE_EXACT_COMPONENT"}, "T": {"type": "integer", "minimum": 1, "maximum": 100000}, "B": {"type": "null"}}},
+            {"properties": {"calculationMode": {"const": "ALL_STATE_EXACT"}, "executionBranch": {"const": "NULL_BIND_DISABLED"}, "T": {"type": "null"}, "B": {"type": "null"}}},
+            {"properties": {"calculationMode": {"const": "FINITE_B_COMPLETED_STATE_REPLAY"}, "executionBranch": {"enum": ["FINITE_NORMAL", "FINITE_REPLICATE_FAILURE", "FINITE_OBSERVED_ANALYTIC_FAILURE", "NULL_BIND_DISABLED"]}, "T": {"type": "null"}, "B": {"type": "integer", "minimum": 1, "maximum": 1000}}}
+          ]
+        },
+        {
+          "oneOf": [
+            {"properties": {"statisticFamily": {"const": "LAGGED_PEARSON"}, "bins": {"type": "null"}, "U": {"type": "null"}}},
+            {"properties": {"statisticFamily": {"const": "NET_TRANSFER_ENTROPY"}, "bins": {"type": "integer", "minimum": 2, "maximum": 4096}, "U": {"type": "integer", "minimum": 1, "maximum": 250000}}}
+          ]
+        },
+        {
+          "oneOf": [
+            {"properties": {"nullFamily": {"const": "CIRCULAR_SHIFT"}, "blockLength": {"type": "null"}, "q": {"type": "null"}, "WState": {"const": 1}}},
+            {"properties": {"nullFamily": {"const": "BLOCK_SHUFFLE"}, "blockLength": {"type": "integer", "minimum": 1, "maximum": 1250000}, "q": {"type": "integer", "minimum": 2, "maximum": 4096}, "WState": {"type": "integer", "minimum": 2, "maximum": 4096}}}
+          ]
+        }
+      ]
+    },
+    "CandidateCardinalityOperands": {
+      "type": "object",
+      "properties": {
+        "candidateVectorLength": {"type": "integer", "minimum": 1, "maximum": 2500},
+        "primaryLedgerCandidateRecordsAdmit": {"type": "integer", "minimum": 0, "maximum": 100000},
+        "primaryLedgerCandidateRecordsExecuted": {"type": "integer", "minimum": 0, "maximum": 100000},
+        "observedRecordCandidateRecordsAdmit": {"type": "integer", "minimum": 0, "maximum": 100000},
+        "observedRecordCandidateRecordsExecuted": {"type": "integer", "minimum": 0, "maximum": 100000},
+        "comparisonLedgerCandidateRecordsAdmit": {"type": "integer", "minimum": 0, "maximum": 100000},
+        "comparisonLedgerCandidateRecordsExecuted": {"type": "integer", "minimum": 0, "maximum": 100000},
+        "diagnosticReplayCandidateRecordsAdmit": {"type": "integer", "minimum": 0, "maximum": 1280000},
+        "diagnosticReplayCandidateRecordsExecuted": {"type": "integer", "minimum": 0, "maximum": 1280000},
+        "simultaneousCandidateRecordsUpper": {"type": "integer", "minimum": 2, "maximum": 5000},
+        "maxLedgerCandidateRecords": {"const": 100000},
+        "maxLiveCandidateRecords": {"const": 5000}
+      },
+      "required": [
+        "candidateVectorLength", "primaryLedgerCandidateRecordsAdmit", "primaryLedgerCandidateRecordsExecuted",
+        "observedRecordCandidateRecordsAdmit", "observedRecordCandidateRecordsExecuted",
+        "comparisonLedgerCandidateRecordsAdmit", "comparisonLedgerCandidateRecordsExecuted",
+        "diagnosticReplayCandidateRecordsAdmit", "diagnosticReplayCandidateRecordsExecuted",
+        "simultaneousCandidateRecordsUpper", "maxLedgerCandidateRecords", "maxLiveCandidateRecords"
+      ],
+      "additionalProperties": false,
+      "x-semanticInvariant": "candidateVectorLength=C; persisted comparison counts equal Q*C, never 2*Q*C; simultaneousCandidateRecordsUpper=2*C<=5000"
+    },
+    "SortOccupancyBucket": {
+      "type": "object",
+      "properties": {
+        "occupiedEntries": {"type": "integer", "minimum": 0, "maximum": 250000},
+        "familyCount": {"type": "integer", "minimum": 1, "maximum": 100000000}
+      },
+      "required": ["occupiedEntries", "familyCount"],
+      "additionalProperties": false
+    },
+    "ActiveScanProgress": {
+      "oneOf": [
+        {"type": "null"},
+        {
+          "type": "object",
+          "properties": {
+            "domain": {"enum": ["PRIMARY", "DIAGNOSTIC"]},
+            "statisticFamily": {"enum": ["LAGGED_PEARSON", "NET_TRANSFER_ENTROPY"]},
+            "scanIndex": {"type": "integer", "minimum": 0, "maximum": 100000},
+            "candidateIndex": {"type": "integer", "minimum": 0, "maximum": 2499},
+            "inputOffset": {"type": "integer", "minimum": 0, "maximum": 2499999},
+            "supportOffset": {"type": "integer", "minimum": 0, "maximum": 2499999},
+            "direction": {"enum": ["FORWARD", "REVERSE", "NOT_APPLICABLE"]},
+            "familyOrdinal": {"type": "integer", "minimum": 0, "maximum": 249999}
+          },
+          "required": ["domain", "statisticFamily", "scanIndex", "candidateIndex", "inputOffset", "supportOffset", "direction", "familyOrdinal"],
+          "additionalProperties": false
+        }
+      ]
+    },
+    "RawComputeCounters": {
+      "type": "object",
+      "properties": {
+        "nullBindChecksStarted": {"type": "integer", "minimum": 0, "maximum": 1},
+        "primaryStatisticScansStarted": {"type": "integer", "minimum": 0, "maximum": 100001},
+        "primaryStatisticScansCompleted": {"type": "integer", "minimum": 0, "maximum": 100001},
+        "primaryStatesGenerated": {"type": "integer", "minimum": 0, "maximum": 100000},
+        "primaryStateIdentitiesValidated": {"type": "integer", "minimum": 0, "maximum": 100000},
+        "primaryStatesApplied": {"type": "integer", "minimum": 0, "maximum": 100000},
+        "primaryTransformValueVisits": {"type": "integer", "minimum": 0, "maximum": 2500000},
+        "primaryCandidateSupportVisits": {"type": "integer", "minimum": 0, "maximum": 2500000},
+        "primaryPearsonValueVisits": {"type": "integer", "minimum": 0, "maximum": 15000000},
+        "primaryNetteEdgeWorkUnits": {"type": "integer", "minimum": 0, "maximum": 2500000},
+        "primaryNetteCodingValueVisits": {"type": "integer", "minimum": 0, "maximum": 15000000},
+        "primaryNetteDirectionalSupportVisits": {"type": "integer", "minimum": 0, "maximum": 5000000},
+        "primaryNetteCounterUpdateVisits": {"type": "integer", "minimum": 0, "maximum": 20000000},
+        "primarySuccessfulSelections": {"type": "integer", "minimum": 0, "maximum": 100001},
+        "primaryCompletedDirections": {"type": "integer", "minimum": 0, "maximum": 500000000},
+        "primaryCompletedForwardReverseCandidatePairs": {"type": "integer", "minimum": 0, "maximum": 250000000},
+        "primarySortOccupancyHistogram": {
+          "type": "array", "maxItems": 250001, "uniqueItems": true,
+          "items": {"$ref": "#/$defs/SortOccupancyBucket"}
+        },
+        "completedComparisonCandidateRecordsCompared": {"type": "integer", "minimum": 0, "maximum": 250002500},
+        "completedComparisonStateComponentsCompared": {"type": "integer", "minimum": 0, "maximum": 409604096},
+        "completedComparisonFieldComparisonsPerformed": {"type": "integer", "minimum": 0, "maximum": 2251622516},
+        "completedComparisonDisagreementCodesEmitted": {"type": "integer", "minimum": 0, "maximum": 3200032},
+        "completedComparisonLocatorStatusChecks": {"type": "integer", "minimum": 0, "maximum": 100001},
+        "currentComparisonCandidateRecordsCompared": {"type": "integer", "minimum": 0, "maximum": 2500},
+        "currentComparisonStateComponentsCompared": {"type": "integer", "minimum": 0, "maximum": 4096},
+        "currentComparisonFieldComparisonsPerformed": {"type": "integer", "minimum": 0, "maximum": 22516},
+        "currentComparisonDisagreementCodesEmitted": {"type": "integer", "minimum": 0, "maximum": 32},
+        "currentComparisonLocatorStatusChecks": {"type": "integer", "minimum": 0, "maximum": 1},
+        "diagnosticGroupsStarted": {"type": "integer", "minimum": 0, "maximum": 256},
+        "diagnosticGroupsCompleted": {"type": "integer", "minimum": 0, "maximum": 256},
+        "diagnosticStatisticScansStarted": {"type": "integer", "minimum": 0, "maximum": 256},
+        "diagnosticStatisticScansCompleted": {"type": "integer", "minimum": 0, "maximum": 256},
+        "diagnosticStatesApplied": {"type": "integer", "minimum": 0, "maximum": 256},
+        "diagnosticTransformValueVisits": {"type": "integer", "minimum": 0, "maximum": 2500000},
+        "diagnosticCandidateSupportVisits": {"type": "integer", "minimum": 0, "maximum": 2500000},
+        "diagnosticPearsonValueVisits": {"type": "integer", "minimum": 0, "maximum": 15000000},
+        "diagnosticNetteEdgeWorkUnits": {"type": "integer", "minimum": 0, "maximum": 2500000},
+        "diagnosticNetteCodingValueVisits": {"type": "integer", "minimum": 0, "maximum": 15000000},
+        "diagnosticNetteDirectionalSupportVisits": {"type": "integer", "minimum": 0, "maximum": 5000000},
+        "diagnosticNetteCounterUpdateVisits": {"type": "integer", "minimum": 0, "maximum": 20000000},
+        "diagnosticSuccessfulSelections": {"type": "integer", "minimum": 0, "maximum": 256},
+        "diagnosticCompletedDirections": {"type": "integer", "minimum": 0, "maximum": 1280000},
+        "diagnosticCompletedForwardReverseCandidatePairs": {"type": "integer", "minimum": 0, "maximum": 640000},
+        "diagnosticSortOccupancyHistogram": {
+          "type": "array", "maxItems": 250001, "uniqueItems": true,
+          "items": {"$ref": "#/$defs/SortOccupancyBucket"}
+        },
+        "completedDiagnosticHeaderRows": {"type": "integer", "minimum": 0, "maximum": 256},
+        "completedDiagnosticBodyRows": {"type": "integer", "minimum": 0, "maximum": 524286},
+        "completedDiagnosticFooterRows": {"type": "integer", "minimum": 0, "maximum": 256},
+        "currentPartialDiagnosticRecordOperations": {"type": "integer", "minimum": 0, "maximum": 30000000},
+        "activeScanProgress": {"$ref": "#/$defs/ActiveScanProgress"}
+      },
+      "required": [
+        "nullBindChecksStarted", "primaryStatisticScansStarted", "primaryStatisticScansCompleted",
+        "primaryStatesGenerated", "primaryStateIdentitiesValidated", "primaryStatesApplied",
+        "primaryTransformValueVisits", "primaryCandidateSupportVisits", "primaryPearsonValueVisits",
+        "primaryNetteEdgeWorkUnits", "primaryNetteCodingValueVisits", "primaryNetteDirectionalSupportVisits",
+        "primaryNetteCounterUpdateVisits", "primarySuccessfulSelections", "primaryCompletedDirections",
+        "primaryCompletedForwardReverseCandidatePairs", "primarySortOccupancyHistogram",
+        "completedComparisonCandidateRecordsCompared", "completedComparisonStateComponentsCompared",
+        "completedComparisonFieldComparisonsPerformed", "completedComparisonDisagreementCodesEmitted",
+        "completedComparisonLocatorStatusChecks", "currentComparisonCandidateRecordsCompared",
+        "currentComparisonStateComponentsCompared", "currentComparisonFieldComparisonsPerformed",
+        "currentComparisonDisagreementCodesEmitted", "currentComparisonLocatorStatusChecks",
+        "diagnosticGroupsStarted", "diagnosticGroupsCompleted", "diagnosticStatisticScansStarted",
+        "diagnosticStatisticScansCompleted", "diagnosticStatesApplied", "diagnosticTransformValueVisits",
+        "diagnosticCandidateSupportVisits", "diagnosticPearsonValueVisits", "diagnosticNetteEdgeWorkUnits",
+        "diagnosticNetteCodingValueVisits", "diagnosticNetteDirectionalSupportVisits",
+        "diagnosticNetteCounterUpdateVisits", "diagnosticSuccessfulSelections", "diagnosticCompletedDirections",
+        "diagnosticCompletedForwardReverseCandidatePairs", "diagnosticSortOccupancyHistogram",
+        "completedDiagnosticHeaderRows", "completedDiagnosticBodyRows", "completedDiagnosticFooterRows",
+        "currentPartialDiagnosticRecordOperations", "activeScanProgress"
+      ],
+      "additionalProperties": false
+    },
+    "ComputeComponent": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "enum": [
+            "NULL_BIND", "STATE_GENERATION", "STATE_IDENTITY_VALIDATION", "STATE_APPLICATION",
+            "TRANSFORM_VALUES", "CANDIDATE_SUPPORT", "PEARSON_VALUES", "NETTE_EDGE",
+            "NETTE_CODING", "NETTE_DIRECTIONAL_SUPPORT", "NETTE_COUNTER_UPDATE", "NETTE_SORT",
+            "NETTE_CMI_ARITHMETIC", "SELECTION", "COMPARISON", "DIAGNOSTIC_REPLAY",
+            "DIAGNOSTIC_RECORD", "PRIMARY_TOTAL", "DIAGNOSTIC_TOTAL", "GRAND_TOTAL"
+          ]
+        },
+        "admitted": {"type": "integer", "minimum": 0, "maximum": 90000000},
+        "executed": {"type": "integer", "minimum": 0, "maximum": 90000000}
+      },
+      "required": ["name", "admitted", "executed"],
+      "additionalProperties": false
+    },
+    "ComputeProjection": {
+      "type": "object",
+      "properties": {
+        "components": {
+          "type": "array", "minItems": 20, "maxItems": 20, "uniqueItems": true,
+          "items": {"$ref": "#/$defs/ComputeComponent"}
+        },
+        "totalComputeWorkUnitsAdmitted": {"type": "integer", "minimum": 0, "maximum": 90000000},
+        "totalComputeWorkUnitsExecuted": {"type": "integer", "minimum": 0, "maximum": 90000000}
+      },
+      "required": ["components", "totalComputeWorkUnitsAdmitted", "totalComputeWorkUnitsExecuted"],
+      "additionalProperties": false
+    },
+    "RowShapeUpperOperand": {
+      "type": "object",
+      "properties": {
+        "rowShape": {
+          "enum": [
+            "PRIMARY_EXACT_COMPLETE", "PRIMARY_EXACT_FAILURE", "PRIMARY_FINITE_COMPLETE",
+            "PRIMARY_FINITE_FAILURE", "COMPARISON_OBSERVED", "COMPARISON_EXACT_STATE",
+            "COMPARISON_FINITE_STATE", "COMPARISON_EXACT_AGGREGATE",
+            "COMPARISON_FINITE_AGGREGATE", "COMPARISON_OBSERVED_FAILURE_AGGREGATE",
+            "COMPARISON_NULL_AGGREGATE", "DIAGNOSTIC_HEADER", "DIAGNOSTIC_EDGE",
+            "DIAGNOSTIC_CODE", "DIAGNOSTIC_COUNTER", "DIAGNOSTIC_NUMERICAL", "DIAGNOSTIC_FOOTER"
+          ]
+        },
+        "occurrenceCount": {"type": "integer", "minimum": 0, "maximum": 524288},
+        "C": {"type": "integer", "minimum": 1, "maximum": 2500},
+        "q": {"oneOf": [{"type": "integer", "minimum": 2, "maximum": 4096}, {"type": "null"}]},
+        "requiredFieldComparisonCount": {"type": "integer", "minimum": 0, "maximum": 22516},
+        "canonicalJsonUpper": {"type": "integer", "minimum": 2, "maximum": 268435455},
+        "jsonlRowUpper": {"type": "integer", "minimum": 3, "maximum": 268435456}
+      },
+      "required": ["rowShape", "occurrenceCount", "C", "q", "requiredFieldComparisonCount", "canonicalJsonUpper", "jsonlRowUpper"],
+      "additionalProperties": false
+    },
+    "ByteUpperProof": {
+      "type": "object",
+      "properties": {
+        "rowShapes": {
+          "type": "array", "minItems": 1, "maxItems": 17, "uniqueItems": true,
+          "items": {"$ref": "#/$defs/RowShapeUpperOperand"}
+        },
+        "primaryLedgerBytesUpper": {"type": "integer", "minimum": 0, "maximum": 268435456},
+        "comparisonLedgerBytesUpper": {"type": "integer", "minimum": 0, "maximum": 134217728},
+        "diagnosticLedgerBytesUpper": {"type": "integer", "minimum": 0, "maximum": 67108864},
+        "terminalRootBytesUpper": {"type": "integer", "minimum": 1, "maximum": 16777216},
+        "finalPackageBytesUpper": {"type": "integer", "minimum": 1, "maximum": 536870912}
+      },
+      "required": ["rowShapes", "primaryLedgerBytesUpper", "comparisonLedgerBytesUpper", "diagnosticLedgerBytesUpper", "terminalRootBytesUpper", "finalPackageBytesUpper"],
+      "additionalProperties": false
+    },
+    "IoVector": {
+      "type": "object",
+      "properties": {
+        "sourceIdentityBytesRead": {"type": "integer", "minimum": 0, "maximum": 201326592},
+        "scientificInputBytesRead": {"type": "integer", "minimum": 0, "maximum": 4294967296},
+        "productionProjectionBytesRead": {"type": "integer", "minimum": 0, "maximum": 536870912},
+        "primaryLedgerBytesWritten": {"type": "integer", "minimum": 0, "maximum": 268435456},
+        "primaryLedgerBytesReadForVerification": {"type": "integer", "minimum": 0, "maximum": 268435456},
+        "comparisonLedgerBytesWritten": {"type": "integer", "minimum": 0, "maximum": 134217728},
+        "comparisonLedgerBytesReadForVerification": {"type": "integer", "minimum": 0, "maximum": 134217728},
+        "diagnosticLedgerBytesWritten": {"type": "integer", "minimum": 0, "maximum": 67108864},
+        "diagnosticLedgerBytesReadForVerification": {"type": "integer", "minimum": 0, "maximum": 67108864},
+        "terminalRootBytesWritten": {"type": "integer", "minimum": 0, "maximum": 16777216},
+        "terminalRootBytesReadForVerification": {"type": "integer", "minimum": 0, "maximum": 16777216},
+        "totalIoByteVisits": {"type": "integer", "minimum": 0, "maximum": 4294967296}
+      },
+      "required": [
+        "sourceIdentityBytesRead", "scientificInputBytesRead", "productionProjectionBytesRead",
+        "primaryLedgerBytesWritten", "primaryLedgerBytesReadForVerification",
+        "comparisonLedgerBytesWritten", "comparisonLedgerBytesReadForVerification",
+        "diagnosticLedgerBytesWritten", "diagnosticLedgerBytesReadForVerification",
+        "terminalRootBytesWritten", "terminalRootBytesReadForVerification", "totalIoByteVisits"
+      ],
+      "additionalProperties": false
+    },
+    "IoProof": {
+      "type": "object",
+      "properties": {
+        "modeAdmissionIoUpper": {"$ref": "#/$defs/IoVector"},
+        "selectedExecutedIo": {"$ref": "#/$defs/IoVector"}
+      },
+      "required": ["modeAdmissionIoUpper", "selectedExecutedIo"],
+      "additionalProperties": false
+    },
+    "PhaseMemoryOperands": {
+      "type": "object",
+      "properties": {
+        "floatValues": {"type": "integer", "minimum": 0, "maximum": 15000000},
+        "integerValues": {"type": "integer", "minimum": 0, "maximum": 30000000},
+        "candidateRecords": {"type": "integer", "minimum": 0, "maximum": 5000},
+        "selectionRecords": {"type": "integer", "minimum": 0, "maximum": 2},
+        "fieldComparisons": {"type": "integer", "minimum": 0, "maximum": 22516},
+        "failureCodes": {"type": "integer", "minimum": 0, "maximum": 32},
+        "counterEntries": {"type": "integer", "minimum": 0, "maximum": 250000},
+        "sortEntries": {"type": "integer", "minimum": 0, "maximum": 250000},
+        "sourceEntries": {"type": "integer", "minimum": 0, "maximum": 768},
+        "dependencyPolicyObjects": {"type": "integer", "minimum": 0, "maximum": 3},
+        "chunkDescriptors": {"type": "integer", "minimum": 0, "maximum": 3000010},
+        "failureDescriptors": {"type": "integer", "minimum": 0, "maximum": 3000010},
+        "encoderFrames": {"type": "integer", "minimum": 0, "maximum": 256},
+        "streamWriteBuffers": {"type": "integer", "minimum": 0, "maximum": 2},
+        "streamReadBuffers": {"type": "integer", "minimum": 0, "maximum": 1},
+        "hashScratchBuffers": {"type": "integer", "minimum": 0, "maximum": 1},
+        "decoderScratchBuffers": {"type": "integer", "minimum": 0, "maximum": 1},
+        "incrementalEncoderBytesUpper": {"type": "integer", "minimum": 0, "maximum": 536870912},
+        "containerCount": {"type": "integer", "minimum": 0, "maximum": 3000128},
+        "phaseUpperBytes": {"type": "integer", "minimum": 0, "maximum": 536870912}
+      },
+      "required": [
+        "floatValues", "integerValues", "candidateRecords", "selectionRecords", "fieldComparisons",
+        "failureCodes", "counterEntries", "sortEntries", "sourceEntries", "dependencyPolicyObjects",
+        "chunkDescriptors", "failureDescriptors",
+        "encoderFrames", "streamWriteBuffers", "streamReadBuffers", "hashScratchBuffers",
+        "decoderScratchBuffers", "incrementalEncoderBytesUpper", "containerCount", "phaseUpperBytes"
+      ],
+      "additionalProperties": false
+    },
+    "MemoryProof": {
+      "type": "object",
+      "properties": {
+        "scope": {"const": "INCREMENTAL_REFERENCE_AND_DRIVER_ALLOCATION_ONLY"},
+        "transientCandidateRecordsUpper": {"type": "integer", "minimum": 2, "maximum": 5000},
+        "phases": {
+          "type": "object",
+          "properties": {
+            "admission": {"$ref": "#/$defs/PhaseMemoryOperands"},
+            "sourceIdentity": {"$ref": "#/$defs/PhaseMemoryOperands"},
+            "productionProjection": {"$ref": "#/$defs/PhaseMemoryOperands"},
+            "referenceReplay": {"$ref": "#/$defs/PhaseMemoryOperands"},
+            "nette": {"$ref": "#/$defs/PhaseMemoryOperands"},
+            "comparisonDiagnostic": {"$ref": "#/$defs/PhaseMemoryOperands"},
+            "manifest": {"$ref": "#/$defs/PhaseMemoryOperands"},
+            "failure": {"$ref": "#/$defs/PhaseMemoryOperands"}
+          },
+          "required": ["admission", "sourceIdentity", "productionProjection", "referenceReplay", "nette", "comparisonDiagnostic", "manifest", "failure"],
+          "additionalProperties": false
+        },
+        "referenceOwnedPeakUpperBytes": {"type": "integer", "minimum": 0, "maximum": 536870912},
+        "peakPhase": {"enum": ["admission", "sourceIdentity", "productionProjection", "referenceReplay", "nette", "comparisonDiagnostic", "manifest", "failure"]}
+      },
+      "required": ["scope", "transientCandidateRecordsUpper", "phases", "referenceOwnedPeakUpperBytes", "peakPhase"],
+      "additionalProperties": false,
+      "x-semanticInvariant": "transientCandidateRecordsUpper=2*C and phases.comparisonDiagnostic.candidateRecords=2*C"
+    },
+    "DerivedCompleteProof": {
+      "type": "object",
+      "properties": {
+        "proofKind": {"const": "DERIVED_COMPLETE"},
+        "baseOperands": {"$ref": "#/$defs/BaseOperands"},
+        "candidateCardinality": {"$ref": "#/$defs/CandidateCardinalityOperands"},
+        "rawComputeCounters": {"$ref": "#/$defs/RawComputeCounters"},
+        "computeProjection": {"$ref": "#/$defs/ComputeProjection"},
+        "byteUpperProof": {"$ref": "#/$defs/ByteUpperProof"},
+        "ioProof": {"$ref": "#/$defs/IoProof"},
+        "memoryProof": {"$ref": "#/$defs/MemoryProof"}
+      },
+      "required": ["proofKind", "baseOperands", "candidateCardinality", "rawComputeCounters", "computeProjection", "byteUpperProof", "ioProof", "memoryProof"],
+      "additionalProperties": false
+    },
+    "OperandProof": {
+      "oneOf": [
+        {"$ref": "#/$defs/PreDerivationProof"},
+        {"$ref": "#/$defs/DerivedCompleteProof"}
+      ]
+    },
+    "SuccessTerminal": {
+      "oneOf": [
+        {"type": "object", "properties": {"calculationMode": {"const": "ALL_STATE_EXACT"}, "executionBranch": {"const": "ALL_STATE_EXACT_COMPONENT"}, "primaryTerminalClass": {"const": "COMPLETE"}, "overallComparisonStatus": {"const": "AGREEMENT"}}, "required": ["calculationMode", "executionBranch", "primaryTerminalClass", "overallComparisonStatus"], "additionalProperties": false},
+        {"type": "object", "properties": {"calculationMode": {"const": "ALL_STATE_EXACT"}, "executionBranch": {"const": "ALL_STATE_EXACT_COMPONENT"}, "primaryTerminalClass": {"const": "COMPLETE"}, "overallComparisonStatus": {"const": "DISAGREEMENT"}}, "required": ["calculationMode", "executionBranch", "primaryTerminalClass", "overallComparisonStatus"], "additionalProperties": false},
+        {"type": "object", "properties": {"calculationMode": {"const": "FINITE_B_COMPLETED_STATE_REPLAY"}, "executionBranch": {"const": "FINITE_NORMAL"}, "primaryTerminalClass": {"const": "COMPLETE"}, "overallComparisonStatus": {"const": "AGREEMENT"}}, "required": ["calculationMode", "executionBranch", "primaryTerminalClass", "overallComparisonStatus"], "additionalProperties": false},
+        {"type": "object", "properties": {"calculationMode": {"const": "FINITE_B_COMPLETED_STATE_REPLAY"}, "executionBranch": {"const": "FINITE_NORMAL"}, "primaryTerminalClass": {"const": "COMPLETE"}, "overallComparisonStatus": {"const": "DISAGREEMENT"}}, "required": ["calculationMode", "executionBranch", "primaryTerminalClass", "overallComparisonStatus"], "additionalProperties": false},
+        {"type": "object", "properties": {"calculationMode": {"const": "FINITE_B_COMPLETED_STATE_REPLAY"}, "executionBranch": {"const": "FINITE_REPLICATE_FAILURE"}, "primaryTerminalClass": {"const": "REPLICATE_FAILURE"}, "overallComparisonStatus": {"const": "NOT_COMPARABLE"}}, "required": ["calculationMode", "executionBranch", "primaryTerminalClass", "overallComparisonStatus"], "additionalProperties": false},
+        {"type": "object", "properties": {"calculationMode": {"const": "FINITE_B_COMPLETED_STATE_REPLAY"}, "executionBranch": {"const": "FINITE_OBSERVED_ANALYTIC_FAILURE"}, "primaryTerminalClass": {"const": "OBSERVED_ANALYTICAL_FAILURE"}, "overallComparisonStatus": {"const": "NOT_COMPARABLE"}}, "required": ["calculationMode", "executionBranch", "primaryTerminalClass", "overallComparisonStatus"], "additionalProperties": false},
+        {"type": "object", "properties": {"calculationMode": {"const": "ALL_STATE_EXACT"}, "executionBranch": {"const": "ALL_STATE_EXACT_COMPONENT"}, "primaryTerminalClass": {"const": "EXACT_ANALYTICAL_FAILURE"}, "overallComparisonStatus": {"const": "NOT_COMPARABLE"}}, "required": ["calculationMode", "executionBranch", "primaryTerminalClass", "overallComparisonStatus"], "additionalProperties": false},
+        {"type": "object", "properties": {"calculationMode": {"$ref": "#/$defs/CalculationMode"}, "executionBranch": {"const": "NULL_BIND_DISABLED"}, "primaryTerminalClass": {"const": "NULL_DISABLED"}, "overallComparisonStatus": {"const": "NOT_COMPARABLE"}}, "required": ["calculationMode", "executionBranch", "primaryTerminalClass", "overallComparisonStatus"], "additionalProperties": false}
+      ]
+    },
+    "TerminalSummary": {
+      "type": "object",
+      "properties": {
+        "comparisonRecordCount": {"type": "integer", "minimum": 1, "maximum": 100001},
+        "agreementCount": {"type": "integer", "minimum": 0, "maximum": 100001},
+        "disagreementCount": {"type": "integer", "minimum": 0, "maximum": 256},
+        "notComparableCount": {"type": "integer", "minimum": 0, "maximum": 100001},
+        "diagnosticGroupCount": {"type": "integer", "minimum": 0, "maximum": 256},
+        "comparisonLedgerBytes": {"type": "integer", "minimum": 1, "maximum": 134217728},
+        "diagnosticLedgerBytes": {"type": "integer", "minimum": 0, "maximum": 67108864},
+        "finalPackageBytes": {"type": "integer", "minimum": 1, "maximum": 536870912}
+      },
+      "required": ["comparisonRecordCount", "agreementCount", "disagreementCount", "notComparableCount", "diagnosticGroupCount", "comparisonLedgerBytes", "diagnosticLedgerBytes", "finalPackageBytes"],
+      "additionalProperties": false,
+      "x-semanticInvariant": "disagreementCount=diagnosticGroupCount; each disagreeing comparison index maps bijectively to exactly one completed diagnostic group"
+    },
+    "RetainedArtifactDescriptor": {
+      "type": "object",
+      "properties": {
+        "path": {"$ref": "#/$defs/NormalizedRelativePath"},
+        "mediaType": {"enum": ["application/json", "application/x-ndjson", "application/octet-stream"]},
+        "bytes": {"type": "integer", "minimum": 1, "maximum": 268435456},
+        "sha256": {"$ref": "#/$defs/NullableSha256"},
+        "verification": {"enum": ["VERIFIED", "UNVERIFIED"]}
+      },
+      "required": ["path", "mediaType", "bytes", "sha256", "verification"],
+      "additionalProperties": false
+    },
+    "FailurePrefixProof": {
+      "type": "object",
+      "properties": {
+        "completedOriginalInputCount": {"type": "integer", "minimum": 0, "maximum": 1},
+        "completedReferenceSpecCount": {"type": "integer", "minimum": 0, "maximum": 1},
+        "completedObservedRecordCount": {"type": "integer", "minimum": 0, "maximum": 1},
+        "completedStateChunkCount": {"type": "integer", "minimum": 0, "maximum": 1000000},
+        "completedPrimaryManifestCount": {"type": "integer", "minimum": 0, "maximum": 1},
+        "completedComparisonChunkCount": {"type": "integer", "minimum": 0, "maximum": 1000000},
+        "completedDiagnosticChunkCount": {"type": "integer", "minimum": 0, "maximum": 1000000},
+        "completedDiagnosticManifestCount": {"type": "integer", "minimum": 0, "maximum": 1},
+        "completedComparisonManifestCount": {"type": "integer", "minimum": 0, "maximum": 1},
+        "completedArtifactCount": {"type": "integer", "minimum": 0, "maximum": 3000007},
+        "completedPrimaryLedgerBytes": {"type": "integer", "minimum": 0, "maximum": 268435456},
+        "completedComparisonLedgerBytes": {"type": "integer", "minimum": 0, "maximum": 134217728},
+        "completedDiagnosticLedgerBytes": {"type": "integer", "minimum": 0, "maximum": 67108864},
+        "currentNodeBytesWritten": {"type": "integer", "minimum": 0, "maximum": 268435456},
+        "currentNodeBytesReadForVerification": {"type": "integer", "minimum": 0, "maximum": 268435456},
+        "currentNodeVerificationCompleted": {"type": "boolean"},
+        "currentNodeFsyncCompleted": {"type": "boolean"},
+        "currentNodeInstalled": {"type": "boolean"},
+        "openStreamWriters": {
+          "type": "array",
+          "maxItems": 2,
+          "uniqueItems": true,
+          "items": {"$ref": "#/$defs/StreamWriterProgress"}
+        },
+        "retainedDescriptorCount": {"type": "integer", "minimum": 0, "maximum": 3000010},
+        "retainedPackageBytes": {"type": "integer", "minimum": 0, "maximum": 536870912}
+      },
+      "required": [
+        "completedOriginalInputCount", "completedReferenceSpecCount", "completedObservedRecordCount",
+        "completedStateChunkCount", "completedPrimaryManifestCount", "completedComparisonChunkCount",
+        "completedDiagnosticChunkCount", "completedDiagnosticManifestCount",
+        "completedComparisonManifestCount", "completedArtifactCount", "completedPrimaryLedgerBytes",
+        "completedComparisonLedgerBytes", "completedDiagnosticLedgerBytes", "currentNodeBytesWritten",
+        "currentNodeBytesReadForVerification", "currentNodeVerificationCompleted",
+        "currentNodeFsyncCompleted", "currentNodeInstalled", "openStreamWriters",
+        "retainedDescriptorCount",
+        "retainedPackageBytes"
+      ],
+      "additionalProperties": false
+    },
+    "StreamWriterProgress": {
+      "type": "object",
+      "properties": {
+        "streamKind": {"enum": ["STATE_CHUNK", "COMPARISON_CHUNK", "DIAGNOSTIC_CHUNK"]},
+        "chunkIndex": {"type": "integer", "minimum": 0, "maximum": 999999},
+        "writerState": {"enum": ["WRITING", "VERIFYING", "FSYNCING", "INSTALLING"]},
+        "rowsCompleted": {"type": "integer", "minimum": 0, "maximum": 256},
+        "bytesWritten": {"type": "integer", "minimum": 0, "maximum": 268435456},
+        "bytesReadForVerification": {"type": "integer", "minimum": 0, "maximum": 268435456}
+      },
+      "required": ["streamKind", "chunkIndex", "writerState", "rowsCompleted", "bytesWritten", "bytesReadForVerification"],
+      "additionalProperties": false
+    },
+    "ComparisonManifestSuccess": {
+      "type": "object",
+      "properties": {
+        "schemaVersion": {"const": "selcal.m6-p1.comparison-manifest.v8"},
+        "artifactType": {"const": "COMPARISON_MANIFEST_SUCCESS"},
+        "runId": {"$ref": "#/$defs/RunId"},
+        "canonicalizationVersion": {"$ref": "#/$defs/CanonicalizationVersion"},
+        "semanticValidatorContractId": {"const": "selcal.m6-p1.semantic-validator.v8"},
+        "lifecycle": {"$ref": "#/$defs/Lifecycle"},
+        "terminal": {"$ref": "#/$defs/SuccessTerminal"},
+        "implementationSourceSets": {"$ref": "#/$defs/ImplementationSourceSets"},
+        "primaryManifest": {"$ref": "#/$defs/RecordLocator"},
+        "comparisonChunks": {
+          "type": "array", "minItems": 1, "maxItems": 1000000, "uniqueItems": true,
+          "items": {"$ref": "#/$defs/ChunkDescriptor"}
+        },
+        "diagnosticManifest": {"oneOf": [{"$ref": "#/$defs/RecordLocator"}, {"type": "null"}]},
+        "summary": {"$ref": "#/$defs/TerminalSummary"},
+        "derivedProof": {"$ref": "#/$defs/DerivedCompleteProof"}
+      },
+      "required": [
+        "schemaVersion", "artifactType", "runId", "canonicalizationVersion",
+        "semanticValidatorContractId", "lifecycle", "terminal", "implementationSourceSets",
+        "primaryManifest", "comparisonChunks", "diagnosticManifest", "summary", "derivedProof"
+      ],
+      "additionalProperties": false
+    },
+    "FailureManifest": {
+      "type": "object",
+      "properties": {
+        "schemaVersion": {"const": "selcal.m6-p1.failure-manifest.v8"},
+        "artifactType": {"const": "FAILURE_MANIFEST"},
+        "runId": {"$ref": "#/$defs/RunId"},
+        "canonicalizationVersion": {"$ref": "#/$defs/CanonicalizationVersion"},
+        "semanticValidatorContractId": {"const": "selcal.m6-p1.semantic-validator.v8"},
+        "lifecycle": {"$ref": "#/$defs/Lifecycle"},
+        "failureCause": {"$ref": "#/$defs/FailureCause"},
+        "branchState": {"$ref": "#/$defs/BranchState"},
+        "failurePoint": {"$ref": "#/$defs/FailurePoint"},
+        "sourceIdentity": {"$ref": "#/$defs/SourceIdentityState"},
+        "operandProof": {"$ref": "#/$defs/OperandProof"},
+        "failurePrefix": {"$ref": "#/$defs/FailurePrefixProof"},
+        "retainedArtifacts": {
+          "type": "array", "maxItems": 3000010, "uniqueItems": true,
+          "items": {"$ref": "#/$defs/RetainedArtifactDescriptor"}
+        },
+        "failureIo": {"$ref": "#/$defs/IoProof"}
+      },
+      "required": [
+        "schemaVersion", "artifactType", "runId", "canonicalizationVersion",
+        "semanticValidatorContractId", "lifecycle", "failureCause", "branchState",
+        "failurePoint", "sourceIdentity", "operandProof", "failurePrefix", "retainedArtifacts", "failureIo"
+      ],
+      "additionalProperties": false
+    },
+    "BudgetProfileConstants": {
+      "type": "object",
+      "properties": {
+        "maxOperandBits": {"const": 256},
+        "maxExactStateCount": {"const": 100000},
+        "maxFiniteReplicates": {"const": 1000},
+        "maxBlockCount": {"const": 4096},
+        "maxLiveCandidateRecords": {"const": 5000},
+        "maxLedgerCandidateRecords": {"const": 100000},
+        "maxChunkRows": {"const": 256},
+        "maxChunkCountPerStream": {"const": 1000000},
+        "maxEdgeEntries": {"const": 65536},
+        "maxCounterEntriesUpper": {"const": 250000},
+        "maxDisagreementDiagnostics": {"const": 256},
+        "maxPendingDiagnosticJobs": {"const": 0},
+        "maxNumericalRowsPerDiagnostic": {"const": 8},
+        "maxDisagreementCodesPerRecord": {"const": 32},
+        "maxTransformValueVisits": {"const": 2500000},
+        "maxCandidateSupportVisits": {"const": 2500000},
+        "maxPearsonValueVisits": {"const": 15000000},
+        "maxNetteEdgeWorkUnits": {"const": 2500000},
+        "maxNetteCodingValueVisits": {"const": 15000000},
+        "maxNetteDirectionalSupportVisits": {"const": 5000000},
+        "maxNetteCounterUpdateVisits": {"const": 20000000},
+        "maxNetteSortUnits": {"const": 25000000},
+        "maxNetteCmiArithmeticUnits": {"const": 30000000},
+        "maxSelectionWorkUnits": {"const": 1000000},
+        "maxStateGenerationUnits": {"const": 2500000},
+        "maxStateIdentityValidationUnits": {"const": 10000000},
+        "maxStateApplicationUnits": {"const": 2500000},
+        "maxNullBindWorkUnits": {"const": 16},
+        "maxPrimaryComputeWorkUnits": {"const": 50000000},
+        "maxComparisonComputeWorkUnits": {"const": 10000000},
+        "maxDiagnosticComputeWorkUnits": {"const": 50000000},
+        "maxInputSidecarBytes": {"const": 67108864},
+        "maxPrimaryLedgerBytes": {"const": 268435456},
+        "maxComparisonLedgerBytes": {"const": 134217728},
+        "maxDiagnosticLedgerBytes": {"const": 67108864},
+        "maxTerminalRootBytes": {"const": 16777216},
+        "maxRunPackageBytes": {"const": 536870912},
+        "failureManifestReserveBytes": {"const": 16777216},
+        "maxReferenceOwnedPeakUpperBytes": {"const": 536870912},
+        "maxIoByteVisits": {"const": 4294967296},
+        "maxTotalComputeWorkUnits": {"const": 90000000}
+      },
+      "required": [
+        "maxOperandBits", "maxExactStateCount", "maxFiniteReplicates", "maxBlockCount",
+        "maxLiveCandidateRecords", "maxLedgerCandidateRecords", "maxChunkRows",
+        "maxChunkCountPerStream", "maxEdgeEntries", "maxCounterEntriesUpper",
+        "maxDisagreementDiagnostics", "maxPendingDiagnosticJobs",
+        "maxNumericalRowsPerDiagnostic", "maxDisagreementCodesPerRecord",
+        "maxTransformValueVisits", "maxCandidateSupportVisits", "maxPearsonValueVisits",
+        "maxNetteEdgeWorkUnits", "maxNetteCodingValueVisits",
+        "maxNetteDirectionalSupportVisits", "maxNetteCounterUpdateVisits",
+        "maxNetteSortUnits", "maxNetteCmiArithmeticUnits", "maxSelectionWorkUnits",
+        "maxStateGenerationUnits", "maxStateIdentityValidationUnits",
+        "maxStateApplicationUnits", "maxNullBindWorkUnits", "maxPrimaryComputeWorkUnits",
+        "maxComparisonComputeWorkUnits", "maxDiagnosticComputeWorkUnits",
+        "maxInputSidecarBytes", "maxPrimaryLedgerBytes", "maxComparisonLedgerBytes",
+        "maxDiagnosticLedgerBytes", "maxTerminalRootBytes", "maxRunPackageBytes",
+        "failureManifestReserveBytes",
+        "maxReferenceOwnedPeakUpperBytes", "maxIoByteVisits", "maxTotalComputeWorkUnits"
+      ],
+      "additionalProperties": false
+    },
+    "BudgetProfileProjection": {
+      "type": "object",
+      "properties": {
+        "schemaVersion": {"const": "selcal.m6-p1.budget-profile.v8"},
+        "artifactType": {"const": "BUDGET_PROFILE"},
+        "profileId": {"const": "m6-p1-reference-envelope-v1.1-revision8"},
+        "canonicalizationVersion": {"$ref": "#/$defs/CanonicalizationVersion"},
+        "lifecycle": {"$ref": "#/$defs/Lifecycle"},
+        "constants": {"$ref": "#/$defs/BudgetProfileConstants"}
+      },
+      "required": ["schemaVersion", "artifactType", "profileId", "canonicalizationVersion", "lifecycle", "constants"],
+      "additionalProperties": false
+    },
+    "ExternalApprovalContract": {
+      "type": "object",
+      "properties": {
+        "schemaVersion": {"const": "selcal.m6-p1.external-approval.v8"},
+        "artifactType": {"const": "EXTERNAL_APPROVAL_CONTRACT"},
+        "externalBindingId": {"$ref": "#/$defs/AsciiId"},
+        "disposition": {"const": "APPROVED_FOR_M6_P1_IMPLEMENTATION"},
+        "approverId": {"$ref": "#/$defs/AsciiId"},
+        "approvedAtUtc": {"type": "string", "minLength": 20, "maxLength": 32, "pattern": "^[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}(?:\\.[0-9]{1,6})?Z$"},
+        "formula": {"$ref": "#/$defs/ArtifactIdentity"},
+        "schema": {"$ref": "#/$defs/ArtifactIdentity"},
+        "budgetProfile": {"$ref": "#/$defs/ArtifactIdentity"},
+        "runtimeProbe": {"$ref": "#/$defs/ArtifactIdentity"},
+        "semanticValidator": {"$ref": "#/$defs/ArtifactIdentity"},
+        "budgetProfileId": {"const": "m6-p1-reference-envelope-v1.1-revision8"},
+        "runtimeLayoutProfileId": {"const": "m6-p1-runtime-layout-v8"},
+        "semanticValidatorContractId": {"const": "selcal.m6-p1.semantic-validator.v8"}
+      },
+      "required": [
+        "schemaVersion", "artifactType", "externalBindingId", "disposition", "approverId",
+        "approvedAtUtc", "formula", "schema", "budgetProfile", "runtimeProbe",
+        "semanticValidator", "budgetProfileId", "runtimeLayoutProfileId",
+        "semanticValidatorContractId"
+      ],
+      "additionalProperties": false,
+      "x-semanticInvariant": "this is the sole authority object; every approved terminal and budget profile carries exactly its externalBindingId and all five identities must match exact current bytes"
+    }
+  }
+}

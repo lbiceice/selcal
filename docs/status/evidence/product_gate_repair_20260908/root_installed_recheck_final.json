@@ -1,0 +1,104 @@
+{
+  "status": "ROOT_RECHECK_PASS",
+  "installed_files_byte_identical": 39,
+  "command_count": 17,
+  "commands": [
+    {
+      "label": "install_from_real_sdist",
+      "returncode": 0,
+      "replay": null
+    },
+    {
+      "label": "installed_import_and_dependency_identity",
+      "returncode": 0,
+      "replay": null
+    },
+    {
+      "label": "readme_validate",
+      "returncode": 0,
+      "replay": null
+    },
+    {
+      "label": "readme_run",
+      "returncode": 0,
+      "replay": null
+    },
+    {
+      "label": "readme_verify",
+      "returncode": 0,
+      "replay": "NOT_PERFORMED"
+    },
+    {
+      "label": "readme_replay",
+      "returncode": 0,
+      "replay": "MATCH"
+    },
+    {
+      "label": "readme_report",
+      "returncode": 0,
+      "replay": "NOT_PERFORMED"
+    },
+    {
+      "label": "readme_doctor",
+      "returncode": 0,
+      "replay": null
+    },
+    {
+      "label": "example_basic_selection_aware_calibration",
+      "returncode": 0,
+      "replay": null
+    },
+    {
+      "label": "example_fail_closed_not_evaluable",
+      "returncode": 0,
+      "replay": null
+    },
+    {
+      "label": "example_binned_nette_block_shuffle",
+      "returncode": 0,
+      "replay": null
+    },
+    {
+      "label": "example_result_save",
+      "returncode": 0,
+      "replay": null
+    },
+    {
+      "label": "example_result_read",
+      "returncode": 0,
+      "replay": null
+    },
+    {
+      "label": "not_evaluable_run",
+      "returncode": 7,
+      "replay": null
+    },
+    {
+      "label": "not_evaluable_verify",
+      "returncode": 7,
+      "replay": "NOT_PERFORMED"
+    },
+    {
+      "label": "not_evaluable_replay",
+      "returncode": 7,
+      "replay": "MATCH"
+    },
+    {
+      "label": "not_evaluable_report",
+      "returncode": 7,
+      "replay": "NOT_PERFORMED"
+    }
+  ],
+  "artifact_count_hash_verified": 11,
+  "receipt_sha256": "24cb151db609a87e5efe50a5dcf10a66c5a7dc4e0a638f69739d588ef9929b22",
+  "sdist": {
+    "path": "/private/tmp/selcal-product-finish-20260908.xEXhXk/post-descriptor-pytest/distribution-assets0/dist/selcal-0.1.0.dev0.tar.gz",
+    "bytes": 875898,
+    "sha256": "bc69a294b4a5d7b397d4e599dc98ba784f8d3a774f5646b703729fe6e712c9f8"
+  },
+  "wheel": {
+    "path": "/private/tmp/selcal-product-finish-20260908.xEXhXk/post-descriptor-pytest/distribution-assets0/dist/selcal-0.1.0.dev0-py3-none-any.whl",
+    "bytes": 173524,
+    "sha256": "dbf270e0cac37eae34e1f668ddae455cc72e1648f899c95ff12557508dd75c8e"
+  }
+}

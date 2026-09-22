@@ -1,0 +1,9 @@
+{
+ "script_sha256": "2a4b5d4fdb03889a05206ab5209fef2aa7e07f922f52a58b9c28d17afa12e799",
+ "protocol_sha256": "a56da079c075c6c805961e3420f529b9369f67f9c5d9fafc6d1321962a1c7e7c",
+ "python": "3.11.12",
+ "numpy": "2.4.6",
+ "workers": 10,
+ "cpu_count": 14,
+ "elapsed_seconds_this_invocation": 2667.724080374999
+}

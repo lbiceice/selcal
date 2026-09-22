@@ -1,0 +1,165 @@
+{
+  "status": "LOCAL_TRACE_REPLAY_CLOSED",
+  "checked_at_utc": "2026-09-08T16:07:44.904323+00:00",
+  "scope": "Disclosed same-team current-platform engineering diagnostic; no scientific study, independent human validation or submission approval.",
+  "python": "3.11.12",
+  "numpy": "2.4.6",
+  "sampled_positions": 1194,
+  "sampled_candidate_comparisons": 2786,
+  "observed_candidate_comparisons": 14,
+  "source_identities_verified_per_report": 41,
+  "unchanged_production_sources": 39,
+  "rows": [
+    {
+      "case": "orbit_2_max_upper",
+      "B": 199,
+      "E": 5,
+      "F": 0,
+      "p_mc": 0.03,
+      "p_exact": 0.015625,
+      "maximum_absolute_residual": 1.1102230246251565e-16,
+      "request_second_process_actual_api": "MATCH",
+      "extracted_sdist_case_payload": "EXACT_MATCH"
+    },
+    {
+      "case": "orbit_2_max_absolute",
+      "B": 199,
+      "E": 5,
+      "F": 0,
+      "p_mc": 0.03,
+      "p_exact": 0.015625,
+      "maximum_absolute_residual": 1.1102230246251565e-16,
+      "request_second_process_actual_api": "MATCH",
+      "extracted_sdist_case_payload": "EXACT_MATCH"
+    },
+    {
+      "case": "orbit_1_2_max_upper",
+      "B": 199,
+      "E": 7,
+      "F": 0,
+      "p_mc": 0.04,
+      "p_exact": 0.03125,
+      "maximum_absolute_residual": 1.1102230246251565e-16,
+      "request_second_process_actual_api": "MATCH",
+      "extracted_sdist_case_payload": "EXACT_MATCH"
+    },
+    {
+      "case": "orbit_1_2_max_absolute",
+      "B": 199,
+      "E": 9,
+      "F": 0,
+      "p_mc": 0.05,
+      "p_exact": 0.03125,
+      "maximum_absolute_residual": 1.1102230246251565e-16,
+      "request_second_process_actual_api": "MATCH",
+      "extracted_sdist_case_payload": "EXACT_MATCH"
+    },
+    {
+      "case": "orbit_1_2_3_4_max_upper",
+      "B": 199,
+      "E": 15,
+      "F": 0,
+      "p_mc": 0.08,
+      "p_exact": 0.0625,
+      "maximum_absolute_residual": 1.1102230246251565e-16,
+      "request_second_process_actual_api": "MATCH",
+      "extracted_sdist_case_payload": "EXACT_MATCH"
+    },
+    {
+      "case": "orbit_1_2_3_4_max_absolute",
+      "B": 199,
+      "E": 8,
+      "F": 0,
+      "p_mc": 0.045,
+      "p_exact": 0.0625,
+      "maximum_absolute_residual": 1.1102230246251565e-16,
+      "request_second_process_actual_api": "MATCH",
+      "extracted_sdist_case_payload": "EXACT_MATCH"
+    }
+  ],
+  "basic_cases": 3,
+  "basic_failure_case": "F=4; p and reject_null remain null; bounds=[0.5,0.9]",
+  "extracted_source_root": "/private/tmp/selcal-orbit-final-20260908.urIb7v/extracted/selcal-0.1.0.dev0",
+  "extracted_package_members_checked": 156,
+  "extracted_first_attempt": {
+    "passed": 80,
+    "failed": 4,
+    "cause": "Command omitted PYTHONPATH=src; existing editable installation resolved to development tree. Source identity guard rejected the four CLI/source-inventory checks.",
+    "resolution": "Reran with PYTHONPATH=src using the extracted source, without weakening identity checks; 84 passed in 12.01s."
+  },
+  "root_audit_schema_correction": "Initial auxiliary assertion compared whole reference and production summary objects; corrected to compare shared fields plus separate declared indicator/bounds representations. No product or report edit.",
+  "scientific_study_executed": false,
+  "external_validation": false,
+  "public_release_performed": false,
+  "submission_ready": false,
+  "artifacts": {
+    "/Users/vincent/.cache/selcal-worktrees/contract-resolution-pearson/docs/benchmarks/2026-09-08-pearson-orbit-trace-verified.json": {
+      "bytes": 7288616,
+      "sha256": "6f5e9edecc22c1863933173eb8934dee5d24216b8bdfcc9e6b24fa73dda5a768"
+    },
+    "/Users/vincent/.cache/selcal-worktrees/contract-resolution-pearson/docs/status/evidence/orbit_trace_20260908/extracted_orbit_trace.json": {
+      "bytes": 7289723,
+      "sha256": "5161296e1c9d76f6f37ca07436d1d44562d691a8d82507a101c6010b1efc6546"
+    },
+    "/Users/vincent/.cache/selcal-worktrees/contract-resolution-pearson/docs/benchmarks/2026-09-08-pearson-basic-trace-verified.json": {
+      "bytes": 211040,
+      "sha256": "2e60bfe50414bc49a0f2c25ca48169c9d1634f53702b33e10d626bf280a403af"
+    },
+    "/Users/vincent/.cache/selcal-worktrees/contract-resolution-pearson/docs/status/evidence/orbit_trace_20260908/product_suite_final.xml": {
+      "bytes": 512538,
+      "sha256": "93ea7ee39af684545fd914a84cac805c6ac31717e036a90821cdf6c31f8c7a38"
+    },
+    "/Users/vincent/.cache/selcal-worktrees/contract-resolution-pearson/docs/status/evidence/orbit_trace_20260908/extracted_diagnostic_tests.xml": {
+      "bytes": 12287,
+      "sha256": "ee056fd12a63fb0f37bc630b8b81cf237ac7bc4942e22ff36fb74fe4ec73e43b"
+    },
+    "/Users/vincent/.cache/selcal-worktrees/contract-resolution-pearson/scripts/compare_pearson_diagnostic.py": {
+      "bytes": 22023,
+      "sha256": "c8902689251b02230c620a02b081086477867d5a92e8a5053e250dfe2bcb3da9"
+    },
+    "/Users/vincent/.cache/selcal-worktrees/contract-resolution-pearson/scripts/m6_pearson_diagnostic.py": {
+      "bytes": 10015,
+      "sha256": "7b261c34eb9c2777667ac64f556e4e73d51829c629276f4ed354f08afb58b722"
+    },
+    "/Users/vincent/.cache/selcal-worktrees/contract-resolution-pearson/tests/test_m6_pearson_orbit_trace.py": {
+      "bytes": 20042,
+      "sha256": "405bc7bd87a7e8a113e65186a25b7ef4d982b3601bc6519d583a68b452e06079"
+    },
+    "/tmp/selcal-orbit-final-20260908.urIb7v/pytest/distribution-assets0/dist/selcal-0.1.0.dev0.tar.gz": {
+      "bytes": 881342,
+      "sha256": "e628df292904fb0b6ea403b00938d9b1e00fc4c5c87af65a722d8964a605a2b0"
+    }
+  },
+  "product_suite": {
+    "passed": 3333,
+    "failed": 0,
+    "skipped": 1,
+    "seconds": 85.1,
+    "excluded": "tests/task10 (four internal specification-package tests)",
+    "skip_reason": "platform has no extended floating dtype",
+    "coverage_enabled": false
+  },
+  "extracted_diagnostic_suite": {
+    "passed": 84,
+    "failed": 0,
+    "seconds": 12.01,
+    "command_prefix": "PYTHONPATH=src; same existing audit runtime",
+    "fresh_wheel_install": false
+  },
+  "review": {
+    "root_spec": "SCOPED_PASS_AFTER_FINAL_FIELD_LEVEL_REVIEW",
+    "quality_agent": "bounded_study_criterion",
+    "quality_status": "TWO_P2_FINDINGS_CLOSED",
+    "quality_nearby_regression": {
+      "passed": 55,
+      "seconds": 11.66
+    },
+    "adversarial_attack_replays": {
+      "all_scores_minus_9": "400 score disagreements; 199 rows retained",
+      "token_null_input_plan_corrupted": "199 disagreements for each of three identity fields; 199 rows retained",
+      "top_hashes_corrupted": "both independently detected",
+      "alpha_099": "RUN_ALPHA_DISAGREEMENT"
+    },
+    "external_human_review": false
+  }
+}

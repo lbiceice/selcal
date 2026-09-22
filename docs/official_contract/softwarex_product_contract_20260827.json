@@ -1,0 +1,239 @@
+{
+  "schemaVersion": "1.1",
+  "paperId": "P3-SELCAL",
+  "targetJournal": "SoftwareX",
+  "verifiedAt": "2026-08-27T04:02:36+08:00",
+  "lifecycleCheckpoint": "scientific_spine_freeze",
+  "sectionCollectionStatus": "not_applicable_confirmed",
+  "dedicatedContentTypePage": false,
+  "officialEquivalent": [
+    "https://www.elsevier.com/researcher/author/tools-and-resources/research-elements-journals",
+    "https://www.sciencedirect.com/journal/softwarex/publish/guide-for-authors",
+    "https://legacyfileshare.elsevier.com/promis_misc/softwarex-osp-template.docx"
+  ],
+  "adjudication": "NO DEDICATED CONTENT-TYPE PAGE. The current Elsevier Research Elements page, SoftwareX Guide for Authors, Version 6 Original Software Publication templates, official reviewer form and Editorial Manager jointly control. The Guide and templates establish Original Software Publication as the correct route for new unpublished SelCal software. The route remains on HOLD because SelCal is not yet an implemented, released or scientifically validated software product, the current Guide omits the open-source licence list it says is listed below, and a live SelCal portal draft has not been inspected.",
+  "sources": [
+    {
+      "title": "Elsevier Research Elements journals - SoftwareX",
+      "url": "https://www.elsevier.com/researcher/author/tools-and-resources/research-elements-journals",
+      "sourceType": "homepage",
+      "verifiedAt": "2026-08-27T04:02:36+08:00",
+      "status": "verified",
+      "locator": "Current official Elsevier page read on 2026-08-27. It identifies SoftwareX as a multidisciplinary open-access peer-reviewed journal for detailed articles describing research software and its application, and links the current Guide and OSP template."
+    },
+    {
+      "title": "SoftwareX Guide for Authors - aims and scope",
+      "url": "https://www.sciencedirect.com/journal/softwarex/publish/guide-for-authors",
+      "sourceType": "aims_scope",
+      "verifiedAt": "2026-08-27T04:02:36+08:00",
+      "status": "verified",
+      "locator": "Current official page read in a real browser on 2026-08-27. The Guide requires research software with proven or potential impact on scientific discovery that is publicly available for inspection, validation and reuse; a submission has a 4,000-word descriptive paper plus open-source software and support material."
+    },
+    {
+      "title": "SoftwareX Original Software Publication template Version 6 March 2026",
+      "url": "https://legacyfileshare.elsevier.com/promis_misc/softwarex-osp-template.docx",
+      "sourceType": "content_or_article_type",
+      "verifiedAt": "2026-08-27T04:02:36+08:00",
+      "status": "verified",
+      "locator": "Fresh official DOCX downloaded, structurally inspected and rendered in full. Microsoft Word 2007+; 44,823 bytes; four rendered pages; SHA-256 9fcf40ede96a2f188ee4ef77134e0596d01e1b65fd9db63f2874d29f2ecb916d; server Last-Modified 2026-04-17T10:28:21Z; body states Version 6 March 2026."
+    },
+    {
+      "title": "SoftwareX Original Software Publication LaTeX template",
+      "url": "https://legacyfileshare.elsevier.com/promis_misc/softwarex-osp-template.tex",
+      "sourceType": "instructions",
+      "verifiedAt": "2026-08-27T04:02:36+08:00",
+      "status": "verified",
+      "locator": "Fresh official TeX downloaded and inspected. UTF-8 LaTeX text; 10,163 bytes; SHA-256 2b18dfd14aa3893bc4e82a90caa19337bb1ce76f1fae5ea2c0eaa7e3563b8649; server Last-Modified 2026-04-17T10:29:37Z; content agrees with the DOCX on GitHub, README.md, Licence.txt, 4,000 words, six figures and five mandatory sections."
+    },
+    {
+      "title": "SoftwareX Guide for Authors - journal-specific preparation and submission instructions",
+      "url": "https://www.sciencedirect.com/journal/softwarex/publish/guide-for-authors",
+      "sourceType": "instructions",
+      "verifiedAt": "2026-08-27T04:02:36+08:00",
+      "status": "verified",
+      "locator": "Current official Guide read in a real browser. It specifies a public GitHub repository, README.md, LICENSE.txt, source in repo/src, an OSI-recognized open-source licence, Original Software Publication for first publication, Word and LaTeX upload roles, exact word-count inclusions, a six-figure cap, Option C research-data duties and required submission declarations."
+    },
+    {
+      "title": "SoftwareX official reviewer form",
+      "url": "https://legacyfileshare.elsevier.com/promis_misc/softwarex-reviewer-form.pdf",
+      "sourceType": "linked_policy",
+      "verifiedAt": "2026-08-27T04:02:36+08:00",
+      "status": "verified",
+      "locator": "Fresh official PDF downloaded, extracted and visually inspected on every page. PDF 1.4; three pages; 112,676 bytes; SHA-256 2e457d6b7bbce748dd8fa8602c76db505628cdddcd1992bdd4a2914aa2eae255. It assesses impact, empirical evaluation, install and reproduction, portability, tests, documentation, dependencies, licensing, maintainability, metadata and non-code artifacts."
+    },
+    {
+      "title": "SoftwareX Editorial Manager submission portal",
+      "url": "https://www.editorialmanager.com/softx/default.aspx",
+      "sourceType": "submission_platform",
+      "verifiedAt": "2026-08-27T04:02:36+08:00",
+      "status": "portal_live_verify",
+      "locator": "The Guide identifies this portal and gives Word and LaTeX manuscript slot names. No new SelCal submission draft exists, so current author fields, declarations, supplementary slots and generated-PDF behavior remain due only after scientific, repository and release gates pass."
+    }
+  ],
+  "articleType": {
+    "selected": "Original Software Publication",
+    "fit": "Conditional fit. SelCal is intended as domain-independent, contract-driven research software for selection-aware surrogate calibration. This matches SoftwareX only if implementation, empirical impact, documented installation, reproducibility, reuse and public release are demonstrated. A design, wrapper or feature inventory is insufficient.",
+    "claimCeiling": "The current evidence supports a reviewed and versioned design plus a locally tested pre-release plan and statistic core. It does not support implementation of full reselection calibration, valid error control, superiority to other tools, cross-domain impact, independent reuse, public release, SoftwareX readiness or likely acceptance."
+  },
+  "formatContract": {
+    "initialReview": {
+      "template": "Use a freshly fingerprinted SoftwareX Original Software Publication Word or LaTeX template without changing its structure. Current fingerprints: DOCX 9fcf40ed...916d and TeX 2b18dfd1...8649. Word figures must be embedded in the DOCX.",
+      "layout": "Preserve the five mandatory main sections: Motivation and significance; Software description with architecture and functionality; at least one Illustrative example; Impact; Conclusions. Main text is normally no more than six pages excluding metadata, tables, figures and references, with the 4,000-word limit taking priority.",
+      "anonymity": "The current Guide states single-anonymized review. Author names and affiliations are visible to reviewers and must be supplied accurately; no double-anonymous stripping is authorized.",
+      "acceptedFiles": "For Word, upload the DOCX to Manuscript (Word or PDF file). For LaTeX, upload the rendered PDF there and a ZIP containing complete TeX, figure and bibliography sources to Zip file containing LaTeX source files. Exact additional SelCal slots require a future live portal draft.",
+      "lengthAndCounting": "Maximum 4,000 words, excluding title, authors, affiliations, references and metadata tables, but including abstract, running text, captions and footnotes. Maximum six figures. Apply the stricter joint bounds of an approximately 100-word abstract that is also at most 250 words, and one to six keywords.",
+      "frontMatter": "Use a short software-name title, confirmed authors and developer affiliations, an approximately 100-word factual abstract, one to six English keywords and complete metadata entries C1-C8. Highlights and a graphical abstract are encouraged rather than treated as current hard requirements.",
+      "figuresAndTables": "Use no more than six figures. Include a compact architecture overview and evidence-bearing evaluation graphics. Because the journal-specific Word instruction requires embedded figures while the generic figure section requests separate files, retain embedded figures plus separate source-quality figure files until the live portal map resolves the upload roles.",
+      "accessibility": "Provide readable labels, self-contained captions, defined symbols, color-safe encodings and alt text where requested. Render and inspect the exact manuscript bytes before upload.",
+      "references": "Cite methods, comparators, datasets and software with versions. A software PID or DOI is preferred where available, but it does not replace the mandatory GitHub URL in metadata C2. Verified full-text exemplars may guide structure and evidence order only, never wording, numbers, results or unearned claims.",
+      "endMatter": "Include only confirmed acknowledgements, CRediT roles, funding and sponsor role, competing-interest declaration, data availability, applicable ethics and rights statements, and a generative-AI manuscript-preparation declaration when such tools were used beyond exempt basic checks.",
+      "supplementaryMaterials": "Submit relevant supplementary material or supplementary data together with the manuscript. The repository or supplements must expose validation matrices, exact-oracle fixtures, adverse results, comparator logs, clean-install receipts, provenance, environment and dependency identities without hiding decision-changing failures.",
+      "fileNamingAndMetadata": "Freeze an exact software version and public GitHub release, complete C1-C8, keep source in repository-root src, supply README.md, and resolve the Guide-template LICENSE.txt versus Licence.txt conflict by retaining auditable same-content compatibility files after the author selects the code licence. Build the final slot map only from a fresh SelCal portal draft.",
+      "sourceUrls": [
+        "https://www.sciencedirect.com/journal/softwarex/publish/guide-for-authors",
+        "https://legacyfileshare.elsevier.com/promis_misc/softwarex-osp-template.docx",
+        "https://legacyfileshare.elsevier.com/promis_misc/softwarex-osp-template.tex"
+      ],
+      "state": "hold"
+    },
+    "postAcceptance": {
+      "templateOrWorkflow": "After acceptance, follow the then-current production and proof workflow and permit archiving of the accepted-for-publication code version in the SoftwareX GitHub organization. No acceptance or production action is currently due.",
+      "rightsAndMetadata": "Reconfirm article and code licences separately, APC responsibility, exact release and repository identities, authorship, CRediT, declarations, third-party rights, data links and persistent identifiers before completing the publishing agreement.",
+      "sourceUrls": [
+        "https://www.sciencedirect.com/journal/softwarex/publish/guide-for-authors"
+      ],
+      "state": "not_due"
+    }
+  },
+  "requirements": [
+    {
+      "id": "SOFTX-SELCAL-TYPE-01",
+      "sourceUrl": "https://www.sciencedirect.com/journal/softwarex/publish/guide-for-authors",
+      "requirement": "A first publication of previously unpublished SelCal software must select Original Software Publication and use the corresponding current template.",
+      "strength": "required",
+      "lifecycle": ["route_selection", "scientific_spine_freeze", "first_word_build"],
+      "mappedArtifacts": ["null_reselection_v2_design.md", "future OSP manuscript", "future Editorial Manager article type"],
+      "state": "verified"
+    },
+    {
+      "id": "SOFTX-SELCAL-SCOPE-01",
+      "sourceUrl": "https://www.sciencedirect.com/journal/softwarex/publish/guide-for-authors",
+      "requirement": "SelCal must be publicly inspectable, validatable and reusable research software with evidenced potential or demonstrated impact on scientific discovery; engineering completeness alone is insufficient.",
+      "strength": "required",
+      "lifecycle": ["route_selection", "scientific_spine_freeze", "first_word_build"],
+      "mappedArtifacts": ["topic-triangle evidence", "M6 protocol", "comparator delta matrix", "independent real case"],
+      "state": "hold"
+    },
+    {
+      "id": "SOFTX-SELCAL-TEMPLATE-01",
+      "sourceUrl": "https://legacyfileshare.elsevier.com/promis_misc/softwarex-osp-template.docx",
+      "requirement": "Use the current OSP template with five mandatory body sections, an approximately 100-word abstract, one to six keywords, a 4,000-word limit and no more than six figures.",
+      "strength": "required",
+      "lifecycle": ["scientific_spine_freeze", "first_word_build", "pre_submission_24h"],
+      "mappedArtifacts": ["template fingerprints", "future manuscript structure map", "future word and figure audit"],
+      "state": "verified"
+    },
+    {
+      "id": "SOFTX-SELCAL-REPOSITORY-01",
+      "sourceUrl": "https://www.sciencedirect.com/journal/softwarex/publish/guide-for-authors",
+      "requirement": "Metadata C2 must point to a public GitHub repository containing README.md, an accepted open-source licence file and source in repository-root src; complete C1-C8 and freeze the submitted software version.",
+      "strength": "required",
+      "lifecycle": ["scientific_spine_freeze", "first_word_build", "pre_submission_24h"],
+      "mappedArtifacts": ["future public GitHub repository", "future frozen release", "future README.md", "future code licence", "future metadata C1-C8"],
+      "state": "hold"
+    },
+    {
+      "id": "SOFTX-SELCAL-IMPACT-01",
+      "sourceUrl": "https://legacyfileshare.elsevier.com/promis_misc/softwarex-reviewer-form.pdf",
+      "requirement": "Provide empirical evidence that SelCal enables new research questions or improves pursuit of existing questions and has a credible reuse path; usefulness assertions do not satisfy the Impact section.",
+      "strength": "required",
+      "lifecycle": ["scientific_spine_freeze", "first_word_build"],
+      "mappedArtifacts": ["three-discipline demand ledger", "M6 strict-null and alternative results", "IDTxl/JIDT comparisons", "independent real case"],
+      "state": "hold"
+    },
+    {
+      "id": "SOFTX-SELCAL-EMPIRICAL-01",
+      "sourceUrl": "https://legacyfileshare.elsevier.com/promis_misc/softwarex-reviewer-form.pdf",
+      "requirement": "The experimental setting, empirical evaluation, comparison with prior work and results must be clear, reproducible and proportionate to the claimed impact.",
+      "strength": "required",
+      "lifecycle": ["scientific_spine_freeze", "first_word_build"],
+      "mappedArtifacts": ["exact enumeration oracle", "prospective M6 protocol", "failure envelope", "comparator logs", "claim-evidence map"],
+      "state": "hold"
+    },
+    {
+      "id": "SOFTX-SELCAL-SOFTWARE-01",
+      "sourceUrl": "https://legacyfileshare.elsevier.com/promis_misc/softwarex-reviewer-form.pdf",
+      "requirement": "Independent reviewers must be able to install, build or deploy SelCal, run documented examples, reproduce compatible results, inspect automated tests and API or user documentation, and verify environment, dependency, portability, maintainability and licence statements.",
+      "strength": "required",
+      "lifecycle": ["scientific_spine_freeze", "first_word_build", "pre_submission_24h"],
+      "mappedArtifacts": ["Linux clean-install receipt", "macOS clean-install receipt", "automated test report", "API documentation", "user manual", "dependency and licence manifests"],
+      "state": "hold"
+    },
+    {
+      "id": "SOFTX-SELCAL-DATA-01",
+      "sourceUrl": "https://www.sciencedirect.com/journal/softwarex/publish/guide-for-authors",
+      "requirement": "Apply Elsevier research-data Option C: deposit relevant validation data in a suitable repository and cite and link it, or provide a truthful reason it cannot be shared; submit a data availability statement.",
+      "strength": "required",
+      "lifecycle": ["first_word_build", "pre_submission_24h"],
+      "mappedArtifacts": ["future M6 dataset release", "future data availability statement", "future repository citations"],
+      "state": "hold"
+    },
+    {
+      "id": "SOFTX-SELCAL-PROVENANCE-01",
+      "sourceUrl": "https://legacyfileshare.elsevier.com/promis_misc/softwarex-reviewer-form.pdf",
+      "requirement": "Code quality, testing, maintenance and licensing claims must bind the exact submitted source. P3-derived materials and third-party dependencies require explicit source and distribution boundaries.",
+      "strength": "required",
+      "lifecycle": ["scientific_spine_freeze", "first_word_build", "pre_submission_24h"],
+      "mappedArtifacts": ["SOURCE_ORIGIN.tsv", "P3-SelCal scientific-object firewall", "third-party licence matrix", "release source manifest"],
+      "state": "hold"
+    },
+    {
+      "id": "SOFTX-SELCAL-PORTAL-01",
+      "sourceUrl": "https://www.editorialmanager.com/softx/default.aspx",
+      "requirement": "Before submission, inspect a new SelCal portal draft and bind the live article type, author fields, declarations, file roles, metadata, converted review PDF and final receipts.",
+      "strength": "portal-live-verify",
+      "lifecycle": ["pre_submission_24h"],
+      "mappedArtifacts": ["future portal field capture", "future upload role map", "future system PDF audit", "future submission receipt"],
+      "state": "hold"
+    }
+  ],
+  "futureCheckpointActions": [
+    {
+      "id": "SOFTX-SELCAL-FUTURE-WORD-01",
+      "action": "At first manuscript build, re-open the Guide, re-download both OSP templates, recheck word and figure rules, freeze the current template hashes and resolve any changed instruction before creating the manuscript.",
+      "dueAt": "first_word_build",
+      "mappedArtifacts": ["refreshed official contract", "fresh template hashes", "first manuscript build authorization"],
+      "state": "not_due"
+    },
+    {
+      "id": "SOFTX-SELCAL-FUTURE-PORTAL-01",
+      "action": "Open a new SelCal Editorial Manager draft only after scientific, repository, release, licence and author gates pass; capture the live article type, declarations, file roles, metadata and system-PDF workflow.",
+      "dueAt": "pre_submission_24h",
+      "mappedArtifacts": ["portal field capture", "slot map", "system PDF", "submission receipt"],
+      "state": "not_due"
+    }
+  ],
+  "conflictsAndUnknowns": [
+    "The current Guide requires LICENSE.txt while the current OSP templates require Licence.txt. The release plan must satisfy both names without implying that either spelling alone is universally authoritative.",
+    "The current Guide says recognized legal licences are listed below but the live page contains no licence-name list and only links the Open Source Initiative. Template examples do not establish an exhaustive approved list; the author and rights holder must choose the licence and unusual choices require editorial approval.",
+    "The journal-specific Word instruction requires figures embedded in the DOCX, while the generic figure section asks for separate figure files. Keep both representations until a live portal draft resolves the upload roles.",
+    "The Guide does not state that metadata C2 must be a tag or commit URL. Freeze a release or tag for reproducibility, but do not present that engineering control as an explicit journal rule.",
+    "No current public SelCal repository, release, independent real case, clean-install receipt, research-data deposit, chosen code licence, author declarations or validated impact evidence exists.",
+    "The live SelCal Editorial Manager article type, author fields, declaration screens, supplementary slots and generated review PDF have not been inspected."
+  ],
+  "holds": [
+    "V2 NULL RESELECTION DESIGN AWAITS EXPLICIT WRITTEN APPROVAL.",
+    "NULL TRANSFORMS AND FULL RESELECTION ARE NOT IMPLEMENTED; M0-M2 IS INCOMPLETE.",
+    "M6 SCIENTIFIC IMPACT AND COMPARATOR EVIDENCE HAS NOT BEEN EXECUTED.",
+    "PUBLIC GITHUB, RELEASE, LICENCE, DATA, CLEAN-INSTALL, DOCUMENTATION, RIGHTS, AUTHOR AND PORTAL EVIDENCE DOES NOT YET EXIST.",
+    "CURRENT GUIDE LICENCE-LIST OMISSION AND GUIDE-TEMPLATE FILE-NAME CONFLICT REMAIN OPEN."
+  ],
+  "downstreamState": {
+    "manuscript": "not_started",
+    "figures": "not_started",
+    "validator": "hold",
+    "manifest": "not_started",
+    "slotMap": "not_started",
+    "qa": "hold"
+  }
+}

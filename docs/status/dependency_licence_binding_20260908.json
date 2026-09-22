@@ -1,0 +1,19 @@
+{
+  "schemaVersion": "selcal-dependency-evidence-binding-v1",
+  "checkedDate": "2026-09-08",
+  "status": "CURRENT_INPUT_BINDING_ONLY_LICENCE_HOLD_UNCHANGED",
+  "priorInventoryPath": "docs/status/dependency_licence_evidence_20260831.json",
+  "priorInventorySha256": "ab368d8ff555f1e5cd951056524049b421ab3c99f1a594d84d0412d4a8dad62d",
+  "priorPyprojectSha256": "cc68d591d83c46a5feb706a58394efab37f89bca804309afa358f8c4ac69ba92",
+  "currentPyprojectSha256": "ce27251f2c9c329d01517dd2b3d128917e398116c10fe28f5187c3331acfee94",
+  "lockSha256": "4ccc4c47ede6fd04ef436fac56d8e1f9d91284c82b30b18b87044015f7227067",
+  "exactAddedText": "[project.scripts]\nselcal = \"selcal.cli:main\"\n\n",
+  "dependencySurfacesUnchanged": true,
+  "historicalInventoryImmutable": true,
+  "historicalMetadataGeneratedAt": "2026-08-31T18:04:32+08:00",
+  "dependencyMetadataReextracted": false,
+  "legalClearance": false,
+  "rootSourceLicenceSelected": false,
+  "currentReleaseArtifactLicenceAudit": "NOT_PERFORMED",
+  "method": "Remove the one exact CLI entrypoint addition from current pyproject bytes and verify the result equals the prior recorded SHA-256. Verify complete parsed TOML equality after removing project.scripts, exact current and prior inventory hashes, unchanged lock bytes and all existing lock-record/dependency-surface assertions. This is current input rebinding to historical metadata, not a new legal or dependency-artifact audit."
+}

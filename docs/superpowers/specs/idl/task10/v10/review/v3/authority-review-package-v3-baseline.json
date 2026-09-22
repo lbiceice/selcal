@@ -1,0 +1,68 @@
+{
+  "artifact_status": "HASH_BOUND_DIRTY_WORKTREE_BASELINE_NOT_AUTHORITY",
+  "baseline_id": "SELCAL-TASK10-AUTHORITY-REVIEW-V3-BASELINE-20260831",
+  "files": [
+    {
+      "bytes": 298339,
+      "logical_role": "TASK10_PROSE_AUTHORITY_INPUT",
+      "mode": "0644",
+      "path": "docs/superpowers/specs/2026-08-29-task10-deny-by-default-provider-proof-design.md",
+      "sha256": "74891e7b1a5190d64da5d2fd74e8ef0d74e671fc81600875995c2dbc7ee057ff"
+    },
+    {
+      "bytes": 4282426,
+      "logical_role": "V2_ADVERSE_REVIEW_REGISTRY_PREDECESSOR",
+      "mode": "0644",
+      "path": "docs/superpowers/specs/idl/task10/v10/review/authority-design-decision-registry-v2.json",
+      "sha256": "77229b74bf07a75793bb8dd142312f83e682325977474db3637fcb84d80cc8f5"
+    },
+    {
+      "bytes": 22075,
+      "logical_role": "V2_REGISTRY_SCHEMA_PREDECESSOR",
+      "mode": "0644",
+      "path": "docs/superpowers/specs/idl/task10/v10/review/schema/authority-design-decision-registry-v2.schema.json",
+      "sha256": "81f8e1e68fc1a8cecf964a542feaeb601431b7c2e74726f4e0940f163b23b967"
+    },
+    {
+      "bytes": 2661,
+      "logical_role": "V2_REVIEW_BASELINE_PREDECESSOR",
+      "mode": "0644",
+      "path": "docs/superpowers/specs/idl/task10/v10/review/authority-review-package-v2-baseline.json",
+      "sha256": "24d52f573f566317c973cd74e3e52779b987e2055c8df90a92a09040ca0bf7ea"
+    },
+    {
+      "bytes": 9294,
+      "logical_role": "V3_NORMATIVE_CORRECTION_PLAN",
+      "mode": "0644",
+      "path": "docs/superpowers/plans/2026-08-31-task10-authority-review-package-v3-correction.md",
+      "sha256": "85ababe68595f31f3df037a09d954b050fa718ecbc922bcd2bcf4b4838b20735"
+    },
+    {
+      "bytes": 24237,
+      "logical_role": "ADJUDICATED_SEMANTIC_ORACLE",
+      "mode": "0644",
+      "path": "docs/superpowers/specs/task10/v10/semantic-review/adjudicated-cross-representation-oracle-v1.json",
+      "sha256": "c9db64895c2cb802919b34e24f78551aabf2bee1530ac562515f428614fb2118"
+    },
+    {
+      "bytes": 20619,
+      "logical_role": "ADJUDICATED_SEMANTIC_ORACLE_SCHEMA",
+      "mode": "0644",
+      "path": "docs/superpowers/specs/task10/v10/semantic-review/adjudicated-cross-representation-oracle-v1.schema.json",
+      "sha256": "94b316ee6036a9d912248c4acf1d031cca5570770023007da15e0ad4b7086066"
+    },
+    {
+      "bytes": 97646,
+      "logical_role": "INDEPENDENT_CROSS_REPRESENTATION_AUDITOR",
+      "mode": "0644",
+      "path": "docs/superpowers/specs/task10/v10/semantic-review/validate_registry_cross_representation_v1.py",
+      "sha256": "73e7d0c508a7bf35e002207fa48dbbaf1276f0995d5d6c26fca4688eb93c5662"
+    }
+  ],
+  "git_head": "94f993bfd5240739f23dd5f5309a51e51034b962",
+  "identity_rule": "Verify every exact path, byte count, regular-file kind, mode 0644, and SHA-256 before semantic migration. No v2 attestation or scope-v1 authoring permission is inherited.",
+  "machine_stop_decision": "STOP_ON_ANY_PREDECESSOR_IDENTITY_DRIFT",
+  "new_commit_created": false,
+  "schema": "selcal.task10.g18.authority-review-package-v3-baseline.v1",
+  "scope": "NORMATIVE_REVIEW_INPUT_CORRECTION_V2_TO_V3_NOT_AUTHORITY"
+}

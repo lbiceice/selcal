@@ -1,0 +1,51 @@
+{
+  "schemaVersion": "selcal-historical-code-audit-binding-v2",
+  "checkedDate": "2026-09-20",
+  "status": "HISTORICAL_AUDIT_CURRENT_SOURCE_DELTA_ONLY",
+  "supersedes": "docs/status/scientific_code_smell_binding_20260908.json",
+  "priorAuditPath": "docs/status/scientific_code_smell_audit_20260831_v3.json",
+  "priorAuditSha256": "2f61dbce8c41cf8a0298407d61478936925d54c2a47716fa6b3c38de85d4dccc",
+  "preimageBoundSource": {
+    "path": "src/selcal/contracts_v2.py",
+    "preimagePath": "docs/status/evidence/product_gate_repair_20260908/contracts_v2.pre-extraction-20260908.py.txt",
+    "preimageSha256": "9e4cb4a945602c3ca8e299aefa73b01e753d3b90bdaa465b849d81bcc2b80ef5",
+    "currentSha256": "136eb961bdc6ecf34f1381676c59b5919a540cdf65136ad0c6de9eecb04ccae9",
+    "preimageProvenance": "Exact bytes read from the retained pre-refactor installed package; unchanged from the 2026-09-08 binding."
+  },
+  "changedSincePriorAudit": [
+    {
+      "path": "src/selcal/calibration_v2.py",
+      "auditSha256": "a5249d5facfbcfa8f28b98a70115dbd5ae197e9c1743796fb2fe7e32371e3900",
+      "currentSha256": "d93c527645fbb0d43bd9dec7301b9d03337a0a4e412af767952f6ae55a03187b"
+    },
+    {
+      "path": "src/selcal/contracts_v2.py",
+      "auditSha256": "9e4cb4a945602c3ca8e299aefa73b01e753d3b90bdaa465b849d81bcc2b80ef5",
+      "currentSha256": "136eb961bdc6ecf34f1381676c59b5919a540cdf65136ad0c6de9eecb04ccae9"
+    },
+    {
+      "path": "src/selcal/resolution_v2.py",
+      "auditSha256": "762738aac50a609e282ffb00ec74626d2b2aed1daa9aeea2e7716ebac409dfd3",
+      "currentSha256": "d9c89b728dba95882c9572ca162508f2e14d828d368f431a02908532ff7c8b56"
+    }
+  ],
+  "unchangedPriorSourceCount": 10,
+  "addedSources": [
+    {
+      "path": "src/selcal/_verifier_primitives_v2.py",
+      "sha256": "314bd108c242bc19bf2cf4ccfbf6a311633e2577f3097e063ebcbb23cc064060",
+      "addedBy": "2026-09-08 verifier extraction"
+    },
+    {
+      "path": "src/selcal/nulls/circular_shift_exact_v1.py",
+      "sha256": "4e36c341859f8e3acd42a5773705e31d87731eda1534a864366a2ebc3c9184e6",
+      "addedBy": "2026-09-20 exact-enumeration null"
+    }
+  ],
+  "changeReason": "2026-09-20 attainable-p guard (workflow/cli) and exact-enumeration null; see docs/superpowers/specs/2026-09-20-exact-enumeration-null-design.md and docs/status/evidence/comparator_arms_20260919/.",
+  "fullCodeSmellAuditReperformed": false,
+  "historicalFindingsPromoted": false,
+  "scientificValidation": false,
+  "releaseApproved": false,
+  "method": "The 2026-08-31 audit and its adverse findings stay immutable and historical. This binding records which cited sources have changed since it, with both digests, plus sources added afterwards. It establishes source evolution only: no historical complexity measurement is transferred, no old finding is promoted, and no current whole-code audit is claimed."
+}

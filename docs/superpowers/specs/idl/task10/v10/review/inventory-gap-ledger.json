@@ -1,0 +1,1252 @@
+{
+  "artifact_status": "REVIEW_GAP_LEDGER_NOT_AUTHORITY",
+  "callback_inverse_direction_correction": {
+    "binding_direction": {
+      "allowed_target_tables": [
+        "generated_callback_transfers"
+      ],
+      "field_path": "generated_stdlib_callbacks.transfer_label",
+      "kind": "VALIDATES"
+    },
+    "source_evidence": [
+      "L2756",
+      "L2784-L2788",
+      "L3102-L3112"
+    ],
+    "status": "CURRENT_SPEC_CORRECTION",
+    "transfer_direction": {
+      "allowed_target_tables": [
+        "generated_stdlib_callbacks"
+      ],
+      "field_path": "generated_callback_transfers.callback_binding_label",
+      "kind": "AUTH_REQUIRES"
+    },
+    "warning": "The obsolete partial fixture encoded the transfer direction as validating; that direction is rejected."
+  },
+  "coordination_error_provenance": {
+    "accepted_current_owner_range_46_64": [
+      "callsite_capabilities",
+      "namespace_capabilities",
+      "attribute_capabilities",
+      "state_operation_capabilities",
+      "protocol_capabilities",
+      "binary_operator_capabilities",
+      "audit_state_reads",
+      "interpreter_opcode_profile",
+      "ast_site_keys",
+      "bytecode_site_keys",
+      "bytecode_site_groups",
+      "structural_callsite_keys",
+      "structural_attribute_site_keys",
+      "structural_state_site_keys",
+      "structural_operator_site_keys",
+      "structural_protocol_site_keys",
+      "ast_site_manifest",
+      "bytecode_site_manifest",
+      "site_pairing_manifest"
+    ],
+    "effect_on_files": "NONE",
+    "provenance_status": "REJECTED_BEFORE_EDIT",
+    "rejected_assignment": "An earlier coordination message supplied an obsolete 46-64 owner series beginning with project_lambda_expressions and ending with generated_method_wrappers. Those names are not literals in the current ClosedOwnerTable and were not used.",
+    "source_evidence": [
+      "L3412-L3438"
+    ]
+  },
+  "current_exact_closed_owner_tables": [
+    "root_input_contract",
+    "project_modules",
+    "project_source_indexes",
+    "project_function_bindings",
+    "project_classes",
+    "behavior_slot_manifests",
+    "external_classes",
+    "external_abc_states",
+    "external_abc_bootstrap_recipes",
+    "external_python_intrinsics",
+    "generated_artifacts",
+    "generated_methods",
+    "generated_field_accessors",
+    "generated_callback_transfers",
+    "external_identities",
+    "project_descriptors",
+    "external_type_members",
+    "runtime_locator_root_nodes",
+    "runtime_locator_access_steps",
+    "runtime_value_locators",
+    "located_bound_callable_handles",
+    "process_local_identity_sources",
+    "process_local_identity_tokens",
+    "runtime_values",
+    "state_fields",
+    "runtime_state_sccs",
+    "authorization_dependency_graph",
+    "runtime_state_reference_graph",
+    "runtime_state_reference_bindings",
+    "generated_stdlib_callbacks",
+    "bound_type_members",
+    "value_contracts",
+    "root_argument_contracts",
+    "root_structured_state_contracts",
+    "argument_contracts",
+    "result_contracts",
+    "iterable_contracts",
+    "exception_contracts",
+    "outcome_contracts",
+    "semantic_guards",
+    "semantic_normal_transfers",
+    "semantic_exception_transfers",
+    "semantic_models",
+    "intrinsic_effect_steps",
+    "state_operation_transfers",
+    "project_functions",
+    "callsite_capabilities",
+    "namespace_capabilities",
+    "attribute_capabilities",
+    "state_operation_capabilities",
+    "protocol_capabilities",
+    "binary_operator_capabilities",
+    "audit_state_reads",
+    "interpreter_opcode_profile",
+    "ast_site_keys",
+    "bytecode_site_keys",
+    "bytecode_site_groups",
+    "structural_callsite_keys",
+    "structural_attribute_site_keys",
+    "structural_state_site_keys",
+    "structural_operator_site_keys",
+    "structural_protocol_site_keys",
+    "ast_site_manifest",
+    "bytecode_site_manifest",
+    "site_pairing_manifest",
+    "root_syntax_inventory"
+  ],
+  "data_quality_inventory_census": {
+    "anchor_summary_entries_current": 83,
+    "anchor_summary_entries_gap": 0,
+    "anchor_summary_entries_order_non_normative": 83,
+    "digest_summary_entries_current": 77,
+    "digest_summary_entries_gap": 0,
+    "digest_summary_entries_order_non_normative": 77,
+    "embedded_empty_records_explicitly_current": 1,
+    "embedded_field_row_semantics": "SourceSpan's four unnamed integer coordinates are represented by one aggregate GAP row; row counts therefore are schema rows, not a count of named coordinate fields.",
+    "embedded_field_rows_current": 352,
+    "embedded_field_rows_gap": 1,
+    "embedded_record_count": 85,
+    "enum_bearing_owner_count": 42,
+    "enum_definition_count": 91,
+    "enum_definition_gaps": 0,
+    "enum_value_count": 997,
+    "invariant_count": 226,
+    "invariant_explicit_gap_or_proposal_count": 8,
+    "ordering_exactly_one_current": 8,
+    "ordering_gap_owner_count": 0,
+    "ordering_ordered_table_current": 58,
+    "shared_catalog_field_schema_reference_edges_current": 6,
+    "shared_catalog_field_schema_unresolved_edges": 0,
+    "shared_catalog_refinement_base_edges_current": 2,
+    "shared_catalog_refinement_unresolved_edges": 0,
+    "shared_catalog_total_internal_dependency_edges_current": 8,
+    "shared_catalog_total_internal_unresolved_edges": 0,
+    "top_level_fields_current": 538,
+    "top_level_fields_gap": 0
+  },
+  "design_choices": [
+    {
+      "code": "D1",
+      "decision_needed": "Introduce a typed SiteRef for generic consumers and lifetime sites; proposed exact mappings are producer_frame_binding_label to project_function_bindings, producer/allocation/id callsites to structural_callsite_keys, and producer transfer to semantic_normal_transfers.",
+      "status": "PROPOSED_NOT_AUTHORITY"
+    },
+    {
+      "code": "D2",
+      "decision_needed": "Convert weak-reference identity values to IA and retain RL only for typed record references; contained-contract labels would target value_contracts.",
+      "status": "PROPOSED_NOT_AUTHORITY"
+    },
+    {
+      "code": "D3",
+      "decision_needed": "Derive authorization-graph source owners from the closed AUTH_REQUIRES rule set, target owners from the corresponding allowed-target unions, and graph node owners from their union.",
+      "status": "PROPOSED_NOT_AUTHORITY"
+    },
+    {
+      "code": "D4",
+      "decision_needed": "Freeze an exact CallbackLoad source_kind by target-owner matrix or replace it with a discriminated embedded binding; a broad target alias is forbidden.",
+      "status": "PROPOSED_NOT_AUTHORITY"
+    },
+    {
+      "code": "D5",
+      "decision_needed": "Make an explicit owner and wire-format decision for project slot/access bindings; do not use a broad catch-all alias.",
+      "status": "PROPOSED_NOT_AUTHORITY"
+    },
+    {
+      "code": "D6",
+      "decision_needed": "Add an explicit binding_kind discriminator for root constructor-or-factory, validator-or-ownership-gate, and iterable producer references.",
+      "status": "PROPOSED_NOT_AUTHORITY"
+    },
+    {
+      "code": "D7",
+      "decision_needed": "Retype exception MRO identities as tuple[IA], or make an explicit class-binding owner choice if RL is intended.",
+      "status": "PROPOSED_NOT_AUTHORITY"
+    },
+    {
+      "code": "D8",
+      "decision_needed": "Use discriminated GuardOperationRef, ImplementationRef, and StateDependencyRef records instead of broad owner unions.",
+      "status": "PROPOSED_NOT_AUTHORITY"
+    }
+  ],
+  "enum_rank_authority_gap": {
+    "candidate_decision_code": "D19",
+    "effect": "SiteKind, RootSyntaxInventoryKind, ProvenanceRequirementKind, and 84 other owner-local enum copies have current allowed values but no authority mapping from literal to numeric rank/order. Their values arrays are review declaration order only and cannot determine schema_field_order.",
+    "source_evidence": [
+      "L2992-L2997",
+      "L3201-L3203",
+      "L3268-L3270",
+      "L3377-L3384"
+    ],
+    "status": "PROPOSED_DECISION_NOT_AUTHORITY"
+  },
+  "enum_rank_status_census": {
+    "current_spec_rank_definitions": 4,
+    "current_spec_rank_instances": [
+      {
+        "enum_name": "LabelFreeValueNormalFormKind",
+        "owner_ordinal": 31,
+        "source_evidence": [
+          "L932-L936",
+          "L2947-L2950",
+          "L2992-L2997",
+          "L3056-L3057"
+        ]
+      },
+      {
+        "enum_name": "ProviderOpcode",
+        "owner_ordinal": 53,
+        "source_evidence": [
+          "L3218-L3270"
+        ]
+      },
+      {
+        "enum_name": "ProviderOpcode",
+        "owner_ordinal": 55,
+        "source_evidence": [
+          "L3218-L3270"
+        ]
+      },
+      {
+        "enum_name": "ProviderOpcode",
+        "owner_ordinal": 56,
+        "source_evidence": [
+          "L3218-L3270"
+        ]
+      }
+    ],
+    "review_order_not_normative_definitions": 87,
+    "status": "EXACT_BYTES_RECOMPUTED",
+    "total_enum_definitions": 91
+  },
+  "inventory_measurements": [
+    {
+      "embedded_field_rows_current": 109,
+      "embedded_field_rows_gap": 1,
+      "embedded_record_count": 21,
+      "enum_bearing_owner_count": 12,
+      "enum_definition_count": 22,
+      "enum_value_count": 171,
+      "fully_authority_closed_rows": 0,
+      "gap_or_pending_rows": 104,
+      "inventory_sha256": "940ee3e82c93a466076e9a4391b04b43a94d4e52d42e541db7eb903b32fc7487",
+      "measurement_basis": "Recomputed from the exact owner-inventory JSON bytes named by inventory_sha256.",
+      "owner_count": 21,
+      "owner_range": [
+        0,
+        20
+      ],
+      "rl_rows": 104,
+      "target_kind_closed_rows": 13,
+      "top_level_fields_current": 204,
+      "top_level_fields_gap": 0
+    },
+    {
+      "embedded_field_rows_current": 212,
+      "embedded_field_rows_gap": 0,
+      "embedded_record_count": 56,
+      "enum_bearing_owner_count": 17,
+      "enum_definition_count": 49,
+      "enum_value_count": 256,
+      "fully_authority_closed_rows": 0,
+      "gap_or_pending_rows": 143,
+      "inventory_sha256": "13d32e76f1da286214b936bc80e2b46322d92aae1d718f8af13a78c287e0aec2",
+      "measurement_basis": "Recomputed from the exact owner-inventory JSON bytes named by inventory_sha256.",
+      "owner_count": 24,
+      "owner_range": [
+        21,
+        44
+      ],
+      "rl_rows": 143,
+      "target_kind_closed_rows": 33,
+      "top_level_fields_current": 185,
+      "top_level_fields_gap": 0
+    },
+    {
+      "embedded_field_rows_current": 31,
+      "embedded_field_rows_gap": 0,
+      "embedded_record_count": 8,
+      "enum_bearing_owner_count": 13,
+      "enum_definition_count": 20,
+      "enum_value_count": 570,
+      "fully_authority_closed_rows": 0,
+      "gap_or_pending_rows": 69,
+      "inventory_sha256": "b820c503f6233ac61d3e168f637ce7b9246f0d034ac5e49577f9e988af2d560b",
+      "measurement_basis": "Recomputed from the exact owner-inventory JSON bytes named by inventory_sha256.",
+      "owner_count": 21,
+      "owner_range": [
+        45,
+        65
+      ],
+      "rl_rows": 69,
+      "target_kind_closed_rows": 6,
+      "top_level_fields_current": 149,
+      "top_level_fields_gap": 0
+    },
+    {
+      "fully_authority_closed_rows": 0,
+      "gap_or_pending_rows": 65,
+      "inventory_sha256": "b820c503f6233ac61d3e168f637ce7b9246f0d034ac5e49577f9e988af2d560b",
+      "measurement_basis": "Recomputed filtered view of owner-inventory-45-65.json for comparison with the independent 46-64 review.",
+      "owner_count": 19,
+      "owner_range": [
+        46,
+        64
+      ],
+      "rl_rows": 65,
+      "target_kind_closed_rows": 6
+    }
+  ],
+  "inventory_semantics": {
+    "allowed_target_tables": "Only this field plus kind can be target/kind-closed. null means the target set is unresolved.",
+    "anchor_and_digest_summaries": "Review-only direct-field plus shared-CL terminal templates. Their array order is not authority and cannot be used as compiler/digest order.",
+    "embedded_field_rows": "Structured schema rows. SourceSpan uses one explicit aggregate GAP row for four coordinates because names/order are absent.",
+    "enum_rank": "Allowed values remain CURRENT_SPEC. rank_status is CURRENT_SPEC only where the authority explicitly assigns enum/base-kind order or rank; all other values arrays use REVIEW_DECLARATION_ORDER and cannot define schema order.",
+    "enum_values": "Values are repeated per owner that consumes the enum so each owner inventory is self-contained; totals therefore include intentional repetitions.",
+    "fully_authority_closed": "Requires target/kind, exact discriminator grammar, containing-record identity, complete embedded/enums inventory, and normative schema_field_order. Current count is zero.",
+    "inventory_preorder_ordinal": "Zero-based review traversal ordinal only; it is not schema_field_order.",
+    "owner_table_ordering": "ORDERED_TABLE is current from L1736-L1739; EXACTLY_ONE uses singleton ordinal zero. This is separate from unresolved ReferenceFieldRule.schema_field_order.",
+    "schema_field_order": "All values remain null because the ordering proposal is not authority.",
+    "shared_record_dependencies": "R[CL], R[AtomicCL], and R[IntAtomicCL] resolve only through shared_record_inventory. Owners carry pointers and occurrence metadata rather than cloned schemas.",
+    "target_hints": "Non-normative review leads only. They cannot be copied into an authority alias or KAT without an explicit D1-D8 or leaf-level decision.",
+    "target_kind_closed": "A bounded status that does not close the overall row."
+  },
+  "inventory_totals_from_exact_bytes": {
+    "fully_authority_closed_rows": 0,
+    "owner_count": 66,
+    "rl_rows": 316,
+    "target_kind_closed_rows": 52
+  },
+  "machine_stop_decision": {
+    "action": "STOP_BEFORE_AUTHORITY_IDL_AND_KATS",
+    "blocking_conditions": [
+      "D1-D8 are not authority decisions.",
+      "At least one RL leaf still has allowed_target_tables=null.",
+      "ReferenceFieldRule.schema_field_order is not normatively frozen.",
+      "Exact discriminator grammar and recursive value-expression ReferenceFieldRule expansion are not normatively frozen.",
+      "SourceSpan field names/order and GENERATED_FIELD_RESULT wire semantics remain unresolved.",
+      "Project-class/descriptor nullability, runtime-locator target alias, ABC discriminator, and operation-outcome union wire gaps remain explicit.",
+      "No RL row is fully authority-closed; 52 target/kind-closed rows are only a bounded substatus.",
+      "Shared CL recursion is now explicit and closed, but 87 enum ranks and the separate ValueExpression ReferenceFieldRule recursion/schema order remain non-authority."
+    ],
+    "can_build_full_kats": false,
+    "can_freeze_authority_idl": false,
+    "reason": "The review inventory now exhausts current explicit fields/embedded records/enums, but the authority still does not determine one complete static ReferenceFieldRule schema and all remaining wire discriminators without design judgment.",
+    "status": "BLOCKING_G18_REMAINS_OPEN"
+  },
+  "ordering_review_provenance": {
+    "authority_evidence": [
+      "L1736-L1739",
+      "L2042-L2052"
+    ],
+    "disposition": "REVIEW_OBJECTION_WITHDRAWN_AFTER_BROADER_AUTHORITY_REVIEW",
+    "finding": "All 58 top-level labelled tables retain literal-label UTF-8 order; the eight singleton owners retain ordinal zero. L2080-L2082 is auxiliary registry evidence, not the sole basis.",
+    "ordered_table_owner_count": 58,
+    "singleton_owner_count": 8,
+    "status": "CURRENT_SPEC"
+  },
+  "primary_gaps": [
+    {
+      "code": "G18_CLOSED_REFERENCE_ALIAS_AND_LEAF_IDL_NOT_IN_AUTHORITY",
+      "effect": "The current prose does not provide a complete machine-readable ReferenceFieldRule bijection for all 66 owners.",
+      "status": "OPEN"
+    },
+    {
+      "code": "SOURCE_SPAN_FIELD_ORDER",
+      "effect": "SourceSpan is exactly four integer coordinates, but field names and order are not authority.",
+      "source_evidence": [
+        "L2125-L2132"
+      ],
+      "status": "OPEN"
+    },
+    {
+      "code": "GENERATED_FIELD_RESULT_WIRE_ARITY",
+      "effect": "The semantic description requires generated-field accessor plus audit-read primitive, but RuntimeLocatorAccessStep exposes only operation_binding_label.",
+      "source_evidence": [
+        "L614-L626",
+        "L2231-L2235"
+      ],
+      "status": "OPEN"
+    },
+    {
+      "code": "VALUE_EXPRESSION_RECURSIVE_REFERENCE_RULE_GRAMMAR",
+      "effect": "Four recursive re-entry schemas are explicit, but the finite ReferenceFieldRule expansion and schema order remain proposals.",
+      "source_evidence": [
+        "L2964-L2969",
+        "L2981-L2989",
+        "L3031-L3034"
+      ],
+      "status": "OPEN"
+    },
+    {
+      "code": "EXTERNAL_CLASS_ABC_REFERENCE_DISCRIMINATOR",
+      "effect": "ABCMeta nullability semantics exist, but an exact wire discriminator is not frozen for abc_state_binding_label.",
+      "source_evidence": [
+        "L2156-L2171"
+      ],
+      "status": "OPEN"
+    },
+    {
+      "code": "PROJECT_CLASS_AND_DESCRIPTOR_KIND_NULLABILITY",
+      "effect": "Kind-specific semantics are stated, but the complete optional-field nullability matrices are not normative.",
+      "source_evidence": [
+        "L472-L486",
+        "L576-L582",
+        "L2139-L2147",
+        "L2215-L2219"
+      ],
+      "status": "OPEN"
+    },
+    {
+      "code": "RUNTIME_LOCATOR_ROOT_TARGET_ALIAS",
+      "effect": "The prose names branch-specific source categories, but exact static allowed target owner sets remain an unresolved reference-alias decision.",
+      "source_evidence": [
+        "L593-L605",
+        "L2228-L2230"
+      ],
+      "status": "OPEN"
+    },
+    {
+      "code": "OPERATION_OUTCOME_UNION_WIRE",
+      "effect": "The field is O[RL] | NO_NORMAL_RETURN, but exact machine wire encoding remains unfrozen.",
+      "source_evidence": [
+        "L1065-L1071",
+        "L2355-L2356"
+      ],
+      "status": "OPEN"
+    },
+    {
+      "code": "ENUM_RANK_MAPPING_NOT_AUTHORITY",
+      "effect": "Only LabelFreeValueNormalFormKind and three ProviderOpcode owner-local copies have explicit rank/order authority; the other 87 enum definitions cannot supply schema rank.",
+      "source_evidence": [
+        "L932-L936",
+        "L2992-L2997",
+        "L3201-L3203",
+        "L3268-L3270",
+        "L3377-L3384"
+      ],
+      "status": "OPEN"
+    }
+  ],
+  "proposals": {
+    "discriminator_grammar": {
+      "grammar": "record_discriminator := ANY | ALL(selector==ENUM_LITERAL[,selector==ENUM_LITERAL...]); selectors sort by strict UTF-8; OR is forbidden; a tuple path uses [*] and applies the same discriminator to each element.",
+      "status": "PROPOSED_NOT_AUTHORITY"
+    },
+    "recursive_value_expression_grammar": {
+      "grammar": "VE := ValueExpressionNormalForm.clauses[*].value; recursion occurs only through StructuredPayload.fields[*].value and ContainerPayload.element_contracts[*], key_contract, and mapped_value_contract. Each recursive occurrence reuses the branch-specific Ref leaf templates; a machine compiler must expand a finite template grammar rather than an unbounded instance tree.",
+      "status": "PROPOSED_NOT_AUTHORITY"
+    },
+    "schema_field_order": {
+      "grammar": "A zero-based uninterrupted flattened-preorder RL-template ordinal within each owner; union branches follow frozen enum rank; embedded fields use declared field order; recursive VE uses the finite grammar-template order rather than runtime recursion depth.",
+      "status": "PROPOSED_NOT_AUTHORITY"
+    }
+  },
+  "review_inventory_rules": [
+    {
+      "artifact_layer": "REVIEW_INVENTORY",
+      "failure_code": "ENUM_NAME_NONUNIQUE_VALUE_DOMAIN",
+      "predicate": "Across all owner inventories, each enum_name maps to exactly one ordered tuple of allowed values; repeated enum_name entries are permitted only when their value tuples are identical.",
+      "rule_id": "REVIEW_ENUM_NAME_VALUE_DOMAIN_UNIQUENESS",
+      "status": "PROPOSED_NOT_AUTHORITY"
+    }
+  ],
+  "review_remediation": {
+    "anchor_summary_entries": 83,
+    "anchor_summary_order_non_normative": true,
+    "behavior_slot_own_variants_added": 2,
+    "class_member_branch_matrix_field_paths": [
+      {
+        "field_path": "class_member_records[*]",
+        "owner_ordinal": 4,
+        "owner_table": "project_classes",
+        "source_evidence": [
+          "L2148-L2150"
+        ]
+      },
+      {
+        "field_path": "class_namespace_snapshot[*]",
+        "owner_ordinal": 6,
+        "owner_table": "external_classes",
+        "source_evidence": [
+          "L2148-L2150",
+          "L2156-L2160"
+        ]
+      },
+      {
+        "field_path": "enum_recipe.version_dependency_records[*]",
+        "owner_ordinal": 10,
+        "owner_table": "generated_artifacts",
+        "source_evidence": [
+          "L2148-L2150",
+          "L2191-L2214"
+        ]
+      },
+      {
+        "field_path": "kind_payload.complete_field_records[*]",
+        "owner_ordinal": 23,
+        "owner_table": "runtime_values",
+        "source_evidence": [
+          "L2148-L2150",
+          "L2275-L2292"
+        ]
+      }
+    ],
+    "class_member_branch_matrix_owner_count": 4,
+    "closed_status_renamed": true,
+    "digest_summary_entries": 77,
+    "digest_summary_order_non_normative": true,
+    "embedded_field_rows_current": 352,
+    "embedded_field_rows_gap": 1,
+    "embedded_record_count": 85,
+    "enum_bearing_owner_count": 42,
+    "enum_definition_count": 91,
+    "enum_name_domain_collision_repairs": 2,
+    "enum_name_domain_uniqueness_gate": "PROPOSED_NOT_AUTHORITY",
+    "enum_rank_current_spec_definitions": 4,
+    "enum_rank_review_only_definitions": 87,
+    "enum_value_count": 997,
+    "external_abc_discriminator_removed_from_authority_field": true,
+    "fully_authority_closed_rows": 0,
+    "nullable_top_level_fields_corrected": 10,
+    "ordering_objection_withdrawn": true,
+    "ordering_ordered_tables": 58,
+    "ordering_singletons": 8,
+    "owner31_real_containing_record_corrections": 12,
+    "owner_structural_metadata_added": true,
+    "recursive_value_expression_edges": 4,
+    "rl_rows_after_remediation": 316,
+    "shared_catalog_content_sha256": "8feb19a30baea992a0de24e85c7c4653919c467a79caa4929a04fe9f2d6889c6",
+    "shared_catalog_current_spec_invariants": 12,
+    "shared_catalog_field_schema_reference_edges": 6,
+    "shared_catalog_field_schema_unresolved_edges": 0,
+    "shared_catalog_nonrecursive_structural_edges": 2,
+    "shared_catalog_recursive_reentry_edges": 4,
+    "shared_catalog_refinement_base_edges": 2,
+    "shared_catalog_refinement_unresolved_edges": 0,
+    "shared_catalog_total_internal_dependency_edges": 8,
+    "shared_catalog_total_internal_unresolved_edges": 0,
+    "shared_record_catalog_records": 5,
+    "shared_record_consuming_owners": 13,
+    "shared_record_direct_owner_reference_occurrences": 20,
+    "shared_record_direct_owner_unresolved_occurrences": 0,
+    "shared_record_reference_occurrences": 20,
+    "shared_record_unresolved_occurrences": 0,
+    "source_span_aggregate_gap_rows": 1,
+    "status": "REVIEW_ARTIFACT_CORRECTED_AUTHORITY_STILL_STOPPED",
+    "top_level_fields_current": 538,
+    "top_level_fields_gap": 0
+  },
+  "schema": "selcal.task10.inventory-gap-ledger.v1",
+  "shared_record_inventory": {
+    "atomic_union_A": {
+      "constraints": {
+        "bytes_maximum": 65536,
+        "integer_maximum_bits": 4096,
+        "numeric_components": "FINITE_ONLY",
+        "string_maximum_strict_utf8_bytes": 4096
+      },
+      "members": [
+        "None",
+        "bool",
+        "bounded int",
+        "finite float",
+        "finite complex",
+        "str",
+        "bytes",
+        "Ellipsis"
+      ],
+      "source_evidence": [
+        "L2545-L2546",
+        "L2588-L2590"
+      ],
+      "status": "CURRENT_SPEC"
+    },
+    "catalog_array_order_status": "REVIEW_ORDER_NOT_NORMATIVE",
+    "catalog_content_sha256": "8feb19a30baea992a0de24e85c7c4653919c467a79caa4929a04fe9f2d6889c6",
+    "catalog_digest_scope": "SHA-256 of canonical sort-key JSON for shared_record_inventory with catalog_content_sha256 omitted",
+    "catalog_identity": "selcal.task10.shared-record-inventory.v1@74891e7b1a5190d64da5d2fd74e8ef0d74e671fc81600875995c2dbc7ee057ff",
+    "dependency_key_schema": [
+      "owner_ordinal",
+      "owner_table",
+      "containing_record",
+      "discriminator",
+      "field_path",
+      "outer_cardinality",
+      "catalog_record"
+    ],
+    "invariants": [
+      {
+        "invariant": "CL wire projection is total and injective; every tag object has exactly one top-level tag and no extra field.",
+        "source_evidence": [
+          "L2565-L2586",
+          "L2592-L2599"
+        ],
+        "status": "CURRENT_SPEC"
+      },
+      {
+        "invariant": "Exact-type dispatch tests bool before int.",
+        "source_evidence": [
+          "L2588-L2590"
+        ],
+        "status": "CURRENT_SPEC"
+      },
+      {
+        "invariant": "Integers use at most 4096 bits, strings at most 4096 strict-UTF-8 bytes, bytes at most 65536 bytes, and float/complex components are finite.",
+        "source_evidence": [
+          "L2588-L2590"
+        ],
+        "status": "CURRENT_SPEC"
+      },
+      {
+        "invariant": "CL trees are acyclic with maximum depth 32, at most 256 immediate members, at most 4096 total nodes, and at most 1048576 canonical UTF-8 bytes.",
+        "source_evidence": [
+          "L2601-L2613"
+        ],
+        "status": "CURRENT_SPEC"
+      },
+      {
+        "invariant": "Depth failure is GRAPH_DEPTH_EXCEEDED; item/node/byte failure is ABSTRACT_CONTAINER_BOUND_EXCEEDED.",
+        "source_evidence": [
+          "L2606-L2613"
+        ],
+        "status": "CURRENT_SPEC"
+      },
+      {
+        "invariant": "Legacy $label is reserved negative syntax and cannot encode an RL or CL identity; only $identity_anchor represents identity in CL.",
+        "source_evidence": [
+          "L2597-L2599"
+        ],
+        "status": "CURRENT_SPEC"
+      },
+      {
+        "invariant": "Tuple/list retain order, FROZENSET items sort by canonical bytes, and DICT exact-string keys are unique and strict-UTF-8 sorted.",
+        "source_evidence": [
+          "L2590-L2596"
+        ],
+        "status": "CURRENT_SPEC"
+      },
+      {
+        "invariant": "FROZENSET members with duplicate full canonical bytes fail.",
+        "source_evidence": [
+          "L2590-L2592"
+        ],
+        "status": "CURRENT_SPEC"
+      },
+      {
+        "invariant": "A shared but non-cyclic source object is tree-expanded at every occurrence, and each occurrence counts again against both node and canonical-byte budgets.",
+        "source_evidence": [
+          "L2601-L2605"
+        ],
+        "status": "CURRENT_SPEC"
+      },
+      {
+        "invariant": "Before sorting, allocating output arrays, or hashing, an iterative preflight walk checks exact types, the active-path identity set, depth, per-container count, and total nodes.",
+        "source_evidence": [
+          "L2605-L2608"
+        ],
+        "status": "CURRENT_SPEC"
+      },
+      {
+        "invariant": "After iterative preflight and before canonical-byte materialization, a bounded streaming size pass checks the canonical UTF-8 byte limit.",
+        "source_evidence": [
+          "L2606-L2608"
+        ],
+        "status": "CURRENT_SPEC"
+      },
+      {
+        "invariant": "The CL preflight and size walk invokes no candidate protocol.",
+        "source_evidence": [
+          "L2608-L2609"
+        ],
+        "status": "CURRENT_SPEC"
+      }
+    ],
+    "nonrecursive_schema_edges": [
+      {
+        "cardinality": "ORDERED_TUPLE",
+        "edge_id": "CL_DICT_ENTRIES",
+        "from_record": "CL[DICT]",
+        "source_evidence": [
+          "L2554-L2555",
+          "L2601-L2613"
+        ],
+        "status": "CURRENT_SPEC",
+        "to_record": "LiteralDictEntry"
+      },
+      {
+        "cardinality": "SCALAR",
+        "edge_id": "CL_NDARRAY_VALUE",
+        "from_record": "CL[NDARRAY]",
+        "source_evidence": [
+          "L2557-L2559"
+        ],
+        "status": "CURRENT_SPEC",
+        "to_record": "CanonicalArrayLiteral"
+      }
+    ],
+    "records": {
+      "AtomicCL": {
+        "base_record_pointer": "#/shared_record_inventory/records/CL",
+        "kind": "REFINEMENT_ALIAS",
+        "resolved_fields": [
+          {
+            "cardinality": "SCALAR",
+            "field_ordinal": 0,
+            "name": "value",
+            "source_evidence": [
+              "L2943-L2944"
+            ],
+            "status": "CURRENT_SPEC",
+            "type": "A"
+          }
+        ],
+        "restriction": {
+          "allowed_discriminators": [
+            "ATOMIC"
+          ]
+        },
+        "source_evidence": [
+          "L2943-L2944"
+        ],
+        "status": "CURRENT_SPEC"
+      },
+      "CL": {
+        "alias": "CL",
+        "branch_discriminator_values": [
+          "ATOMIC",
+          "IDENTITY",
+          "TUPLE",
+          "LIST",
+          "FROZENSET",
+          "DICT",
+          "NDARRAY"
+        ],
+        "branch_order_status": "REVIEW_DECLARATION_ORDER_NOT_NORMATIVE",
+        "branches": [
+          {
+            "discriminator": "ATOMIC",
+            "fields": [
+              {
+                "cardinality": "SCALAR",
+                "field_ordinal": 0,
+                "name": "value",
+                "source_evidence": [
+                  "L2545-L2549"
+                ],
+                "status": "CURRENT_SPEC",
+                "type": "A"
+              }
+            ],
+            "source_evidence": [
+              "L2545-L2549"
+            ],
+            "status": "CURRENT_SPEC"
+          },
+          {
+            "discriminator": "IDENTITY",
+            "fields": [
+              {
+                "cardinality": "SCALAR",
+                "field_ordinal": 0,
+                "name": "identity_anchor",
+                "source_evidence": [
+                  "L2547-L2550"
+                ],
+                "status": "CURRENT_SPEC",
+                "type": "IA"
+              }
+            ],
+            "source_evidence": [
+              "L2547-L2550"
+            ],
+            "status": "CURRENT_SPEC"
+          },
+          {
+            "discriminator": "TUPLE",
+            "fields": [
+              {
+                "cardinality": "ORDERED_TUPLE",
+                "field_ordinal": 0,
+                "name": "items",
+                "source_evidence": [
+                  "L2551-L2551"
+                ],
+                "status": "CURRENT_SPEC",
+                "type": "tuple[R[CL]]"
+              }
+            ],
+            "source_evidence": [
+              "L2551"
+            ],
+            "status": "CURRENT_SPEC"
+          },
+          {
+            "discriminator": "LIST",
+            "fields": [
+              {
+                "cardinality": "ORDERED_TUPLE",
+                "field_ordinal": 0,
+                "name": "items",
+                "source_evidence": [
+                  "L2552-L2552"
+                ],
+                "status": "CURRENT_SPEC",
+                "type": "tuple[R[CL]]"
+              }
+            ],
+            "source_evidence": [
+              "L2552"
+            ],
+            "status": "CURRENT_SPEC"
+          },
+          {
+            "discriminator": "FROZENSET",
+            "fields": [
+              {
+                "cardinality": "ORDERED_TUPLE",
+                "field_ordinal": 0,
+                "name": "items",
+                "source_evidence": [
+                  "L2553-L2553"
+                ],
+                "status": "CURRENT_SPEC",
+                "type": "tuple[R[CL]]"
+              }
+            ],
+            "source_evidence": [
+              "L2553",
+              "L2590-L2596"
+            ],
+            "status": "CURRENT_SPEC"
+          },
+          {
+            "discriminator": "DICT",
+            "fields": [
+              {
+                "cardinality": "ORDERED_TUPLE",
+                "field_ordinal": 0,
+                "name": "entries",
+                "source_evidence": [
+                  "L2554-L2555"
+                ],
+                "status": "CURRENT_SPEC",
+                "type": "tuple[R[LiteralDictEntry]]"
+              }
+            ],
+            "source_evidence": [
+              "L2554-L2555",
+              "L2592-L2596"
+            ],
+            "status": "CURRENT_SPEC"
+          },
+          {
+            "discriminator": "NDARRAY",
+            "fields": [
+              {
+                "cardinality": "SCALAR",
+                "field_ordinal": 0,
+                "name": "value",
+                "source_evidence": [
+                  "L2557-L2559"
+                ],
+                "status": "CURRENT_SPEC",
+                "type": "R[CanonicalArrayLiteral]"
+              }
+            ],
+            "source_evidence": [
+              "L2557-L2559"
+            ],
+            "status": "CURRENT_SPEC"
+          }
+        ],
+        "canonical_name": "CanonicalLiteral",
+        "constraints": [
+          {
+            "constraint": "Every tag object has exactly one top-level tag and no extra field.",
+            "source_evidence": [
+              "L2592-L2599"
+            ],
+            "status": "CURRENT_SPEC"
+          },
+          {
+            "constraint": "The tree is acyclic, root depth <=32, immediate members <=256, total nodes <=4096, and canonical UTF-8 bytes <=1048576.",
+            "source_evidence": [
+              "L2601-L2613"
+            ],
+            "status": "CURRENT_SPEC"
+          },
+          {
+            "constraint": "Tuple/list preserve order; frozenset items sort by canonical bytes; dict keys are unique exact strings sorted by strict UTF-8.",
+            "source_evidence": [
+              "L2590-L2596"
+            ],
+            "status": "CURRENT_SPEC"
+          }
+        ],
+        "kind": "CLOSED_DISCRIMINATED_RECURSIVE_UNION",
+        "source_evidence": [
+          "L2545-L2613"
+        ],
+        "status": "CURRENT_SPEC"
+      },
+      "CanonicalArrayLiteral": {
+        "constraints": [
+          {
+            "constraint": "shape and strides have equal length; shape entries are non-negative; content_digest uses array-content domain.",
+            "source_evidence": [
+              "L2594-L2596"
+            ],
+            "status": "CURRENT_SPEC"
+          }
+        ],
+        "fields": [
+          {
+            "cardinality": "SCALAR",
+            "field_ordinal": 0,
+            "name": "dtype",
+            "source_evidence": [
+              "L2557-L2559"
+            ],
+            "status": "CURRENT_SPEC",
+            "type": "S"
+          },
+          {
+            "cardinality": "ORDERED_TUPLE",
+            "field_ordinal": 1,
+            "name": "shape",
+            "source_evidence": [
+              "L2557-L2559"
+            ],
+            "status": "CURRENT_SPEC",
+            "type": "tuple[I]"
+          },
+          {
+            "cardinality": "ORDERED_TUPLE",
+            "field_ordinal": 2,
+            "name": "strides",
+            "source_evidence": [
+              "L2557-L2559"
+            ],
+            "status": "CURRENT_SPEC",
+            "type": "tuple[I]"
+          },
+          {
+            "cardinality": "SCALAR",
+            "field_ordinal": 3,
+            "name": "hasobject",
+            "source_evidence": [
+              "L2557-L2559"
+            ],
+            "status": "CURRENT_SPEC",
+            "type": "B"
+          },
+          {
+            "cardinality": "SCALAR",
+            "field_ordinal": 4,
+            "name": "writeable",
+            "source_evidence": [
+              "L2557-L2559"
+            ],
+            "status": "CURRENT_SPEC",
+            "type": "B"
+          },
+          {
+            "cardinality": "SCALAR",
+            "field_ordinal": 5,
+            "name": "content_digest",
+            "source_evidence": [
+              "L2557-L2559"
+            ],
+            "status": "CURRENT_SPEC",
+            "type": "H"
+          }
+        ],
+        "source_evidence": [
+          "L2557-L2559",
+          "L2594-L2596"
+        ],
+        "status": "CURRENT_SPEC"
+      },
+      "IntAtomicCL": {
+        "base_record_pointer": "#/shared_record_inventory/records/AtomicCL",
+        "kind": "REFINEMENT_ALIAS",
+        "resolved_fields": [
+          {
+            "cardinality": "SCALAR",
+            "field_ordinal": 0,
+            "name": "value",
+            "source_evidence": [
+              "L2943-L2944"
+            ],
+            "status": "CURRENT_SPEC",
+            "type": "EXACT_INT_FROM_A"
+          }
+        ],
+        "restriction": {
+          "allowed_discriminators": [
+            "ATOMIC"
+          ],
+          "atomic_exact_type": "int"
+        },
+        "source_evidence": [
+          "L2943-L2944"
+        ],
+        "status": "CURRENT_SPEC"
+      },
+      "LiteralDictEntry": {
+        "constraints": [
+          {
+            "constraint": "Keys are exact strings, unique, strict-UTF-8 sorted, and cannot begin with $.",
+            "source_evidence": [
+              "L2592-L2596"
+            ],
+            "status": "CURRENT_SPEC"
+          }
+        ],
+        "fields": [
+          {
+            "cardinality": "SCALAR",
+            "field_ordinal": 0,
+            "name": "key",
+            "source_evidence": [
+              "L2554-L2555"
+            ],
+            "status": "CURRENT_SPEC",
+            "type": "S"
+          },
+          {
+            "cardinality": "SCALAR",
+            "field_ordinal": 1,
+            "name": "value",
+            "source_evidence": [
+              "L2554-L2555"
+            ],
+            "status": "CURRENT_SPEC",
+            "type": "R[CL]"
+          }
+        ],
+        "source_evidence": [
+          "L2554-L2555",
+          "L2592-L2596"
+        ],
+        "status": "CURRENT_SPEC"
+      }
+    },
+    "recursive_schema_edges": [
+      {
+        "cardinality": "ORDERED_TUPLE",
+        "edge_id": "CL_TUPLE_ITEMS",
+        "from_record": "CL[TUPLE]",
+        "source_evidence": [
+          "L2551",
+          "L2601-L2613"
+        ],
+        "status": "CURRENT_SPEC",
+        "to_record": "CL"
+      },
+      {
+        "cardinality": "ORDERED_TUPLE",
+        "edge_id": "CL_LIST_ITEMS",
+        "from_record": "CL[LIST]",
+        "source_evidence": [
+          "L2552",
+          "L2601-L2613"
+        ],
+        "status": "CURRENT_SPEC",
+        "to_record": "CL"
+      },
+      {
+        "cardinality": "ORDERED_TUPLE",
+        "edge_id": "CL_FROZENSET_ITEMS",
+        "from_record": "CL[FROZENSET]",
+        "source_evidence": [
+          "L2553",
+          "L2601-L2613"
+        ],
+        "status": "CURRENT_SPEC",
+        "to_record": "CL"
+      },
+      {
+        "cardinality": "SCALAR",
+        "edge_id": "LITERAL_DICT_ENTRY_VALUE",
+        "from_record": "LiteralDictEntry",
+        "source_evidence": [
+          "L2554-L2555",
+          "L2601-L2613"
+        ],
+        "status": "CURRENT_SPEC",
+        "to_record": "CL"
+      }
+    ],
+    "refinement_base_edges": [
+      {
+        "edge_id": "ATOMIC_CL_BASE",
+        "from_record": "AtomicCL",
+        "source_evidence": [
+          "L2943-L2944"
+        ],
+        "status": "CURRENT_SPEC",
+        "to_record": "CL"
+      },
+      {
+        "edge_id": "INT_ATOMIC_CL_BASE",
+        "from_record": "IntAtomicCL",
+        "source_evidence": [
+          "L2943-L2944"
+        ],
+        "status": "CURRENT_SPEC",
+        "to_record": "AtomicCL"
+      }
+    ],
+    "resolver_contract": {
+      "R[AtomicCL]": "#/shared_record_inventory/records/AtomicCL",
+      "R[CL]": "#/shared_record_inventory/records/CL",
+      "R[CanonicalArrayLiteral]": "#/shared_record_inventory/records/CanonicalArrayLiteral",
+      "R[IntAtomicCL]": "#/shared_record_inventory/records/IntAtomicCL",
+      "R[LiteralDictEntry]": "#/shared_record_inventory/records/LiteralDictEntry"
+    },
+    "schema": "selcal.task10.shared-record-inventory.v1",
+    "source_evidence": [
+      "L2545-L2613",
+      "L2943-L2944"
+    ],
+    "status": "CURRENT_SPEC_SHARED_CATALOG",
+    "wire_projection": [
+      {
+        "discriminator": "ATOMIC",
+        "projection": "null | bare bool | bare int | bare string | {$float:hex} | {$complex:[real_hex,imag_hex]} | {$bytes:lowercase_hex} | {$ellipsis:true}",
+        "source_evidence": [
+          "L2568-L2576"
+        ],
+        "status": "CURRENT_SPEC"
+      },
+      {
+        "discriminator": "IDENTITY",
+        "projection": "{$identity_anchor:IA}",
+        "source_evidence": [
+          "L2577"
+        ],
+        "status": "CURRENT_SPEC"
+      },
+      {
+        "discriminator": "TUPLE",
+        "projection": "{$tuple:[canonical_literal(item),...]}",
+        "source_evidence": [
+          "L2578"
+        ],
+        "status": "CURRENT_SPEC"
+      },
+      {
+        "discriminator": "LIST",
+        "projection": "{$list:[canonical_literal(item),...]}",
+        "source_evidence": [
+          "L2579"
+        ],
+        "status": "CURRENT_SPEC"
+      },
+      {
+        "discriminator": "FROZENSET",
+        "projection": "{$frozenset:[canonical_literal(item),...]}",
+        "source_evidence": [
+          "L2580"
+        ],
+        "status": "CURRENT_SPEC"
+      },
+      {
+        "discriminator": "DICT",
+        "projection": "{$dict:[[exact_string_key,canonical_literal(value)],...]}",
+        "source_evidence": [
+          "L2581-L2582"
+        ],
+        "status": "CURRENT_SPEC"
+      },
+      {
+        "discriminator": "NDARRAY",
+        "projection": "{$ndarray:{dtype:S,shape:[I,...],strides:[I,...],hasobject:B,writeable:B,content:H}}",
+        "source_evidence": [
+          "L2583-L2585"
+        ],
+        "status": "CURRENT_SPEC"
+      }
+    ]
+  },
+  "shared_record_resolution_census": {
+    "catalog_content_sha256": "8feb19a30baea992a0de24e85c7c4653919c467a79caa4929a04fe9f2d6889c6",
+    "catalog_identity": "selcal.task10.shared-record-inventory.v1@74891e7b1a5190d64da5d2fd74e8ef0d74e671fc81600875995c2dbc7ee057ff",
+    "catalog_record_count": 5,
+    "consuming_owner_count": 13,
+    "consuming_owner_ordinals": [
+      4,
+      6,
+      10,
+      14,
+      21,
+      23,
+      28,
+      29,
+      31,
+      33,
+      40,
+      41,
+      56
+    ],
+    "catalog_field_schema_reference_edges": 6,
+    "catalog_field_schema_unresolved_edges": 0,
+    "catalog_refinement_base_edges": 2,
+    "catalog_refinement_unresolved_edges": 0,
+    "catalog_total_internal_dependency_edges": 8,
+    "catalog_total_internal_unresolved_edges": 0,
+    "direct_owner_reference_occurrences": 20,
+    "direct_owner_unresolved_occurrences": 0,
+    "nonrecursive_structural_edge_count": 2,
+    "recursive_edge_count": 4,
+    "reference_occurrences_by_record": {
+      "AtomicCL": 4,
+      "CL": 13,
+      "IntAtomicCL": 3
+    },
+    "reference_occurrences_total": 20,
+    "status": "CURRENT_SPEC_SHARED_CATALOG_RESOLVED",
+    "unresolved_reference_occurrences": 0
+  },
+  "spec_binding": {
+    "path": "docs/superpowers/specs/2026-08-29-task10-deny-by-default-provider-proof-design.md",
+    "sha256": "74891e7b1a5190d64da5d2fd74e8ef0d74e671fc81600875995c2dbc7ee057ff"
+  },
+  "stale_fixture_policy": {
+    "path": "docs/superpowers/specs/fixtures/task10-reference-schema-v10.json",
+    "status": "PARTIAL_GAP_ARTIFACT_NOT_AUTHORITY",
+    "used_as_input": false
+  },
+  "structural_site_authorization_warning": {
+    "finding": "The current exhaustive default makes structural site ast_key_label and bytecode_site_group_label AUTH_REQUIRES because they are not in the literal VALIDATES exception list. They must not be silently changed to validating backlinks merely because the manifest copies are VALIDATES.",
+    "source_evidence": [
+      "L2732-L2777"
+    ],
+    "status": "CURRENT_AUTHORITY_AUTH_REQUIRES"
+  }
+}

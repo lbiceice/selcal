@@ -1,0 +1,242 @@
+{
+  "schema": "selcal.installed-workflow-check.v1",
+  "scope": "LOCAL_SYNTHETIC_INSTALLED_WHEEL_NOT_SCIENTIFIC_VALIDATION",
+  "installed_module": "/tmp/selcal-file-workflow-installed.QMfe4R/venv/lib/python3.11/site-packages/selcal/__init__.py",
+  "python": "3.11.12 (main, May 17 2025, 13:40:36) [Clang 20.1.4 ]",
+  "results": [
+    {
+      "argv": [
+        "doctor"
+      ],
+      "returncode": 0,
+      "stdout": {
+        "command": "doctor",
+        "data": {
+          "checkpoint_resume": "NOT_IMPLEMENTED",
+          "numpy_version": "2.4.6",
+          "python_version": "3.11.12",
+          "scientific_validation": "NOT_EXECUTED",
+          "selcal_version": "0.1.0.dev0",
+          "sqlite_deserialize": true,
+          "sqlite_version": "3.47.1"
+        },
+        "error": null,
+        "exit_code": 0,
+        "outcome": "PASS",
+        "schema": "selcal.cli.v1"
+      },
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "validate",
+        "/tmp/selcal-file-workflow-installed.QMfe4R/source/selcal-0.1.0.dev0/examples/workflow/series.csv",
+        "/tmp/selcal-file-workflow-installed.QMfe4R/source/selcal-0.1.0.dev0/examples/workflow/pearson.json"
+      ],
+      "returncode": 0,
+      "stdout": {
+        "command": "validate",
+        "data": {
+          "planned_replicates": 9,
+          "raw_input_sha256": "955de377a0dc854cf78e377388350fd3cf57f42ac50d2fdbc3db0f1f177b33f2",
+          "sample_count": 6,
+          "scientific_plan_sha256": "02548ce6fdc6f84e3912bc566b8a665d131b5e67816b44fbc1e5476fb006463b",
+          "semantic_input_sha256": "82aa122557ed48908df8bb6ce226f05bdb5c7e4cf4287a671f74ee1eee9af645",
+          "validation_scope": "input_and_plan_not_execution_admission_or_scientific_validity"
+        },
+        "error": null,
+        "exit_code": 0,
+        "outcome": "PASS",
+        "schema": "selcal.cli.v1"
+      },
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "run",
+        "/tmp/selcal-file-workflow-installed.QMfe4R/source/selcal-0.1.0.dev0/examples/workflow/series.csv",
+        "/tmp/selcal-file-workflow-installed.QMfe4R/source/selcal-0.1.0.dev0/examples/workflow/pearson.json",
+        "/tmp/selcal-file-workflow-installed.QMfe4R/installed-demo.sqlite",
+        "--max-bytes",
+        "1048576"
+      ],
+      "returncode": 0,
+      "stdout": {
+        "command": "run",
+        "data": {
+          "decision_statistic": 0.9819805060619657,
+          "exceedance_bound_high": null,
+          "exceedance_bound_low": null,
+          "exceedance_count": 1,
+          "failure_count": 0,
+          "failure_stage": null,
+          "p_value": 0.2,
+          "planned_replicates": 9,
+          "reject_null": false,
+          "retained_replicates": 9,
+          "scientific_plan_sha256": "02548ce6fdc6f84e3912bc566b8a665d131b5e67816b44fbc1e5476fb006463b",
+          "selected_candidate": 2,
+          "semantic_input_sha256": "82aa122557ed48908df8bb6ce226f05bdb5c7e4cf4287a671f74ee1eee9af645",
+          "status": "complete",
+          "tied_candidates": [
+            2
+          ]
+        },
+        "error": null,
+        "exit_code": 0,
+        "outcome": "COMPLETE",
+        "schema": "selcal.cli.v1"
+      },
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "verify",
+        "/tmp/selcal-file-workflow-installed.QMfe4R/installed-demo.sqlite",
+        "--max-bytes",
+        "1048576"
+      ],
+      "returncode": 0,
+      "stdout": {
+        "command": "verify",
+        "data": {
+          "decision_statistic": 0.9819805060619657,
+          "exceedance_bound_high": null,
+          "exceedance_bound_low": null,
+          "exceedance_count": 1,
+          "failure_count": 0,
+          "failure_stage": null,
+          "historical_execution_authenticated": false,
+          "p_value": 0.2,
+          "planned_replicates": 9,
+          "reject_null": false,
+          "replay": "NOT_PERFORMED",
+          "retained_replicates": 9,
+          "scientific_plan_sha256": "02548ce6fdc6f84e3912bc566b8a665d131b5e67816b44fbc1e5476fb006463b",
+          "selected_candidate": 2,
+          "semantic_input_sha256": "82aa122557ed48908df8bb6ce226f05bdb5c7e4cf4287a671f74ee1eee9af645",
+          "status": "complete",
+          "tied_candidates": [
+            2
+          ],
+          "verification_scope": "input_plan_result_consistency"
+        },
+        "error": null,
+        "exit_code": 0,
+        "outcome": "COMPLETE",
+        "schema": "selcal.cli.v1"
+      },
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "verify",
+        "/tmp/selcal-file-workflow-installed.QMfe4R/installed-demo.sqlite",
+        "--max-bytes",
+        "1048576",
+        "--replay"
+      ],
+      "returncode": 0,
+      "stdout": {
+        "command": "verify",
+        "data": {
+          "decision_statistic": 0.9819805060619657,
+          "exceedance_bound_high": null,
+          "exceedance_bound_low": null,
+          "exceedance_count": 1,
+          "failure_count": 0,
+          "failure_stage": null,
+          "historical_execution_authenticated": false,
+          "p_value": 0.2,
+          "planned_replicates": 9,
+          "reject_null": false,
+          "replay": "MATCH",
+          "retained_replicates": 9,
+          "scientific_plan_sha256": "02548ce6fdc6f84e3912bc566b8a665d131b5e67816b44fbc1e5476fb006463b",
+          "selected_candidate": 2,
+          "semantic_input_sha256": "82aa122557ed48908df8bb6ce226f05bdb5c7e4cf4287a671f74ee1eee9af645",
+          "status": "complete",
+          "tied_candidates": [
+            2
+          ],
+          "verification_scope": "input_plan_result_consistency"
+        },
+        "error": null,
+        "exit_code": 0,
+        "outcome": "COMPLETE",
+        "schema": "selcal.cli.v1"
+      },
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "report",
+        "/tmp/selcal-file-workflow-installed.QMfe4R/installed-demo.sqlite",
+        "/tmp/selcal-file-workflow-installed.QMfe4R/installed-report.html",
+        "--max-bytes",
+        "1048576"
+      ],
+      "returncode": 0,
+      "stdout": {
+        "command": "report",
+        "data": {
+          "decision_statistic": 0.9819805060619657,
+          "exceedance_bound_high": null,
+          "exceedance_bound_low": null,
+          "exceedance_count": 1,
+          "failure_count": 0,
+          "failure_stage": null,
+          "p_value": 0.2,
+          "planned_replicates": 9,
+          "reject_null": false,
+          "replay": "NOT_PERFORMED",
+          "retained_replicates": 9,
+          "scientific_plan_sha256": "02548ce6fdc6f84e3912bc566b8a665d131b5e67816b44fbc1e5476fb006463b",
+          "selected_candidate": 2,
+          "semantic_input_sha256": "82aa122557ed48908df8bb6ce226f05bdb5c7e4cf4287a671f74ee1eee9af645",
+          "status": "complete",
+          "tied_candidates": [
+            2
+          ]
+        },
+        "error": null,
+        "exit_code": 0,
+        "outcome": "COMPLETE",
+        "schema": "selcal.cli.v1"
+      },
+      "stderr": ""
+    }
+  ],
+  "artifacts": [
+    {
+      "path": "/tmp/selcal-file-workflow-installed.QMfe4R/build-test/distribution-assets0/dist/selcal-0.1.0.dev0-py3-none-any.whl",
+      "bytes": 169027,
+      "sha256": "1e04886cfda8ba7f9eac78a5b49981ba84c4ef168e912c47686212c787b42110"
+    },
+    {
+      "path": "/tmp/selcal-file-workflow-installed.QMfe4R/build-test/distribution-assets0/dist/selcal-0.1.0.dev0.tar.gz",
+      "bytes": 757112,
+      "sha256": "691055b931f9caee718a88380a05548a12e31c1e1404ac42a1f754c66da284ab"
+    },
+    {
+      "path": "/tmp/selcal-file-workflow-installed.QMfe4R/source/selcal-0.1.0.dev0/examples/workflow/series.csv",
+      "bytes": 28,
+      "sha256": "955de377a0dc854cf78e377388350fd3cf57f42ac50d2fdbc3db0f1f177b33f2"
+    },
+    {
+      "path": "/tmp/selcal-file-workflow-installed.QMfe4R/source/selcal-0.1.0.dev0/examples/workflow/pearson.json",
+      "bytes": 436,
+      "sha256": "6a8415f3b924addaeec0a2d163fab48f0c880b347a3f7300204f12ffe5626327"
+    },
+    {
+      "path": "/tmp/selcal-file-workflow-installed.QMfe4R/installed-demo.sqlite",
+      "bytes": 40960,
+      "sha256": "175ad80b11ef9ba469e027c905cb3809cdc977c8684f2c83d9428b20fb81f156"
+    },
+    {
+      "path": "/tmp/selcal-file-workflow-installed.QMfe4R/installed-report.html",
+      "bytes": 29486,
+      "sha256": "4af5f38b67d46c7c69cbf30479582a9fca09589afc2d23064916f9b77c663606"
+    }
+  ]
+}

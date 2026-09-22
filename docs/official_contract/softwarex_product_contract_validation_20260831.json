@@ -1,0 +1,27 @@
+{
+  "status": "HOLD",
+  "errors": [],
+  "warnings": [],
+  "holdReasons": [
+    "CURRENT GUIDE LICENCE-LIST OMISSION AND GUIDE-TEMPLATE FILE-NAME CONFLICT REMAIN OPEN.",
+    "FORMAL SELCAL PRODUCT-GENEALOGY CONFIRMATION IS REQUIRED BEFORE FINAL OSP ROUTE FREEZE.",
+    "M0-M2 IS A LOCALLY TESTED IMPLEMENTATION CANDIDATE, BUT FINAL AUTHORITY CLOSURE AND RELEASE IDENTITY REMAIN OPEN.",
+    "M3 EVENT/RESUME, M4 EVIDENCE-BUNDLE/REPORTING AND THE M5 CLI ARE NOT IMPLEMENTED.",
+    "M6 SCIENTIFIC IMPACT AND COMPARATOR EVIDENCE HAS NOT BEEN EXECUTED.",
+    "PUBLIC GITHUB, FROZEN RELEASE, AUTHOR-SELECTED SOURCE-CODE LICENCE, DATA DEPOSIT, INDEPENDENT OR CROSS-PLATFORM INSTALLATION, RIGHTS, AUTHOR AND PORTAL EVIDENCE DOES NOT YET EXIST.",
+    "TASK-10 AUTHORITY SCOPE-V2 AWAITS EXPLICIT WRITTEN APPROVAL, TDD IMPLEMENTATION AND EXACT REVIEW.",
+    "conflictsAndUnknowns is non-empty",
+    "formatContract.initialReview remains hold",
+    "requirements[0] remains hold",
+    "requirements[1] remains hold",
+    "requirements[3] remains hold",
+    "requirements[4] remains hold",
+    "requirements[5] remains hold",
+    "requirements[6] remains hold",
+    "requirements[7] remains hold",
+    "requirements[8] remains hold",
+    "requirements[9] remains hold",
+    "sources[6] has unresolved status portal_live_verify"
+  ],
+  "boundary": "This report validates contract structure and traceability only. It does not verify official-page freshness or interpretation, manuscript conformance, scientific validity, ethics, rights, authorship, repository readiness, or submission-platform completion."
+}

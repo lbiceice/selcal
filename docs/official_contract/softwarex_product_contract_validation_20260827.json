@@ -1,0 +1,24 @@
+{
+  "status": "HOLD",
+  "errors": [],
+  "warnings": [],
+  "holdReasons": [
+    "CURRENT GUIDE LICENCE-LIST OMISSION AND GUIDE-TEMPLATE FILE-NAME CONFLICT REMAIN OPEN.",
+    "M6 SCIENTIFIC IMPACT AND COMPARATOR EVIDENCE HAS NOT BEEN EXECUTED.",
+    "NULL TRANSFORMS AND FULL RESELECTION ARE NOT IMPLEMENTED; M0-M2 IS INCOMPLETE.",
+    "PUBLIC GITHUB, RELEASE, LICENCE, DATA, CLEAN-INSTALL, DOCUMENTATION, RIGHTS, AUTHOR AND PORTAL EVIDENCE DOES NOT YET EXIST.",
+    "V2 NULL RESELECTION DESIGN AWAITS EXPLICIT WRITTEN APPROVAL.",
+    "conflictsAndUnknowns is non-empty",
+    "formatContract.initialReview remains hold",
+    "requirements[1] remains hold",
+    "requirements[3] remains hold",
+    "requirements[4] remains hold",
+    "requirements[5] remains hold",
+    "requirements[6] remains hold",
+    "requirements[7] remains hold",
+    "requirements[8] remains hold",
+    "requirements[9] remains hold",
+    "sources[6] has unresolved status portal_live_verify"
+  ],
+  "boundary": "This report validates contract structure and traceability only. It does not verify official-page freshness or interpretation, manuscript conformance, scientific validity, ethics, rights, authorship, repository readiness, or submission-platform completion."
+}

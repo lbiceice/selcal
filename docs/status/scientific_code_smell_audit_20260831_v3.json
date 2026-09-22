@@ -1,0 +1,229 @@
+{
+  "claimCeiling": "READ_ONLY_STATIC_AND_LOCAL_TEST_EVIDENCE_NOT_SCIENTIFIC_VALIDATION",
+  "environmentObservation": {
+    "detail": "The shared project environment is mutable and excluded from artifact authority. Current verification used explicit locked or no-project commands; no audit step is evidence of a release environment.",
+    "sharedProjectVenvAuthoritative": false,
+    "status": "VOLATILE_EXCLUDED_FROM_AUTHORITY",
+    "trackedRepositoryBytesChangedByAudit": false
+  },
+  "findings": [
+    {
+      "evidence": "Opt-in Ruff C901 reported 12 functions; measured maxima were 64, 46, and 42. AST inspection found individual verifier functions of roughly 486-573 lines.",
+      "evidenceClass": "TOOL_MEASURED",
+      "id": "SCI-MAJOR-VERIFIER-COMPLEXITY",
+      "impact": "Builder and verifier changes can share omissions; high aggregate coverage does not prove every combined branch is independently checked.",
+      "locations": [
+        "src/selcal/contracts_v2.py:1117-1625",
+        "src/selcal/resolution_v2.py:1188-1673",
+        "src/selcal/resolution_v2.py:2422-2994",
+        "src/selcal/calibration_v2.py:1831-2040",
+        "src/selcal/calibration_v2.py:2374-2720"
+      ],
+      "severity": "MAJOR",
+      "smallestRepairSlice": "Without changing semantics, extract scalar, vector, token, terminal-state, and frozen-dependency pure validators; retain current mutation and known-answer tests before enabling a complexity gate.",
+      "status": "OPEN",
+      "title": "Integrity verifier capsules are too long and branch-complex for safe extension"
+    },
+    {
+      "evidence": "Three registries or WeakKeyDictionaries are mutated during calls; resolution also uses id-keyed storage and weakref callbacks. A public verifier is installed dynamically and a bootstrap name is later removed.",
+      "evidenceClass": "STATIC_CONFIRMED",
+      "id": "SCI-MAJOR-HIDDEN-RUNTIME-STATE",
+      "impact": "Validity depends on interpreter memory and import order. Concurrency is undefined and M3 cross-process resume cannot rely on this implicit state.",
+      "locations": [
+        "src/selcal/migration_v1_to_v2.py:358-360,394-424,652",
+        "src/selcal/calibration_v2.py:762-764,1778-1789,2314",
+        "src/selcal/resolution_v2.py:1963,3492-3513,3585-3602,3640-3653",
+        "src/selcal/contracts_v2.py:1628-1667"
+      ],
+      "severity": "MAJOR",
+      "smallestRepairSlice": "First freeze a single-process and non-thread-safe contract. Then introduce an explicit RuntimeContext or session ownership store with concurrency and cross-process negative tests, and replace global injection with a stable definition or explicit initializer.",
+      "status": "OPEN",
+      "title": "Object ownership and public verifier installation depend on hidden process state"
+    },
+    {
+      "evidence": "The original broad TypeError, ValueError, and OverflowError collapse was repaired and reverified without changing the analytic-failure classification for documented numeric failures.",
+      "evidenceClass": "STATIC_CONFIRMED",
+      "id": "SCI-MAJOR-PEARSON-EXCEPTION-COLLAPSE",
+      "impact": "Unexpected implementation exceptions are no longer silently converted to data-level NOT_EVALUABLE outcomes in the current candidate.",
+      "locations": [
+        "src/selcal/statistics/lagged_pearson.py:241-244",
+        "src/selcal/statistics/lagged_pearson.py:269-283"
+      ],
+      "resolutionEvidence": {
+        "greenFocusedTest": "53 passed after implementation",
+        "implementation": "Only _NumericFailure and FloatingPointError map to analytic failure; TypeError, ValueError and OverflowError propagate unchanged.",
+        "redTest": "7 failed, 46 passed before implementation",
+        "sourceSha256": "8da53359f3dcbeba0f64648444b435f6773a218265f6c719111cdc6c9804426f"
+      },
+      "severity": "MAJOR",
+      "smallestRepairSlice": "Completed in the current candidate; retain exception-taxonomy regression tests.",
+      "status": "RESOLVED_IN_CURRENT_CANDIDATE",
+      "title": "Lagged Pearson can collapse implementation defects into analytic failure"
+    },
+    {
+      "evidence": "The approved v1.1 bounded-loading implementation now applies exact raw-byte, physical-record, field, row, ZIP central-directory, NPY-header, element, member-expanded and total-expanded caps. NPZ decoding uses public zlib APIs, one bounded descriptor snapshot and NPY preflight before allocation. Public CSV/NPZ tests exercise exact limits, stable error reasons and targeted binary rejection paths.",
+      "evidenceClass": "STATIC_CONFIRMED",
+      "id": "SCI-MAJOR-INPUT-RESOURCE-BOUNDS",
+      "impact": "The previously unbounded pre-calibration input-loading path is bounded in the current implementation candidate. These caps do not provide streaming, hostile-input security certification, cross-platform support or scientific validity.",
+      "locations": [
+        "src/selcal/input_resources.py",
+        "src/selcal/inputs.py:93-327",
+        "src/selcal/npz_safe.py"
+      ],
+      "resolutionEvidence": {
+        "compatibilityMatrix": "6 of 6 finite same-machine cells passed the complete 150-test NPZ-limit file",
+        "focusedTests": "314 passed, 1 skipped",
+        "packageBuildCleanInstall": "Replayable harness built the current wheel and sdist serially; a fresh CPython 3.11.12 venv installed only the wheel and passed RECORD/source-presence, metadata and public CSV/stored-NPZ/deflated-public-zlib smoke. Exact temporary artifacts were deleted, so execution-time hashes are not independently re-inspectable. This is local package evidence, not release or licence closure.",
+        "pressureObservation": "Replayable source-bound harness recorded 8 of 8 serial fresh-subprocess cases as LOCAL_DESIGN_PRESSURE_OBSERVATION_ONLY; sampled RSS may miss peaks for loads shorter than the 0.001-second interval",
+        "receipt": {
+          "path": "docs/status/input_resource_envelope_verification_20260831.json",
+          "sha256": "abcdc55cf6c06cd761ae6bbb25d8eddd5fc66a2b29f896e3d8b3f45c043871c7"
+        },
+        "stableErrorPrefix": "INPUT_RESOURCE_LIMIT_EXCEEDED_V1 reason=<CODE> limit=<INTEGER>",
+        "task3RedEvidenceBoundary": "Eight requirement groups cite existing test names and observed failure nature; raw Task3 RED logs/counts were not retained and are not reconstructed.",
+        "task4AttributionBoundary": "Touched-path provenance is an implementer action log plus current diff, not cryptographic ownership proof in the pre-existing dirty tree."
+      },
+      "severity": "MAJOR",
+      "smallestRepairSlice": "Completed for the exact v1.1 input-loading contract; retain exact-limit, malformed-archive, source-bound and compatibility tests.",
+      "status": "RESOLVED_IN_CURRENT_CANDIDATE",
+      "title": "CSV and NPZ input loading has no pre-calibration resource caps"
+    },
+    {
+      "evidence": "Production calibration uses the private random capsule while ReplicateRandomSource remains exported, and both null modules repeat ownership and token-envelope checks despite a shared owned-transform layer. Current targeted randomness and API tests did not show drift.",
+      "evidenceClass": "STATIC_CONFIRMED",
+      "id": "SCI-MINOR-DUPLICATE-RNG-NULL-VALIDATION",
+      "impact": "A future one-sided repair can split public and production RNG behavior or the two null ownership paths.",
+      "locations": [
+        "src/selcal/randomness.py:67-168",
+        "src/selcal/randomness.py:252-383",
+        "src/selcal/nulls/circular_shift_v2.py:413-504",
+        "src/selcal/nulls/block_shuffle_v2.py:479-578",
+        "src/selcal/nulls/owned_transform_v2.py:133-230"
+      ],
+      "severity": "MINOR",
+      "smallestRepairSlice": "Single-source the seed preimage, rejection primitive, and common owner/token envelope checks. If a second RNG is an independent oracle, internalize and name it as such and retain cross-implementation vectors.",
+      "status": "OPEN",
+      "title": "Random primitives and null-token envelope validation have duplicated implementations"
+    },
+    {
+      "evidence": "NumPy norm, dot, and sum may vary in final bits by BLAS, CPU, or thread reduction path, while backend identity records only NumPy version. No cross-platform counterexample was executed.",
+      "evidenceClass": "STATIC_RISK_INFERENCE",
+      "id": "SCI-MINOR-NUMERIC-BACKEND-IDENTITY",
+      "impact": "Near tie or rejection boundaries, unrecorded backend differences may alter a decision without enough provenance to explain it.",
+      "locations": [
+        "src/selcal/statistics/lagged_pearson.py:72-109,197-198",
+        "src/selcal/statistics/binned_nette.py:75-110,337-340"
+      ],
+      "severity": "MINOR",
+      "smallestRepairSlice": "Record NumPy build, BLAS, CPU, and thread configuration, then add cross-backend boundary vectors or use a fixed-order reduction kernel for decision-critical quantities.",
+      "status": "OPEN",
+      "title": "Backend identity is insufficient to diagnose cross-platform floating-point boundaries"
+    }
+  ],
+  "historicalReceipts": [
+    {
+      "path": "docs/status/scientific_code_smell_audit_20260831.json",
+      "sha256": "ea0f42b6257538503d18b391caa106cb9edafe58f87342d574c74c11573c6bd1",
+      "status": "HISTORICAL_ADVERSE_RECEIPT_RETAINED"
+    },
+    {
+      "path": "docs/status/scientific_code_smell_audit_20260831_v2.json",
+      "sha256": "f216c30fe2c059d2a0c7e98d1a031478630cf1574d85ec7bbefc1bb1070dffc4",
+      "status": "HISTORICAL_ADVERSE_RECEIPT_RETAINED"
+    }
+  ],
+  "observedAt": "2026-09-01T09:42:02+08:00",
+  "repositoryIdentity": {
+    "state": "DIRTY_UNCOMMITTED_IMPLEMENTATION_CANDIDATE",
+    "trackedBase": "94f993bfd5240739f23dd5f5309a51e51034b962"
+  },
+  "schemaVersion": "selcal-scientific-code-smell-audit-v3",
+  "sourceIdentity": [
+    {
+      "path": "src/selcal/calibration_v2.py",
+      "sha256": "a5249d5facfbcfa8f28b98a70115dbd5ae197e9c1743796fb2fe7e32371e3900"
+    },
+    {
+      "path": "src/selcal/contracts_v2.py",
+      "sha256": "9e4cb4a945602c3ca8e299aefa73b01e753d3b90bdaa465b849d81bcc2b80ef5"
+    },
+    {
+      "path": "src/selcal/input_resources.py",
+      "sha256": "43416d1ed2310d68b5286e7b84e7270930090a8f8b649d911c733bac3e64a44b"
+    },
+    {
+      "path": "src/selcal/inputs.py",
+      "sha256": "124cee19bb3d945ed20ecb7e67bf737b67e548d78be963a380e296a752f83c67"
+    },
+    {
+      "path": "src/selcal/migration_v1_to_v2.py",
+      "sha256": "8d7354b60a23ad8ca0a24b39b68474b86d72b37443d41dff5c1bd8ca2a7787c2"
+    },
+    {
+      "path": "src/selcal/npz_safe.py",
+      "sha256": "5e3c2b95aef63aebc4a3b57f7123ec3b0038c37855257d2764e11ea64d2c7850"
+    },
+    {
+      "path": "src/selcal/nulls/block_shuffle_v2.py",
+      "sha256": "15b41c65385899d246c08d8dc4cfaccf71ce8b603e0ca8818b2d761790735898"
+    },
+    {
+      "path": "src/selcal/nulls/circular_shift_v2.py",
+      "sha256": "af3e42e133568498cbfd292661e26c2f8b7cb32c43c07f9d43a909fd6909bb3e"
+    },
+    {
+      "path": "src/selcal/nulls/owned_transform_v2.py",
+      "sha256": "c801929c02f1eed07c917aceabc14fd9134285f34316c41fe500c31fbc5c26aa"
+    },
+    {
+      "path": "src/selcal/randomness.py",
+      "sha256": "f825d233087e07e4988fc68549217dcfedb3591f96357fcdafdccb92f0283ef9"
+    },
+    {
+      "path": "src/selcal/resolution_v2.py",
+      "sha256": "762738aac50a609e282ffb00ec74626d2b2aed1daa9aeea2e7716ebac409dfd3"
+    },
+    {
+      "path": "src/selcal/statistics/binned_nette.py",
+      "sha256": "d99f4e4e2767dd10efafe8a84073b72cd827eff0510cb8b400f98c349877efa9"
+    },
+    {
+      "path": "src/selcal/statistics/lagged_pearson.py",
+      "sha256": "8da53359f3dcbeba0f64648444b435f6773a218265f6c719111cdc6c9804426f"
+    }
+  ],
+  "status": "MAJOR_REMEDIATION_REQUIRED_BEFORE_M3_M6_EXTENSION",
+  "summary": {
+    "blocker": 0,
+    "majorOpen": 2,
+    "majorResolvedInCurrentCandidate": 2,
+    "minorOpen": 2
+  },
+  "verification": {
+    "crossPlatformNumericCounterexample": "NOT_EXECUTED",
+    "currentCoreTests": "2851 passed, 1 skipped",
+    "exactLockedRuff": "PASS_RUFF_0.16.5",
+    "freshMypyEvidence": "PASS_STRICT",
+    "inputResourceFocusedTests": "314 passed, 1 skipped",
+    "laggedPearsonFocusedTests": "53 passed",
+    "moduleAcceptance": {
+      "command": ".venv/bin/python -m pytest --ignore=tests/task10/test_authority_amendment_scope_v1.py -q",
+      "result": "2851 passed, 1 skipped",
+      "status": "PASS"
+    },
+    "optInComplexityAudit": "12 C901 findings before the Pearson repair; complexity findings remain open",
+    "originalAuditTargetedTests": "225 passed, 1 skipped",
+    "repositoryHygiene": "PASS_ZERO_FINDINGS",
+    "task10HistoricalScopeV1FailuresIncluded": true,
+    "unfilteredSuite": {
+      "failures": 12,
+      "status": "EXPECTED_ADVERSE_TASK10_SCOPE_V1_RETAINED"
+    },
+    "verifiedNonFindings": [
+      "No production network calls found",
+      "No production file writes found",
+      "No production imports from tests or docs found",
+      "Random seed derivation binds plan SHA and replicate id"
+    ]
+  }
+}

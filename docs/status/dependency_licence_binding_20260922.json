@@ -1,0 +1,100 @@
+{
+ "schemaVersion": "selcal-dependency-evidence-binding-v2",
+ "checkedDate": "2026-09-22",
+ "status": "CURRENT_INPUT_BINDING_ONLY_LICENCE_HOLD_UNCHANGED",
+ "supersedes": "docs/status/dependency_licence_binding_20260908.json",
+ "priorInventoryPath": "docs/status/dependency_licence_evidence_20260831.json",
+ "priorInventorySha256": "ab368d8ff555f1e5cd951056524049b421ab3c99f1a594d84d0412d4a8dad62d",
+ "priorPyprojectSha256": "cc68d591d83c46a5feb706a58394efab37f89bca804309afa358f8c4ac69ba92",
+ "priorLockSha256": "4ccc4c47ede6fd04ef436fac56d8e1f9d91284c82b30b18b87044015f7227067",
+ "currentPyprojectSha256": "10dba168920621e9c28d9640ad47bb45fd234682b4d3f3857615b095c327bb52",
+ "currentLockSha256": "6d170065eaeb624bf4654159b8d9f299091901a77ad71fdcad84dab74c42dff7",
+ "pyprojectEdits": [
+  {
+   "kind": "added",
+   "text": "[project.scripts]\nselcal = \"selcal.cli:main\"\n\n",
+   "date": "2026-09-08"
+  },
+  {
+   "kind": "replaced",
+   "from": "dependencies = [\"numpy>=1.26,<3\"]",
+   "to": "dependencies = [\"numpy>=1.26,<2.5\"]",
+   "date": "2026-09-22",
+   "reason": "numpy 2.5 stubs and NDArray TypeAliasType broke the mypy and structure-gate checks on Python >= 3.12 (docs/status/portability_and_hygiene_20260922.md)"
+  },
+  {
+   "kind": "replaced",
+   "from": "version = \"0.1.0.dev0\"\ndescription = \"Selection-aware surrogate calibration core\"\nreadme = \"README.md\"\nrequires-python = \">=3.11\"",
+   "to": "version = \"0.1.0\"\ndescription = \"Selection-aware calibration of scanned-lag dependence tests between two time series\"\nreadme = \"README.md\"\nrequires-python = \">=3.11\"\nlicense = \"BSD-3-Clause\"\nlicense-files = [\"LICENSE.txt\", \"Licence.txt\"]\nauthors = [{ name = \"Bingbing Liang\" }]\nkeywords = [\"permutation test\", \"circular shift\", \"lag selection\", \"time series\", \"cross-correlation\"]\nclassifiers = [\n  \"Programming Language :: Python :: 3\",\n  \"Programming Language :: Python :: 3.11\",\n  \"Programming Language :: Python :: 3.12\",\n  \"Programming Language :: Python :: 3.13\",\n  \"Operating System :: OS Independent\",\n  \"Intended Audience :: Science/Research\",\n  \"Topic :: Scientific/Engineering\",\n]",
+   "date": "2026-09-22",
+   "reason": "release 0.1.0 with BSD-3-Clause licence, author and classifier metadata (author decision)"
+  },
+  {
+   "kind": "replaced",
+   "from": "requires = [\"setuptools>=68\"]",
+   "to": "requires = [\"setuptools>=77\"]",
+   "date": "2026-09-22",
+   "reason": "PEP 639 licence expression and license-files need setuptools >= 77"
+  }
+ ],
+ "lockDelta": {
+  "removedRecords": [
+   {
+    "name": "numpy",
+    "version": "2.5.2",
+    "lockRecordSha256": "f49325f55d3bfd0eddb218d9f769176dd340faed266e64957a2352810a365c8f"
+   },
+   {
+    "name": "selcal",
+    "version": "0.1.0.dev0",
+    "lockRecordSha256": "313586c4ded56ac974300e140313986f1aa9895882dba22f2a8ca916397ae52e"
+   }
+  ],
+  "addedRecords": [
+   {
+    "name": "selcal",
+    "version": "0.1.0",
+    "lockRecordSha256": "613873079781feb6e861c8b12273964ff22fed02775be6eb8e1415b3c9fe6d05",
+    "note": "the project itself (version 0.1.0.dev0 -> 0.1.0); not a dependency"
+   }
+  ],
+  "sameVersionRecordDigestChanges": [
+   {
+    "name": "contourpy",
+    "version": "1.3.3",
+    "priorLockRecordSha256": "437698b8e03555d6a36bef346c2c778c521962ad426bc1cb170d3e965add4e7d",
+    "currentLockRecordSha256": "7b4dbfbfdba4ed79da9ccf5be4be1ecea4c7947ef412a8b4c3299042f8b43faf"
+   },
+   {
+    "name": "matplotlib",
+    "version": "3.11.1",
+    "priorLockRecordSha256": "494592fbbe026fb2eac2e81530991f7ee436ffc73d754c5885233855a80ed8d4",
+    "currentLockRecordSha256": "1095df07942beb0c88095d645023d1f67f3c611e2950ef0f15f54415f5a307f4"
+   },
+   {
+    "name": "numpy",
+    "version": "2.4.6",
+    "priorLockRecordSha256": "081979f2f8fed450ebb45b669144016930c0d8cd39c429d5bb2041de326352c4",
+    "currentLockRecordSha256": "1346ba5a3a76016de609c35ff205a514b1eb6f0ccd5433863a4fad48b65db9cf"
+   }
+  ]
+ },
+ "dependencySurfacesUnchanged": false,
+ "newPackagesOrVersions": false,
+ "historicalInventoryImmutable": true,
+ "historicalMetadataGeneratedAt": "2026-08-31T18:04:32+08:00",
+ "dependencyMetadataReextracted": false,
+ "legalClearance": false,
+ "rootSourceLicenceSelected": true,
+ "currentReleaseArtifactLicenceAudit": "NOT_PERFORMED",
+ "method": "The 2026-08-31 inventory stays immutable. The current lock differs only by removing records and by changed lock-record digests for package versions already inventoried (resolution markers and dependency markers), with no added package or version, so no licence metadata needs re-extraction. The test reconstructs the current lock record set from the inventory plus this delta. This is input rebinding, not a legal or artifact licence audit. 2026-09-22: the author selected BSD-3-Clause for SelCal itself; this records the selection and does not re-audit dependency licences.",
+ "rootSourceLicence": {
+  "spdx": "BSD-3-Clause",
+  "files": [
+   "LICENSE.txt",
+   "Licence.txt"
+  ],
+  "selectedBy": "author",
+  "date": "2026-09-22"
+ }
+}

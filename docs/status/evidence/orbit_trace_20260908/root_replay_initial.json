@@ -1,0 +1,68 @@
+{
+  "status": "ROOT_RECONSTRUCTED_INPUT_SECOND_PROCESS_REPLAY_MATCH",
+  "scope": "same-team current-platform disclosed engineering regression, not external or scientific validation",
+  "report_path": "/Users/vincent/.cache/selcal-worktrees/contract-resolution-pearson/docs/benchmarks/2026-09-08-pearson-orbit-trace.json",
+  "report_bytes": 3526757,
+  "report_sha256": "7a89eed6ec5068c117ece083820e23bfe67b4067ed98ad2215268c661f4b1ce6",
+  "source_files_verified": 41,
+  "sampled_positions": 1194,
+  "sampled_candidate_comparisons": 2786,
+  "rows": [
+    {
+      "case": "orbit_2_max_upper",
+      "replicates": 199,
+      "E": 5,
+      "p_mc": 0.03,
+      "p_exact": 0.015625,
+      "max_residual": 1.1102230246251565e-16,
+      "second_process_actual_api_replay": "MATCH"
+    },
+    {
+      "case": "orbit_2_max_absolute",
+      "replicates": 199,
+      "E": 5,
+      "p_mc": 0.03,
+      "p_exact": 0.015625,
+      "max_residual": 1.1102230246251565e-16,
+      "second_process_actual_api_replay": "MATCH"
+    },
+    {
+      "case": "orbit_1_2_max_upper",
+      "replicates": 199,
+      "E": 7,
+      "p_mc": 0.04,
+      "p_exact": 0.03125,
+      "max_residual": 1.1102230246251565e-16,
+      "second_process_actual_api_replay": "MATCH"
+    },
+    {
+      "case": "orbit_1_2_max_absolute",
+      "replicates": 199,
+      "E": 9,
+      "p_mc": 0.05,
+      "p_exact": 0.03125,
+      "max_residual": 1.1102230246251565e-16,
+      "second_process_actual_api_replay": "MATCH"
+    },
+    {
+      "case": "orbit_1_2_3_4_max_upper",
+      "replicates": 199,
+      "E": 15,
+      "p_mc": 0.08,
+      "p_exact": 0.0625,
+      "max_residual": 1.1102230246251565e-16,
+      "second_process_actual_api_replay": "MATCH"
+    },
+    {
+      "case": "orbit_1_2_3_4_max_absolute",
+      "replicates": 199,
+      "E": 8,
+      "p_mc": 0.045,
+      "p_exact": 0.0625,
+      "max_residual": 1.1102230246251565e-16,
+      "second_process_actual_api_replay": "MATCH"
+    }
+  ],
+  "scientific_study_executed": false,
+  "submission_ready": false
+}

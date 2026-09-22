@@ -1,0 +1,10 @@
+{
+  "scope": "PRE_DESCRIPTOR_FIX_INSTALLED_SOURCE_SAME_TEAM_REPRODUCTION",
+  "module": "/private/tmp/selcal-product-installed-20260908.dY3c0V/venv/lib/python3.11/site-packages/selcal/__init__.py",
+  "injected_p_value": 0.123,
+  "before_class_replacement": {
+    "exception": "V2IntegrityError",
+    "message": "COMPLETE result decision arithmetic is invalid"
+  },
+  "after_class_replacement": "INVALID_P_VALUE_ACCEPTED"
+}

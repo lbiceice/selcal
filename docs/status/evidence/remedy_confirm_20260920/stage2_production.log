@@ -1,0 +1,25 @@
+chunks total 448, pending 448
+20/448 C1_iid_rho-_L2_n64_0750.json 58s
+40/448 C1_iid_rho-_L2_n64_3750.json 118s
+60/448 C0_ma2_rho-_L2_n64_0250.json 217s
+80/448 C0_ma2_rho-_L2_n64_3750.json 265s
+100/448 C1_ma2_rho-_L2_n64_3750.json 354s
+120/448 C1_ma2_rho-_L8_n64_1750.json 447s
+140/448 C1_ma2_rho-_L8_n64_3250.json 525s
+160/448 C1_ar1_rho-_L2_n64_2750.json 620s
+180/448 C1_ar1_rho-_L8_n64_0750.json 718s
+200/448 C1_ar1_rho-_L8_n64_3750.json 828s
+220/448 C1_alt_rho0.3_L8_n64_0750.json 914s
+240/448 C0_iid_rho-_L2_n256_3750.json 1064s
+260/448 C0_iid_rho-_L8_n256_0750.json 1220s
+280/448 C1_iid_rho-_L8_n256_1750.json 1400s
+300/448 C0_ma2_rho-_L2_n256_2750.json 1541s
+320/448 C1_ma2_rho-_L2_n256_3500.json 1652s
+340/448 C1_ma2_rho-_L8_n256_0750.json 1826s
+360/448 C0_ar1_rho-_L2_n256_1750.json 1974s
+380/448 C1_ar1_rho-_L2_n256_2750.json 2092s
+400/448 C0_ar1_rho-_L8_n256_3750.json 2287s
+420/448 C1_ar1_rho-_L8_n256_3750.json 2439s
+440/448 C0_alt_rho0.6_L2_n256_0750.json 2595s
+448/448 C1_alt_rho0.6_L8_n256_0750.json 2668s
+ALL_CHUNKS_DONE

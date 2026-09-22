@@ -1,0 +1,54 @@
+{
+  "artifact_status": "HASH_BOUND_DIRTY_WORKTREE_BASELINE_NOT_AUTHORITY",
+  "baseline_id": "SELCAL-TASK10-AUTHORITY-REVIEW-V2-BASELINE-20260830",
+  "files": [
+    {
+      "git_state": "MODIFIED_TRACKED",
+      "logical_role": "TASK10_PROSE_AUTHORITY_INPUT",
+      "path": "docs/superpowers/specs/2026-08-29-task10-deny-by-default-provider-proof-design.md",
+      "sha256": "74891e7b1a5190d64da5d2fd74e8ef0d74e671fc81600875995c2dbc7ee057ff"
+    },
+    {
+      "git_state": "UNTRACKED_EXACT_BYTES",
+      "logical_role": "OWNER_INVENTORY_00_20_INPUT",
+      "path": "docs/superpowers/specs/idl/task10/v10/review/owner-inventory-00-20.json",
+      "sha256": "940ee3e82c93a466076e9a4391b04b43a94d4e52d42e541db7eb903b32fc7487"
+    },
+    {
+      "git_state": "UNTRACKED_EXACT_BYTES",
+      "logical_role": "OWNER_INVENTORY_21_44_INPUT",
+      "path": "docs/superpowers/specs/idl/task10/v10/review/owner-inventory-21-44.json",
+      "sha256": "13d32e76f1da286214b936bc80e2b46322d92aae1d718f8af13a78c287e0aec2"
+    },
+    {
+      "git_state": "UNTRACKED_EXACT_BYTES",
+      "logical_role": "OWNER_INVENTORY_45_65_INPUT",
+      "path": "docs/superpowers/specs/idl/task10/v10/review/owner-inventory-45-65.json",
+      "sha256": "b820c503f6233ac61d3e168f637ce7b9246f0d034ac5e49577f9e988af2d560b"
+    },
+    {
+      "git_state": "UNTRACKED_EXACT_BYTES",
+      "logical_role": "INVENTORY_GAP_LEDGER_INPUT",
+      "path": "docs/superpowers/specs/idl/task10/v10/review/inventory-gap-ledger.json",
+      "sha256": "fddfb19bba9985f831712777a4bd4a2b5e59e11ee031366442d047be1c9721e8"
+    },
+    {
+      "git_state": "UNTRACKED_EXACT_BYTES",
+      "logical_role": "V1_CANONICAL_REVIEW_REGISTRY_PREDECESSOR",
+      "path": "docs/superpowers/specs/idl/task10/v10/review/authority-design-decision-registry-v1.json",
+      "sha256": "047c53aed2250790f403c1aa57563fa1c933c0294dda8d2b5f6fb535b097a398"
+    },
+    {
+      "git_state": "UNTRACKED_EXACT_BYTES",
+      "logical_role": "V1_HUMAN_MATRIX_PREDECESSOR",
+      "path": "docs/superpowers/specs/idl/task10/v10/review/authority-design-decision-matrix-v1.md",
+      "sha256": "8b75baf1db9425daddcfd150f0f3c4638684e42e15fa717c2c2044fb3a8f3287"
+    }
+  ],
+  "git_head": "94f993bfd5240739f23dd5f5309a51e51034b962",
+  "identity_rule": "Every consumer must verify all seven path and SHA-256 pairs before reading semantic content. Git state is disclosed but is not an authority or content-identity substitute.",
+  "machine_stop_decision": "STOP_ON_ANY_BASELINE_HASH_DRIFT",
+  "new_commit_created": false,
+  "scope": "REPRESENTATION_ONLY_V1_TO_V2_QUALITY_CLOSURE",
+  "schema": "selcal.task10.g18.authority-review-package-v2-baseline.v1"
+}

@@ -1,0 +1,2654 @@
+{
+  "articleOaLicence": {
+    "agreementOrPortalReceiptSha256": null,
+    "licenceIdentifier": null,
+    "status": "UNSELECTED_FUTURE_PUBLISHER_WORKFLOW"
+  },
+  "artifactAudit": {
+    "candidateArtifactHashesRecordedFromLock": true,
+    "exactSelectedArtifactHashBoundToMetadata": false,
+    "knownBundledComponentAuditPriorities": [
+      "pip",
+      "numpy",
+      "matplotlib",
+      "fonttools"
+    ],
+    "knownPrioritiesAreExhaustive": false,
+    "licenceFilesHashed": false,
+    "vendoredComponentLedgerComplete": false,
+    "wheelAndSdistSeparatelyAudited": false
+  },
+  "auditTool": {
+    "method": "Python standard-library Core Metadata extraction from isolated exact-version environments",
+    "persistentGenerator": false,
+    "pythonExtractors": [
+      "CPython 3.11.12",
+      "CPython 3.12.10"
+    ],
+    "uvExecutableSha256": "2b91cadff75cd69539b1f4a5ee81f0818f2c80d24964a43862fb56ee6be32a1c",
+    "uvVersion": "uv 0.7.6 (Homebrew 2025-05-19)"
+  },
+  "canonicalPayloadSha256": "b4b3cd13c6ef70bbff9866e7f77c574c13daec9ea336da3c19121b0869153131",
+  "claimCeiling": "PACKAGE_METADATA_EVIDENCE_ONLY_NOT_LEGAL_CLEARANCE_OR_COMPATIBILITY",
+  "components": [
+    {
+      "artifactCandidatesFromLock": {
+        "sdistHash": "sha256:c00dca57bca26fa62a6d7d0a9fcce65f3e026e9bfe33e9c538fd3fbb2144fd9e",
+        "wheelCount": 1,
+        "wheelHashesDigestSha256": "0fb2233aba66a4736489a78c551ab345213b1982684bbfc5f1eec3b79724a7ae"
+      },
+      "canonicalName": "alabaster",
+      "dependencySurfaces": [
+        "transitive"
+      ],
+      "directness": "transitive",
+      "incomingEdges": [
+        {
+          "edgeKind": "dependency",
+          "markerRaw": null,
+          "parent": {
+            "name": "sphinx",
+            "version": "8.2.3"
+          }
+        }
+      ],
+      "licenceEvidence": {
+        "classifiersRaw": [
+          "License :: OSI Approved :: BSD License"
+        ],
+        "evidenceState": "LEGACY_SINGLE_CLASSIFIER_ONLY",
+        "legacyLicenceField": null,
+        "legalCompatibilityConclusion": null,
+        "licenceExpressionRaw": [],
+        "materialisationContexts": [
+          "darwin-arm64-cpython-3.11.12-locked-all-extras",
+          "darwin-arm64-cpython-3.12.10-locked-all-extras"
+        ],
+        "metadataName": "alabaster",
+        "metadataSha256": "48ee753502a33e5e7f5a23db5f01cf42981d47b38f95dd9c1ef16853cf0cbe57",
+        "metadataToSelectedLockedArtifactHashBinding": "NOT_ESTABLISHED",
+        "metadataVersion": "1.0.0"
+      },
+      "lockRecordSha256": "983d7e4ff17c1655099a6161724ee834970e393dead8018424387e6a741956f8",
+      "lockResolutionMarkersRaw": [],
+      "purl": "pkg:pypi/alabaster@1.0.0",
+      "source": {
+        "registry": "https://pypi.org/simple"
+      },
+      "version": "1.0.0"
+    },
+    {
+      "artifactCandidatesFromLock": {
+        "sdistHash": "sha256:b80b99a14bd085fcacfa15c9165f651fbb3406e66cc603abf11c5750937c992d",
+        "wheelCount": 1,
+        "wheelHashesDigestSha256": "b80e73ad4839da1fe0385c0b0b2caac8ae921ba25e79ac8d565f2dd7bb52d7da"
+      },
+      "canonicalName": "babel",
+      "dependencySurfaces": [
+        "transitive"
+      ],
+      "directness": "transitive",
+      "incomingEdges": [
+        {
+          "edgeKind": "dependency",
+          "markerRaw": null,
+          "parent": {
+            "name": "sphinx",
+            "version": "8.2.3"
+          }
+        }
+      ],
+      "licenceEvidence": {
+        "classifiersRaw": [
+          "License :: OSI Approved :: BSD License"
+        ],
+        "evidenceState": "LEGACY_SINGLE_CLASSIFIER_ONLY",
+        "legacyLicenceField": {
+          "kind": "short-raw",
+          "value": "BSD-3-Clause"
+        },
+        "legalCompatibilityConclusion": null,
+        "licenceExpressionRaw": [],
+        "materialisationContexts": [
+          "darwin-arm64-cpython-3.11.12-locked-all-extras",
+          "darwin-arm64-cpython-3.12.10-locked-all-extras"
+        ],
+        "metadataName": "babel",
+        "metadataSha256": "11399bc03a6b81fd20e8b82823392052a8db969a8ef150382b0cf5996afcf41a",
+        "metadataToSelectedLockedArtifactHashBinding": "NOT_ESTABLISHED",
+        "metadataVersion": "2.18.0"
+      },
+      "lockRecordSha256": "88b4c5fca218626d709d39bfadbe7d14458f6a0eb4b58c05c72518d4a7d14f31",
+      "lockResolutionMarkersRaw": [],
+      "purl": "pkg:pypi/babel@2.18.0",
+      "source": {
+        "registry": "https://pypi.org/simple"
+      },
+      "version": "2.18.0"
+    },
+    {
+      "artifactCandidatesFromLock": {
+        "sdistHash": "sha256:bd2c8afc603e7a2e0ce70e2ea85f0a6d02043bafbd307f5bada0f98669eca5af",
+        "wheelCount": 1,
+        "wheelHashesDigestSha256": "e75d4168b890a005d8d8a5073ec777ba3a62e7e56ace394fe8413136c6aaa128"
+      },
+      "canonicalName": "build",
+      "dependencySurfaces": [
+        "dev"
+      ],
+      "directness": "direct",
+      "incomingEdges": [
+        {
+          "edgeKind": "optional:dev",
+          "markerRaw": null,
+          "parent": {
+            "name": "selcal",
+            "version": "0.1.0.dev0"
+          }
+        }
+      ],
+      "licenceEvidence": {
+        "classifiersRaw": [],
+        "evidenceState": "DECLARED_EXPRESSION_PRESENT_NOT_LEGAL_CONCLUSION",
+        "legacyLicenceField": null,
+        "legalCompatibilityConclusion": null,
+        "licenceExpressionRaw": [
+          "MIT"
+        ],
+        "materialisationContexts": [
+          "darwin-arm64-cpython-3.11.12-locked-all-extras",
+          "darwin-arm64-cpython-3.12.10-locked-all-extras"
+        ],
+        "metadataName": "build",
+        "metadataSha256": "6399192076e22393d93555c9c94d526be8dde83dd5bb4638b1f6e69ce03f6147",
+        "metadataToSelectedLockedArtifactHashBinding": "NOT_ESTABLISHED",
+        "metadataVersion": "1.6.0"
+      },
+      "lockRecordSha256": "d1ddaf9a622d6021755b01632c26fac5309ad935f48f5bdc9551843adaf69a94",
+      "lockResolutionMarkersRaw": [],
+      "purl": "pkg:pypi/build@1.6.0",
+      "source": {
+        "registry": "https://pypi.org/simple"
+      },
+      "version": "1.6.0"
+    },
+    {
+      "artifactCandidatesFromLock": {
+        "sdistHash": "sha256:741e2c3b351ddf169a738da9f2c048608ff7f2c5cc02f1ebc6b118bb090d5d55",
+        "wheelCount": 1,
+        "wheelHashesDigestSha256": "1f718a983e3f904db9ad8346af54e3db1aec899463d8678b2097a7d6f9d3390c"
+      },
+      "canonicalName": "certifi",
+      "dependencySurfaces": [
+        "transitive"
+      ],
+      "directness": "transitive",
+      "incomingEdges": [
+        {
+          "edgeKind": "dependency",
+          "markerRaw": null,
+          "parent": {
+            "name": "requests",
+            "version": "2.34.2"
+          }
+        }
+      ],
+      "licenceEvidence": {
+        "classifiersRaw": [
+          "License :: OSI Approved :: Mozilla Public License 2.0 (MPL 2.0)"
+        ],
+        "evidenceState": "LEGACY_SINGLE_CLASSIFIER_ONLY",
+        "legacyLicenceField": {
+          "kind": "short-raw",
+          "value": "MPL-2.0"
+        },
+        "legalCompatibilityConclusion": null,
+        "licenceExpressionRaw": [],
+        "materialisationContexts": [
+          "darwin-arm64-cpython-3.11.12-locked-all-extras",
+          "darwin-arm64-cpython-3.12.10-locked-all-extras"
+        ],
+        "metadataName": "certifi",
+        "metadataSha256": "ef5af1638fbb23676ac3c5777dfcfc2cd9c348fe4172ed5ba3d277655b248090",
+        "metadataToSelectedLockedArtifactHashBinding": "NOT_ESTABLISHED",
+        "metadataVersion": "2026.7.22"
+      },
+      "lockRecordSha256": "a7a4f6e66c99d517ddfebb25537e55521ef7df05aec9194f803fddf7ad460322",
+      "lockResolutionMarkersRaw": [],
+      "purl": "pkg:pypi/certifi@2026.7.22",
+      "source": {
+        "registry": "https://pypi.org/simple"
+      },
+      "version": "2026.7.22"
+    },
+    {
+      "artifactCandidatesFromLock": {
+        "sdistHash": "sha256:6117b84ea48435e5356dc737f5121485c30920ba43375fa7b434fd753df0eac3",
+        "wheelCount": 139,
+        "wheelHashesDigestSha256": "4630935f675183f192946a5c9b49bfba3e626912f981d84b0939726e1dfce075"
+      },
+      "canonicalName": "charset-normalizer",
+      "dependencySurfaces": [
+        "transitive"
+      ],
+      "directness": "transitive",
+      "incomingEdges": [
+        {
+          "edgeKind": "dependency",
+          "markerRaw": null,
+          "parent": {
+            "name": "requests",
+            "version": "2.34.2"
+          }
+        }
+      ],
+      "licenceEvidence": {
+        "classifiersRaw": [],
+        "evidenceState": "LEGACY_FREE_TEXT_OR_SHORT_NAME_ONLY",
+        "legacyLicenceField": {
+          "kind": "short-raw",
+          "value": "MIT"
+        },
+        "legalCompatibilityConclusion": null,
+        "licenceExpressionRaw": [],
+        "materialisationContexts": [
+          "darwin-arm64-cpython-3.11.12-locked-all-extras",
+          "darwin-arm64-cpython-3.12.10-locked-all-extras"
+        ],
+        "metadataName": "charset-normalizer",
+        "metadataSha256": "955c93827d59f1280f6d6a76b1e11bfb999cc65a55df83a6f9b28b7bc0e467f6",
+        "metadataToSelectedLockedArtifactHashBinding": "NOT_ESTABLISHED",
+        "metadataVersion": "3.5.1"
+      },
+      "lockRecordSha256": "ac7f979871e0f0bc21b7efaeb97a74afa80e8f86bc9c9883b9e4ed350194c7e3",
+      "lockResolutionMarkersRaw": [],
+      "purl": "pkg:pypi/charset-normalizer@3.5.1",
+      "source": {
+        "registry": "https://pypi.org/simple"
+      },
+      "version": "3.5.1"
+    },
+    {
+      "artifactCandidatesFromLock": {
+        "sdistHash": "sha256:08695f5cb7ed6e0531a20572697297273c47b8cae5a63ffc6d6ed5c201be6e44",
+        "wheelCount": 1,
+        "wheelHashesDigestSha256": "f087e9622bbda2fd80d7c0e1d80fa9a6e2aa49818b275db91590644e6a0d0353"
+      },
+      "canonicalName": "colorama",
+      "dependencySurfaces": [
+        "transitive"
+      ],
+      "directness": "transitive",
+      "incomingEdges": [
+        {
+          "edgeKind": "dependency",
+          "markerRaw": "os_name == 'nt'",
+          "parent": {
+            "name": "build",
+            "version": "1.6.0"
+          }
+        },
+        {
+          "edgeKind": "dependency",
+          "markerRaw": "sys_platform == 'win32'",
+          "parent": {
+            "name": "pytest",
+            "version": "8.4.2"
+          }
+        },
+        {
+          "edgeKind": "dependency",
+          "markerRaw": "sys_platform == 'win32'",
+          "parent": {
+            "name": "sphinx",
+            "version": "8.2.3"
+          }
+        }
+      ],
+      "licenceEvidence": {
+        "classifiersRaw": [
+          "License :: OSI Approved :: BSD License"
+        ],
+        "evidenceState": "LEGACY_SINGLE_CLASSIFIER_ONLY",
+        "legacyLicenceField": null,
+        "legalCompatibilityConclusion": null,
+        "licenceExpressionRaw": [],
+        "materialisationContexts": [
+          "supplemental-exact-version-metadata-materialisation"
+        ],
+        "metadataName": "colorama",
+        "metadataSha256": "7baed29eb50c3b29bdb33ff84e3177bf1bc05784f7685ecdcaa4471c7dd810cc",
+        "metadataToSelectedLockedArtifactHashBinding": "NOT_ESTABLISHED",
+        "metadataVersion": "0.4.6"
+      },
+      "lockRecordSha256": "e021d532ecc9e989f8bb5d1f12f5a15b87e84d5166110d539de72cc9bf867afc",
+      "lockResolutionMarkersRaw": [],
+      "purl": "pkg:pypi/colorama@0.4.6",
+      "source": {
+        "registry": "https://pypi.org/simple"
+      },
+      "version": "0.4.6"
+    },
+    {
+      "artifactCandidatesFromLock": {
+        "sdistHash": "sha256:083e12155b210502d0bca491432bb04d56dc3432f95a979b429f2848c3dbe880",
+        "wheelCount": 71,
+        "wheelHashesDigestSha256": "f94d6b703be64aa204006e1f131e0d6e16aef657527486d7652c975badf11af6"
+      },
+      "canonicalName": "contourpy",
+      "dependencySurfaces": [
+        "transitive"
+      ],
+      "directness": "transitive",
+      "incomingEdges": [
+        {
+          "edgeKind": "dependency",
+          "markerRaw": null,
+          "parent": {
+            "name": "matplotlib",
+            "version": "3.11.1"
+          }
+        }
+      ],
+      "licenceEvidence": {
+        "classifiersRaw": [
+          "License :: OSI Approved :: BSD License"
+        ],
+        "evidenceState": "LEGACY_SINGLE_CLASSIFIER_ONLY",
+        "legacyLicenceField": {
+          "characterCount": 1556,
+          "kind": "long-raw-not-embedded",
+          "sha256": "d3d2ca388bb40cfcabd217c061836db0275982a0efb18023a34e5cf845f4b193"
+        },
+        "legalCompatibilityConclusion": null,
+        "licenceExpressionRaw": [],
+        "materialisationContexts": [
+          "darwin-arm64-cpython-3.11.12-locked-all-extras",
+          "darwin-arm64-cpython-3.12.10-locked-all-extras"
+        ],
+        "metadataName": "contourpy",
+        "metadataSha256": "c43cef86baef09cff9c77975e578fa8cca0c9454df40dc176938b499a63de54a",
+        "metadataToSelectedLockedArtifactHashBinding": "NOT_ESTABLISHED",
+        "metadataVersion": "1.3.3"
+      },
+      "lockRecordSha256": "437698b8e03555d6a36bef346c2c778c521962ad426bc1cb170d3e965add4e7d",
+      "lockResolutionMarkersRaw": [],
+      "purl": "pkg:pypi/contourpy@1.3.3",
+      "source": {
+        "registry": "https://pypi.org/simple"
+      },
+      "version": "1.3.3"
+    },
+    {
+      "artifactCandidatesFromLock": {
+        "sdistHash": "sha256:077f0964087883176ff6ab9b074694cae29f8c708273b13ca62c183c6ed716cd",
+        "wheelCount": 106,
+        "wheelHashesDigestSha256": "4456efe1d78c08f52e8a687e5998b6424bcbc7c235ea9261949fab6210ab5bc5"
+      },
+      "canonicalName": "coverage",
+      "dependencySurfaces": [
+        "transitive"
+      ],
+      "directness": "transitive",
+      "incomingEdges": [
+        {
+          "edgeKind": "dependency",
+          "markerRaw": null,
+          "parent": {
+            "name": "pytest-cov",
+            "version": "6.3.0"
+          }
+        }
+      ],
+      "licenceEvidence": {
+        "classifiersRaw": [],
+        "evidenceState": "LEGACY_FREE_TEXT_OR_SHORT_NAME_ONLY",
+        "legacyLicenceField": {
+          "kind": "short-raw",
+          "value": "Apache-2.0"
+        },
+        "legalCompatibilityConclusion": null,
+        "licenceExpressionRaw": [],
+        "materialisationContexts": [
+          "darwin-arm64-cpython-3.11.12-locked-all-extras",
+          "darwin-arm64-cpython-3.12.10-locked-all-extras"
+        ],
+        "metadataName": "coverage",
+        "metadataSha256": "7a33955c0b8885df0efa30fb4436f71c3c924689a67ccf4a9157b8071c25056e",
+        "metadataToSelectedLockedArtifactHashBinding": "NOT_ESTABLISHED",
+        "metadataVersion": "7.16.0"
+      },
+      "lockRecordSha256": "8b39108db25b898fda9d9f4dc6c0ca0df1e9116a0f5c160f0099a55966acb6e7",
+      "lockResolutionMarkersRaw": [],
+      "purl": "pkg:pypi/coverage@7.16.0",
+      "source": {
+        "registry": "https://pypi.org/simple"
+      },
+      "version": "7.16.0"
+    },
+    {
+      "artifactCandidatesFromLock": {
+        "sdistHash": "sha256:88bb128f02ba341da8ef447245a9e138fae777f6a23943da4540077d3601eb1c",
+        "wheelCount": 1,
+        "wheelHashesDigestSha256": "4b8263f8f7ee2fa57390c86ca59122d151cd743f0cc9779a6b6219b7b7d54527"
+      },
+      "canonicalName": "cycler",
+      "dependencySurfaces": [
+        "transitive"
+      ],
+      "directness": "transitive",
+      "incomingEdges": [
+        {
+          "edgeKind": "dependency",
+          "markerRaw": null,
+          "parent": {
+            "name": "matplotlib",
+            "version": "3.11.1"
+          }
+        }
+      ],
+      "licenceEvidence": {
+        "classifiersRaw": [
+          "License :: OSI Approved :: BSD License"
+        ],
+        "evidenceState": "LEGACY_SINGLE_CLASSIFIER_ONLY",
+        "legacyLicenceField": {
+          "characterCount": 1497,
+          "kind": "long-raw-not-embedded",
+          "sha256": "f1218143d766da3fea66f13396b7f15df46a83303f29bf96ba6e98eb4d42f408"
+        },
+        "legalCompatibilityConclusion": null,
+        "licenceExpressionRaw": [],
+        "materialisationContexts": [
+          "darwin-arm64-cpython-3.11.12-locked-all-extras",
+          "darwin-arm64-cpython-3.12.10-locked-all-extras"
+        ],
+        "metadataName": "cycler",
+        "metadataSha256": "23289e19b76f1e01394227696e6af2b6cd1ce79e89731209bf9195148b18ed36",
+        "metadataToSelectedLockedArtifactHashBinding": "NOT_ESTABLISHED",
+        "metadataVersion": "0.12.1"
+      },
+      "lockRecordSha256": "60918c3845cb882559250f42e267a863e037ef193c9e3ed9ba31e61cb450da9e",
+      "lockResolutionMarkersRaw": [],
+      "purl": "pkg:pypi/cycler@0.12.1",
+      "source": {
+        "registry": "https://pypi.org/simple"
+      },
+      "version": "0.12.1"
+    },
+    {
+      "artifactCandidatesFromLock": {
+        "sdistHash": "sha256:3a6b18732edf182daa3cd12775bbb338cf5691468f91eeeb109deff6ebfa986f",
+        "wheelCount": 1,
+        "wheelHashesDigestSha256": "6c105698f3a5a534196975d8defd5333a0ec24fca8cb21774a6b0362f978081f"
+      },
+      "canonicalName": "docutils",
+      "dependencySurfaces": [
+        "transitive"
+      ],
+      "directness": "transitive",
+      "incomingEdges": [
+        {
+          "edgeKind": "dependency",
+          "markerRaw": null,
+          "parent": {
+            "name": "sphinx",
+            "version": "8.2.3"
+          }
+        }
+      ],
+      "licenceEvidence": {
+        "classifiersRaw": [
+          "License :: OSI Approved :: BSD License",
+          "License :: OSI Approved :: GNU General Public License (GPL)",
+          "License :: OSI Approved :: Python Software Foundation License",
+          "License :: Public Domain"
+        ],
+        "evidenceState": "LEGACY_MULTIPLE_CLASSIFIERS_AMBIGUOUS",
+        "legacyLicenceField": null,
+        "legalCompatibilityConclusion": null,
+        "licenceExpressionRaw": [],
+        "materialisationContexts": [
+          "darwin-arm64-cpython-3.11.12-locked-all-extras",
+          "darwin-arm64-cpython-3.12.10-locked-all-extras"
+        ],
+        "metadataName": "docutils",
+        "metadataSha256": "de83b280a250e28b458609ad38d1262cf88b8d4819510e45bb56451f14cfe02f",
+        "metadataToSelectedLockedArtifactHashBinding": "NOT_ESTABLISHED",
+        "metadataVersion": "0.21.2"
+      },
+      "lockRecordSha256": "28672da7fc0c99b11a601150c36db09f7edd794d27745b3181644166e23b49bd",
+      "lockResolutionMarkersRaw": [],
+      "purl": "pkg:pypi/docutils@0.21.2",
+      "source": {
+        "registry": "https://pypi.org/simple"
+      },
+      "version": "0.21.2"
+    },
+    {
+      "artifactCandidatesFromLock": {
+        "sdistHash": "sha256:caeb583deeb5168e694b65cda8b4ee62abedfa66cf88488734466f2366b9c4e0",
+        "wheelCount": 41,
+        "wheelHashesDigestSha256": "fff002ff9230fb548b8eefe11ca8cc15d9603fffa39f70002a9de567f938dbfc"
+      },
+      "canonicalName": "fonttools",
+      "dependencySurfaces": [
+        "transitive"
+      ],
+      "directness": "transitive",
+      "incomingEdges": [
+        {
+          "edgeKind": "dependency",
+          "markerRaw": null,
+          "parent": {
+            "name": "matplotlib",
+            "version": "3.11.1"
+          }
+        }
+      ],
+      "licenceEvidence": {
+        "classifiersRaw": [],
+        "evidenceState": "LEGACY_FREE_TEXT_OR_SHORT_NAME_ONLY",
+        "legacyLicenceField": {
+          "kind": "short-raw",
+          "value": "MIT"
+        },
+        "legalCompatibilityConclusion": null,
+        "licenceExpressionRaw": [],
+        "materialisationContexts": [
+          "darwin-arm64-cpython-3.11.12-locked-all-extras",
+          "darwin-arm64-cpython-3.12.10-locked-all-extras"
+        ],
+        "metadataName": "fonttools",
+        "metadataSha256": "878374d811bfa83c045c55eabbcaa09e646f426fd4777b5e7f716e4e2198fbc1",
+        "metadataToSelectedLockedArtifactHashBinding": "NOT_ESTABLISHED",
+        "metadataVersion": "4.63.0"
+      },
+      "lockRecordSha256": "7c707a8a6e3e4778fd669553f3745482e73ecaf31cb66aa86aa6cd06e72ac291",
+      "lockResolutionMarkersRaw": [],
+      "purl": "pkg:pypi/fonttools@4.63.0",
+      "source": {
+        "registry": "https://pypi.org/simple"
+      },
+      "version": "4.63.0"
+    },
+    {
+      "artifactCandidatesFromLock": {
+        "sdistHash": "sha256:5e0811a4383b21dc5838069f801c4fb62113b7447663d2530d2bd6e77b49bf15",
+        "wheelCount": 1,
+        "wheelHashesDigestSha256": "c73761b994731aa79ca3b34e56d7d7997bebcdb00721a8d505f97c83ec15fffd"
+      },
+      "canonicalName": "idna",
+      "dependencySurfaces": [
+        "transitive"
+      ],
+      "directness": "transitive",
+      "incomingEdges": [
+        {
+          "edgeKind": "dependency",
+          "markerRaw": null,
+          "parent": {
+            "name": "requests",
+            "version": "2.34.2"
+          }
+        }
+      ],
+      "licenceEvidence": {
+        "classifiersRaw": [],
+        "evidenceState": "DECLARED_EXPRESSION_PRESENT_NOT_LEGAL_CONCLUSION",
+        "legacyLicenceField": null,
+        "legalCompatibilityConclusion": null,
+        "licenceExpressionRaw": [
+          "BSD-3-Clause"
+        ],
+        "materialisationContexts": [
+          "darwin-arm64-cpython-3.11.12-locked-all-extras",
+          "darwin-arm64-cpython-3.12.10-locked-all-extras"
+        ],
+        "metadataName": "idna",
+        "metadataSha256": "4d113161aca8582e8d28fddf3ea50f19b607209c2b3e4364379a163454680084",
+        "metadataToSelectedLockedArtifactHashBinding": "NOT_ESTABLISHED",
+        "metadataVersion": "3.19"
+      },
+      "lockRecordSha256": "abb6ef5e9d7878f41df256ff8334b0f28395c9780c3760052586f7d745dcd20f",
+      "lockResolutionMarkersRaw": [],
+      "purl": "pkg:pypi/idna@3.19",
+      "source": {
+        "registry": "https://pypi.org/simple"
+      },
+      "version": "3.19"
+    },
+    {
+      "artifactCandidatesFromLock": {
+        "sdistHash": "sha256:b2ba6a4dea487a7ebcd53248d3476aca449d30db12a2dde5e0c5ca9624fd77e5",
+        "wheelCount": 1,
+        "wheelHashesDigestSha256": "89e0565f3b2122cf8aa81c3cd2de7924ff7e7ed0d8ebaf82ca0bec385e70fd84"
+      },
+      "canonicalName": "imagesize",
+      "dependencySurfaces": [
+        "transitive"
+      ],
+      "directness": "transitive",
+      "incomingEdges": [
+        {
+          "edgeKind": "dependency",
+          "markerRaw": null,
+          "parent": {
+            "name": "sphinx",
+            "version": "8.2.3"
+          }
+        }
+      ],
+      "licenceEvidence": {
+        "classifiersRaw": [],
+        "evidenceState": "DECLARED_EXPRESSION_PRESENT_NOT_LEGAL_CONCLUSION",
+        "legacyLicenceField": null,
+        "legalCompatibilityConclusion": null,
+        "licenceExpressionRaw": [
+          "MIT"
+        ],
+        "materialisationContexts": [
+          "darwin-arm64-cpython-3.11.12-locked-all-extras",
+          "darwin-arm64-cpython-3.12.10-locked-all-extras"
+        ],
+        "metadataName": "imagesize",
+        "metadataSha256": "eded5ee1284519a4977ab73802efb9f5c732ff595abdb8a41fe73e6967070daf",
+        "metadataToSelectedLockedArtifactHashBinding": "NOT_ESTABLISHED",
+        "metadataVersion": "2.0.1"
+      },
+      "lockRecordSha256": "66b5a428e6c470ff272a88a019828982c5bb4a188d143680bb27d94b718378f6",
+      "lockResolutionMarkersRaw": [],
+      "purl": "pkg:pypi/imagesize@2.0.1",
+      "source": {
+        "registry": "https://pypi.org/simple"
+      },
+      "version": "2.0.1"
+    },
+    {
+      "artifactCandidatesFromLock": {
+        "sdistHash": "sha256:c76315c77db068650d49c5b56314774a7804df16fee4402c1f19d6d15d8c4730",
+        "wheelCount": 1,
+        "wheelHashesDigestSha256": "a85d477ef41598a223d9b98f547c8c3ee54ba2e4be11c152d6848195280b227b"
+      },
+      "canonicalName": "iniconfig",
+      "dependencySurfaces": [
+        "transitive"
+      ],
+      "directness": "transitive",
+      "incomingEdges": [
+        {
+          "edgeKind": "dependency",
+          "markerRaw": null,
+          "parent": {
+            "name": "pytest",
+            "version": "8.4.2"
+          }
+        }
+      ],
+      "licenceEvidence": {
+        "classifiersRaw": [],
+        "evidenceState": "DECLARED_EXPRESSION_PRESENT_NOT_LEGAL_CONCLUSION",
+        "legacyLicenceField": null,
+        "legalCompatibilityConclusion": null,
+        "licenceExpressionRaw": [
+          "MIT"
+        ],
+        "materialisationContexts": [
+          "darwin-arm64-cpython-3.11.12-locked-all-extras",
+          "darwin-arm64-cpython-3.12.10-locked-all-extras"
+        ],
+        "metadataName": "iniconfig",
+        "metadataSha256": "40d773f84e4e112f495bbf4f1be9cbd2d456c0aeb6ef5311f75d1bf322f2165b",
+        "metadataToSelectedLockedArtifactHashBinding": "NOT_ESTABLISHED",
+        "metadataVersion": "2.3.0"
+      },
+      "lockRecordSha256": "f55b18a45c022f7277b06813158eb4fb80ca889d70b9ea9fe45f57673dee1161",
+      "lockResolutionMarkersRaw": [],
+      "purl": "pkg:pypi/iniconfig@2.3.0",
+      "source": {
+        "registry": "https://pypi.org/simple"
+      },
+      "version": "2.3.0"
+    },
+    {
+      "artifactCandidatesFromLock": {
+        "sdistHash": "sha256:0137fb05990d35f1275a587e9aee6d56da821fc83491a0fb838183be43f66d6d",
+        "wheelCount": 1,
+        "wheelHashesDigestSha256": "027390b262a2261d40a631cb93f0ef033770aed786c041cc97de903e38567d37"
+      },
+      "canonicalName": "jinja2",
+      "dependencySurfaces": [
+        "transitive"
+      ],
+      "directness": "transitive",
+      "incomingEdges": [
+        {
+          "edgeKind": "dependency",
+          "markerRaw": null,
+          "parent": {
+            "name": "sphinx",
+            "version": "8.2.3"
+          }
+        }
+      ],
+      "licenceEvidence": {
+        "classifiersRaw": [
+          "License :: OSI Approved :: BSD License"
+        ],
+        "evidenceState": "LEGACY_SINGLE_CLASSIFIER_ONLY",
+        "legacyLicenceField": null,
+        "legalCompatibilityConclusion": null,
+        "licenceExpressionRaw": [],
+        "materialisationContexts": [
+          "darwin-arm64-cpython-3.11.12-locked-all-extras",
+          "darwin-arm64-cpython-3.12.10-locked-all-extras"
+        ],
+        "metadataName": "jinja2",
+        "metadataSha256": "68c5548fb67c4132a13898d9b31ec50c6bea2abdd915d921f214355c3a6499c8",
+        "metadataToSelectedLockedArtifactHashBinding": "NOT_ESTABLISHED",
+        "metadataVersion": "3.1.6"
+      },
+      "lockRecordSha256": "fb9d06b5f6af6cdd5386b95d2f67c3070d784f6e70cb9e38225e650c351b0502",
+      "lockResolutionMarkersRaw": [],
+      "purl": "pkg:pypi/jinja2@3.1.6",
+      "source": {
+        "registry": "https://pypi.org/simple"
+      },
+      "version": "3.1.6"
+    },
+    {
+      "artifactCandidatesFromLock": {
+        "sdistHash": "sha256:f1303ef2eec81262a4b708c3e858afe58d7c75ad91c1c05266eda7673369859a",
+        "wheelCount": 122,
+        "wheelHashesDigestSha256": "ee002fa73c53bb501d87e14e11880132c2e9a18fe87c86523dcc25c64daecbb6"
+      },
+      "canonicalName": "kiwisolver",
+      "dependencySurfaces": [
+        "transitive"
+      ],
+      "directness": "transitive",
+      "incomingEdges": [
+        {
+          "edgeKind": "dependency",
+          "markerRaw": null,
+          "parent": {
+            "name": "matplotlib",
+            "version": "3.11.1"
+          }
+        }
+      ],
+      "licenceEvidence": {
+        "classifiersRaw": [
+          "License :: OSI Approved :: BSD License"
+        ],
+        "evidenceState": "LEGACY_SINGLE_CLASSIFIER_ONLY",
+        "legacyLicenceField": {
+          "characterCount": 3289,
+          "kind": "long-raw-not-embedded",
+          "sha256": "529c40e5f67f2f88904657a9f7879ae2f8dc76bc9bfef9cb10d988b48804ed61"
+        },
+        "legalCompatibilityConclusion": null,
+        "licenceExpressionRaw": [],
+        "materialisationContexts": [
+          "darwin-arm64-cpython-3.11.12-locked-all-extras",
+          "darwin-arm64-cpython-3.12.10-locked-all-extras"
+        ],
+        "metadataName": "kiwisolver",
+        "metadataSha256": "f07b7b6c0c9c2a624c8a31f931e16712f2cf3490e7dfd51643d68e9d42d4b2c9",
+        "metadataToSelectedLockedArtifactHashBinding": "NOT_ESTABLISHED",
+        "metadataVersion": "1.5.1"
+      },
+      "lockRecordSha256": "0a5d7c1c613e16c14b41bc18e3252912f7cb0907ae6eabef93b5260e0dbfeecf",
+      "lockResolutionMarkersRaw": [],
+      "purl": "pkg:pypi/kiwisolver@1.5.1",
+      "source": {
+        "registry": "https://pypi.org/simple"
+      },
+      "version": "1.5.1"
+    },
+    {
+      "artifactCandidatesFromLock": {
+        "sdistHash": "sha256:4e66cbe84437497d951b799d3e1551291b6fb3d643820a7014b3655d57a59162",
+        "wheelCount": 108,
+        "wheelHashesDigestSha256": "14f09133f69ca7831343598d6f1ea8f06e766e0a1c8257383cc5127ab03d64c6"
+      },
+      "canonicalName": "librt",
+      "dependencySurfaces": [
+        "transitive"
+      ],
+      "directness": "transitive",
+      "incomingEdges": [
+        {
+          "edgeKind": "dependency",
+          "markerRaw": "platform_python_implementation != 'PyPy'",
+          "parent": {
+            "name": "mypy",
+            "version": "1.20.2"
+          }
+        }
+      ],
+      "licenceEvidence": {
+        "classifiersRaw": [],
+        "evidenceState": "DECLARED_EXPRESSION_PRESENT_NOT_LEGAL_CONCLUSION",
+        "legacyLicenceField": null,
+        "legalCompatibilityConclusion": null,
+        "licenceExpressionRaw": [
+          "MIT"
+        ],
+        "materialisationContexts": [
+          "darwin-arm64-cpython-3.11.12-locked-all-extras",
+          "darwin-arm64-cpython-3.12.10-locked-all-extras"
+        ],
+        "metadataName": "librt",
+        "metadataSha256": "58262fb3434943045ce7149ad5e4f2b8bf365f50a407c524b419d4286921830c",
+        "metadataToSelectedLockedArtifactHashBinding": "NOT_ESTABLISHED",
+        "metadataVersion": "0.15.0"
+      },
+      "lockRecordSha256": "df9671292df757140246263032c2ffb12f3d39fcf6bcc428dd93ba5d8b796e8f",
+      "lockResolutionMarkersRaw": [],
+      "purl": "pkg:pypi/librt@0.15.0",
+      "source": {
+        "registry": "https://pypi.org/simple"
+      },
+      "version": "0.15.0"
+    },
+    {
+      "artifactCandidatesFromLock": {
+        "sdistHash": "sha256:722695808f4b6457b320fdc131280796bdceb04ab50fe1795cd540799ebe1698",
+        "wheelCount": 66,
+        "wheelHashesDigestSha256": "540a7b747f6affe1b1f8fc780ca1186a9a719b3f918c1e81afb36e52b5773cab"
+      },
+      "canonicalName": "markupsafe",
+      "dependencySurfaces": [
+        "transitive"
+      ],
+      "directness": "transitive",
+      "incomingEdges": [
+        {
+          "edgeKind": "dependency",
+          "markerRaw": null,
+          "parent": {
+            "name": "jinja2",
+            "version": "3.1.6"
+          }
+        }
+      ],
+      "licenceEvidence": {
+        "classifiersRaw": [],
+        "evidenceState": "DECLARED_EXPRESSION_PRESENT_NOT_LEGAL_CONCLUSION",
+        "legacyLicenceField": null,
+        "legalCompatibilityConclusion": null,
+        "licenceExpressionRaw": [
+          "BSD-3-Clause"
+        ],
+        "materialisationContexts": [
+          "darwin-arm64-cpython-3.11.12-locked-all-extras",
+          "darwin-arm64-cpython-3.12.10-locked-all-extras"
+        ],
+        "metadataName": "markupsafe",
+        "metadataSha256": "12b4cc61a7fa288cf7667ee3f213786d9619db57fb33ff6f934afbcb5c12ec81",
+        "metadataToSelectedLockedArtifactHashBinding": "NOT_ESTABLISHED",
+        "metadataVersion": "3.0.3"
+      },
+      "lockRecordSha256": "bf8fc772e478dd7c77b91a595c7340d6b32147407393528fa3d4ce3a9608aa72",
+      "lockResolutionMarkersRaw": [],
+      "purl": "pkg:pypi/markupsafe@3.0.3",
+      "source": {
+        "registry": "https://pypi.org/simple"
+      },
+      "version": "3.0.3"
+    },
+    {
+      "artifactCandidatesFromLock": {
+        "sdistHash": "sha256:69647db5746941c793d6e445a4cd349323ffb87d9cc958c2ad84a659b4832d30",
+        "wheelCount": 45,
+        "wheelHashesDigestSha256": "3e3e80a9cb80e6e2d00b5d8f7d9f224ffdd184e183d3502cccd465c5e6ee0e56"
+      },
+      "canonicalName": "matplotlib",
+      "dependencySurfaces": [
+        "benchmark"
+      ],
+      "directness": "direct",
+      "incomingEdges": [
+        {
+          "edgeKind": "optional:benchmark",
+          "markerRaw": null,
+          "parent": {
+            "name": "selcal",
+            "version": "0.1.0.dev0"
+          }
+        }
+      ],
+      "licenceEvidence": {
+        "classifiersRaw": [
+          "License :: OSI Approved :: Python Software Foundation License"
+        ],
+        "evidenceState": "LEGACY_SINGLE_CLASSIFIER_ONLY",
+        "legacyLicenceField": {
+          "characterCount": 64419,
+          "kind": "long-raw-not-embedded",
+          "sha256": "11b43b00dc032aba34426bfb8f93d48714076cbad3753cacec31b9d0f522aa2f"
+        },
+        "legalCompatibilityConclusion": null,
+        "licenceExpressionRaw": [],
+        "materialisationContexts": [
+          "darwin-arm64-cpython-3.11.12-locked-all-extras",
+          "darwin-arm64-cpython-3.12.10-locked-all-extras"
+        ],
+        "metadataName": "matplotlib",
+        "metadataSha256": "e42a4867d0c790804bce9ccd38972e1e71e24a81f2dbc9633efc71e63ce69f59",
+        "metadataToSelectedLockedArtifactHashBinding": "NOT_ESTABLISHED",
+        "metadataVersion": "3.11.1"
+      },
+      "lockRecordSha256": "494592fbbe026fb2eac2e81530991f7ee436ffc73d754c5885233855a80ed8d4",
+      "lockResolutionMarkersRaw": [],
+      "purl": "pkg:pypi/matplotlib@3.11.1",
+      "source": {
+        "registry": "https://pypi.org/simple"
+      },
+      "version": "3.11.1"
+    },
+    {
+      "artifactCandidatesFromLock": {
+        "sdistHash": "sha256:e8222c26daaafd9e8626dec58ae36029f82585890589576f769a650dd20fd665",
+        "wheelCount": 36,
+        "wheelHashesDigestSha256": "0476b20b1d70b0faf200b8c45f29b75459d977cce435f2461927e4db0da303e0"
+      },
+      "canonicalName": "mypy",
+      "dependencySurfaces": [
+        "dev"
+      ],
+      "directness": "direct",
+      "incomingEdges": [
+        {
+          "edgeKind": "optional:dev",
+          "markerRaw": null,
+          "parent": {
+            "name": "selcal",
+            "version": "0.1.0.dev0"
+          }
+        }
+      ],
+      "licenceEvidence": {
+        "classifiersRaw": [],
+        "evidenceState": "DECLARED_EXPRESSION_PRESENT_NOT_LEGAL_CONCLUSION",
+        "legacyLicenceField": null,
+        "legalCompatibilityConclusion": null,
+        "licenceExpressionRaw": [
+          "MIT"
+        ],
+        "materialisationContexts": [
+          "darwin-arm64-cpython-3.11.12-locked-all-extras",
+          "darwin-arm64-cpython-3.12.10-locked-all-extras"
+        ],
+        "metadataName": "mypy",
+        "metadataSha256": "ed6c2c85bc919e083f58fdd42031ec98ce43ffe4bc7310457d969eaee7036112",
+        "metadataToSelectedLockedArtifactHashBinding": "NOT_ESTABLISHED",
+        "metadataVersion": "1.20.2"
+      },
+      "lockRecordSha256": "d02d98479a57f263f8d952a64e49703ffdd2abc448df44cdc36eaf171f1916af",
+      "lockResolutionMarkersRaw": [],
+      "purl": "pkg:pypi/mypy@1.20.2",
+      "source": {
+        "registry": "https://pypi.org/simple"
+      },
+      "version": "1.20.2"
+    },
+    {
+      "artifactCandidatesFromLock": {
+        "sdistHash": "sha256:52e68efc3284861e772bbcd66823fde5ae21fd2fdb51c62a211403730b916558",
+        "wheelCount": 1,
+        "wheelHashesDigestSha256": "64341495e3d29c3c95248ad86467353cf51040a3ef3beb99ffa0bdeacae63d9c"
+      },
+      "canonicalName": "mypy-extensions",
+      "dependencySurfaces": [
+        "transitive"
+      ],
+      "directness": "transitive",
+      "incomingEdges": [
+        {
+          "edgeKind": "dependency",
+          "markerRaw": null,
+          "parent": {
+            "name": "mypy",
+            "version": "1.20.2"
+          }
+        }
+      ],
+      "licenceEvidence": {
+        "classifiersRaw": [],
+        "evidenceState": "DECLARED_EXPRESSION_PRESENT_NOT_LEGAL_CONCLUSION",
+        "legacyLicenceField": null,
+        "legalCompatibilityConclusion": null,
+        "licenceExpressionRaw": [
+          "MIT"
+        ],
+        "materialisationContexts": [
+          "darwin-arm64-cpython-3.11.12-locked-all-extras",
+          "darwin-arm64-cpython-3.12.10-locked-all-extras"
+        ],
+        "metadataName": "mypy-extensions",
+        "metadataSha256": "2c4a44936d885f30433181ca40bbf62457351f1f6b0871b11f8789564f87477f",
+        "metadataToSelectedLockedArtifactHashBinding": "NOT_ESTABLISHED",
+        "metadataVersion": "1.1.0"
+      },
+      "lockRecordSha256": "501d3011a7a561baf82e17639b23b6e5dad80e912df07dfb34f852bafe4c4b59",
+      "lockResolutionMarkersRaw": [],
+      "purl": "pkg:pypi/mypy-extensions@1.1.0",
+      "source": {
+        "registry": "https://pypi.org/simple"
+      },
+      "version": "1.1.0"
+    },
+    {
+      "artifactCandidatesFromLock": {
+        "sdistHash": "sha256:f3a3570c4a2a16746ac2c31a7c7c7b0c186b95ce902e33db6f28094ed7387dda",
+        "wheelCount": 71,
+        "wheelHashesDigestSha256": "d7b921ed69706d2ea17129e29f041462b75651af94537fbe5bf6cd7e8a9b09d7"
+      },
+      "canonicalName": "numpy",
+      "dependencySurfaces": [
+        "runtime"
+      ],
+      "directness": "direct",
+      "incomingEdges": [
+        {
+          "edgeKind": "dependency",
+          "markerRaw": "python_full_version < '3.12'",
+          "parent": {
+            "name": "contourpy",
+            "version": "1.3.3"
+          }
+        },
+        {
+          "edgeKind": "dependency",
+          "markerRaw": "python_full_version < '3.12'",
+          "parent": {
+            "name": "matplotlib",
+            "version": "3.11.1"
+          }
+        },
+        {
+          "edgeKind": "dependency",
+          "markerRaw": "python_full_version < '3.12'",
+          "parent": {
+            "name": "selcal",
+            "version": "0.1.0.dev0"
+          }
+        }
+      ],
+      "licenceEvidence": {
+        "classifiersRaw": [],
+        "evidenceState": "DECLARED_EXPRESSION_PRESENT_NOT_LEGAL_CONCLUSION",
+        "legacyLicenceField": null,
+        "legalCompatibilityConclusion": null,
+        "licenceExpressionRaw": [
+          "BSD-3-Clause AND 0BSD AND MIT AND Zlib AND CC0-1.0"
+        ],
+        "materialisationContexts": [
+          "darwin-arm64-cpython-3.11.12-locked-all-extras"
+        ],
+        "metadataName": "numpy",
+        "metadataSha256": "b082c52ccbe3b880bae177c35171b52ed6c947f3ad71e3762f2723f60a411de0",
+        "metadataToSelectedLockedArtifactHashBinding": "NOT_ESTABLISHED",
+        "metadataVersion": "2.4.6"
+      },
+      "lockRecordSha256": "081979f2f8fed450ebb45b669144016930c0d8cd39c429d5bb2041de326352c4",
+      "lockResolutionMarkersRaw": [
+        "python_full_version < '3.12'"
+      ],
+      "purl": "pkg:pypi/numpy@2.4.6",
+      "source": {
+        "registry": "https://pypi.org/simple"
+      },
+      "version": "2.4.6"
+    },
+    {
+      "artifactCandidatesFromLock": {
+        "sdistHash": "sha256:d482d171c406ae88c5b19cad3b6a1c4c5209f886ab74bc44c2c865c23f52d860",
+        "wheelCount": 65,
+        "wheelHashesDigestSha256": "2f24d2d4c835384c907b913c73566035bb599ccbff75ab731cc853947778af49"
+      },
+      "canonicalName": "numpy",
+      "dependencySurfaces": [
+        "runtime"
+      ],
+      "directness": "direct",
+      "incomingEdges": [
+        {
+          "edgeKind": "dependency",
+          "markerRaw": "python_full_version >= '3.12'",
+          "parent": {
+            "name": "contourpy",
+            "version": "1.3.3"
+          }
+        },
+        {
+          "edgeKind": "dependency",
+          "markerRaw": "python_full_version >= '3.12'",
+          "parent": {
+            "name": "matplotlib",
+            "version": "3.11.1"
+          }
+        },
+        {
+          "edgeKind": "dependency",
+          "markerRaw": "python_full_version >= '3.12'",
+          "parent": {
+            "name": "selcal",
+            "version": "0.1.0.dev0"
+          }
+        }
+      ],
+      "licenceEvidence": {
+        "classifiersRaw": [],
+        "evidenceState": "DECLARED_EXPRESSION_PRESENT_NOT_LEGAL_CONCLUSION",
+        "legacyLicenceField": null,
+        "legalCompatibilityConclusion": null,
+        "licenceExpressionRaw": [
+          "BSD-3-Clause AND 0BSD AND MIT AND Zlib AND CC0-1.0"
+        ],
+        "materialisationContexts": [
+          "darwin-arm64-cpython-3.12.10-locked-all-extras"
+        ],
+        "metadataName": "numpy",
+        "metadataSha256": "9a895d801184d2176f926af84eb47f2db1af2756afac99d64a2bf482d5d5e024",
+        "metadataToSelectedLockedArtifactHashBinding": "NOT_ESTABLISHED",
+        "metadataVersion": "2.5.2"
+      },
+      "lockRecordSha256": "f49325f55d3bfd0eddb218d9f769176dd340faed266e64957a2352810a365c8f",
+      "lockResolutionMarkersRaw": [
+        "python_full_version >= '3.15'",
+        "python_full_version >= '3.12' and python_full_version < '3.15'"
+      ],
+      "purl": "pkg:pypi/numpy@2.5.2",
+      "source": {
+        "registry": "https://pypi.org/simple"
+      },
+      "version": "2.5.2"
+    },
+    {
+      "artifactCandidatesFromLock": {
+        "sdistHash": "sha256:94edc256424af38762eb31306eed28beb9f0efc50a8837492c9d6fd6004aed79",
+        "wheelCount": 1,
+        "wheelHashesDigestSha256": "61b4abb12fb65ffd1b381b784ae51bcc5181879c834cd68c2b2197751a6b2bb4"
+      },
+      "canonicalName": "packaging",
+      "dependencySurfaces": [
+        "transitive"
+      ],
+      "directness": "transitive",
+      "incomingEdges": [
+        {
+          "edgeKind": "dependency",
+          "markerRaw": null,
+          "parent": {
+            "name": "build",
+            "version": "1.6.0"
+          }
+        },
+        {
+          "edgeKind": "dependency",
+          "markerRaw": null,
+          "parent": {
+            "name": "matplotlib",
+            "version": "3.11.1"
+          }
+        },
+        {
+          "edgeKind": "dependency",
+          "markerRaw": null,
+          "parent": {
+            "name": "pytest",
+            "version": "8.4.2"
+          }
+        },
+        {
+          "edgeKind": "dependency",
+          "markerRaw": null,
+          "parent": {
+            "name": "sphinx",
+            "version": "8.2.3"
+          }
+        }
+      ],
+      "licenceEvidence": {
+        "classifiersRaw": [],
+        "evidenceState": "DECLARED_EXPRESSION_PRESENT_NOT_LEGAL_CONCLUSION",
+        "legacyLicenceField": null,
+        "legalCompatibilityConclusion": null,
+        "licenceExpressionRaw": [
+          "Apache-2.0 OR BSD-2-Clause"
+        ],
+        "materialisationContexts": [
+          "darwin-arm64-cpython-3.11.12-locked-all-extras",
+          "darwin-arm64-cpython-3.12.10-locked-all-extras"
+        ],
+        "metadataName": "packaging",
+        "metadataSha256": "70fdb89fc4d4a9a043bf7372b8972bcc883fddff34ab55e9cf80d73875384763",
+        "metadataToSelectedLockedArtifactHashBinding": "NOT_ESTABLISHED",
+        "metadataVersion": "26.3"
+      },
+      "lockRecordSha256": "029d77b017ced106c1aa1d38a94480a1242346cebd3a3108dc7279d85c2959be",
+      "lockResolutionMarkersRaw": [],
+      "purl": "pkg:pypi/packaging@26.3",
+      "source": {
+        "registry": "https://pypi.org/simple"
+      },
+      "version": "26.3"
+    },
+    {
+      "artifactCandidatesFromLock": {
+        "sdistHash": "sha256:17db5ecd524104a120e173814c90367a96a98d07c45b2e10c2f3919fff91bf5a",
+        "wheelCount": 1,
+        "wheelHashesDigestSha256": "694718b66b633b11305f1f2d96776b7fd7725928a530ec76d4d7a179f719e3f1"
+      },
+      "canonicalName": "pathspec",
+      "dependencySurfaces": [
+        "transitive"
+      ],
+      "directness": "transitive",
+      "incomingEdges": [
+        {
+          "edgeKind": "dependency",
+          "markerRaw": null,
+          "parent": {
+            "name": "mypy",
+            "version": "1.20.2"
+          }
+        }
+      ],
+      "licenceEvidence": {
+        "classifiersRaw": [
+          "License :: OSI Approved :: Mozilla Public License 2.0 (MPL 2.0)"
+        ],
+        "evidenceState": "LEGACY_SINGLE_CLASSIFIER_ONLY",
+        "legacyLicenceField": null,
+        "legalCompatibilityConclusion": null,
+        "licenceExpressionRaw": [],
+        "materialisationContexts": [
+          "darwin-arm64-cpython-3.11.12-locked-all-extras",
+          "darwin-arm64-cpython-3.12.10-locked-all-extras"
+        ],
+        "metadataName": "pathspec",
+        "metadataSha256": "68de3f158b6592f086e78754c962092f32a761944ab66a660c0d62ad79c4b69b",
+        "metadataToSelectedLockedArtifactHashBinding": "NOT_ESTABLISHED",
+        "metadataVersion": "1.1.1"
+      },
+      "lockRecordSha256": "e4e2b427d853489a52aad2eafd585caedd12e93893238a2fc06346d56068e45c",
+      "lockResolutionMarkersRaw": [],
+      "purl": "pkg:pypi/pathspec@1.1.1",
+      "source": {
+        "registry": "https://pypi.org/simple"
+      },
+      "version": "1.1.1"
+    },
+    {
+      "artifactCandidatesFromLock": {
+        "sdistHash": "sha256:3b8182a766685eaa002637e28b4ec8d6b18819a0c71f579bf0dbaa5830297cce",
+        "wheelCount": 77,
+        "wheelHashesDigestSha256": "e84365b7fc0df2a56eef0c86b0c1fc20f38daa0d10f4c2eea7c6c435e0e53e4f"
+      },
+      "canonicalName": "pillow",
+      "dependencySurfaces": [
+        "transitive"
+      ],
+      "directness": "transitive",
+      "incomingEdges": [
+        {
+          "edgeKind": "dependency",
+          "markerRaw": null,
+          "parent": {
+            "name": "matplotlib",
+            "version": "3.11.1"
+          }
+        }
+      ],
+      "licenceEvidence": {
+        "classifiersRaw": [],
+        "evidenceState": "DECLARED_EXPRESSION_PRESENT_NOT_LEGAL_CONCLUSION",
+        "legacyLicenceField": null,
+        "legalCompatibilityConclusion": null,
+        "licenceExpressionRaw": [
+          "MIT-CMU"
+        ],
+        "materialisationContexts": [
+          "darwin-arm64-cpython-3.11.12-locked-all-extras",
+          "darwin-arm64-cpython-3.12.10-locked-all-extras"
+        ],
+        "metadataName": "pillow",
+        "metadataSha256": "8fc07146cab33ef7582361dab6eac596d340b03ec648f18217da7894f73838c8",
+        "metadataToSelectedLockedArtifactHashBinding": "NOT_ESTABLISHED",
+        "metadataVersion": "12.3.0"
+      },
+      "lockRecordSha256": "2340628f775db1486657fccc38926e04987163304c6ba366e10421d66baf8f20",
+      "lockResolutionMarkersRaw": [],
+      "purl": "pkg:pypi/pillow@12.3.0",
+      "source": {
+        "registry": "https://pypi.org/simple"
+      },
+      "version": "12.3.0"
+    },
+    {
+      "artifactCandidatesFromLock": {
+        "sdistHash": "sha256:f6ad667e89a1fe78046c8f13232b247200f5258d7828f3f7883d660878e0813f",
+        "wheelCount": 1,
+        "wheelHashesDigestSha256": "22b36d249cd0be2a958ed4c9e751630e20f189d6b68749bc9439ae434607d6e5"
+      },
+      "canonicalName": "pip",
+      "dependencySurfaces": [
+        "dev"
+      ],
+      "directness": "direct",
+      "incomingEdges": [
+        {
+          "edgeKind": "optional:dev",
+          "markerRaw": null,
+          "parent": {
+            "name": "selcal",
+            "version": "0.1.0.dev0"
+          }
+        }
+      ],
+      "licenceEvidence": {
+        "classifiersRaw": [],
+        "evidenceState": "DECLARED_EXPRESSION_PRESENT_NOT_LEGAL_CONCLUSION",
+        "legacyLicenceField": null,
+        "legalCompatibilityConclusion": null,
+        "licenceExpressionRaw": [
+          "MIT"
+        ],
+        "materialisationContexts": [
+          "darwin-arm64-cpython-3.11.12-locked-all-extras",
+          "darwin-arm64-cpython-3.12.10-locked-all-extras"
+        ],
+        "metadataName": "pip",
+        "metadataSha256": "3a561005822841f2c45f442f6c7a7505172c8c376c9fe274d876c8ac912968cb",
+        "metadataToSelectedLockedArtifactHashBinding": "NOT_ESTABLISHED",
+        "metadataVersion": "26.2.1"
+      },
+      "lockRecordSha256": "85f4a09eb9bf382cf751a3e89f18041876bfaf44bfc8d2dc0a244cbf635083ca",
+      "lockResolutionMarkersRaw": [],
+      "purl": "pkg:pypi/pip@26.2.1",
+      "source": {
+        "registry": "https://pypi.org/simple"
+      },
+      "version": "26.2.1"
+    },
+    {
+      "artifactCandidatesFromLock": {
+        "sdistHash": "sha256:7dcc130b76258d33b90f61b658791dede3486c3e6bfb003ee5c9bfb396dd22f3",
+        "wheelCount": 1,
+        "wheelHashesDigestSha256": "db09bf15e8058ce73be0f93694f15fe14ee37ff45e901205c24da989301c0e7b"
+      },
+      "canonicalName": "pluggy",
+      "dependencySurfaces": [
+        "transitive"
+      ],
+      "directness": "transitive",
+      "incomingEdges": [
+        {
+          "edgeKind": "dependency",
+          "markerRaw": null,
+          "parent": {
+            "name": "pytest",
+            "version": "8.4.2"
+          }
+        },
+        {
+          "edgeKind": "dependency",
+          "markerRaw": null,
+          "parent": {
+            "name": "pytest-cov",
+            "version": "6.3.0"
+          }
+        }
+      ],
+      "licenceEvidence": {
+        "classifiersRaw": [
+          "License :: OSI Approved :: MIT License"
+        ],
+        "evidenceState": "LEGACY_SINGLE_CLASSIFIER_ONLY",
+        "legacyLicenceField": {
+          "kind": "short-raw",
+          "value": "MIT"
+        },
+        "legalCompatibilityConclusion": null,
+        "licenceExpressionRaw": [],
+        "materialisationContexts": [
+          "darwin-arm64-cpython-3.11.12-locked-all-extras",
+          "darwin-arm64-cpython-3.12.10-locked-all-extras"
+        ],
+        "metadataName": "pluggy",
+        "metadataSha256": "7438c35ee25a095eb7416f84b461c2d74425c5e734ad54c3912453c65244e01c",
+        "metadataToSelectedLockedArtifactHashBinding": "NOT_ESTABLISHED",
+        "metadataVersion": "1.6.0"
+      },
+      "lockRecordSha256": "90504f7563732cf098b94b355fd44a990d9949705b1493191c47b9e6e515b9bd",
+      "lockResolutionMarkersRaw": [],
+      "purl": "pkg:pypi/pluggy@1.6.0",
+      "source": {
+        "registry": "https://pypi.org/simple"
+      },
+      "version": "1.6.0"
+    },
+    {
+      "artifactCandidatesFromLock": {
+        "sdistHash": "sha256:610ca751c9bc2492b38eb9a38a7fbc93edbbb2d7182edaf34e66ae493dee5c8c",
+        "wheelCount": 1,
+        "wheelHashesDigestSha256": "aea6613bbcf2dac5282e605f67cc46b6b23d5d0b8eda074815583602784f1fa4"
+      },
+      "canonicalName": "pygments",
+      "dependencySurfaces": [
+        "transitive"
+      ],
+      "directness": "transitive",
+      "incomingEdges": [
+        {
+          "edgeKind": "dependency",
+          "markerRaw": null,
+          "parent": {
+            "name": "pytest",
+            "version": "8.4.2"
+          }
+        },
+        {
+          "edgeKind": "dependency",
+          "markerRaw": null,
+          "parent": {
+            "name": "sphinx",
+            "version": "8.2.3"
+          }
+        }
+      ],
+      "licenceEvidence": {
+        "classifiersRaw": [],
+        "evidenceState": "DECLARED_EXPRESSION_PRESENT_NOT_LEGAL_CONCLUSION",
+        "legacyLicenceField": null,
+        "legalCompatibilityConclusion": null,
+        "licenceExpressionRaw": [
+          "BSD-2-Clause"
+        ],
+        "materialisationContexts": [
+          "darwin-arm64-cpython-3.11.12-locked-all-extras",
+          "darwin-arm64-cpython-3.12.10-locked-all-extras"
+        ],
+        "metadataName": "pygments",
+        "metadataSha256": "1dde075570136774c706bf0009183a793fe0ee262e4a5590cc6eff8453eedd43",
+        "metadataToSelectedLockedArtifactHashBinding": "NOT_ESTABLISHED",
+        "metadataVersion": "2.21.0"
+      },
+      "lockRecordSha256": "1ad964874393ba3c94722db8d98a05731d4cfb35e1d2c2a4b06822eed4e3a6e3",
+      "lockResolutionMarkersRaw": [],
+      "purl": "pkg:pypi/pygments@2.21.0",
+      "source": {
+        "registry": "https://pypi.org/simple"
+      },
+      "version": "2.21.0"
+    },
+    {
+      "artifactCandidatesFromLock": {
+        "sdistHash": "sha256:c777f4d763f140633dcb6d8a3eda953bf7a214dc4eff598413c070bcdc117cbc",
+        "wheelCount": 1,
+        "wheelHashesDigestSha256": "5b3dddb64cb651f88cc192b52c32c0dfe4d979c400a69360f5ad4cb4a335969b"
+      },
+      "canonicalName": "pyparsing",
+      "dependencySurfaces": [
+        "transitive"
+      ],
+      "directness": "transitive",
+      "incomingEdges": [
+        {
+          "edgeKind": "dependency",
+          "markerRaw": null,
+          "parent": {
+            "name": "matplotlib",
+            "version": "3.11.1"
+          }
+        }
+      ],
+      "licenceEvidence": {
+        "classifiersRaw": [],
+        "evidenceState": "DECLARED_EXPRESSION_PRESENT_NOT_LEGAL_CONCLUSION",
+        "legacyLicenceField": null,
+        "legalCompatibilityConclusion": null,
+        "licenceExpressionRaw": [
+          "MIT"
+        ],
+        "materialisationContexts": [
+          "darwin-arm64-cpython-3.11.12-locked-all-extras",
+          "darwin-arm64-cpython-3.12.10-locked-all-extras"
+        ],
+        "metadataName": "pyparsing",
+        "metadataSha256": "3311a8b949d70f71a2b9788a9327f11d9d5a6a8012d6c046ca254ad2de877f45",
+        "metadataToSelectedLockedArtifactHashBinding": "NOT_ESTABLISHED",
+        "metadataVersion": "3.3.2"
+      },
+      "lockRecordSha256": "24cde2d3102c91f53a5c46962d2c03ee7509f3895a58b6370cea16bdd9462b19",
+      "lockResolutionMarkersRaw": [],
+      "purl": "pkg:pypi/pyparsing@3.3.2",
+      "source": {
+        "registry": "https://pypi.org/simple"
+      },
+      "version": "3.3.2"
+    },
+    {
+      "artifactCandidatesFromLock": {
+        "sdistHash": "sha256:1e859bd5c40fae9448642dd871adf459e5e2084186e8d2c2a79a824c970da1f8",
+        "wheelCount": 1,
+        "wheelHashesDigestSha256": "4674b4c98f2cc9ba725247acc5f87a9680d138a6be4dd522db54a23f58789cd7"
+      },
+      "canonicalName": "pyproject-hooks",
+      "dependencySurfaces": [
+        "transitive"
+      ],
+      "directness": "transitive",
+      "incomingEdges": [
+        {
+          "edgeKind": "dependency",
+          "markerRaw": null,
+          "parent": {
+            "name": "build",
+            "version": "1.6.0"
+          }
+        }
+      ],
+      "licenceEvidence": {
+        "classifiersRaw": [
+          "License :: OSI Approved :: MIT License"
+        ],
+        "evidenceState": "LEGACY_SINGLE_CLASSIFIER_ONLY",
+        "legacyLicenceField": null,
+        "legalCompatibilityConclusion": null,
+        "licenceExpressionRaw": [],
+        "materialisationContexts": [
+          "darwin-arm64-cpython-3.11.12-locked-all-extras",
+          "darwin-arm64-cpython-3.12.10-locked-all-extras"
+        ],
+        "metadataName": "pyproject-hooks",
+        "metadataSha256": "3bfd818e5a898e2c01d849e2342920136d822b59454b599ad55c0d293428654c",
+        "metadataToSelectedLockedArtifactHashBinding": "NOT_ESTABLISHED",
+        "metadataVersion": "1.2.0"
+      },
+      "lockRecordSha256": "2622fb5ed220240421546c10849fb0c105cfc13bf5b2d2d377a7a57f4eddf3b6",
+      "lockResolutionMarkersRaw": [],
+      "purl": "pkg:pypi/pyproject-hooks@1.2.0",
+      "source": {
+        "registry": "https://pypi.org/simple"
+      },
+      "version": "1.2.0"
+    },
+    {
+      "artifactCandidatesFromLock": {
+        "sdistHash": "sha256:86c0d0b93306b961d58d62a4db4879f27fe25513d4b969df351abdddb3c30e01",
+        "wheelCount": 1,
+        "wheelHashesDigestSha256": "e40528fccc7e79666bf163da27e084517b8288300294005823a008f3f83d29bd"
+      },
+      "canonicalName": "pytest",
+      "dependencySurfaces": [
+        "dev"
+      ],
+      "directness": "direct",
+      "incomingEdges": [
+        {
+          "edgeKind": "dependency",
+          "markerRaw": null,
+          "parent": {
+            "name": "pytest-cov",
+            "version": "6.3.0"
+          }
+        },
+        {
+          "edgeKind": "optional:dev",
+          "markerRaw": null,
+          "parent": {
+            "name": "selcal",
+            "version": "0.1.0.dev0"
+          }
+        }
+      ],
+      "licenceEvidence": {
+        "classifiersRaw": [
+          "License :: OSI Approved :: MIT License"
+        ],
+        "evidenceState": "LEGACY_SINGLE_CLASSIFIER_ONLY",
+        "legacyLicenceField": {
+          "kind": "short-raw",
+          "value": "MIT"
+        },
+        "legalCompatibilityConclusion": null,
+        "licenceExpressionRaw": [],
+        "materialisationContexts": [
+          "darwin-arm64-cpython-3.11.12-locked-all-extras",
+          "darwin-arm64-cpython-3.12.10-locked-all-extras"
+        ],
+        "metadataName": "pytest",
+        "metadataSha256": "93d6c5ef0a9714d53716243035037b77fa7d5f970596c48433887cf57f7f675a",
+        "metadataToSelectedLockedArtifactHashBinding": "NOT_ESTABLISHED",
+        "metadataVersion": "8.4.2"
+      },
+      "lockRecordSha256": "0d68458d332d89e2a4069e4a560212e1d80d47863930e7567e4e83d9ef6187e5",
+      "lockResolutionMarkersRaw": [],
+      "purl": "pkg:pypi/pytest@8.4.2",
+      "source": {
+        "registry": "https://pypi.org/simple"
+      },
+      "version": "8.4.2"
+    },
+    {
+      "artifactCandidatesFromLock": {
+        "sdistHash": "sha256:35c580e7800f87ce892e687461166e1ac2bcb8fb9e13aea79032518d6e503ff2",
+        "wheelCount": 1,
+        "wheelHashesDigestSha256": "8885dd4861ccd6be5d5e28bda2b58bc4931e8738e8869bc6963ab9b0b7d45eb5"
+      },
+      "canonicalName": "pytest-cov",
+      "dependencySurfaces": [
+        "dev"
+      ],
+      "directness": "direct",
+      "incomingEdges": [
+        {
+          "edgeKind": "optional:dev",
+          "markerRaw": null,
+          "parent": {
+            "name": "selcal",
+            "version": "0.1.0.dev0"
+          }
+        }
+      ],
+      "licenceEvidence": {
+        "classifiersRaw": [],
+        "evidenceState": "LEGACY_FREE_TEXT_OR_SHORT_NAME_ONLY",
+        "legacyLicenceField": {
+          "kind": "short-raw",
+          "value": "MIT"
+        },
+        "legalCompatibilityConclusion": null,
+        "licenceExpressionRaw": [],
+        "materialisationContexts": [
+          "darwin-arm64-cpython-3.11.12-locked-all-extras",
+          "darwin-arm64-cpython-3.12.10-locked-all-extras"
+        ],
+        "metadataName": "pytest-cov",
+        "metadataSha256": "09e6f199a3d12b7df21edba1356cf5c55b7f3774b76562ffdbbdd45498f0e844",
+        "metadataToSelectedLockedArtifactHashBinding": "NOT_ESTABLISHED",
+        "metadataVersion": "6.3.0"
+      },
+      "lockRecordSha256": "76a44d225956c137b0b1db5f7963524f31136888ba183747cbc93564665c4b45",
+      "lockResolutionMarkersRaw": [],
+      "purl": "pkg:pypi/pytest-cov@6.3.0",
+      "source": {
+        "registry": "https://pypi.org/simple"
+      },
+      "version": "6.3.0"
+    },
+    {
+      "artifactCandidatesFromLock": {
+        "sdistHash": "sha256:37dd54208da7e1cd875388217d5e00ebd4179249f90fb72437e91a35459a0ad3",
+        "wheelCount": 1,
+        "wheelHashesDigestSha256": "44e4a932710c915ec32542287c5d6ca66181d9a6d364c9e3c6184ff958add99c"
+      },
+      "canonicalName": "python-dateutil",
+      "dependencySurfaces": [
+        "transitive"
+      ],
+      "directness": "transitive",
+      "incomingEdges": [
+        {
+          "edgeKind": "dependency",
+          "markerRaw": null,
+          "parent": {
+            "name": "matplotlib",
+            "version": "3.11.1"
+          }
+        }
+      ],
+      "licenceEvidence": {
+        "classifiersRaw": [
+          "License :: OSI Approved :: Apache Software License",
+          "License :: OSI Approved :: BSD License"
+        ],
+        "evidenceState": "LEGACY_MULTIPLE_CLASSIFIERS_AMBIGUOUS",
+        "legacyLicenceField": {
+          "kind": "short-raw",
+          "value": "Dual License"
+        },
+        "legalCompatibilityConclusion": null,
+        "licenceExpressionRaw": [],
+        "materialisationContexts": [
+          "darwin-arm64-cpython-3.11.12-locked-all-extras",
+          "darwin-arm64-cpython-3.12.10-locked-all-extras"
+        ],
+        "metadataName": "python-dateutil",
+        "metadataSha256": "a9d436da322be808332f98d88325998e87cb693a678a9969feb4cfad729a6e93",
+        "metadataToSelectedLockedArtifactHashBinding": "NOT_ESTABLISHED",
+        "metadataVersion": "2.9.0.post0"
+      },
+      "lockRecordSha256": "e3abfb48b53f1c1387f1a31433a5f2d40fd36d4bce708c1a4aab3caf172db04f",
+      "lockResolutionMarkersRaw": [],
+      "purl": "pkg:pypi/python-dateutil@2.9.0.post0",
+      "source": {
+        "registry": "https://pypi.org/simple"
+      },
+      "version": "2.9.0.post0"
+    },
+    {
+      "artifactCandidatesFromLock": {
+        "sdistHash": "sha256:f288924cae4e29463698d6d60bc6a4da69c89185ad1e0bcc4104f584e960b9ed",
+        "wheelCount": 1,
+        "wheelHashesDigestSha256": "d80dac00ad1f299a4ca3ce7255510c37f8a0f11b9c56ec366497809779994c24"
+      },
+      "canonicalName": "requests",
+      "dependencySurfaces": [
+        "transitive"
+      ],
+      "directness": "transitive",
+      "incomingEdges": [
+        {
+          "edgeKind": "dependency",
+          "markerRaw": null,
+          "parent": {
+            "name": "sphinx",
+            "version": "8.2.3"
+          }
+        }
+      ],
+      "licenceEvidence": {
+        "classifiersRaw": [
+          "License :: OSI Approved :: Apache Software License"
+        ],
+        "evidenceState": "LEGACY_SINGLE_CLASSIFIER_ONLY",
+        "legacyLicenceField": {
+          "kind": "short-raw",
+          "value": "Apache-2.0"
+        },
+        "legalCompatibilityConclusion": null,
+        "licenceExpressionRaw": [],
+        "materialisationContexts": [
+          "darwin-arm64-cpython-3.11.12-locked-all-extras",
+          "darwin-arm64-cpython-3.12.10-locked-all-extras"
+        ],
+        "metadataName": "requests",
+        "metadataSha256": "8c384ba3e979480faae2859d3c5e6c1276dd2c3616e322e124d52c8cfc556f27",
+        "metadataToSelectedLockedArtifactHashBinding": "NOT_ESTABLISHED",
+        "metadataVersion": "2.34.2"
+      },
+      "lockRecordSha256": "1f98f4f1ed031749d800ab608cfb47af258bf17f8328e7536fa8c38b36ac97fa",
+      "lockResolutionMarkersRaw": [],
+      "purl": "pkg:pypi/requests@2.34.2",
+      "source": {
+        "registry": "https://pypi.org/simple"
+      },
+      "version": "2.34.2"
+    },
+    {
+      "artifactCandidatesFromLock": {
+        "sdistHash": "sha256:1af8b147eb1405d5839e78aeb93131690495fe9da5c91856cb33ad55a7f1e5b2",
+        "wheelCount": 1,
+        "wheelHashesDigestSha256": "9f5e627ea91e35e0dd419ed69fe1d4b3611ef60dbeef4b5132189dd249260521"
+      },
+      "canonicalName": "roman-numerals",
+      "dependencySurfaces": [
+        "transitive"
+      ],
+      "directness": "transitive",
+      "incomingEdges": [
+        {
+          "edgeKind": "dependency",
+          "markerRaw": null,
+          "parent": {
+            "name": "roman-numerals-py",
+            "version": "4.1.0"
+          }
+        }
+      ],
+      "licenceEvidence": {
+        "classifiersRaw": [],
+        "evidenceState": "DECLARED_EXPRESSION_PRESENT_NOT_LEGAL_CONCLUSION",
+        "legacyLicenceField": null,
+        "legalCompatibilityConclusion": null,
+        "licenceExpressionRaw": [
+          "0BSD OR CC0-1.0"
+        ],
+        "materialisationContexts": [
+          "darwin-arm64-cpython-3.11.12-locked-all-extras",
+          "darwin-arm64-cpython-3.12.10-locked-all-extras"
+        ],
+        "metadataName": "roman-numerals",
+        "metadataSha256": "31c5f40108d6f495133bc077c71c7928ce1bacec6ac77c4849ed5a3d1051480c",
+        "metadataToSelectedLockedArtifactHashBinding": "NOT_ESTABLISHED",
+        "metadataVersion": "4.1.0"
+      },
+      "lockRecordSha256": "3a38a8a027adc74bd9998c8a087012072033f2403577b6c97f54a7184900d281",
+      "lockResolutionMarkersRaw": [],
+      "purl": "pkg:pypi/roman-numerals@4.1.0",
+      "source": {
+        "registry": "https://pypi.org/simple"
+      },
+      "version": "4.1.0"
+    },
+    {
+      "artifactCandidatesFromLock": {
+        "sdistHash": "sha256:f5d7b2b4ca52dd855ef7ab8eb3590f428c0b1ea480736ce32b01fef2a5f8daf9",
+        "wheelCount": 1,
+        "wheelHashesDigestSha256": "81a6118f68d3715f40c8605283a57d42dd7220bef6f2d221224907f1897c2545"
+      },
+      "canonicalName": "roman-numerals-py",
+      "dependencySurfaces": [
+        "transitive"
+      ],
+      "directness": "transitive",
+      "incomingEdges": [
+        {
+          "edgeKind": "dependency",
+          "markerRaw": null,
+          "parent": {
+            "name": "sphinx",
+            "version": "8.2.3"
+          }
+        }
+      ],
+      "licenceEvidence": {
+        "classifiersRaw": [],
+        "evidenceState": "DECLARED_EXPRESSION_PRESENT_NOT_LEGAL_CONCLUSION",
+        "legacyLicenceField": null,
+        "legalCompatibilityConclusion": null,
+        "licenceExpressionRaw": [
+          "0BSD OR CC0-1.0"
+        ],
+        "materialisationContexts": [
+          "darwin-arm64-cpython-3.11.12-locked-all-extras",
+          "darwin-arm64-cpython-3.12.10-locked-all-extras"
+        ],
+        "metadataName": "roman-numerals-py",
+        "metadataSha256": "837d813d8d872692b6f34c6ce47b000895fd6ad2357b5f862ac0321e521d3ec4",
+        "metadataToSelectedLockedArtifactHashBinding": "NOT_ESTABLISHED",
+        "metadataVersion": "4.1.0"
+      },
+      "lockRecordSha256": "e815b596f83eabdd9b9614095de72fb264f61ad14bca2af561733c4533e8096a",
+      "lockResolutionMarkersRaw": [],
+      "purl": "pkg:pypi/roman-numerals-py@4.1.0",
+      "source": {
+        "registry": "https://pypi.org/simple"
+      },
+      "version": "4.1.0"
+    },
+    {
+      "artifactCandidatesFromLock": {
+        "sdistHash": "sha256:1b88500f9ffbcab3dedb0082c9f9492e91ec3d618aac1236a3e0189938f7040b",
+        "wheelCount": 17,
+        "wheelHashesDigestSha256": "bdd11ebe7a5a185dfa2836234fbbadadfbf6a58221b2d0d80d42a0bc866310ca"
+      },
+      "canonicalName": "ruff",
+      "dependencySurfaces": [
+        "dev"
+      ],
+      "directness": "direct",
+      "incomingEdges": [
+        {
+          "edgeKind": "optional:dev",
+          "markerRaw": null,
+          "parent": {
+            "name": "selcal",
+            "version": "0.1.0.dev0"
+          }
+        }
+      ],
+      "licenceEvidence": {
+        "classifiersRaw": [],
+        "evidenceState": "DECLARED_EXPRESSION_PRESENT_NOT_LEGAL_CONCLUSION",
+        "legacyLicenceField": null,
+        "legalCompatibilityConclusion": null,
+        "licenceExpressionRaw": [
+          "MIT"
+        ],
+        "materialisationContexts": [
+          "darwin-arm64-cpython-3.11.12-locked-all-extras",
+          "darwin-arm64-cpython-3.12.10-locked-all-extras"
+        ],
+        "metadataName": "ruff",
+        "metadataSha256": "0f57a5ddfb65f23dfb42cb065e2ecef0d39f451327ebbd4932f4ce2a72578e33",
+        "metadataToSelectedLockedArtifactHashBinding": "NOT_ESTABLISHED",
+        "metadataVersion": "0.16.5"
+      },
+      "lockRecordSha256": "9b9d0f21007bf815c92bcceecda93503c02769e752ed422b98a1aa2d6a52c882",
+      "lockResolutionMarkersRaw": [],
+      "purl": "pkg:pypi/ruff@0.16.5",
+      "source": {
+        "registry": "https://pypi.org/simple"
+      },
+      "version": "0.16.5"
+    },
+    {
+      "artifactCandidatesFromLock": {
+        "sdistHash": null,
+        "wheelCount": 0,
+        "wheelHashesDigestSha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+      },
+      "canonicalName": "selcal",
+      "dependencySurfaces": [
+        "project-root"
+      ],
+      "directness": "root",
+      "incomingEdges": [],
+      "licenceEvidence": null,
+      "lockRecordSha256": "313586c4ded56ac974300e140313986f1aa9895882dba22f2a8ca916397ae52e",
+      "lockResolutionMarkersRaw": [],
+      "purl": null,
+      "source": {
+        "editable": "."
+      },
+      "version": "0.1.0.dev0"
+    },
+    {
+      "artifactCandidatesFromLock": {
+        "sdistHash": "sha256:ff70335d468e7eb6ec65b95b99d3a2836546063f63acc5171de367e834932a81",
+        "wheelCount": 1,
+        "wheelHashesDigestSha256": "493712bff562c8a1f6c3d22ec0bef593e2bfce9d059192f69f79a6c987b77d53"
+      },
+      "canonicalName": "six",
+      "dependencySurfaces": [
+        "transitive"
+      ],
+      "directness": "transitive",
+      "incomingEdges": [
+        {
+          "edgeKind": "dependency",
+          "markerRaw": null,
+          "parent": {
+            "name": "python-dateutil",
+            "version": "2.9.0.post0"
+          }
+        }
+      ],
+      "licenceEvidence": {
+        "classifiersRaw": [
+          "License :: OSI Approved :: MIT License"
+        ],
+        "evidenceState": "LEGACY_SINGLE_CLASSIFIER_ONLY",
+        "legacyLicenceField": {
+          "kind": "short-raw",
+          "value": "MIT"
+        },
+        "legalCompatibilityConclusion": null,
+        "licenceExpressionRaw": [],
+        "materialisationContexts": [
+          "darwin-arm64-cpython-3.11.12-locked-all-extras",
+          "darwin-arm64-cpython-3.12.10-locked-all-extras"
+        ],
+        "metadataName": "six",
+        "metadataSha256": "562042078c2752549f6d8a7c86dbc5dd708088a7be6d80672ec7b07100b72468",
+        "metadataToSelectedLockedArtifactHashBinding": "NOT_ESTABLISHED",
+        "metadataVersion": "1.17.0"
+      },
+      "lockRecordSha256": "0ad12f49b2395d17deff796d98c93c4a4e26625a8f24fe8bab81fe550f0de7b9",
+      "lockResolutionMarkersRaw": [],
+      "purl": "pkg:pypi/six@1.17.0",
+      "source": {
+        "registry": "https://pypi.org/simple"
+      },
+      "version": "1.17.0"
+    },
+    {
+      "artifactCandidatesFromLock": {
+        "sdistHash": "sha256:e07bbc54a0d798fe6010a12398422e62a8bfbba95c394fd0956ef58cb4d3e260",
+        "wheelCount": 1,
+        "wheelHashesDigestSha256": "c9eab065a995a7d4c51a22e41bd767f50b37ee36843d5d8054bf5f709bf468d2"
+      },
+      "canonicalName": "snowballstemmer",
+      "dependencySurfaces": [
+        "transitive"
+      ],
+      "directness": "transitive",
+      "incomingEdges": [
+        {
+          "edgeKind": "dependency",
+          "markerRaw": null,
+          "parent": {
+            "name": "sphinx",
+            "version": "8.2.3"
+          }
+        }
+      ],
+      "licenceEvidence": {
+        "classifiersRaw": [],
+        "evidenceState": "LEGACY_FREE_TEXT_OR_SHORT_NAME_ONLY",
+        "legacyLicenceField": {
+          "kind": "short-raw",
+          "value": "BSD-3-Clause"
+        },
+        "legalCompatibilityConclusion": null,
+        "licenceExpressionRaw": [],
+        "materialisationContexts": [
+          "darwin-arm64-cpython-3.11.12-locked-all-extras",
+          "darwin-arm64-cpython-3.12.10-locked-all-extras"
+        ],
+        "metadataName": "snowballstemmer",
+        "metadataSha256": "6c06c375da8e0a963410b6af906e3d72acc337a5fde985944a4b74e24b10479a",
+        "metadataToSelectedLockedArtifactHashBinding": "NOT_ESTABLISHED",
+        "metadataVersion": "3.1.1"
+      },
+      "lockRecordSha256": "4e74f4acb154b2b3f1fc5727db35dd797db9d2d1ec7f8f737cc03860099fd3a6",
+      "lockResolutionMarkersRaw": [],
+      "purl": "pkg:pypi/snowballstemmer@3.1.1",
+      "source": {
+        "registry": "https://pypi.org/simple"
+      },
+      "version": "3.1.1"
+    },
+    {
+      "artifactCandidatesFromLock": {
+        "sdistHash": "sha256:398ad29dee7f63a75888314e9424d40f52ce5a6a87ae88e7071e80af296ec348",
+        "wheelCount": 1,
+        "wheelHashesDigestSha256": "8974a3b955e14e2e9b8bd7f7fea6742f8a205b5a7c1a96ddeaceff9f104b9ec3"
+      },
+      "canonicalName": "sphinx",
+      "dependencySurfaces": [
+        "docs"
+      ],
+      "directness": "direct",
+      "incomingEdges": [
+        {
+          "edgeKind": "optional:docs",
+          "markerRaw": null,
+          "parent": {
+            "name": "selcal",
+            "version": "0.1.0.dev0"
+          }
+        }
+      ],
+      "licenceEvidence": {
+        "classifiersRaw": [],
+        "evidenceState": "DECLARED_EXPRESSION_PRESENT_NOT_LEGAL_CONCLUSION",
+        "legacyLicenceField": null,
+        "legalCompatibilityConclusion": null,
+        "licenceExpressionRaw": [
+          "BSD-2-Clause"
+        ],
+        "materialisationContexts": [
+          "darwin-arm64-cpython-3.11.12-locked-all-extras",
+          "darwin-arm64-cpython-3.12.10-locked-all-extras"
+        ],
+        "metadataName": "sphinx",
+        "metadataSha256": "98db69e390c9fabb70f22917fdc8d916245a4e94443f94b1fe574763a280b01f",
+        "metadataToSelectedLockedArtifactHashBinding": "NOT_ESTABLISHED",
+        "metadataVersion": "8.2.3"
+      },
+      "lockRecordSha256": "d5fbc053d7e737f34a397db972a57331ee37caaebb0a3f2151a2a36a4be31ae1",
+      "lockResolutionMarkersRaw": [],
+      "purl": "pkg:pypi/sphinx@8.2.3",
+      "source": {
+        "registry": "https://pypi.org/simple"
+      },
+      "version": "8.2.3"
+    },
+    {
+      "artifactCandidatesFromLock": {
+        "sdistHash": "sha256:2f29ef331735ce958efa4734873f084941970894c6090408b079c61b2e1c06d1",
+        "wheelCount": 1,
+        "wheelHashesDigestSha256": "a47210c1cf3b8d7d263c01738f3973ac6b46895d5318cea6114f3ccce6871f3c"
+      },
+      "canonicalName": "sphinxcontrib-applehelp",
+      "dependencySurfaces": [
+        "transitive"
+      ],
+      "directness": "transitive",
+      "incomingEdges": [
+        {
+          "edgeKind": "dependency",
+          "markerRaw": null,
+          "parent": {
+            "name": "sphinx",
+            "version": "8.2.3"
+          }
+        }
+      ],
+      "licenceEvidence": {
+        "classifiersRaw": [
+          "License :: OSI Approved :: BSD License"
+        ],
+        "evidenceState": "LEGACY_SINGLE_CLASSIFIER_ONLY",
+        "legacyLicenceField": null,
+        "legalCompatibilityConclusion": null,
+        "licenceExpressionRaw": [],
+        "materialisationContexts": [
+          "darwin-arm64-cpython-3.11.12-locked-all-extras",
+          "darwin-arm64-cpython-3.12.10-locked-all-extras"
+        ],
+        "metadataName": "sphinxcontrib-applehelp",
+        "metadataSha256": "e5506937a56150a0202a92c2febfd156f93a1e54e41efc0dba65429f681f67da",
+        "metadataToSelectedLockedArtifactHashBinding": "NOT_ESTABLISHED",
+        "metadataVersion": "2.0.0"
+      },
+      "lockRecordSha256": "d9a1bd213c45791eb89636755cf466a219f092491c255314b3bedfb7d54e22bb",
+      "lockResolutionMarkersRaw": [],
+      "purl": "pkg:pypi/sphinxcontrib-applehelp@2.0.0",
+      "source": {
+        "registry": "https://pypi.org/simple"
+      },
+      "version": "2.0.0"
+    },
+    {
+      "artifactCandidatesFromLock": {
+        "sdistHash": "sha256:411f5d96d445d1d73bb5d52133377b4248ec79db5c793ce7dbe59e074b4dd1ad",
+        "wheelCount": 1,
+        "wheelHashesDigestSha256": "0e56ab216a0fb5b4f5718dcf4800af72f6fea1856f2acf4a589bddd93b2ff1e7"
+      },
+      "canonicalName": "sphinxcontrib-devhelp",
+      "dependencySurfaces": [
+        "transitive"
+      ],
+      "directness": "transitive",
+      "incomingEdges": [
+        {
+          "edgeKind": "dependency",
+          "markerRaw": null,
+          "parent": {
+            "name": "sphinx",
+            "version": "8.2.3"
+          }
+        }
+      ],
+      "licenceEvidence": {
+        "classifiersRaw": [
+          "License :: OSI Approved :: BSD License"
+        ],
+        "evidenceState": "LEGACY_SINGLE_CLASSIFIER_ONLY",
+        "legacyLicenceField": null,
+        "legalCompatibilityConclusion": null,
+        "licenceExpressionRaw": [],
+        "materialisationContexts": [
+          "darwin-arm64-cpython-3.11.12-locked-all-extras",
+          "darwin-arm64-cpython-3.12.10-locked-all-extras"
+        ],
+        "metadataName": "sphinxcontrib-devhelp",
+        "metadataSha256": "e2bb19a238a76ef865213988df18382e229ab251ac065eade57e106f8f0fa122",
+        "metadataToSelectedLockedArtifactHashBinding": "NOT_ESTABLISHED",
+        "metadataVersion": "2.0.0"
+      },
+      "lockRecordSha256": "d497a08bf3550c733323a057dab05f75638b72a5d8d727ef5f1afa8d695e8f5f",
+      "lockResolutionMarkersRaw": [],
+      "purl": "pkg:pypi/sphinxcontrib-devhelp@2.0.0",
+      "source": {
+        "registry": "https://pypi.org/simple"
+      },
+      "version": "2.0.0"
+    },
+    {
+      "artifactCandidatesFromLock": {
+        "sdistHash": "sha256:c9e2916ace8aad64cc13a0d233ee22317f2b9025b9cf3295249fa985cc7082e9",
+        "wheelCount": 1,
+        "wheelHashesDigestSha256": "7d92a77fdde58a5f58e21879e87b67dd67cae339e3166d98b2fb58dd4b25b9e3"
+      },
+      "canonicalName": "sphinxcontrib-htmlhelp",
+      "dependencySurfaces": [
+        "transitive"
+      ],
+      "directness": "transitive",
+      "incomingEdges": [
+        {
+          "edgeKind": "dependency",
+          "markerRaw": null,
+          "parent": {
+            "name": "sphinx",
+            "version": "8.2.3"
+          }
+        }
+      ],
+      "licenceEvidence": {
+        "classifiersRaw": [
+          "License :: OSI Approved :: BSD License"
+        ],
+        "evidenceState": "LEGACY_SINGLE_CLASSIFIER_ONLY",
+        "legacyLicenceField": null,
+        "legalCompatibilityConclusion": null,
+        "licenceExpressionRaw": [],
+        "materialisationContexts": [
+          "darwin-arm64-cpython-3.11.12-locked-all-extras",
+          "darwin-arm64-cpython-3.12.10-locked-all-extras"
+        ],
+        "metadataName": "sphinxcontrib-htmlhelp",
+        "metadataSha256": "da51b182b062633f1ea4cafe72c6e6fea705012f1f6672ccadf55133fd91300d",
+        "metadataToSelectedLockedArtifactHashBinding": "NOT_ESTABLISHED",
+        "metadataVersion": "2.1.0"
+      },
+      "lockRecordSha256": "c335941e6cdb329050475b6840de13d6c2b28d06f8866f3414c4f00f4d6d15f8",
+      "lockResolutionMarkersRaw": [],
+      "purl": "pkg:pypi/sphinxcontrib-htmlhelp@2.1.0",
+      "source": {
+        "registry": "https://pypi.org/simple"
+      },
+      "version": "2.1.0"
+    },
+    {
+      "artifactCandidatesFromLock": {
+        "sdistHash": "sha256:a9925e4a4587247ed2191a22df5f6970656cb8ca2bd6284309578f2153e0c4b8",
+        "wheelCount": 1,
+        "wheelHashesDigestSha256": "5c4d16e039959efed489b6106fb8542dcaa022c33c4a74f3db289c98dbfc6df7"
+      },
+      "canonicalName": "sphinxcontrib-jsmath",
+      "dependencySurfaces": [
+        "transitive"
+      ],
+      "directness": "transitive",
+      "incomingEdges": [
+        {
+          "edgeKind": "dependency",
+          "markerRaw": null,
+          "parent": {
+            "name": "sphinx",
+            "version": "8.2.3"
+          }
+        }
+      ],
+      "licenceEvidence": {
+        "classifiersRaw": [
+          "License :: OSI Approved :: BSD License"
+        ],
+        "evidenceState": "LEGACY_SINGLE_CLASSIFIER_ONLY",
+        "legacyLicenceField": {
+          "kind": "short-raw",
+          "value": "BSD"
+        },
+        "legalCompatibilityConclusion": null,
+        "licenceExpressionRaw": [],
+        "materialisationContexts": [
+          "darwin-arm64-cpython-3.11.12-locked-all-extras",
+          "darwin-arm64-cpython-3.12.10-locked-all-extras"
+        ],
+        "metadataName": "sphinxcontrib-jsmath",
+        "metadataSha256": "78e6014ccdce427643be4d8b8def33109ccbfdc3266f8cb655e6de9b86745be8",
+        "metadataToSelectedLockedArtifactHashBinding": "NOT_ESTABLISHED",
+        "metadataVersion": "1.0.1"
+      },
+      "lockRecordSha256": "0362c31b8593001f82c39ceda7f3e71b06beab0e297ca7b1b6efccd212daee4b",
+      "lockResolutionMarkersRaw": [],
+      "purl": "pkg:pypi/sphinxcontrib-jsmath@1.0.1",
+      "source": {
+        "registry": "https://pypi.org/simple"
+      },
+      "version": "1.0.1"
+    },
+    {
+      "artifactCandidatesFromLock": {
+        "sdistHash": "sha256:4fe7d0ac8fc171045be623aba3e2a8f613f8682731f9153bb2e40ece16b9bbab",
+        "wheelCount": 1,
+        "wheelHashesDigestSha256": "dc7d023a107140db44c05c3dfc9753d93184f20d1a6893823d10bc2d2f82cda3"
+      },
+      "canonicalName": "sphinxcontrib-qthelp",
+      "dependencySurfaces": [
+        "transitive"
+      ],
+      "directness": "transitive",
+      "incomingEdges": [
+        {
+          "edgeKind": "dependency",
+          "markerRaw": null,
+          "parent": {
+            "name": "sphinx",
+            "version": "8.2.3"
+          }
+        }
+      ],
+      "licenceEvidence": {
+        "classifiersRaw": [
+          "License :: OSI Approved :: BSD License"
+        ],
+        "evidenceState": "LEGACY_SINGLE_CLASSIFIER_ONLY",
+        "legacyLicenceField": null,
+        "legalCompatibilityConclusion": null,
+        "licenceExpressionRaw": [],
+        "materialisationContexts": [
+          "darwin-arm64-cpython-3.11.12-locked-all-extras",
+          "darwin-arm64-cpython-3.12.10-locked-all-extras"
+        ],
+        "metadataName": "sphinxcontrib-qthelp",
+        "metadataSha256": "d3b42b8de1907c4ce97d9c712919f4cb3eb67171fc4e10c4b3c3ac3d3688c594",
+        "metadataToSelectedLockedArtifactHashBinding": "NOT_ESTABLISHED",
+        "metadataVersion": "2.0.0"
+      },
+      "lockRecordSha256": "40db85c3fd0865189e86390e4667a144e8b418105207c252e6ab58a7e72af33a",
+      "lockResolutionMarkersRaw": [],
+      "purl": "pkg:pypi/sphinxcontrib-qthelp@2.0.0",
+      "source": {
+        "registry": "https://pypi.org/simple"
+      },
+      "version": "2.0.0"
+    },
+    {
+      "artifactCandidatesFromLock": {
+        "sdistHash": "sha256:e9d912827f872c029017a53f0ef2180b327c3f7fd23c87229f7a8e8b70031d4d",
+        "wheelCount": 1,
+        "wheelHashesDigestSha256": "e5678720031ef451d5f76bda7214cd765a24f83572964b49543f5970c4b6e351"
+      },
+      "canonicalName": "sphinxcontrib-serializinghtml",
+      "dependencySurfaces": [
+        "transitive"
+      ],
+      "directness": "transitive",
+      "incomingEdges": [
+        {
+          "edgeKind": "dependency",
+          "markerRaw": null,
+          "parent": {
+            "name": "sphinx",
+            "version": "8.2.3"
+          }
+        }
+      ],
+      "licenceEvidence": {
+        "classifiersRaw": [
+          "License :: OSI Approved :: BSD License"
+        ],
+        "evidenceState": "LEGACY_SINGLE_CLASSIFIER_ONLY",
+        "legacyLicenceField": null,
+        "legalCompatibilityConclusion": null,
+        "licenceExpressionRaw": [],
+        "materialisationContexts": [
+          "darwin-arm64-cpython-3.11.12-locked-all-extras",
+          "darwin-arm64-cpython-3.12.10-locked-all-extras"
+        ],
+        "metadataName": "sphinxcontrib-serializinghtml",
+        "metadataSha256": "7430d436dd80da9a319375b80bfa71b08270147b94a5df40ab4b91b10659d257",
+        "metadataToSelectedLockedArtifactHashBinding": "NOT_ESTABLISHED",
+        "metadataVersion": "2.0.0"
+      },
+      "lockRecordSha256": "708dde2878ddb34c6ca0e4c593d7412f7f734204bfbe59470c91055f55c74f4a",
+      "lockResolutionMarkersRaw": [],
+      "purl": "pkg:pypi/sphinxcontrib-serializinghtml@2.0.0",
+      "source": {
+        "registry": "https://pypi.org/simple"
+      },
+      "version": "2.0.0"
+    },
+    {
+      "artifactCandidatesFromLock": {
+        "sdistHash": "sha256:7c7e1a961a0b2f2472c1ac5b69affa0ae1132c39adcb67aba98568702b9cc23f",
+        "wheelCount": 46,
+        "wheelHashesDigestSha256": "9c015756e3442f4367b0e1fc68fe9cbd3df581f719fecda217fd3d219c0eb757"
+      },
+      "canonicalName": "tomli",
+      "dependencySurfaces": [
+        "transitive"
+      ],
+      "directness": "transitive",
+      "incomingEdges": [
+        {
+          "edgeKind": "optional:toml",
+          "markerRaw": "python_full_version <= '3.11'",
+          "parent": {
+            "name": "coverage",
+            "version": "7.16.0"
+          }
+        }
+      ],
+      "licenceEvidence": {
+        "classifiersRaw": [],
+        "evidenceState": "DECLARED_EXPRESSION_PRESENT_NOT_LEGAL_CONCLUSION",
+        "legacyLicenceField": null,
+        "legalCompatibilityConclusion": null,
+        "licenceExpressionRaw": [
+          "MIT"
+        ],
+        "materialisationContexts": [
+          "supplemental-exact-version-metadata-materialisation"
+        ],
+        "metadataName": "tomli",
+        "metadataSha256": "1428a97e0c90b9ed2958e9e487db976c4c450932f7334630aebb5bc04e01aa59",
+        "metadataToSelectedLockedArtifactHashBinding": "NOT_ESTABLISHED",
+        "metadataVersion": "2.4.1"
+      },
+      "lockRecordSha256": "a20d31de5ec46465b97e850f51f993cbd35be344fe9d236c588bfd8f916c61fb",
+      "lockResolutionMarkersRaw": [],
+      "purl": "pkg:pypi/tomli@2.4.1",
+      "source": {
+        "registry": "https://pypi.org/simple"
+      },
+      "version": "2.4.1"
+    },
+    {
+      "artifactCandidatesFromLock": {
+        "sdistHash": "sha256:dc983d19a509c94dba722ee6abd33940f7c05a89e243c47e907eb4db6f1a43e5",
+        "wheelCount": 1,
+        "wheelHashesDigestSha256": "0a75b9849194924231c7953d5b7d2522f5d41b9b2d6a9066556ed2d623f40e85"
+      },
+      "canonicalName": "typing-extensions",
+      "dependencySurfaces": [
+        "transitive"
+      ],
+      "directness": "transitive",
+      "incomingEdges": [
+        {
+          "edgeKind": "dependency",
+          "markerRaw": null,
+          "parent": {
+            "name": "mypy",
+            "version": "1.20.2"
+          }
+        }
+      ],
+      "licenceEvidence": {
+        "classifiersRaw": [],
+        "evidenceState": "DECLARED_EXPRESSION_PRESENT_NOT_LEGAL_CONCLUSION",
+        "legacyLicenceField": null,
+        "legalCompatibilityConclusion": null,
+        "licenceExpressionRaw": [
+          "PSF-2.0"
+        ],
+        "materialisationContexts": [
+          "darwin-arm64-cpython-3.11.12-locked-all-extras",
+          "darwin-arm64-cpython-3.12.10-locked-all-extras"
+        ],
+        "metadataName": "typing-extensions",
+        "metadataSha256": "b05084ca1d50879865178d9fff9fabeab61bdfb1f361bfbde95421ffc8f9be46",
+        "metadataToSelectedLockedArtifactHashBinding": "NOT_ESTABLISHED",
+        "metadataVersion": "4.16.0"
+      },
+      "lockRecordSha256": "e3a61fa0e3e9e756e8a2c733b345f644dc3af186a4e19e14c422009261e95b06",
+      "lockResolutionMarkersRaw": [],
+      "purl": "pkg:pypi/typing-extensions@4.16.0",
+      "source": {
+        "registry": "https://pypi.org/simple"
+      },
+      "version": "4.16.0"
+    },
+    {
+      "artifactCandidatesFromLock": {
+        "sdistHash": "sha256:231e0ec3b63ceb14667c67be60f2f2c40a518cb38b03af60abc813da26505f4c",
+        "wheelCount": 1,
+        "wheelHashesDigestSha256": "36cefa3a256aa3967dd6cd8c11d85d6633c7bc5496a2aabd1f30ca43eab0a2ee"
+      },
+      "canonicalName": "urllib3",
+      "dependencySurfaces": [
+        "transitive"
+      ],
+      "directness": "transitive",
+      "incomingEdges": [
+        {
+          "edgeKind": "dependency",
+          "markerRaw": null,
+          "parent": {
+            "name": "requests",
+            "version": "2.34.2"
+          }
+        }
+      ],
+      "licenceEvidence": {
+        "classifiersRaw": [],
+        "evidenceState": "DECLARED_EXPRESSION_PRESENT_NOT_LEGAL_CONCLUSION",
+        "legacyLicenceField": null,
+        "legalCompatibilityConclusion": null,
+        "licenceExpressionRaw": [
+          "MIT"
+        ],
+        "materialisationContexts": [
+          "darwin-arm64-cpython-3.11.12-locked-all-extras",
+          "darwin-arm64-cpython-3.12.10-locked-all-extras"
+        ],
+        "metadataName": "urllib3",
+        "metadataSha256": "66147856d30bbb6bed01c6ce3326d0f48d84ed5f286ac177633a1486b82eace5",
+        "metadataToSelectedLockedArtifactHashBinding": "NOT_ESTABLISHED",
+        "metadataVersion": "2.7.0"
+      },
+      "lockRecordSha256": "6f94e8105d63b3ec2f5652ff810d238a2f3d78dd87920f9086d508a40f82cc79",
+      "lockResolutionMarkersRaw": [],
+      "purl": "pkg:pypi/urllib3@2.7.0",
+      "source": {
+        "registry": "https://pypi.org/simple"
+      },
+      "version": "2.7.0"
+    }
+  ],
+  "declaredDirectSurfaces": {
+    "benchmark": [
+      "matplotlib>=3.11.1,<4"
+    ],
+    "buildSystem": [
+      "setuptools>=68"
+    ],
+    "dev": [
+      "build>=1.2,<2",
+      "mypy>=1.11,<2",
+      "pip>=24,<27",
+      "pytest>=8,<9",
+      "pytest-cov>=5,<7",
+      "ruff>=0.6,<1"
+    ],
+    "docs": [
+      "sphinx>=8.2.3,<9"
+    ],
+    "runtime": [
+      "numpy>=1.26,<3"
+    ]
+  },
+  "environmentEvidencePolicy": {
+    "authoritativeScope": "ISOLATED_EXACT_VERSION_METADATA_EVIDENCE_ONLY",
+    "sharedProjectVenvAuthoritative": false,
+    "sharedProjectVenvObservation": "VOLATILE_DURING_AUDIT_EXCLUDED_FROM_INVENTORY_AUTHORITY",
+    "supplementalMaterialisationIsTargetClosure": false
+  },
+  "findings": [
+    {
+      "fact": "No project licence field, root licence file, or rights-holder attestation exists.",
+      "id": "LIC-BLOCKER-ROOT-SOURCE-LICENCE",
+      "severity": "BLOCKER",
+      "smallestClosureAction": "Author or rights holder selects the source-code licence and supplies the exact licence file and release metadata."
+    },
+    {
+      "fact": "setuptools>=68 is declared for isolated builds but has no resolved record in uv.lock and no audited build artifact.",
+      "id": "LIC-BLOCKER-BUILD-CLOSURE",
+      "severity": "BLOCKER",
+      "smallestClosureAction": "Freeze and audit the isolated build-system closure without changing the author licence decision."
+    },
+    {
+      "fact": "requires-python >=3.11 does not define a finite OS, architecture, implementation, libc, and Python support matrix.",
+      "id": "LIC-MAJOR-TARGET-MATRIX",
+      "severity": "MAJOR",
+      "smallestClosureAction": "Freeze supported targets and evaluate every dependency marker per target."
+    },
+    {
+      "fact": "Legacy License fields and classifiers are preserved but cannot be promoted automatically to SPDX expressions.",
+      "id": "LIC-MAJOR-LEGACY-METADATA-AMBIGUITY",
+      "severity": "MAJOR",
+      "smallestClosureAction": "Audit exact artefacts and preserve unresolved AND, OR, and component scope as UNKNOWN where metadata is insufficient."
+    },
+    {
+      "fact": "Top-level metadata does not close vendored or bundled component and licence-file scope.",
+      "id": "LIC-MAJOR-BUNDLED-COMPONENTS",
+      "severity": "MAJOR",
+      "smallestClosureAction": "Create per-artifact licence-file and bundled-component records, beginning with pip, NumPy, matplotlib, and fonttools."
+    },
+    {
+      "fact": "Source-code licence and future article OA licence are distinct and both remain unselected.",
+      "id": "LIC-MAJOR-CODE-VERSUS-ARTICLE-OA",
+      "severity": "MAJOR",
+      "smallestClosureAction": "Keep separate rights-holder and future publisher-workflow evidence; never infer either from the other."
+    },
+    {
+      "fact": "The ignored shared project environment changed interpreter and package population during the audit.",
+      "id": "LIC-MINOR-SHARED-VENV-VOLATILITY",
+      "severity": "MINOR",
+      "smallestClosureAction": "Exclude the shared environment from authoritative inventory evidence and use immutable isolated materialisations."
+    }
+  ],
+  "generatedAt": "2026-08-31T18:04:32+08:00",
+  "inputIdentity": {
+    "dirtyState": "DIRTY_UNCOMMITTED_IMPLEMENTATION_CANDIDATE",
+    "lockRecordCount": 51,
+    "lockSha256": "4ccc4c47ede6fd04ef436fac56d8e1f9d91284c82b30b18b87044015f7227067",
+    "projectName": "selcal",
+    "projectVersion": "0.1.0.dev0",
+    "pyprojectSha256": "cc68d591d83c46a5feb706a58394efab37f89bca804309afa358f8c4ac69ba92",
+    "trackedBase": "94f993bfd5240739f23dd5f5309a51e51034b962"
+  },
+  "rootSourceLicence": {
+    "expression": null,
+    "licenceFiles": [],
+    "pyprojectField": null,
+    "releaseArtifactCoverage": "NOT_EVALUATED_NO_RELEASE_ARTIFACT",
+    "rightsHolderAttestation": "NOT_OBTAINED",
+    "status": "UNSELECTED_AUTHOR_RIGHTS_HOLDER_ACTION"
+  },
+  "schemaVersion": "selcal-dependency-licence-evidence-v1",
+  "status": "HOLD_TECHNICAL_LICENCE_INVENTORY_NOT_CLOSED",
+  "summary": {
+    "articleOaLicenceClosed": false,
+    "buildSystemClosureClosed": false,
+    "externalLockRecords": 50,
+    "externalRecordsWithExactVersionMetadata": 50,
+    "licenceEvidenceStateCounts": {
+      "DECLARED_EXPRESSION_PRESENT_NOT_LEGAL_CONCLUSION": 22,
+      "LEGACY_FREE_TEXT_OR_SHORT_NAME_ONLY": 5,
+      "LEGACY_MULTIPLE_CLASSIFIERS_AMBIGUOUS": 2,
+      "LEGACY_SINGLE_CLASSIFIER_ONLY": 21
+    },
+    "lockRecords": 51,
+    "rootSourceLicenceClosed": false,
+    "supportedTargetMatrixClosed": false,
+    "technicalInventoryClosed": false,
+    "uniqueExternalNames": 49
+  },
+  "targetScope": {
+    "closedTargetMatrix": false,
+    "markerEvaluationComplete": false,
+    "observedLocalTargetsOnly": [
+      {
+        "architecture": "arm64",
+        "closureDigestSha256": "b19bb701b53c2b25d9ecc10542c6949c96b48dd607765147f35227e9c5c677ef",
+        "extras": [
+          "benchmark",
+          "dev",
+          "docs"
+        ],
+        "installedProjectAndThirdPartyLockRecordCount": 48,
+        "os": "Darwin",
+        "pythonFullVersion": "3.11.12",
+        "pythonImplementation": "CPython",
+        "status": "LOCKED_LOCAL_MATERIALISATION_NOT_SUPPORTED_TARGET_DECLARATION"
+      },
+      {
+        "architecture": "arm64",
+        "closureDigestSha256": "d2003a5b0bb96dfa23c1b51bf488edc5483323cd75ad9930d421e06360dd3c99",
+        "extras": [
+          "benchmark",
+          "dev",
+          "docs"
+        ],
+        "installedProjectAndThirdPartyLockRecordCount": 48,
+        "os": "Darwin",
+        "pythonFullVersion": "3.12.10",
+        "pythonImplementation": "CPython",
+        "status": "LOCKED_LOCAL_MATERIALISATION_NOT_SUPPORTED_TARGET_DECLARATION"
+      }
+    ],
+    "status": "UNFROZEN"
+  },
+  "unresolvedBuildSystemRequirements": [
+    {
+      "lockRecordPresent": false,
+      "materializedArtifactAudited": false,
+      "requirementRaw": "setuptools>=68",
+      "status": "UNRESOLVED_UNPINNED_BUILD_DEPENDENCY"
+    }
+  ]
+}

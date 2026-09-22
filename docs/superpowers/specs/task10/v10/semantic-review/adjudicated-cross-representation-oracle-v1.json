@@ -1,0 +1,656 @@
+{
+  "adjudication_provenance": {
+    "decision_source_pointers": {
+      "GLOBAL_STRUCTURAL_CLOSURE": {
+        "correction_spec_line_range": "L174-L201",
+        "registry_json_pointers": [
+          "/compiled_rules_by_id",
+          "/coverage_rows_by_id",
+          "/decisions_by_id",
+          "/discriminator_branches_by_id",
+          "/owners_by_id",
+          "/reference_fields_by_id",
+          "/schema_templates_by_id"
+        ]
+      },
+      "T10-G18-DD-001": {
+        "correction_spec_line_range": "L75-L81",
+        "registry_json_pointers": [
+          "/decisions_by_id/T10-G18-DD-001/payload/affected_owner_paths",
+          "/decisions_by_id/T10-G18-DD-001/payload/exact_chosen_wire_or_matrix/coverage_compilation_manifest",
+          "/decisions_by_id/T10-G18-DD-001/payload/exact_chosen_wire_or_matrix/exact_retyped_paths",
+          "/decisions_by_id/T10-G18-DD-001/payload/expected_rl_universe_effect"
+        ]
+      },
+      "T10-G18-DD-004": {
+        "correction_spec_line_range": "L83-L103",
+        "registry_json_pointers": [
+          "/decisions_by_id/T10-G18-DD-004",
+          "/owners_by_id/OWN-0002",
+          "/schema_templates_by_id/TPL-0008"
+        ]
+      },
+      "T10-G18-DD-006": {
+        "correction_spec_line_range": "L105-L108",
+        "registry_json_pointers": [
+          "/decisions_by_id/T10-G18-DD-006/payload/reference_contract/owner_tuple"
+        ]
+      },
+      "T10-G18-DD-007": {
+        "correction_spec_line_range": "L110-L114",
+        "registry_json_pointers": [
+          "/decisions_by_id/T10-G18-DD-007/payload/reference_contract/owner_tuple",
+          "/decisions_by_id/T10-G18-DD-007/payload/authority_amendment_text_summary",
+          "/decisions_by_id/T10-G18-DD-007/payload/neutral_verdict"
+        ]
+      },
+      "T10-G18-DD-009": {
+        "correction_spec_line_range": "L116-L165",
+        "registry_json_pointers": [
+          "/decisions_by_id/T10-G18-DD-009",
+          "/owners_by_id/OWN-0029",
+          "/compiled_rules_by_id/PCR-0530",
+          "/compiled_rules_by_id/PCR-0550"
+        ]
+      },
+      "T10-G18-DD-011": {
+        "correction_spec_line_range": "L167-L172",
+        "registry_json_pointers": [
+          "/decisions_by_id/T10-G18-DD-011"
+        ]
+      },
+      "T10-G18-DD-016": {
+        "correction_spec_line_range": "L167-L172",
+        "registry_json_pointers": [
+          "/decisions_by_id/T10-G18-DD-016"
+        ]
+      }
+    },
+    "decision_source_pointers_sha256": "edbf9c354fdba1ddb1c9e5eb686990ef67925b1bae920afd947293225430767b",
+    "independent_review_status": "PENDING_REREVIEW_AFTER_FALSE_GREEN_CORRECTION",
+    "method": "Direct adjudication against the exact-byte correction specification and frozen v2 representations; no current prose-authority promotion is claimed.",
+    "normative_correction_spec": {
+      "path": "docs/superpowers/plans/2026-08-31-task10-authority-review-package-v3-correction.md",
+      "relevant_sections": [
+        "4. Adjudicated semantic deltas",
+        "5. Deterministic global rebuild"
+      ],
+      "sha256": "85ababe68595f31f3df037a09d954b050fa718ecbc922bcd2bcf4b4838b20735",
+      "status": "APPROVED_WRITTEN_SPEC_FOR_IMPLEMENTATION_NOT_AUTHORITY"
+    },
+    "review_scope": "Seven semantic decisions plus frozen-v2 global structural closure; sixteen decisions remain outside machine semantic adjudication."
+  },
+  "artifact_state": "FROZEN_CANDIDATE_SEMANTIC_ORACLE_PENDING_INDEPENDENT_REREVIEW_NOT_AUTHORITY",
+  "checks_by_decision": {
+    "T10-G18-DD-001": {
+      "affected_owner_paths": [
+        "behavior_slot_manifests.entries[*].raw_member_identity_label",
+        "exception_contracts.mro_identity_labels[*]",
+        "external_classes.base_identity_labels[*]",
+        "external_classes.mro_identity_labels[*]",
+        "generated_artifacts.namedtuple_recipe.direct_tuple_base_label",
+        "generated_artifacts.namedtuple_recipe.new_identity_label",
+        "project_classes.exception_mro_labels[*]",
+        "runtime_locator_access_steps.expected_identity_label",
+        "runtime_values.kind_payload.callback_identity_label",
+        "runtime_values.kind_payload.referent_identity_label"
+      ],
+      "assigned_null_rows": 11,
+      "census_row_count": 11,
+      "duplicate_path": "behavior_slot_manifests.entries[*].raw_member_identity_label",
+      "duplicate_path_row_count": 2,
+      "duplicate_path_row_keys": [
+        "05:002:behavior_slot_manifests:entries[*].raw_member_identity_label",
+        "05:005:behavior_slot_manifests:entries[*].raw_member_identity_label"
+      ],
+      "exact_census_row_keys": [
+        "04:010:project_classes:exception_mro_labels[*]",
+        "05:002:behavior_slot_manifests:entries[*].raw_member_identity_label",
+        "05:005:behavior_slot_manifests:entries[*].raw_member_identity_label",
+        "06:001:external_classes:base_identity_labels[*]",
+        "06:002:external_classes:mro_identity_labels[*]",
+        "10:003:generated_artifacts:namedtuple_recipe.direct_tuple_base_label",
+        "10:005:generated_artifacts:namedtuple_recipe.new_identity_label",
+        "18:008:runtime_locator_access_steps:expected_identity_label",
+        "23:012:runtime_values:kind_payload.referent_identity_label",
+        "23:013:runtime_values:kind_payload.callback_identity_label",
+        "37:001:exception_contracts:mro_identity_labels[*]"
+      ],
+      "exact_retyped_path_count": 10,
+      "exact_retyped_paths": [
+        "behavior_slot_manifests.entries[*].raw_member_identity_label",
+        "exception_contracts.mro_identity_labels[*]",
+        "external_classes.base_identity_labels[*]",
+        "external_classes.mro_identity_labels[*]",
+        "generated_artifacts.namedtuple_recipe.direct_tuple_base_label",
+        "generated_artifacts.namedtuple_recipe.new_identity_label",
+        "project_classes.exception_mro_labels[*]",
+        "runtime_locator_access_steps.expected_identity_label",
+        "runtime_values.kind_payload.callback_identity_label",
+        "runtime_values.kind_payload.referent_identity_label"
+      ],
+      "expected_rl_universe_effect": {
+        "assigned_null_rows": 11,
+        "closed_owner_count": 66,
+        "emitted_reference_rules": 0,
+        "emitted_reference_rules_metric": "Exact len(decision.compilation_rules), including coverage, post-schema extras, and authority-closed rules assigned to DD-020.",
+        "new_owner_tables": 0,
+        "removed_from_rl_classification": 11
+      },
+      "removed_from_rl_classification": 11,
+      "required_wording_fragments": [
+        "ten unique",
+        "eleven census"
+      ],
+      "unique_affected_path_count": 10
+    },
+    "T10-G18-DD-004": {
+      "branch_count": 4,
+      "compiled_rule_count": 4,
+      "consumer_containing_record": "CapturedEnvironmentRef",
+      "containing_record": "CapturedEnvironmentRef",
+      "containing_wire": "tuple[R[CapturedEnvironmentRef]]",
+      "coverage_manifest_rule_count": 4,
+      "expected_emitted_reference_rules": 4,
+      "field_path": "comprehension_mappings[*].captured_environment_labels[*].label",
+      "field_wires": {
+        "capture_kind": "E[CapturedEnvironmentKind]",
+        "capture_name": "S",
+        "label": "RL"
+      },
+      "fields": [
+        "capture_kind",
+        "capture_name",
+        "label"
+      ],
+      "forbidden_roles": [
+        "EXTERNAL_IDENTITY",
+        "GENERATED_STDLIB_CALLBACK"
+      ],
+      "ordering": "capture_name strict UTF-8; unique",
+      "owner_table": "project_source_indexes",
+      "owner_tuple": [
+        "process_local_identity_tokens",
+        "project_function_bindings",
+        "runtime_values",
+        "value_contracts"
+      ],
+      "owner_tuple_interpretation": "CLOSED_SET_UNIQUE_ORDER_NON_NORMATIVE",
+      "role_owner": {
+        "PROCESS_LOCAL_IDENTITY_TOKEN": "process_local_identity_tokens",
+        "PROJECT_FUNCTION_BINDING": "project_function_bindings",
+        "PROJECT_RUNTIME_VALUE": "runtime_values",
+        "VALUE_CONTRACT": "value_contracts"
+      },
+      "selector_namespace": "OWNER_RECORD",
+      "selector_path": [
+        "capture_kind"
+      ]
+    },
+    "T10-G18-DD-006": {
+      "owner_tuple": [
+        "external_classes",
+        "external_identities",
+        "external_type_members",
+        "generated_artifacts",
+        "generated_methods",
+        "generated_stdlib_callbacks",
+        "project_classes",
+        "project_function_bindings",
+        "project_modules",
+        "runtime_values",
+        "semantic_normal_transfers",
+        "value_contracts"
+      ],
+      "owner_tuple_interpretation": "CLOSED_SET_UNIQUE_ORDER_NON_NORMATIVE"
+    },
+    "T10-G18-DD-007": {
+      "forbidden_type_name": "ProjectAccessRef",
+      "owner_tuple": [
+        "external_type_members",
+        "generated_field_accessors",
+        "outcome_contracts",
+        "project_descriptors",
+        "project_functions",
+        "project_modules",
+        "project_source_indexes",
+        "semantic_models",
+        "value_contracts"
+      ],
+      "owner_tuple_interpretation": "CLOSED_SET_UNIQUE_ORDER_NON_NORMATIVE",
+      "required_type_name": "RootFieldAccessRef"
+    },
+    "T10-G18-DD-009": {
+      "branch_count": 24,
+      "compiled_presence_template_contract": {
+        "presence_contract": {
+          "CONSTANT": {
+            "forbidden": [
+              "literal_name",
+              "source_ordinal",
+              "target_label"
+            ],
+            "required": [
+              "literal_value"
+            ]
+          },
+          "DERIVED_LOCAL|KEYWORD_PARAMETER|POSITIONAL_PARAMETER": {
+            "forbidden": [
+              "literal_name",
+              "literal_value",
+              "target_label"
+            ],
+            "required": [
+              "source_ordinal"
+            ]
+          },
+          "TARGET_KINDS": {
+            "forbidden": [
+              "literal_value",
+              "source_ordinal"
+            ],
+            "required": [
+              "literal_name",
+              "target_label"
+            ]
+          }
+        },
+        "record_type": "CallbackLoadBinding",
+        "source_kind_field": "source_kind",
+        "source_kind_universe": [
+          "CONSTANT",
+          "POSITIONAL_PARAMETER",
+          "KEYWORD_PARAMETER",
+          "DERIVED_LOCAL",
+          "PROJECT_GLOBAL",
+          "EXTERNAL_GLOBAL",
+          "BUILTIN",
+          "CLOSURE_CONTRACT",
+          "CLOSURE_VALUE",
+          "ATTRIBUTE_BOUND_MEMBER",
+          "ATTRIBUTE_EXTERNAL_MEMBER",
+          "ATTRIBUTE_GENERATED_ACCESSOR",
+          "ATTRIBUTE_PROJECT_DESCRIPTOR"
+        ],
+        "template_key": "EMBEDDED:CallbackLoadBinding:ANY",
+        "template_kind": "EMBEDDED_RECORD"
+      },
+      "compiled_rule_count": 33,
+      "coverage_manifest_rule_count": 33,
+      "embedded_record_fields": {
+        "CallbackClosureBinding": [
+          "freevar_name",
+          "freevar_ordinal",
+          "binding_kind",
+          "target_label"
+        ],
+        "CallbackDefaultBinding": [
+          "parameter_name",
+          "default_ordinal",
+          "binding_kind",
+          "target_label"
+        ],
+        "CallbackKeywordDefaultBinding": [
+          "keyword",
+          "binding_kind",
+          "target_label"
+        ],
+        "CallbackLoadBinding": [
+          "instruction_offset",
+          "instruction_ordinal",
+          "opcode",
+          "source_kind",
+          "literal_name",
+          "source_ordinal",
+          "target_label",
+          "literal_value"
+        ]
+      },
+      "embedded_record_wires": {
+        "CallbackClosureBinding": {
+          "binding_kind": "E[CallbackBindingKind]",
+          "freevar_name": "S",
+          "freevar_ordinal": "I",
+          "target_label": "RL"
+        },
+        "CallbackDefaultBinding": {
+          "binding_kind": "E[CallbackBindingKind]",
+          "default_ordinal": "I",
+          "parameter_name": "S",
+          "target_label": "RL"
+        },
+        "CallbackKeywordDefaultBinding": {
+          "binding_kind": "E[CallbackBindingKind]",
+          "keyword": "S",
+          "target_label": "RL"
+        },
+        "CallbackLoadBinding": {
+          "instruction_offset": "I",
+          "instruction_ordinal": "I",
+          "literal_name": "O[S]",
+          "literal_value": "O[R[CL]]",
+          "opcode": "E[CallbackLoadOpcode]",
+          "source_kind": "E[CallbackLoadSourceKind]",
+          "source_ordinal": "O[I]",
+          "target_label": "O[RL]"
+        }
+      },
+      "expected_emitted_reference_rules": 33,
+      "forbidden_record_types": [
+        "CallbackLoadRef",
+        "CallbackValueRef"
+      ],
+      "load_containing_record": "CallbackLoadBinding",
+      "load_field_path": "load_bindings[*].target_label",
+      "load_kind_owner": {
+        "ATTRIBUTE_BOUND_MEMBER": "bound_type_members",
+        "ATTRIBUTE_EXTERNAL_MEMBER": "external_type_members",
+        "ATTRIBUTE_GENERATED_ACCESSOR": "generated_field_accessors",
+        "ATTRIBUTE_PROJECT_DESCRIPTOR": "project_descriptors",
+        "BUILTIN": "external_identities",
+        "CLOSURE_CONTRACT": "value_contracts",
+        "CLOSURE_VALUE": "runtime_values",
+        "EXTERNAL_GLOBAL": "external_identities",
+        "PROJECT_GLOBAL": "project_function_bindings"
+      },
+      "load_presence": {
+        "CONSTANT": {
+          "forbidden": [
+            "literal_name",
+            "source_ordinal",
+            "target_label"
+          ],
+          "required": [
+            "literal_value"
+          ]
+        },
+        "DERIVED_LOCAL|KEYWORD_PARAMETER|POSITIONAL_PARAMETER": {
+          "forbidden": [
+            "literal_name",
+            "literal_value",
+            "target_label"
+          ],
+          "required": [
+            "source_ordinal"
+          ]
+        },
+        "TARGET_KINDS": {
+          "forbidden": [
+            "literal_value",
+            "source_ordinal"
+          ],
+          "required": [
+            "literal_name",
+            "target_label"
+          ]
+        }
+      },
+      "load_selector_namespace": "OWNER_RECORD",
+      "load_selector_path": [
+        "source_kind"
+      ],
+      "load_source_kinds": [
+        "CONSTANT",
+        "POSITIONAL_PARAMETER",
+        "KEYWORD_PARAMETER",
+        "DERIVED_LOCAL",
+        "PROJECT_GLOBAL",
+        "EXTERNAL_GLOBAL",
+        "BUILTIN",
+        "CLOSURE_CONTRACT",
+        "CLOSURE_VALUE",
+        "ATTRIBUTE_BOUND_MEMBER",
+        "ATTRIBUTE_EXTERNAL_MEMBER",
+        "ATTRIBUTE_GENERATED_ACCESSOR",
+        "ATTRIBUTE_PROJECT_DESCRIPTOR"
+      ],
+      "non_matrix_rule_contracts": [
+        {
+          "cardinality": "SCALAR",
+          "containing_record": "GeneratedStdlibCallbackTransfer",
+          "field_path": "key_contract_label",
+          "kind": "AUTH_REQUIRES",
+          "owner_table": "generated_callback_transfers",
+          "target": "value_contracts"
+        },
+        {
+          "cardinality": "ORDERED_TUPLE",
+          "containing_record": "GeneratedStdlibCallbackTransfer",
+          "field_path": "input_contract_labels[*]",
+          "kind": "AUTH_REQUIRES",
+          "owner_table": "generated_callback_transfers",
+          "target": "value_contracts"
+        },
+        {
+          "cardinality": "ORDERED_TUPLE",
+          "containing_record": "GeneratedStdlibCallbackTransfer",
+          "field_path": "intrinsic_effect_labels[*]",
+          "kind": "AUTH_REQUIRES",
+          "owner_table": "generated_callback_transfers",
+          "target": "intrinsic_effect_steps"
+        },
+        {
+          "cardinality": "SCALAR",
+          "containing_record": "GeneratedStdlibCallbackTransfer",
+          "field_path": "normal_transfer_label",
+          "kind": "AUTH_REQUIRES",
+          "owner_table": "generated_callback_transfers",
+          "target": "semantic_normal_transfers"
+        },
+        {
+          "cardinality": "ORDERED_TUPLE",
+          "containing_record": "GeneratedStdlibCallbackTransfer",
+          "field_path": "exception_transfer_labels[*]",
+          "kind": "AUTH_REQUIRES",
+          "owner_table": "generated_callback_transfers",
+          "target": "semantic_exception_transfers"
+        },
+        {
+          "cardinality": "SCALAR",
+          "containing_record": "GeneratedStdlibCallbackBinding",
+          "field_path": "parent_runtime_value_label",
+          "kind": "AUTH_REQUIRES",
+          "owner_table": "generated_stdlib_callbacks",
+          "target": "runtime_values"
+        },
+        {
+          "cardinality": "SCALAR",
+          "containing_record": "GeneratedStdlibCallbackBinding",
+          "field_path": "source_state_field_binding_label",
+          "kind": "AUTH_REQUIRES",
+          "owner_table": "generated_stdlib_callbacks",
+          "target": "state_fields"
+        },
+        {
+          "cardinality": "SCALAR",
+          "containing_record": "GeneratedStdlibCallbackBinding",
+          "field_path": "semantic_model_label",
+          "kind": "AUTH_REQUIRES",
+          "owner_table": "generated_stdlib_callbacks",
+          "target": "semantic_models"
+        },
+        {
+          "cardinality": "SCALAR",
+          "containing_record": "GeneratedStdlibCallbackBinding",
+          "field_path": "outcome_contract_label",
+          "kind": "AUTH_REQUIRES",
+          "owner_table": "generated_stdlib_callbacks",
+          "target": "outcome_contracts"
+        }
+      ],
+      "owner_wires": {
+        "closure_cells": "tuple[R[CallbackClosureBinding]]",
+        "keyword_defaults": "tuple[R[CallbackKeywordDefaultBinding]]",
+        "load_bindings": "tuple[R[CallbackLoadBinding]]",
+        "positional_defaults": "tuple[R[CallbackDefaultBinding]]"
+      },
+      "transfer_direction": [
+        {
+          "field": "generated_callback_transfers.callback_binding_label",
+          "kind": "AUTH_REQUIRES",
+          "target": "generated_stdlib_callbacks"
+        },
+        {
+          "field": "generated_stdlib_callbacks.transfer_label",
+          "kind": "VALIDATES",
+          "target": "generated_callback_transfers"
+        }
+      ],
+      "transfer_rule_contracts": [
+        {
+          "cardinality": "SCALAR",
+          "decision_id": "T10-G18-DD-020",
+          "field_path": "callback_binding_label",
+          "kind": "AUTH_REQUIRES",
+          "owner_table": "generated_callback_transfers",
+          "target": "generated_stdlib_callbacks"
+        },
+        {
+          "cardinality": "SCALAR",
+          "decision_id": "T10-G18-DD-020",
+          "field_path": "transfer_label",
+          "kind": "VALIDATES",
+          "owner_table": "generated_stdlib_callbacks",
+          "target": "generated_callback_transfers"
+        }
+      ],
+      "value_containing_records": [
+        "CallbackClosureBinding",
+        "CallbackDefaultBinding",
+        "CallbackKeywordDefaultBinding"
+      ],
+      "value_record_field_paths": {
+        "CallbackClosureBinding": "closure_cells[*].target_label",
+        "CallbackDefaultBinding": "positional_defaults[*].target_label",
+        "CallbackKeywordDefaultBinding": "keyword_defaults[*].target_label"
+      },
+      "value_role_owner": {
+        "BOUND_TYPE_MEMBER": "bound_type_members",
+        "EXTERNAL_IDENTITY": "external_identities",
+        "GENERATED_CALLBACK": "generated_stdlib_callbacks",
+        "PROJECT_RUNTIME_VALUE": "runtime_values",
+        "VALUE_CONTRACT": "value_contracts"
+      },
+      "value_selector_namespace": "OWNER_RECORD",
+      "value_selector_path": [
+        "binding_kind"
+      ]
+    },
+    "T10-G18-DD-011": {
+      "canonical_value_hash": "UTF8_JSON_SORT_KEYS_COMPACT_NO_TRAILING_LF",
+      "compiled_operation_rule_contract_digest_set_sha256": "5af71c94747d7f6a8bfd77ee23ed04222a7c2d18a700d09a4f005486ac743cdb",
+      "operation_exact_role_matrix_sha256": "c5f89afe9b88c01ea0ea0e2bb799fe33554732bed1327cab0ce534cdcce260f3",
+      "operation_family_allowed_roles_sha256": "7d604b04ff0aa382405db55c4da2d8c400602a82f4cdf41247830b53621e3d30",
+      "operation_role_sources": [
+        "operation_exact_role_matrix"
+      ],
+      "provider_role_owner": {
+        "EXTERNAL_PYTHON_INTRINSIC": "external_python_intrinsics",
+        "EXTERNAL_TYPE_MEMBER": "external_type_members",
+        "GENERATED_METHOD": "generated_methods",
+        "GENERATED_STDLIB_CALLBACK": "generated_stdlib_callbacks",
+        "PROJECT_DESCRIPTOR": "project_descriptors",
+        "PROJECT_FUNCTION_BINDING": "project_function_bindings"
+      }
+    },
+    "T10-G18-DD-016": {
+      "canonical_value_hash": "UTF8_JSON_SORT_KEYS_COMPACT_NO_TRAILING_LF",
+      "operation_role_sources": [
+        "protocol_provider_allowed_roles"
+      ],
+      "protocol_provider_allowed_roles_sha256": "94cdc5bd86547a1b7805204f1d79ee6719bc31a67fe15218631e67f14b11ccd6",
+      "provider_role_owner": {
+        "EXTERNAL_PYTHON_INTRINSIC": "external_python_intrinsics",
+        "EXTERNAL_TYPE_MEMBER": "external_type_members",
+        "GENERATED_METHOD": "generated_methods",
+        "GENERATED_STDLIB_CALLBACK": "generated_stdlib_callbacks",
+        "PROJECT_DESCRIPTOR": "project_descriptors",
+        "PROJECT_FUNCTION_BINDING": "project_function_bindings"
+      }
+    }
+  },
+  "cli_exit_contract": {
+    "audit_error": 3,
+    "findings_hold": 1,
+    "usage_error": 2
+  },
+  "format": "selcal.task10.g18.cross-representation-semantic-oracle.v1",
+  "machine_semantic_scope": {
+    "checked_decision_ids": [
+      "T10-G18-DD-001",
+      "T10-G18-DD-004",
+      "T10-G18-DD-006",
+      "T10-G18-DD-007",
+      "T10-G18-DD-009",
+      "T10-G18-DD-011",
+      "T10-G18-DD-016"
+    ],
+    "not_semantically_audited_by_this_instrument": [
+      "T10-G18-DD-002",
+      "T10-G18-DD-003",
+      "T10-G18-DD-005",
+      "T10-G18-DD-008",
+      "T10-G18-DD-010",
+      "T10-G18-DD-012",
+      "T10-G18-DD-013",
+      "T10-G18-DD-014",
+      "T10-G18-DD-015",
+      "T10-G18-DD-017",
+      "T10-G18-DD-018",
+      "T10-G18-DD-019",
+      "T10-G18-DD-020",
+      "T10-G18-DD-021",
+      "T10-G18-DD-022",
+      "T10-G18-DD-023"
+    ]
+  },
+  "source_bindings": {
+    "correction_specification": {
+      "path": "docs/superpowers/plans/2026-08-31-task10-authority-review-package-v3-correction.md",
+      "sha256": "85ababe68595f31f3df037a09d954b050fa718ecbc922bcd2bcf4b4838b20735"
+    },
+    "oracle_schema": {
+      "path": "docs/superpowers/specs/task10/v10/semantic-review/adjudicated-cross-representation-oracle-v1.schema.json",
+      "sha256": "94b316ee6036a9d912248c4acf1d031cca5570770023007da15e0ad4b7086066"
+    },
+    "predecessor_authority": {
+      "path": "docs/superpowers/specs/2026-08-29-task10-deny-by-default-provider-proof-design.md",
+      "sha256": "74891e7b1a5190d64da5d2fd74e8ef0d74e671fc81600875995c2dbc7ee057ff"
+    },
+    "review_registry_v2": {
+      "path": "docs/superpowers/specs/idl/task10/v10/review/authority-design-decision-registry-v2.json",
+      "sha256": "77229b74bf07a75793bb8dd142312f83e682325977474db3637fcb84d80cc8f5"
+    }
+  },
+  "stop_boundary": "STOP_BEFORE_AUTHORITY_IDL_AND_KATS",
+  "structural_closure": {
+    "allowed_validator_only_branch_ids_by_decision": {
+      "T10-G18-DD-007": [
+        "T10-G18-DD-018-BR3-0406",
+        "T10-G18-DD-018-BR3-0407",
+        "T10-G18-DD-018-BR3-0408",
+        "T10-G18-DD-018-BR3-0409",
+        "T10-G18-DD-018-BR3-0410"
+      ],
+      "T10-G18-DD-016": [
+        "T10-G18-DD-018-BR3-0449",
+        "T10-G18-DD-018-BR3-0450"
+      ]
+    },
+    "expected_counts": {
+      "branches": 461,
+      "coverage_rows": 264,
+      "decisions": 23,
+      "owner_field_rows": 1070,
+      "owners": 66,
+      "reference_fields": 312,
+      "rules": 570,
+      "schema_templates": 209
+    },
+    "global_branch_catalog_decision_id": "T10-G18-DD-018",
+    "manifest_contract": "Each non-authority-closed forward rule appears exactly once in a decision manifest row whose owner and compiled field path match that rule; each manifest row key suffix matches owner_table and inventory_field_path.",
+    "ordinal_contract": "Rule, branch, schema-template, and reference-field ordinals are unique closed integer ranges for the frozen v2 counts.",
+    "validator_only_branch_ids_sha256": "3f333629a02f952f96336daf7b221fd11a49fcc20323226b5180da0a61554221",
+    "validator_only_branch_projection_sha256": "ffea529edf3fe20362a3a86a1deea11bae9b787d086c02fd3332a2f973214082"
+  }
+}

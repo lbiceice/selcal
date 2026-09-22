@@ -1,0 +1,5223 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://selcal.dev/schemas/m6-p1-artifact-contract-v9-proposal.schema.json",
+  "title": "SelCal M6-P1 revision 9 local artifact shapes (proposal)",
+  "description": "Local shape only. Unfrozen proposal, no runtime validator or M6 execution. Dynamic authority: contracts/m6-p1-semantic-contract-v9-proposal.json. Closed field shapes do not verify source bytes, cross-artifact identities, semantic equations, resource bounds, runtime measurements, or external authority.",
+  "x-semanticContractId": "selcal.m6-p1.semantic-contract.v9",
+  "x-scope": "LOCAL_SHAPE_ONLY",
+  "x-knownAbsentSemanticValidators": [
+    "selcal.m6-p1.semantic-validator.v9",
+    "revision-9 scientific reference engine",
+    "revision-9 runtime probe",
+    "revision-9 external execution approval",
+    "revision-9 M6 execution"
+  ],
+  "oneOf": [
+    {
+      "$ref": "#/$defs/DeclaredSourceInventory"
+    },
+    {
+      "$ref": "#/$defs/DeclaredRunGraph"
+    },
+    {
+      "$ref": "#/$defs/InputPairDescriptor"
+    },
+    {
+      "$ref": "#/$defs/ReferenceSpec"
+    },
+    {
+      "$ref": "#/$defs/ObservedRecord"
+    },
+    {
+      "$ref": "#/$defs/ProductionReplayRow"
+    },
+    {
+      "$ref": "#/$defs/ProductionRunManifest"
+    },
+    {
+      "$ref": "#/$defs/PrimaryRecord"
+    },
+    {
+      "$ref": "#/$defs/PrimaryManifest"
+    },
+    {
+      "$ref": "#/$defs/ComparisonRecord"
+    },
+    {
+      "$ref": "#/$defs/ComparisonManifest"
+    },
+    {
+      "$ref": "#/$defs/DiagnosticRecord"
+    },
+    {
+      "$ref": "#/$defs/DiagnosticManifest"
+    },
+    {
+      "$ref": "#/$defs/SuccessManifest"
+    },
+    {
+      "$ref": "#/$defs/FailureManifest"
+    },
+    {
+      "$ref": "#/$defs/BudgetProfile"
+    },
+    {
+      "$ref": "#/$defs/RuntimeProbe"
+    },
+    {
+      "$ref": "#/$defs/ExternalApprovalEnvelope"
+    },
+    {
+      "$ref": "#/$defs/ValidationReport"
+    }
+  ],
+  "$defs": {
+    "Sha256": {
+      "type": "string",
+      "minLength": 64,
+      "maxLength": 64,
+      "pattern": "^[0-9a-f]{64}$"
+    },
+    "AsciiId": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 128,
+      "pattern": "^[A-Za-z0-9][A-Za-z0-9._:-]*$"
+    },
+    "NormalizedRelativePath": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 512,
+      "pattern": "^(?!/)(?!.*//)(?!.*(?:^|/)\\.{1,2}(?:/|$))[A-Za-z0-9._-]+(?:/[A-Za-z0-9._-]+)*$"
+    },
+    "FloatHex": {
+      "type": "string",
+      "minLength": 8,
+      "maxLength": 26,
+      "pattern": "^-?0x(?:0\\.0p\\+0|[01]\\.[0-9a-f]{13}p[+-](?:0|[1-9][0-9]{0,3}))$",
+      "$comment": "Lexical shape only; finite binary64 range and float.hex roundtrip require the semantic validator."
+    },
+    "StrictProbabilityHex": {
+      "allOf": [
+        {
+          "$ref": "#/$defs/FloatHex"
+        },
+        {
+          "pattern": "^0x(?:1\\.[0-9a-f]{13}p-[1-9][0-9]{0,3}|0\\.(?!0{13})[0-9a-f]{13}p-1022)$"
+        }
+      ]
+    },
+    "NonnegativeToleranceHex": {
+      "allOf": [
+        {
+          "$ref": "#/$defs/FloatHex"
+        },
+        {
+          "pattern": "^(?:0x|-0x0\\.0p\\+0$)"
+        }
+      ]
+    },
+    "UTCInstant": {
+      "type": "string",
+      "pattern": "^[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}Z$",
+      "format": "date-time",
+      "minLength": 20,
+      "maxLength": 20
+    },
+    "ArtifactIdentity": {
+      "type": "object",
+      "properties": {
+        "artifactId": {
+          "$ref": "#/$defs/AsciiId"
+        },
+        "relativePath": {
+          "$ref": "#/$defs/NormalizedRelativePath"
+        },
+        "bytes": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 536870912
+        },
+        "sha256": {
+          "$ref": "#/$defs/Sha256"
+        }
+      },
+      "required": [
+        "artifactId",
+        "relativePath",
+        "bytes",
+        "sha256"
+      ],
+      "additionalProperties": false
+    },
+    "Lifecycle": {
+      "oneOf": [
+        {
+          "type": "object",
+          "properties": {
+            "mode": {
+              "const": "PROPOSAL_UNAPPROVED"
+            },
+            "approvalId": {
+              "type": "null"
+            }
+          },
+          "required": [
+            "mode",
+            "approvalId"
+          ],
+          "additionalProperties": false
+        },
+        {
+          "type": "object",
+          "properties": {
+            "mode": {
+              "const": "APPROVED_FROZEN"
+            },
+            "approvalId": {
+              "$ref": "#/$defs/AsciiId"
+            }
+          },
+          "required": [
+            "mode",
+            "approvalId"
+          ],
+          "additionalProperties": false
+        }
+      ]
+    },
+    "CalculationMode": {
+      "enum": [
+        "ALL_STATE_EXACT",
+        "FINITE_B_COMPLETED_STATE_REPLAY"
+      ]
+    },
+    "ExecutionBranch": {
+      "enum": [
+        "EXACT_BRANCH_UNRESOLVED",
+        "FINITE_BRANCH_UNRESOLVED",
+        "ALL_STATE_EXACT_COMPONENT",
+        "FINITE_NORMAL",
+        "FINITE_REPLICATE_FAILURE",
+        "FINITE_OBSERVED_ANALYTIC_FAILURE",
+        "NULL_BIND_DISABLED"
+      ]
+    },
+    "TerminalClass": {
+      "enum": [
+        "COMPLETE",
+        "NULL_DISABLED",
+        "OBSERVED_ANALYTIC_FAILURE",
+        "REPLICATE_ANALYTIC_FAILURE",
+        "EXACT_ANALYTIC_FAILURE",
+        "INTERRUPTED",
+        "RESOURCE_FAILURE",
+        "INTEGRITY_FAILURE",
+        "VALIDATION_FAILURE"
+      ]
+    },
+    "SelectionRule": {
+      "enum": [
+        "max_upper",
+        "max_absolute"
+      ]
+    },
+    "AnalyticFailureCode": {
+      "enum": [
+        "INSUFFICIENT_EFFECTIVE_PAIRS",
+        "CONSTANT_SOURCE_WINDOW",
+        "CONSTANT_TARGET_WINDOW",
+        "NONFINITE_PEARSON_RESULT",
+        "NETTE_EMPTY_SOURCE_SUPPORT",
+        "NETTE_EMPTY_TARGET_SUPPORT",
+        "NETTE_EMPTY_JOINT_SUPPORT",
+        "NETTE_NEGATIVE_CMI_BEYOND_TOLERANCE",
+        "NETTE_NONFINITE_RESULT"
+      ]
+    },
+    "DisagreementCode": {
+      "enum": [
+        "LOCATOR_IDENTITY_MISMATCH",
+        "RECORD_KIND_MISMATCH",
+        "TERMINAL_CLASS_MISMATCH",
+        "STATE_COMPONENT_MISMATCH",
+        "CANDIDATE_INDEX_MISMATCH",
+        "CANDIDATE_VALUE_MISMATCH",
+        "CANDIDATE_STATUS_MISMATCH",
+        "CANDIDATE_ESTIMATE_MISMATCH",
+        "CANDIDATE_FAILURE_CODE_MISMATCH",
+        "SELECTION_STATUS_MISMATCH",
+        "SELECTED_INDEX_MISMATCH",
+        "TIED_INDEX_MISMATCH",
+        "TAIL_INDICATOR_MISMATCH",
+        "AGGREGATE_COUNT_MISMATCH",
+        "AGGREGATE_FRACTION_MISMATCH",
+        "AGGREGATE_FLOAT_MISMATCH",
+        "DECISION_MISMATCH"
+      ]
+    },
+    "TerminalFailure": {
+      "oneOf": [
+        {
+          "type": "object",
+          "properties": {
+            "emitter": {
+              "const": "BYTE_STAT_HASH_PREFLIGHT"
+            },
+            "code": {
+              "enum": [
+                "PATH_POLICY_VIOLATION",
+                "SYMLINK_REJECTED",
+                "FILE_NOT_REGULAR",
+                "FILE_SIZE_LIMIT",
+                "FILE_SIZE_MISMATCH",
+                "FILE_DIGEST_MISMATCH",
+                "SOURCE_INVENTORY_ID_MISMATCH"
+              ]
+            }
+          },
+          "required": [
+            "emitter",
+            "code"
+          ],
+          "additionalProperties": false
+        },
+        {
+          "type": "object",
+          "properties": {
+            "emitter": {
+              "const": "JSON_DECODE"
+            },
+            "code": {
+              "enum": [
+                "JSON_BYTE_LIMIT",
+                "JSON_DECODE_FAILED",
+                "JSON_DUPLICATE_KEY",
+                "JSON_NONCANONICAL"
+              ]
+            }
+          },
+          "required": [
+            "emitter",
+            "code"
+          ],
+          "additionalProperties": false
+        },
+        {
+          "type": "object",
+          "properties": {
+            "emitter": {
+              "const": "BINARY_HEADER_PARSE"
+            },
+            "code": {
+              "enum": [
+                "SIDECAR_MAGIC_MISMATCH",
+                "SIDECAR_VERSION_MISMATCH",
+                "SIDECAR_FLAGS_MISMATCH",
+                "SIDECAR_LENGTH_MISMATCH"
+              ]
+            }
+          },
+          "required": [
+            "emitter",
+            "code"
+          ],
+          "additionalProperties": false
+        },
+        {
+          "type": "object",
+          "properties": {
+            "emitter": {
+              "const": "BINARY_PAYLOAD_SCAN"
+            },
+            "code": {
+              "enum": [
+                "SIDECAR_NONFINITE_VALUE",
+                "INPUT_LENGTH_MISMATCH",
+                "INPUT_LENGTH_LIMIT"
+              ]
+            }
+          },
+          "required": [
+            "emitter",
+            "code"
+          ],
+          "additionalProperties": false
+        },
+        {
+          "type": "object",
+          "properties": {
+            "emitter": {
+              "const": "SCHEMA_VALIDATE"
+            },
+            "code": {
+              "enum": [
+                "SCHEMA_VALIDATION_FAILED"
+              ]
+            }
+          },
+          "required": [
+            "emitter",
+            "code"
+          ],
+          "additionalProperties": false
+        },
+        {
+          "type": "object",
+          "properties": {
+            "emitter": {
+              "const": "NORMALIZATION"
+            },
+            "code": {
+              "enum": [
+                "INVALID_BOOLEAN_AS_INTEGER",
+                "INVALID_NUMERIC_TYPE",
+                "NONFINITE_FLOAT",
+                "FLOAT_HEX_NONCANONICAL",
+                "ALPHA_OUT_OF_RANGE",
+                "TIE_TOLERANCE_NEGATIVE",
+                "CANDIDATE_NONPOSITIVE",
+                "CANDIDATE_NOT_STRICTLY_ASCENDING",
+                "CANDIDATE_COUNT_LIMIT",
+                "CANDIDATE_EXCEEDS_INPUT",
+                "BLOCK_LENGTH_NOT_DIVISOR",
+                "BLOCK_COUNT_OUT_OF_RANGE",
+                "REPLICATE_MAPPING_INVALID"
+              ]
+            }
+          },
+          "required": [
+            "emitter",
+            "code"
+          ],
+          "additionalProperties": false
+        },
+        {
+          "type": "object",
+          "properties": {
+            "emitter": {
+              "const": "ADMISSION"
+            },
+            "code": {
+              "enum": [
+                "EXACT_STATE_LIMIT",
+                "LIVE_CANDIDATE_LIMIT",
+                "LEDGER_CANDIDATE_LIMIT",
+                "DIAGNOSTIC_REPLAY_LIMIT",
+                "BYTE_ADMISSION_LIMIT",
+                "MEMORY_ADMISSION_LIMIT",
+                "IO_ADMISSION_LIMIT",
+                "COMPUTE_ADMISSION_LIMIT",
+                "OPERAND_BITS_LIMIT"
+              ]
+            }
+          },
+          "required": [
+            "emitter",
+            "code"
+          ],
+          "additionalProperties": false
+        },
+        {
+          "type": "object",
+          "properties": {
+            "emitter": {
+              "const": "RUNTIME_BINDING"
+            },
+            "code": {
+              "enum": [
+                "RUNTIME_PROFILE_MISMATCH",
+                "RUNTIME_PROBE_MISMATCH",
+                "EXTERNAL_BINDING_MISMATCH",
+                "PINNED_APPROVAL_ABSENT",
+                "PINNED_APPROVAL_DIGEST_MISMATCH",
+                "LOCAL_APPROVAL_NOT_TRUSTED"
+              ]
+            }
+          },
+          "required": [
+            "emitter",
+            "code"
+          ],
+          "additionalProperties": false
+        },
+        {
+          "type": "object",
+          "properties": {
+            "emitter": {
+              "const": "SCIENTIFIC_CALL"
+            },
+            "code": {
+              "enum": [
+                "PRODUCTION_PROTOCOL_FAILURE",
+                "REFERENCE_PROTOCOL_FAILURE",
+                "CANDIDATE_ANALYTIC_FAILURE_ESCALATED"
+              ]
+            }
+          },
+          "required": [
+            "emitter",
+            "code"
+          ],
+          "additionalProperties": false
+        },
+        {
+          "type": "object",
+          "properties": {
+            "emitter": {
+              "const": "COMPARISON"
+            },
+            "code": {
+              "enum": [
+                "REQUIRED_FIELD_PLAN_MISMATCH",
+                "COMPARISON_AGGREGATE_INVALID",
+                "DIAGNOSTIC_BIJECTION_INVALID"
+              ]
+            }
+          },
+          "required": [
+            "emitter",
+            "code"
+          ],
+          "additionalProperties": false
+        },
+        {
+          "type": "object",
+          "properties": {
+            "emitter": {
+              "const": "DURABILITY"
+            },
+            "code": {
+              "enum": [
+                "WRITE_FAILED",
+                "FILE_FSYNC_FAILED",
+                "RENAME_FAILED",
+                "DIRECTORY_FSYNC_FAILED",
+                "RETAINED_ARTIFACT_INVALID"
+              ]
+            }
+          },
+          "required": [
+            "emitter",
+            "code"
+          ],
+          "additionalProperties": false
+        },
+        {
+          "type": "object",
+          "properties": {
+            "emitter": {
+              "const": "INTERRUPTION"
+            },
+            "code": {
+              "enum": [
+                "SIGNAL_INTERRUPT",
+                "USER_CANCELLED",
+                "DEADLINE_TIMEOUT",
+                "DEPENDENCY_CANCELLED"
+              ]
+            }
+          },
+          "required": [
+            "emitter",
+            "code"
+          ],
+          "additionalProperties": false
+        }
+      ]
+    },
+    "SourceInventoryLocators": {
+      "type": "array",
+      "minItems": 3,
+      "maxItems": 3,
+      "prefixItems": [
+        {
+          "type": "object",
+          "properties": {
+            "role": {
+              "const": "REFERENCE_IMPLEMENTATION"
+            },
+            "locator": {
+              "$ref": "#/$defs/ArtifactIdentity"
+            }
+          },
+          "required": [
+            "role",
+            "locator"
+          ],
+          "additionalProperties": false
+        },
+        {
+          "type": "object",
+          "properties": {
+            "role": {
+              "const": "PRODUCTION_IMPLEMENTATION"
+            },
+            "locator": {
+              "$ref": "#/$defs/ArtifactIdentity"
+            }
+          },
+          "required": [
+            "role",
+            "locator"
+          ],
+          "additionalProperties": false
+        },
+        {
+          "type": "object",
+          "properties": {
+            "role": {
+              "const": "COMPARISON_DRIVER"
+            },
+            "locator": {
+              "$ref": "#/$defs/ArtifactIdentity"
+            }
+          },
+          "required": [
+            "role",
+            "locator"
+          ],
+          "additionalProperties": false
+        }
+      ],
+      "items": false
+    },
+    "DeclaredSourceInventory": {
+      "type": "object",
+      "properties": {
+        "artifactType": {
+          "const": "DECLARED_SOURCE_INVENTORY"
+        },
+        "artifactId": {
+          "$ref": "#/$defs/AsciiId"
+        },
+        "schemaVersion": {
+          "const": "selcal.m6-p1.artifact.v9"
+        },
+        "inventoryVersion": {
+          "const": 1
+        },
+        "role": {
+          "enum": [
+            "REFERENCE_IMPLEMENTATION",
+            "PRODUCTION_IMPLEMENTATION",
+            "COMPARISON_DRIVER"
+          ]
+        },
+        "sourceSetId": {
+          "$ref": "#/$defs/Sha256"
+        },
+        "entries": {
+          "type": "array",
+          "minItems": 1,
+          "maxItems": 256,
+          "items": {
+            "type": "object",
+            "properties": {
+              "ordinal": {
+                "type": "integer",
+                "minimum": 0,
+                "maximum": 255
+              },
+              "relativePath": {
+                "$ref": "#/$defs/NormalizedRelativePath"
+              },
+              "bytes": {
+                "type": "integer",
+                "minimum": 1,
+                "maximum": 16777216
+              },
+              "sha256": {
+                "$ref": "#/$defs/Sha256"
+              }
+            },
+            "required": [
+              "ordinal",
+              "relativePath",
+              "bytes",
+              "sha256"
+            ],
+            "additionalProperties": false
+          }
+        },
+        "dependencies": {
+          "type": "array",
+          "minItems": 0,
+          "maxItems": 256,
+          "items": {
+            "type": "object",
+            "properties": {
+              "dependencyId": {
+                "$ref": "#/$defs/AsciiId"
+              },
+              "version": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 128,
+                "pattern": "^[\\x20-\\x7e]+$"
+              },
+              "identity": {
+                "$ref": "#/$defs/ArtifactIdentity"
+              }
+            },
+            "required": [
+              "dependencyId",
+              "version",
+              "identity"
+            ],
+            "additionalProperties": false
+          }
+        }
+      },
+      "required": [
+        "artifactType",
+        "artifactId",
+        "schemaVersion",
+        "inventoryVersion",
+        "role",
+        "sourceSetId",
+        "entries",
+        "dependencies"
+      ],
+      "additionalProperties": false
+    },
+    "GraphNode": {
+      "type": "object",
+      "properties": {
+        "artifactId": {
+          "$ref": "#/$defs/AsciiId"
+        },
+        "artifactType": {
+          "enum": [
+            "DECLARED_SOURCE_INVENTORY",
+            "DECLARED_RUN_GRAPH",
+            "INPUT_PAIR_DESCRIPTOR",
+            "REFERENCE_SPEC",
+            "OBSERVED_RECORD",
+            "PRODUCTION_REPLAY_ROW",
+            "PRODUCTION_RUN_MANIFEST",
+            "PRIMARY_RECORD",
+            "PRIMARY_MANIFEST",
+            "COMPARISON_RECORD",
+            "COMPARISON_MANIFEST",
+            "DIAGNOSTIC_RECORD",
+            "DIAGNOSTIC_MANIFEST",
+            "SUCCESS_MANIFEST",
+            "FAILURE_MANIFEST",
+            "BUDGET_PROFILE",
+            "RUNTIME_PROBE",
+            "EXTERNAL_APPROVAL_ENVELOPE",
+            "VALIDATION_REPORT",
+            "BINARY64_SIDECAR",
+            "RAW_INPUT",
+            "SOURCE_FILE",
+            "DEPENDENCY_ARTIFACT",
+            "FORMULA_DOCUMENT",
+            "ARTIFACT_SCHEMA",
+            "SEMANTIC_CONTRACT",
+            "SEMANTIC_VALIDATOR",
+            "TRUST_STORE"
+          ]
+        },
+        "relativePath": {
+          "$ref": "#/$defs/NormalizedRelativePath"
+        }
+      },
+      "required": [
+        "artifactId",
+        "artifactType",
+        "relativePath"
+      ],
+      "additionalProperties": false
+    },
+    "GraphEdge": {
+      "type": "object",
+      "properties": {
+        "fromArtifactId": {
+          "$ref": "#/$defs/AsciiId"
+        },
+        "relationship": {
+          "enum": [
+            "BINDS_SOURCE_INVENTORY",
+            "BINDS_INPUT",
+            "BINDS_REFERENCE_SPEC",
+            "BINDS_BUDGET_PROFILE",
+            "BINDS_RUNTIME_PROBE",
+            "CONTAINS_ROW",
+            "CONTAINS_MANIFEST",
+            "COMPARES_REFERENCE",
+            "COMPARES_PRODUCTION",
+            "DIAGNOSES_COMPARISON",
+            "TERMINATES_AS"
+          ]
+        },
+        "toArtifactId": {
+          "$ref": "#/$defs/AsciiId"
+        }
+      },
+      "required": [
+        "fromArtifactId",
+        "relationship",
+        "toArtifactId"
+      ],
+      "additionalProperties": false
+    },
+    "DeclaredRunGraph": {
+      "type": "object",
+      "properties": {
+        "artifactType": {
+          "const": "DECLARED_RUN_GRAPH"
+        },
+        "artifactId": {
+          "$ref": "#/$defs/AsciiId"
+        },
+        "schemaVersion": {
+          "const": "selcal.m6-p1.artifact.v9"
+        },
+        "contractId": {
+          "const": "selcal.m6-p1.declared-run-graph.v9"
+        },
+        "lifecycle": {
+          "$ref": "#/$defs/Lifecycle"
+        },
+        "sourceInventories": {
+          "$ref": "#/$defs/SourceInventoryLocators"
+        },
+        "graphProjection": {
+          "type": "object",
+          "properties": {
+            "rootArtifactId": {
+              "$ref": "#/$defs/AsciiId"
+            },
+            "nodes": {
+              "type": "array",
+              "minItems": 1,
+              "maxItems": 1000000,
+              "items": {
+                "$ref": "#/$defs/GraphNode"
+              },
+              "uniqueItems": true
+            },
+            "edges": {
+              "type": "array",
+              "minItems": 1,
+              "maxItems": 1000000,
+              "items": {
+                "$ref": "#/$defs/GraphEdge"
+              },
+              "uniqueItems": true
+            }
+          },
+          "required": [
+            "rootArtifactId",
+            "nodes",
+            "edges"
+          ],
+          "additionalProperties": false
+        },
+        "graphDigest": {
+          "$ref": "#/$defs/Sha256"
+        }
+      },
+      "required": [
+        "artifactType",
+        "artifactId",
+        "schemaVersion",
+        "contractId",
+        "lifecycle",
+        "sourceInventories",
+        "graphProjection",
+        "graphDigest"
+      ],
+      "additionalProperties": false
+    },
+    "VectorDescriptor": {
+      "type": "object",
+      "properties": {
+        "formatId": {
+          "const": "selcal-m6-p1-f64le-v1"
+        },
+        "count": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 2500000
+        },
+        "locator": {
+          "$ref": "#/$defs/ArtifactIdentity"
+        }
+      },
+      "required": [
+        "formatId",
+        "count",
+        "locator"
+      ],
+      "additionalProperties": false
+    },
+    "InputPairDescriptor": {
+      "type": "object",
+      "properties": {
+        "artifactType": {
+          "const": "INPUT_PAIR_DESCRIPTOR"
+        },
+        "artifactId": {
+          "$ref": "#/$defs/AsciiId"
+        },
+        "schemaVersion": {
+          "const": "selcal.m6-p1.artifact.v9"
+        },
+        "sourceDescriptor": {
+          "$ref": "#/$defs/VectorDescriptor"
+        },
+        "targetDescriptor": {
+          "$ref": "#/$defs/VectorDescriptor"
+        }
+      },
+      "required": [
+        "artifactType",
+        "artifactId",
+        "schemaVersion",
+        "sourceDescriptor",
+        "targetDescriptor"
+      ],
+      "additionalProperties": false
+    },
+    "StatisticSpec": {
+      "oneOf": [
+        {
+          "type": "object",
+          "properties": {
+            "family": {
+              "const": "LAGGED_PEARSON"
+            },
+            "absoluteToleranceHex": {
+              "const": "0x1.0000000000000p-46"
+            }
+          },
+          "required": [
+            "family",
+            "absoluteToleranceHex"
+          ],
+          "additionalProperties": false
+        },
+        {
+          "type": "object",
+          "properties": {
+            "family": {
+              "const": "NET_TRANSFER_ENTROPY"
+            },
+            "bins": {
+              "type": "integer",
+              "minimum": 2,
+              "maximum": 4096
+            },
+            "absoluteToleranceHex": {
+              "const": "0x1.0000000000000p-46"
+            }
+          },
+          "required": [
+            "family",
+            "bins",
+            "absoluteToleranceHex"
+          ],
+          "additionalProperties": false
+        }
+      ]
+    },
+    "NullSpec": {
+      "oneOf": [
+        {
+          "type": "object",
+          "properties": {
+            "family": {
+              "const": "CIRCULAR_SHIFT"
+            },
+            "minimumShift": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 2500000
+            }
+          },
+          "required": [
+            "family",
+            "minimumShift"
+          ],
+          "additionalProperties": false
+        },
+        {
+          "type": "object",
+          "properties": {
+            "family": {
+              "const": "BLOCK_SHUFFLE"
+            },
+            "blockLength": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 1250000
+            }
+          },
+          "required": [
+            "family",
+            "blockLength"
+          ],
+          "additionalProperties": false
+        }
+      ]
+    },
+    "State": {
+      "oneOf": [
+        {
+          "type": "object",
+          "properties": {
+            "kind": {
+              "const": "CIRCULAR_SHIFT"
+            },
+            "offset": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 2499999
+            },
+            "isIdentity": {
+              "type": "boolean"
+            }
+          },
+          "required": [
+            "kind",
+            "offset",
+            "isIdentity"
+          ],
+          "additionalProperties": false
+        },
+        {
+          "type": "object",
+          "properties": {
+            "kind": {
+              "const": "BLOCK_SHUFFLE"
+            },
+            "q": {
+              "type": "integer",
+              "minimum": 2,
+              "maximum": 4096
+            },
+            "order": {
+              "type": "array",
+              "minItems": 2,
+              "maxItems": 4096,
+              "items": {
+                "type": "integer",
+                "minimum": 0,
+                "maximum": 4095
+              },
+              "uniqueItems": true
+            },
+            "isIdentity": {
+              "type": "boolean"
+            }
+          },
+          "required": [
+            "kind",
+            "q",
+            "order",
+            "isIdentity"
+          ],
+          "additionalProperties": false
+        }
+      ]
+    },
+    "ReferenceSpec": {
+      "type": "object",
+      "properties": {
+        "artifactType": {
+          "const": "REFERENCE_SPEC"
+        },
+        "artifactId": {
+          "$ref": "#/$defs/AsciiId"
+        },
+        "schemaVersion": {
+          "const": "selcal.m6-p1.artifact.v9"
+        },
+        "calculationMode": {
+          "$ref": "#/$defs/CalculationMode"
+        },
+        "inputPairLocator": {
+          "$ref": "#/$defs/ArtifactIdentity"
+        },
+        "sourceDescriptor": {
+          "$ref": "#/$defs/VectorDescriptor"
+        },
+        "targetDescriptor": {
+          "$ref": "#/$defs/VectorDescriptor"
+        },
+        "commonLength": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 2500000
+        },
+        "candidates": {
+          "type": "array",
+          "minItems": 1,
+          "maxItems": 2500,
+          "items": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 2499999
+          },
+          "uniqueItems": true
+        },
+        "alphaHex": {
+          "$ref": "#/$defs/StrictProbabilityHex"
+        },
+        "selectionRule": {
+          "$ref": "#/$defs/SelectionRule"
+        },
+        "tieToleranceHex": {
+          "$ref": "#/$defs/NonnegativeToleranceHex"
+        },
+        "statisticSpec": {
+          "$ref": "#/$defs/StatisticSpec"
+        },
+        "nullSpec": {
+          "$ref": "#/$defs/NullSpec"
+        },
+        "finiteReplicateCount": {
+          "oneOf": [
+            {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 1000
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "replicateMappingLocator": {
+          "oneOf": [
+            {
+              "$ref": "#/$defs/ArtifactIdentity"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        }
+      },
+      "required": [
+        "artifactType",
+        "artifactId",
+        "schemaVersion",
+        "calculationMode",
+        "inputPairLocator",
+        "sourceDescriptor",
+        "targetDescriptor",
+        "commonLength",
+        "candidates",
+        "alphaHex",
+        "selectionRule",
+        "tieToleranceHex",
+        "statisticSpec",
+        "nullSpec",
+        "finiteReplicateCount",
+        "replicateMappingLocator"
+      ],
+      "additionalProperties": false,
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "calculationMode": {
+                "const": "ALL_STATE_EXACT"
+              }
+            },
+            "required": [
+              "calculationMode"
+            ]
+          },
+          "then": {
+            "properties": {
+              "finiteReplicateCount": {
+                "type": "null"
+              },
+              "replicateMappingLocator": {
+                "type": "null"
+              }
+            }
+          },
+          "else": {
+            "properties": {
+              "finiteReplicateCount": {
+                "type": "integer",
+                "minimum": 1,
+                "maximum": 1000
+              },
+              "replicateMappingLocator": {
+                "$ref": "#/$defs/ArtifactIdentity"
+              }
+            }
+          }
+        }
+      ]
+    },
+    "CandidateRecord": {
+      "oneOf": [
+        {
+          "type": "object",
+          "properties": {
+            "candidateIndex": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 2499
+            },
+            "candidate": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 2499999
+            },
+            "status": {
+              "const": "VALID"
+            },
+            "estimateHex": {
+              "$ref": "#/$defs/FloatHex"
+            },
+            "failureCode": {
+              "type": "null"
+            }
+          },
+          "required": [
+            "candidateIndex",
+            "candidate",
+            "status",
+            "estimateHex",
+            "failureCode"
+          ],
+          "additionalProperties": false
+        },
+        {
+          "type": "object",
+          "properties": {
+            "candidateIndex": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 2499
+            },
+            "candidate": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 2499999
+            },
+            "status": {
+              "const": "ANALYTIC_FAILURE"
+            },
+            "estimateHex": {
+              "type": "null"
+            },
+            "failureCode": {
+              "$ref": "#/$defs/AnalyticFailureCode"
+            }
+          },
+          "required": [
+            "candidateIndex",
+            "candidate",
+            "status",
+            "estimateHex",
+            "failureCode"
+          ],
+          "additionalProperties": false
+        }
+      ]
+    },
+    "Selection": {
+      "oneOf": [
+        {
+          "type": "object",
+          "properties": {
+            "status": {
+              "const": "SELECTED"
+            },
+            "selectedIndex": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 2499
+            },
+            "tiedIndices": {
+              "type": "array",
+              "minItems": 1,
+              "maxItems": 2500,
+              "items": {
+                "type": "integer",
+                "minimum": 0,
+                "maximum": 2499
+              },
+              "uniqueItems": true
+            }
+          },
+          "required": [
+            "status",
+            "selectedIndex",
+            "tiedIndices"
+          ],
+          "additionalProperties": false
+        },
+        {
+          "type": "object",
+          "properties": {
+            "status": {
+              "const": "NOT_AVAILABLE"
+            },
+            "selectedIndex": {
+              "type": "null"
+            },
+            "tiedIndices": {
+              "type": "array",
+              "minItems": 0,
+              "maxItems": 0,
+              "items": {
+                "type": "integer",
+                "minimum": 0,
+                "maximum": 2499
+              }
+            }
+          },
+          "required": [
+            "status",
+            "selectedIndex",
+            "tiedIndices"
+          ],
+          "additionalProperties": false
+        }
+      ]
+    },
+    "Aggregate": {
+      "type": "object",
+      "properties": {
+        "E": {
+          "oneOf": [
+            {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 100000
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "F": {
+          "oneOf": [
+            {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 1000
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "validReplicateCount": {
+          "oneOf": [
+            {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 1000
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "numerator": {
+          "oneOf": [
+            {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 100001
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "lowerNumerator": {
+          "oneOf": [
+            {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 100001
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "upperNumerator": {
+          "oneOf": [
+            {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 100001
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "denominator": {
+          "oneOf": [
+            {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 100001
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "pValueHex": {
+          "oneOf": [
+            {
+              "$ref": "#/$defs/FloatHex"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "lowerBoundHex": {
+          "oneOf": [
+            {
+              "$ref": "#/$defs/FloatHex"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "upperBoundHex": {
+          "oneOf": [
+            {
+              "$ref": "#/$defs/FloatHex"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "decision": {
+          "oneOf": [
+            {
+              "type": "boolean"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        }
+      },
+      "required": [
+        "E",
+        "F",
+        "validReplicateCount",
+        "numerator",
+        "lowerNumerator",
+        "upperNumerator",
+        "denominator",
+        "pValueHex",
+        "lowerBoundHex",
+        "upperBoundHex",
+        "decision"
+      ],
+      "additionalProperties": false
+    },
+    "ObservedRecord": {
+      "type": "object",
+      "properties": {
+        "artifactType": {
+          "const": "OBSERVED_RECORD"
+        },
+        "artifactId": {
+          "$ref": "#/$defs/AsciiId"
+        },
+        "schemaVersion": {
+          "const": "selcal.m6-p1.artifact.v9"
+        },
+        "recordRole": {
+          "const": "OBSERVED"
+        },
+        "terminalClass": {
+          "$ref": "#/$defs/TerminalClass"
+        },
+        "candidateRecords": {
+          "type": "array",
+          "minItems": 1,
+          "maxItems": 2500,
+          "items": {
+            "$ref": "#/$defs/CandidateRecord"
+          }
+        },
+        "selection": {
+          "$ref": "#/$defs/Selection"
+        },
+        "tailIndicator": {
+          "oneOf": [
+            {
+              "type": "boolean"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        }
+      },
+      "required": [
+        "artifactType",
+        "artifactId",
+        "schemaVersion",
+        "recordRole",
+        "terminalClass",
+        "candidateRecords",
+        "selection",
+        "tailIndicator"
+      ],
+      "additionalProperties": false
+    },
+    "ProductionReplayRow": {
+      "oneOf": [
+        {
+          "type": "object",
+          "properties": {
+            "artifactType": {
+              "const": "PRODUCTION_REPLAY_ROW"
+            },
+            "artifactId": {
+              "$ref": "#/$defs/AsciiId"
+            },
+            "schemaVersion": {
+              "const": "selcal.m6-p1.artifact.v9"
+            },
+            "recordRole": {
+              "const": "FINITE_REPLICATE"
+            },
+            "productionOrderIndex": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 999
+            },
+            "replicateId": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 999
+            },
+            "state": {
+              "$ref": "#/$defs/State"
+            },
+            "terminalClass": {
+              "$ref": "#/$defs/TerminalClass"
+            },
+            "candidateRecords": {
+              "type": "array",
+              "minItems": 1,
+              "maxItems": 2500,
+              "items": {
+                "$ref": "#/$defs/CandidateRecord"
+              }
+            },
+            "selection": {
+              "$ref": "#/$defs/Selection"
+            },
+            "tailIndicator": {
+              "oneOf": [
+                {
+                  "type": "boolean"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            }
+          },
+          "required": [
+            "artifactType",
+            "artifactId",
+            "schemaVersion",
+            "recordRole",
+            "productionOrderIndex",
+            "replicateId",
+            "state",
+            "terminalClass",
+            "candidateRecords",
+            "selection",
+            "tailIndicator"
+          ],
+          "additionalProperties": false
+        },
+        {
+          "type": "object",
+          "properties": {
+            "artifactType": {
+              "const": "PRODUCTION_REPLAY_ROW"
+            },
+            "artifactId": {
+              "$ref": "#/$defs/AsciiId"
+            },
+            "schemaVersion": {
+              "const": "selcal.m6-p1.artifact.v9"
+            },
+            "recordRole": {
+              "const": "EXACT_STATE"
+            },
+            "productionOrderIndex": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 99999
+            },
+            "exactStateIndex": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 99999
+            },
+            "state": {
+              "$ref": "#/$defs/State"
+            },
+            "terminalClass": {
+              "$ref": "#/$defs/TerminalClass"
+            },
+            "candidateRecords": {
+              "type": "array",
+              "minItems": 1,
+              "maxItems": 2500,
+              "items": {
+                "$ref": "#/$defs/CandidateRecord"
+              }
+            },
+            "selection": {
+              "$ref": "#/$defs/Selection"
+            },
+            "tailIndicator": {
+              "oneOf": [
+                {
+                  "type": "boolean"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            }
+          },
+          "required": [
+            "artifactType",
+            "artifactId",
+            "schemaVersion",
+            "recordRole",
+            "productionOrderIndex",
+            "exactStateIndex",
+            "state",
+            "terminalClass",
+            "candidateRecords",
+            "selection",
+            "tailIndicator"
+          ],
+          "additionalProperties": false
+        }
+      ]
+    },
+    "PrimaryRecord": {
+      "oneOf": [
+        {
+          "type": "object",
+          "properties": {
+            "artifactType": {
+              "const": "PRIMARY_RECORD"
+            },
+            "artifactId": {
+              "$ref": "#/$defs/AsciiId"
+            },
+            "schemaVersion": {
+              "const": "selcal.m6-p1.artifact.v9"
+            },
+            "recordRole": {
+              "const": "OBSERVED"
+            },
+            "terminalClass": {
+              "$ref": "#/$defs/TerminalClass"
+            },
+            "candidateRecords": {
+              "type": "array",
+              "minItems": 1,
+              "maxItems": 2500,
+              "items": {
+                "$ref": "#/$defs/CandidateRecord"
+              }
+            },
+            "selection": {
+              "$ref": "#/$defs/Selection"
+            },
+            "tailIndicator": {
+              "oneOf": [
+                {
+                  "type": "boolean"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            }
+          },
+          "required": [
+            "artifactType",
+            "artifactId",
+            "schemaVersion",
+            "recordRole",
+            "terminalClass",
+            "candidateRecords",
+            "selection",
+            "tailIndicator"
+          ],
+          "additionalProperties": false
+        },
+        {
+          "type": "object",
+          "properties": {
+            "artifactType": {
+              "const": "PRIMARY_RECORD"
+            },
+            "artifactId": {
+              "$ref": "#/$defs/AsciiId"
+            },
+            "schemaVersion": {
+              "const": "selcal.m6-p1.artifact.v9"
+            },
+            "recordRole": {
+              "const": "FINITE_REPLICATE"
+            },
+            "recordIndex": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 999
+            },
+            "replicateId": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 999
+            },
+            "state": {
+              "$ref": "#/$defs/State"
+            },
+            "terminalClass": {
+              "$ref": "#/$defs/TerminalClass"
+            },
+            "candidateRecords": {
+              "type": "array",
+              "minItems": 1,
+              "maxItems": 2500,
+              "items": {
+                "$ref": "#/$defs/CandidateRecord"
+              }
+            },
+            "selection": {
+              "$ref": "#/$defs/Selection"
+            },
+            "tailIndicator": {
+              "oneOf": [
+                {
+                  "type": "boolean"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            }
+          },
+          "required": [
+            "artifactType",
+            "artifactId",
+            "schemaVersion",
+            "recordRole",
+            "recordIndex",
+            "replicateId",
+            "state",
+            "terminalClass",
+            "candidateRecords",
+            "selection",
+            "tailIndicator"
+          ],
+          "additionalProperties": false
+        },
+        {
+          "type": "object",
+          "properties": {
+            "artifactType": {
+              "const": "PRIMARY_RECORD"
+            },
+            "artifactId": {
+              "$ref": "#/$defs/AsciiId"
+            },
+            "schemaVersion": {
+              "const": "selcal.m6-p1.artifact.v9"
+            },
+            "recordRole": {
+              "const": "EXACT_STATE"
+            },
+            "recordIndex": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 99999
+            },
+            "exactStateIndex": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 99999
+            },
+            "state": {
+              "$ref": "#/$defs/State"
+            },
+            "terminalClass": {
+              "$ref": "#/$defs/TerminalClass"
+            },
+            "candidateRecords": {
+              "type": "array",
+              "minItems": 1,
+              "maxItems": 2500,
+              "items": {
+                "$ref": "#/$defs/CandidateRecord"
+              }
+            },
+            "selection": {
+              "$ref": "#/$defs/Selection"
+            },
+            "tailIndicator": {
+              "oneOf": [
+                {
+                  "type": "boolean"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            }
+          },
+          "required": [
+            "artifactType",
+            "artifactId",
+            "schemaVersion",
+            "recordRole",
+            "recordIndex",
+            "exactStateIndex",
+            "state",
+            "terminalClass",
+            "candidateRecords",
+            "selection",
+            "tailIndicator"
+          ],
+          "additionalProperties": false
+        },
+        {
+          "type": "object",
+          "properties": {
+            "artifactType": {
+              "const": "PRIMARY_RECORD"
+            },
+            "artifactId": {
+              "$ref": "#/$defs/AsciiId"
+            },
+            "schemaVersion": {
+              "const": "selcal.m6-p1.artifact.v9"
+            },
+            "recordRole": {
+              "const": "SUMMARY"
+            },
+            "terminalClass": {
+              "$ref": "#/$defs/TerminalClass"
+            },
+            "aggregate": {
+              "$ref": "#/$defs/Aggregate"
+            }
+          },
+          "required": [
+            "artifactType",
+            "artifactId",
+            "schemaVersion",
+            "recordRole",
+            "terminalClass",
+            "aggregate"
+          ],
+          "additionalProperties": false
+        }
+      ]
+    },
+    "ProductionRunManifest": {
+      "type": "object",
+      "properties": {
+        "artifactType": {
+          "const": "PRODUCTION_RUN_MANIFEST"
+        },
+        "artifactId": {
+          "$ref": "#/$defs/AsciiId"
+        },
+        "schemaVersion": {
+          "const": "selcal.m6-p1.artifact.v9"
+        },
+        "calculationMode": {
+          "$ref": "#/$defs/CalculationMode"
+        },
+        "executionBranch": {
+          "$ref": "#/$defs/ExecutionBranch"
+        },
+        "terminalClass": {
+          "$ref": "#/$defs/TerminalClass"
+        },
+        "recordRole": {
+          "const": "SUMMARY"
+        },
+        "sourceInventories": {
+          "$ref": "#/$defs/SourceInventoryLocators"
+        },
+        "observedRecordLocator": {
+          "oneOf": [
+            {
+              "$ref": "#/$defs/ArtifactIdentity"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "replayRowLocators": {
+          "type": "array",
+          "minItems": 0,
+          "maxItems": 100000,
+          "items": {
+            "$ref": "#/$defs/ArtifactIdentity"
+          }
+        },
+        "aggregate": {
+          "$ref": "#/$defs/Aggregate"
+        }
+      },
+      "required": [
+        "artifactType",
+        "artifactId",
+        "schemaVersion",
+        "calculationMode",
+        "executionBranch",
+        "terminalClass",
+        "recordRole",
+        "sourceInventories",
+        "observedRecordLocator",
+        "replayRowLocators",
+        "aggregate"
+      ],
+      "additionalProperties": false
+    },
+    "PrimaryManifest": {
+      "type": "object",
+      "properties": {
+        "artifactType": {
+          "const": "PRIMARY_MANIFEST"
+        },
+        "artifactId": {
+          "$ref": "#/$defs/AsciiId"
+        },
+        "schemaVersion": {
+          "const": "selcal.m6-p1.artifact.v9"
+        },
+        "calculationMode": {
+          "$ref": "#/$defs/CalculationMode"
+        },
+        "executionBranch": {
+          "$ref": "#/$defs/ExecutionBranch"
+        },
+        "terminalClass": {
+          "$ref": "#/$defs/TerminalClass"
+        },
+        "observedRecordLocator": {
+          "oneOf": [
+            {
+              "$ref": "#/$defs/ArtifactIdentity"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "primaryRowLocators": {
+          "type": "array",
+          "minItems": 1,
+          "maxItems": 100001,
+          "items": {
+            "$ref": "#/$defs/ArtifactIdentity"
+          }
+        },
+        "persistedCandidateCount": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 100000
+        }
+      },
+      "required": [
+        "artifactType",
+        "artifactId",
+        "schemaVersion",
+        "calculationMode",
+        "executionBranch",
+        "terminalClass",
+        "observedRecordLocator",
+        "primaryRowLocators",
+        "persistedCandidateCount"
+      ],
+      "additionalProperties": false
+    },
+    "ExactValue": {
+      "oneOf": [
+        {
+          "type": "null"
+        },
+        {
+          "type": "boolean"
+        },
+        {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 115792089237316195423570985008687907853269984665640564039457584007913129639935
+        },
+        {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 512,
+          "pattern": "^[\\x20-\\x7e]+$"
+        },
+        {
+          "type": "array",
+          "minItems": 0,
+          "maxItems": 4096,
+          "items": {
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 4095
+          },
+          "uniqueItems": true
+        }
+      ]
+    },
+    "FieldPath": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 512,
+      "pattern": "^(?:/(?:[A-Za-z0-9_.-]+|[0-9]+))+$"
+    },
+    "FieldComparison": {
+      "oneOf": [
+        {
+          "type": "object",
+          "properties": {
+            "path": {
+              "$ref": "#/$defs/FieldPath"
+            },
+            "disagreementCode": {
+              "$ref": "#/$defs/DisagreementCode"
+            },
+            "matches": {
+              "type": "boolean"
+            },
+            "pathClass": {
+              "const": "EXACT_SCALAR"
+            },
+            "rule": {
+              "const": "EXACT"
+            },
+            "referenceValue": {
+              "$ref": "#/$defs/ExactValue"
+            },
+            "productionValue": {
+              "$ref": "#/$defs/ExactValue"
+            }
+          },
+          "required": [
+            "path",
+            "disagreementCode",
+            "matches",
+            "pathClass",
+            "rule",
+            "referenceValue",
+            "productionValue"
+          ],
+          "additionalProperties": false
+        },
+        {
+          "type": "object",
+          "properties": {
+            "path": {
+              "$ref": "#/$defs/FieldPath"
+            },
+            "disagreementCode": {
+              "$ref": "#/$defs/DisagreementCode"
+            },
+            "matches": {
+              "type": "boolean"
+            },
+            "pathClass": {
+              "const": "CANONICAL_FLOAT"
+            },
+            "rule": {
+              "const": "FLOAT_HEX_EXACT"
+            },
+            "referenceValue": {
+              "$ref": "#/$defs/FloatHex"
+            },
+            "productionValue": {
+              "$ref": "#/$defs/FloatHex"
+            }
+          },
+          "required": [
+            "path",
+            "disagreementCode",
+            "matches",
+            "pathClass",
+            "rule",
+            "referenceValue",
+            "productionValue"
+          ],
+          "additionalProperties": false
+        },
+        {
+          "type": "object",
+          "properties": {
+            "path": {
+              "$ref": "#/$defs/FieldPath"
+            },
+            "disagreementCode": {
+              "$ref": "#/$defs/DisagreementCode"
+            },
+            "matches": {
+              "type": "boolean"
+            },
+            "pathClass": {
+              "const": "TAIL"
+            },
+            "rule": {
+              "const": "TAIL_EXACT"
+            },
+            "referenceValue": {
+              "oneOf": [
+                {
+                  "type": "boolean"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "productionValue": {
+              "oneOf": [
+                {
+                  "type": "boolean"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            }
+          },
+          "required": [
+            "path",
+            "disagreementCode",
+            "matches",
+            "pathClass",
+            "rule",
+            "referenceValue",
+            "productionValue"
+          ],
+          "additionalProperties": false
+        },
+        {
+          "type": "object",
+          "properties": {
+            "path": {
+              "$ref": "#/$defs/FieldPath"
+            },
+            "disagreementCode": {
+              "$ref": "#/$defs/DisagreementCode"
+            },
+            "matches": {
+              "type": "boolean"
+            },
+            "pathClass": {
+              "const": "APPROXIMATE_FLOAT"
+            },
+            "rule": {
+              "const": "FLOAT_ABS_TOL"
+            },
+            "referenceValue": {
+              "$ref": "#/$defs/FloatHex"
+            },
+            "productionValue": {
+              "$ref": "#/$defs/FloatHex"
+            },
+            "toleranceHex": {
+              "const": "0x1.0000000000000p-46"
+            },
+            "residualStatus": {
+              "const": "FINITE"
+            },
+            "residualHex": {
+              "$ref": "#/$defs/FloatHex"
+            }
+          },
+          "required": [
+            "path",
+            "disagreementCode",
+            "matches",
+            "pathClass",
+            "rule",
+            "referenceValue",
+            "productionValue",
+            "toleranceHex",
+            "residualStatus",
+            "residualHex"
+          ],
+          "additionalProperties": false
+        },
+        {
+          "type": "object",
+          "properties": {
+            "path": {
+              "$ref": "#/$defs/FieldPath"
+            },
+            "disagreementCode": {
+              "$ref": "#/$defs/DisagreementCode"
+            },
+            "matches": {
+              "type": "boolean"
+            },
+            "pathClass": {
+              "const": "APPROXIMATE_FLOAT_OR_NULL"
+            },
+            "rule": {
+              "const": "OPTIONAL_FLOAT_ABS_TOL"
+            },
+            "referenceValue": {
+              "$ref": "#/$defs/FloatHex"
+            },
+            "productionValue": {
+              "$ref": "#/$defs/FloatHex"
+            },
+            "toleranceHex": {
+              "const": "0x1.0000000000000p-46"
+            },
+            "residualStatus": {
+              "const": "FINITE"
+            },
+            "residualHex": {
+              "$ref": "#/$defs/FloatHex"
+            }
+          },
+          "required": [
+            "path",
+            "disagreementCode",
+            "matches",
+            "pathClass",
+            "rule",
+            "referenceValue",
+            "productionValue",
+            "toleranceHex",
+            "residualStatus",
+            "residualHex"
+          ],
+          "additionalProperties": false
+        },
+        {
+          "type": "object",
+          "properties": {
+            "path": {
+              "$ref": "#/$defs/FieldPath"
+            },
+            "disagreementCode": {
+              "$ref": "#/$defs/DisagreementCode"
+            },
+            "matches": {
+              "type": "boolean"
+            },
+            "pathClass": {
+              "const": "APPROXIMATE_FLOAT"
+            },
+            "rule": {
+              "const": "FLOAT_ABS_TOL"
+            },
+            "referenceValue": {
+              "$ref": "#/$defs/FloatHex"
+            },
+            "productionValue": {
+              "$ref": "#/$defs/FloatHex"
+            },
+            "toleranceHex": {
+              "const": "0x1.0000000000000p-46"
+            },
+            "residualStatus": {
+              "const": "OVERFLOW"
+            },
+            "residualHex": {
+              "type": "null"
+            }
+          },
+          "required": [
+            "path",
+            "disagreementCode",
+            "matches",
+            "pathClass",
+            "rule",
+            "referenceValue",
+            "productionValue",
+            "toleranceHex",
+            "residualStatus",
+            "residualHex"
+          ],
+          "additionalProperties": false
+        },
+        {
+          "type": "object",
+          "properties": {
+            "path": {
+              "$ref": "#/$defs/FieldPath"
+            },
+            "disagreementCode": {
+              "$ref": "#/$defs/DisagreementCode"
+            },
+            "matches": {
+              "type": "boolean"
+            },
+            "pathClass": {
+              "const": "APPROXIMATE_FLOAT_OR_NULL"
+            },
+            "rule": {
+              "const": "OPTIONAL_FLOAT_ABS_TOL"
+            },
+            "referenceValue": {
+              "$ref": "#/$defs/FloatHex"
+            },
+            "productionValue": {
+              "$ref": "#/$defs/FloatHex"
+            },
+            "toleranceHex": {
+              "const": "0x1.0000000000000p-46"
+            },
+            "residualStatus": {
+              "const": "OVERFLOW"
+            },
+            "residualHex": {
+              "type": "null"
+            }
+          },
+          "required": [
+            "path",
+            "disagreementCode",
+            "matches",
+            "pathClass",
+            "rule",
+            "referenceValue",
+            "productionValue",
+            "toleranceHex",
+            "residualStatus",
+            "residualHex"
+          ],
+          "additionalProperties": false
+        },
+        {
+          "type": "object",
+          "properties": {
+            "path": {
+              "$ref": "#/$defs/FieldPath"
+            },
+            "disagreementCode": {
+              "$ref": "#/$defs/DisagreementCode"
+            },
+            "matches": {
+              "type": "boolean"
+            },
+            "pathClass": {
+              "const": "APPROXIMATE_FLOAT_OR_NULL"
+            },
+            "rule": {
+              "const": "OPTIONAL_FLOAT_ABS_TOL"
+            },
+            "referenceValue": {
+              "oneOf": [
+                {
+                  "$ref": "#/$defs/FloatHex"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "productionValue": {
+              "oneOf": [
+                {
+                  "$ref": "#/$defs/FloatHex"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            }
+          },
+          "required": [
+            "path",
+            "disagreementCode",
+            "matches",
+            "pathClass",
+            "rule",
+            "referenceValue",
+            "productionValue"
+          ],
+          "additionalProperties": false,
+          "anyOf": [
+            {
+              "properties": {
+                "referenceValue": {
+                  "type": "null"
+                }
+              }
+            },
+            {
+              "properties": {
+                "productionValue": {
+                  "type": "null"
+                }
+              }
+            }
+          ]
+        }
+      ]
+    },
+    "FieldPlanEntry": {
+      "type": "object",
+      "properties": {
+        "path": {
+          "$ref": "#/$defs/FieldPath"
+        },
+        "pathClass": {
+          "enum": [
+            "EXACT_SCALAR",
+            "CANONICAL_FLOAT",
+            "TAIL",
+            "APPROXIMATE_FLOAT_OR_NULL",
+            "APPROXIMATE_FLOAT"
+          ]
+        },
+        "rule": {
+          "enum": [
+            "EXACT",
+            "FLOAT_HEX_EXACT",
+            "TAIL_EXACT",
+            "OPTIONAL_FLOAT_ABS_TOL",
+            "FLOAT_ABS_TOL"
+          ]
+        },
+        "disagreementCode": {
+          "$ref": "#/$defs/DisagreementCode"
+        }
+      },
+      "required": [
+        "path",
+        "pathClass",
+        "rule",
+        "disagreementCode"
+      ],
+      "additionalProperties": false
+    },
+    "RequiredFieldPlan": {
+      "type": "object",
+      "properties": {
+        "registryId": {
+          "const": "selcal.m6-p1.required-field-plan.v9"
+        },
+        "recordRole": {
+          "enum": [
+            "OBSERVED",
+            "FINITE_REPLICATE",
+            "EXACT_STATE",
+            "SUMMARY"
+          ]
+        },
+        "C": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 2500
+        },
+        "q": {
+          "oneOf": [
+            {
+              "type": "integer",
+              "minimum": 2,
+              "maximum": 4096
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "stateComponentPlan": {
+          "type": "array",
+          "minItems": 0,
+          "maxItems": 4099,
+          "items": {
+            "$ref": "#/$defs/FieldPlanEntry"
+          }
+        },
+        "fieldComparisonPlan": {
+          "type": "array",
+          "minItems": 1,
+          "maxItems": 12506,
+          "items": {
+            "$ref": "#/$defs/FieldPlanEntry"
+          }
+        }
+      },
+      "required": [
+        "registryId",
+        "recordRole",
+        "C",
+        "q",
+        "stateComponentPlan",
+        "fieldComparisonPlan"
+      ],
+      "additionalProperties": false
+    },
+    "ComparisonRecord": {
+      "type": "object",
+      "properties": {
+        "artifactType": {
+          "const": "COMPARISON_RECORD"
+        },
+        "artifactId": {
+          "$ref": "#/$defs/AsciiId"
+        },
+        "schemaVersion": {
+          "const": "selcal.m6-p1.artifact.v9"
+        },
+        "comparisonIndex": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 100000
+        },
+        "referenceRecordLocator": {
+          "$ref": "#/$defs/ArtifactIdentity"
+        },
+        "productionRecordLocator": {
+          "$ref": "#/$defs/ArtifactIdentity"
+        },
+        "requiredFieldPlan": {
+          "$ref": "#/$defs/RequiredFieldPlan"
+        },
+        "stateComparisons": {
+          "type": "array",
+          "minItems": 0,
+          "maxItems": 4099,
+          "items": {
+            "$ref": "#/$defs/FieldComparison"
+          }
+        },
+        "fieldComparisons": {
+          "type": "array",
+          "minItems": 1,
+          "maxItems": 12506,
+          "items": {
+            "$ref": "#/$defs/FieldComparison"
+          }
+        },
+        "outcome": {
+          "enum": [
+            "MATCH",
+            "DISAGREEMENT"
+          ]
+        },
+        "disagreementCodes": {
+          "type": "array",
+          "minItems": 0,
+          "maxItems": 32,
+          "items": {
+            "$ref": "#/$defs/DisagreementCode"
+          },
+          "uniqueItems": true
+        },
+        "diagnosticIndex": {
+          "oneOf": [
+            {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 255
+            },
+            {
+              "type": "null"
+            }
+          ]
+        }
+      },
+      "required": [
+        "artifactType",
+        "artifactId",
+        "schemaVersion",
+        "comparisonIndex",
+        "referenceRecordLocator",
+        "productionRecordLocator",
+        "requiredFieldPlan",
+        "stateComparisons",
+        "fieldComparisons",
+        "outcome",
+        "disagreementCodes",
+        "diagnosticIndex"
+      ],
+      "additionalProperties": false,
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "outcome": {
+                "const": "MATCH"
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "disagreementCodes": {
+                "maxItems": 0
+              },
+              "diagnosticIndex": {
+                "type": "null"
+              }
+            }
+          },
+          "else": {
+            "properties": {
+              "disagreementCodes": {
+                "minItems": 1
+              },
+              "diagnosticIndex": {
+                "type": "integer",
+                "minimum": 0,
+                "maximum": 255
+              }
+            }
+          }
+        }
+      ]
+    },
+    "Counter": {
+      "oneOf": [
+        {
+          "type": "object",
+          "properties": {
+            "status": {
+              "const": "AVAILABLE"
+            },
+            "value": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 115792089237316195423570985008687907853269984665640564039457584007913129639935
+            },
+            "reason": {
+              "type": "null"
+            }
+          },
+          "required": [
+            "status",
+            "value",
+            "reason"
+          ],
+          "additionalProperties": false
+        },
+        {
+          "type": "object",
+          "properties": {
+            "status": {
+              "const": "UNAVAILABLE"
+            },
+            "value": {
+              "type": "null"
+            },
+            "reason": {
+              "enum": [
+                "NOT_APPLICABLE",
+                "NOT_STARTED",
+                "INTERRUPTED_BEFORE_COMMIT",
+                "SOURCE_COUNTER_ABSENT"
+              ]
+            }
+          },
+          "required": [
+            "status",
+            "value",
+            "reason"
+          ],
+          "additionalProperties": false
+        }
+      ]
+    },
+    "CounterEntry": {
+      "type": "object",
+      "properties": {
+        "key": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 192,
+          "pattern": "^[A-Za-z0-9_.:-]+(?:/[A-Za-z0-9_.:-]+){0,11}$"
+        },
+        "counter": {
+          "$ref": "#/$defs/Counter"
+        }
+      },
+      "required": [
+        "key",
+        "counter"
+      ],
+      "additionalProperties": false
+    },
+    "SortOccupancyBucket": {
+      "type": "object",
+      "properties": {
+        "occupiedEntries": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 250000
+        },
+        "familyCount": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 250000
+        }
+      },
+      "required": [
+        "occupiedEntries",
+        "familyCount"
+      ],
+      "additionalProperties": false
+    },
+    "DiagnosticPayload": {
+      "oneOf": [
+        {
+          "type": "object",
+          "properties": {
+            "kind": {
+              "const": "PEARSON_REPLAY"
+            },
+            "candidateIndex": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 2499
+            },
+            "sourceWindowLocator": {
+              "$ref": "#/$defs/ArtifactIdentity"
+            },
+            "targetWindowLocator": {
+              "$ref": "#/$defs/ArtifactIdentity"
+            },
+            "counters": {
+              "type": "array",
+              "minItems": 0,
+              "maxItems": 250000,
+              "items": {
+                "$ref": "#/$defs/CounterEntry"
+              }
+            }
+          },
+          "required": [
+            "kind",
+            "candidateIndex",
+            "sourceWindowLocator",
+            "targetWindowLocator",
+            "counters"
+          ],
+          "additionalProperties": false
+        },
+        {
+          "type": "object",
+          "properties": {
+            "kind": {
+              "const": "NETTE_REPLAY"
+            },
+            "candidateIndex": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 2499
+            },
+            "direction": {
+              "enum": [
+                "SOURCE_TO_TARGET",
+                "TARGET_TO_SOURCE"
+              ]
+            },
+            "sortOccupancy": {
+              "type": "array",
+              "minItems": 0,
+              "maxItems": 250000,
+              "items": {
+                "$ref": "#/$defs/SortOccupancyBucket"
+              }
+            },
+            "counters": {
+              "type": "array",
+              "minItems": 0,
+              "maxItems": 250000,
+              "items": {
+                "$ref": "#/$defs/CounterEntry"
+              }
+            }
+          },
+          "required": [
+            "kind",
+            "candidateIndex",
+            "direction",
+            "sortOccupancy",
+            "counters"
+          ],
+          "additionalProperties": false
+        },
+        {
+          "type": "object",
+          "properties": {
+            "kind": {
+              "const": "STATE_OR_AGGREGATE"
+            },
+            "sourceLocators": {
+              "type": "array",
+              "minItems": 1,
+              "maxItems": 2,
+              "items": {
+                "$ref": "#/$defs/ArtifactIdentity"
+              }
+            },
+            "comparedPaths": {
+              "type": "array",
+              "minItems": 1,
+              "maxItems": 16605,
+              "items": {
+                "$ref": "#/$defs/FieldPath"
+              }
+            }
+          },
+          "required": [
+            "kind",
+            "sourceLocators",
+            "comparedPaths"
+          ],
+          "additionalProperties": false
+        }
+      ]
+    },
+    "DiagnosticRecord": {
+      "oneOf": [
+        {
+          "type": "object",
+          "properties": {
+            "artifactType": {
+              "const": "DIAGNOSTIC_RECORD"
+            },
+            "artifactId": {
+              "$ref": "#/$defs/AsciiId"
+            },
+            "schemaVersion": {
+              "const": "selcal.m6-p1.artifact.v9"
+            },
+            "rowKind": {
+              "const": "HEADER"
+            },
+            "diagnosticIndex": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 255
+            },
+            "targetComparisonIndex": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 100000
+            },
+            "rowIndex": {
+              "const": 0
+            },
+            "counters": {
+              "type": "array",
+              "minItems": 0,
+              "maxItems": 250000,
+              "items": {
+                "$ref": "#/$defs/CounterEntry"
+              }
+            }
+          },
+          "required": [
+            "artifactType",
+            "artifactId",
+            "schemaVersion",
+            "rowKind",
+            "diagnosticIndex",
+            "targetComparisonIndex",
+            "rowIndex",
+            "counters"
+          ],
+          "additionalProperties": false
+        },
+        {
+          "type": "object",
+          "properties": {
+            "artifactType": {
+              "const": "DIAGNOSTIC_RECORD"
+            },
+            "artifactId": {
+              "$ref": "#/$defs/AsciiId"
+            },
+            "schemaVersion": {
+              "const": "selcal.m6-p1.artifact.v9"
+            },
+            "rowKind": {
+              "const": "BODY"
+            },
+            "diagnosticIndex": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 255
+            },
+            "targetComparisonIndex": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 100000
+            },
+            "rowIndex": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 10
+            },
+            "payload": {
+              "$ref": "#/$defs/DiagnosticPayload"
+            }
+          },
+          "required": [
+            "artifactType",
+            "artifactId",
+            "schemaVersion",
+            "rowKind",
+            "diagnosticIndex",
+            "targetComparisonIndex",
+            "rowIndex",
+            "payload"
+          ],
+          "additionalProperties": false
+        },
+        {
+          "type": "object",
+          "properties": {
+            "artifactType": {
+              "const": "DIAGNOSTIC_RECORD"
+            },
+            "artifactId": {
+              "$ref": "#/$defs/AsciiId"
+            },
+            "schemaVersion": {
+              "const": "selcal.m6-p1.artifact.v9"
+            },
+            "rowKind": {
+              "const": "FOOTER"
+            },
+            "diagnosticIndex": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 255
+            },
+            "targetComparisonIndex": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 100000
+            },
+            "rowIndex": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 11
+            },
+            "bodyRowCount": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 10
+            },
+            "replayCandidateOperationsExecuted": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 640000
+            }
+          },
+          "required": [
+            "artifactType",
+            "artifactId",
+            "schemaVersion",
+            "rowKind",
+            "diagnosticIndex",
+            "targetComparisonIndex",
+            "rowIndex",
+            "bodyRowCount",
+            "replayCandidateOperationsExecuted"
+          ],
+          "additionalProperties": false
+        }
+      ]
+    },
+    "ComparisonManifest": {
+      "type": "object",
+      "properties": {
+        "artifactType": {
+          "const": "COMPARISON_MANIFEST"
+        },
+        "artifactId": {
+          "$ref": "#/$defs/AsciiId"
+        },
+        "schemaVersion": {
+          "const": "selcal.m6-p1.artifact.v9"
+        },
+        "comparisonRecordLocators": {
+          "type": "array",
+          "minItems": 1,
+          "maxItems": 100001,
+          "items": {
+            "$ref": "#/$defs/ArtifactIdentity"
+          }
+        },
+        "matchCount": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 100001
+        },
+        "disagreementCount": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 256
+        },
+        "diagnosticManifestLocator": {
+          "$ref": "#/$defs/ArtifactIdentity"
+        }
+      },
+      "required": [
+        "artifactType",
+        "artifactId",
+        "schemaVersion",
+        "comparisonRecordLocators",
+        "matchCount",
+        "disagreementCount",
+        "diagnosticManifestLocator"
+      ],
+      "additionalProperties": false
+    },
+    "DiagnosticManifest": {
+      "type": "object",
+      "properties": {
+        "artifactType": {
+          "const": "DIAGNOSTIC_MANIFEST"
+        },
+        "artifactId": {
+          "$ref": "#/$defs/AsciiId"
+        },
+        "schemaVersion": {
+          "const": "selcal.m6-p1.artifact.v9"
+        },
+        "diagnosticRecordLocators": {
+          "type": "array",
+          "minItems": 0,
+          "maxItems": 3072,
+          "items": {
+            "$ref": "#/$defs/ArtifactIdentity"
+          }
+        },
+        "groupsStarted": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 256
+        },
+        "groupsCompleted": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 256
+        },
+        "rowsCommitted": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 3072
+        },
+        "replayCandidateOperationsExecuted": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 640000
+        }
+      },
+      "required": [
+        "artifactType",
+        "artifactId",
+        "schemaVersion",
+        "diagnosticRecordLocators",
+        "groupsStarted",
+        "groupsCompleted",
+        "rowsCommitted",
+        "replayCandidateOperationsExecuted"
+      ],
+      "additionalProperties": false
+    },
+    "OperatorCursor": {
+      "oneOf": [
+        {
+          "type": "object",
+          "properties": {
+            "kind": {
+              "const": "SOURCE_IDENTITY_CURSOR"
+            },
+            "sourceRoleIndex": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 115792089237316195423570985008687907853269984665640564039457584007913129639935
+            },
+            "entryIndex": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 115792089237316195423570985008687907853269984665640564039457584007913129639935
+            },
+            "operation": {
+              "enum": [
+                "STAT",
+                "HASH",
+                "PATH_VERIFY",
+                "DEPENDENCY_VERIFY"
+              ]
+            },
+            "byteOffset": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 115792089237316195423570985008687907853269984665640564039457584007913129639935
+            },
+            "hashBlockIndex": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 115792089237316195423570985008687907853269984665640564039457584007913129639935
+            },
+            "dependencyIndex": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 115792089237316195423570985008687907853269984665640564039457584007913129639935
+            }
+          },
+          "required": [
+            "kind",
+            "sourceRoleIndex",
+            "entryIndex",
+            "operation",
+            "byteOffset",
+            "hashBlockIndex",
+            "dependencyIndex"
+          ],
+          "additionalProperties": false
+        },
+        {
+          "type": "object",
+          "properties": {
+            "kind": {
+              "const": "SIDECAR_CURSOR"
+            },
+            "vectorRole": {
+              "enum": [
+                "SOURCE",
+                "TARGET"
+              ]
+            },
+            "operation": {
+              "enum": [
+                "STAT",
+                "HASH",
+                "HEADER_PARSE",
+                "PAYLOAD_FINITE_SCAN"
+              ]
+            },
+            "byteOffset": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 115792089237316195423570985008687907853269984665640564039457584007913129639935
+            },
+            "elementIndex": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 115792089237316195423570985008687907853269984665640564039457584007913129639935
+            }
+          },
+          "required": [
+            "kind",
+            "vectorRole",
+            "operation",
+            "byteOffset",
+            "elementIndex"
+          ],
+          "additionalProperties": false
+        },
+        {
+          "type": "object",
+          "properties": {
+            "kind": {
+              "const": "PEARSON_SCAN_CURSOR"
+            },
+            "scanDomain": {
+              "enum": [
+                "OBSERVED",
+                "REFERENCE",
+                "DIAGNOSTIC"
+              ]
+            },
+            "recordIndex": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 115792089237316195423570985008687907853269984665640564039457584007913129639935
+            },
+            "candidateIndex": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 115792089237316195423570985008687907853269984665640564039457584007913129639935
+            },
+            "phase": {
+              "enum": [
+                "PAIR_ACCUMULATION",
+                "FINALIZE"
+              ]
+            },
+            "sampleIndex": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 115792089237316195423570985008687907853269984665640564039457584007913129639935
+            }
+          },
+          "required": [
+            "kind",
+            "scanDomain",
+            "recordIndex",
+            "candidateIndex",
+            "phase",
+            "sampleIndex"
+          ],
+          "additionalProperties": false
+        },
+        {
+          "type": "object",
+          "properties": {
+            "kind": {
+              "const": "NETTE_SCAN_CURSOR"
+            },
+            "scanDomain": {
+              "enum": [
+                "OBSERVED",
+                "REFERENCE",
+                "DIAGNOSTIC"
+              ]
+            },
+            "recordIndex": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 115792089237316195423570985008687907853269984665640564039457584007913129639935
+            },
+            "candidateIndex": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 115792089237316195423570985008687907853269984665640564039457584007913129639935
+            },
+            "direction": {
+              "enum": [
+                "SOURCE_TO_TARGET",
+                "TARGET_TO_SOURCE"
+              ]
+            },
+            "phase": {
+              "enum": [
+                "CODING",
+                "SUPPORT",
+                "COUNTER_UPDATE",
+                "SORT",
+                "CMI",
+                "DIRECTION_FINALIZE",
+                "PAIR_FINALIZE"
+              ]
+            },
+            "sampleIndex": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 115792089237316195423570985008687907853269984665640564039457584007913129639935
+            },
+            "familyIndex": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 115792089237316195423570985008687907853269984665640564039457584007913129639935
+            },
+            "counterEntryIndex": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 115792089237316195423570985008687907853269984665640564039457584007913129639935
+            }
+          },
+          "required": [
+            "kind",
+            "scanDomain",
+            "recordIndex",
+            "candidateIndex",
+            "direction",
+            "phase",
+            "sampleIndex",
+            "familyIndex",
+            "counterEntryIndex"
+          ],
+          "additionalProperties": false
+        },
+        {
+          "type": "object",
+          "properties": {
+            "kind": {
+              "const": "STATE_CURSOR"
+            },
+            "operation": {
+              "enum": [
+                "GENERATE",
+                "VALIDATE_IDENTITY",
+                "APPLY"
+              ]
+            },
+            "stateIndex": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 115792089237316195423570985008687907853269984665640564039457584007913129639935
+            },
+            "componentIndex": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 115792089237316195423570985008687907853269984665640564039457584007913129639935
+            },
+            "sampleIndex": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 115792089237316195423570985008687907853269984665640564039457584007913129639935
+            }
+          },
+          "required": [
+            "kind",
+            "operation",
+            "stateIndex",
+            "componentIndex",
+            "sampleIndex"
+          ],
+          "additionalProperties": false
+        },
+        {
+          "type": "object",
+          "properties": {
+            "kind": {
+              "const": "COMPARISON_CURSOR"
+            },
+            "comparisonIndex": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 115792089237316195423570985008687907853269984665640564039457584007913129639935
+            },
+            "planKind": {
+              "enum": [
+                "STATE_COMPONENT_PLAN",
+                "FIELD_COMPARISON_PLAN"
+              ]
+            },
+            "fieldIndex": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 115792089237316195423570985008687907853269984665640564039457584007913129639935
+            },
+            "atomicOperation": {
+              "enum": [
+                "LOAD_REFERENCE_LOCATOR",
+                "LOAD_PRODUCTION_LOCATOR",
+                "REBUILD_PLAN",
+                "COMPARE_FIELD",
+                "EMIT_CODE",
+                "FINALIZE_RECORD"
+              ]
+            }
+          },
+          "required": [
+            "kind",
+            "comparisonIndex",
+            "planKind",
+            "fieldIndex",
+            "atomicOperation"
+          ],
+          "additionalProperties": false
+        },
+        {
+          "type": "object",
+          "properties": {
+            "kind": {
+              "const": "DIAGNOSTIC_CURSOR"
+            },
+            "diagnosticIndex": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 115792089237316195423570985008687907853269984665640564039457584007913129639935
+            },
+            "targetComparisonIndex": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 115792089237316195423570985008687907853269984665640564039457584007913129639935
+            },
+            "operation": {
+              "enum": [
+                "WRITE_HEADER",
+                "REPLAY_CANDIDATE",
+                "WRITE_BODY",
+                "WRITE_FOOTER"
+              ]
+            },
+            "replayCandidateIndex": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 115792089237316195423570985008687907853269984665640564039457584007913129639935
+            },
+            "rowIndex": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 115792089237316195423570985008687907853269984665640564039457584007913129639935
+            }
+          },
+          "required": [
+            "kind",
+            "diagnosticIndex",
+            "targetComparisonIndex",
+            "operation",
+            "replayCandidateIndex",
+            "rowIndex"
+          ],
+          "additionalProperties": false
+        },
+        {
+          "type": "object",
+          "properties": {
+            "kind": {
+              "const": "WRITER_CURSOR"
+            },
+            "writerId": {
+              "$ref": "#/$defs/AsciiId"
+            },
+            "streamKind": {
+              "enum": [
+                "PRIMARY",
+                "PRODUCTION",
+                "COMPARISON",
+                "DIAGNOSTIC",
+                "TERMINAL"
+              ]
+            },
+            "chunkIndex": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 115792089237316195423570985008687907853269984665640564039457584007913129639935
+            },
+            "operation": {
+              "enum": [
+                "WRITE",
+                "FILE_FSYNC",
+                "RENAME",
+                "DIRECTORY_FSYNC",
+                "INSTALLED"
+              ]
+            },
+            "rowsCommitted": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 115792089237316195423570985008687907853269984665640564039457584007913129639935
+            },
+            "bytesWritten": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 115792089237316195423570985008687907853269984665640564039457584007913129639935
+            },
+            "verificationBytesRead": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 115792089237316195423570985008687907853269984665640564039457584007913129639935
+            }
+          },
+          "required": [
+            "kind",
+            "writerId",
+            "streamKind",
+            "chunkIndex",
+            "operation",
+            "rowsCommitted",
+            "bytesWritten",
+            "verificationBytesRead"
+          ],
+          "additionalProperties": false
+        }
+      ]
+    },
+    "RawCounters": {
+      "type": "object",
+      "properties": {
+        "sourceBytesHashed": {
+          "$ref": "#/$defs/Counter"
+        },
+        "sourceEntriesVerified": {
+          "$ref": "#/$defs/Counter"
+        },
+        "sidecarValuesScanned": {
+          "$ref": "#/$defs/Counter"
+        },
+        "candidateEvaluationOperations": {
+          "$ref": "#/$defs/Counter"
+        },
+        "transformValueVisits": {
+          "$ref": "#/$defs/Counter"
+        },
+        "candidateSupportVisits": {
+          "$ref": "#/$defs/Counter"
+        },
+        "pearsonValueVisits": {
+          "$ref": "#/$defs/Counter"
+        },
+        "netteEdgeWorkUnits": {
+          "$ref": "#/$defs/Counter"
+        },
+        "netteCodingValueVisits": {
+          "$ref": "#/$defs/Counter"
+        },
+        "netteDirectionalSupportVisits": {
+          "$ref": "#/$defs/Counter"
+        },
+        "netteCounterUpdateVisits": {
+          "$ref": "#/$defs/Counter"
+        },
+        "netteCmiArithmeticUnits": {
+          "$ref": "#/$defs/Counter"
+        },
+        "selectionWorkUnits": {
+          "$ref": "#/$defs/Counter"
+        },
+        "stateGenerationUnits": {
+          "$ref": "#/$defs/Counter"
+        },
+        "stateIdentityValidationUnits": {
+          "$ref": "#/$defs/Counter"
+        },
+        "stateApplicationUnits": {
+          "$ref": "#/$defs/Counter"
+        },
+        "nullBindWorkUnits": {
+          "$ref": "#/$defs/Counter"
+        },
+        "comparisonFieldOperations": {
+          "$ref": "#/$defs/Counter"
+        },
+        "diagnosticReplayCandidateOperations": {
+          "$ref": "#/$defs/Counter"
+        },
+        "ioByteVisitsExecuted": {
+          "$ref": "#/$defs/Counter"
+        },
+        "sortOccupancy": {
+          "type": "array",
+          "minItems": 0,
+          "maxItems": 250000,
+          "items": {
+            "$ref": "#/$defs/SortOccupancyBucket"
+          }
+        }
+      },
+      "required": [
+        "sourceBytesHashed",
+        "sourceEntriesVerified",
+        "sidecarValuesScanned",
+        "candidateEvaluationOperations",
+        "transformValueVisits",
+        "candidateSupportVisits",
+        "pearsonValueVisits",
+        "netteEdgeWorkUnits",
+        "netteCodingValueVisits",
+        "netteDirectionalSupportVisits",
+        "netteCounterUpdateVisits",
+        "netteCmiArithmeticUnits",
+        "selectionWorkUnits",
+        "stateGenerationUnits",
+        "stateIdentityValidationUnits",
+        "stateApplicationUnits",
+        "nullBindWorkUnits",
+        "comparisonFieldOperations",
+        "diagnosticReplayCandidateOperations",
+        "ioByteVisitsExecuted",
+        "sortOccupancy"
+      ],
+      "additionalProperties": false
+    },
+    "KnownOperand": {
+      "type": "object",
+      "properties": {
+        "nodeId": {
+          "enum": [
+            "N00_PREFLIGHT",
+            "N01_JSON_DECODE",
+            "N02_SCHEMA_VALIDATE",
+            "N03_MODE",
+            "N04_INPUT_PAIR",
+            "N05_SOURCE_SIDECAR",
+            "N06_TARGET_SIDECAR",
+            "N07_COMMON_LENGTH",
+            "N08_CANDIDATES",
+            "N09_ALPHA",
+            "N10_SELECTION_RULE",
+            "N11_TIE_TOLERANCE",
+            "N12_STATISTIC",
+            "N13_NULL",
+            "N14_REPLICATES",
+            "N15_ADMISSION"
+          ]
+        },
+        "name": {
+          "$ref": "#/$defs/AsciiId"
+        },
+        "value": {
+          "oneOf": [
+            {
+              "type": "null"
+            },
+            {
+              "type": "boolean"
+            },
+            {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 115792089237316195423570985008687907853269984665640564039457584007913129639935
+            },
+            {
+              "$ref": "#/$defs/FloatHex"
+            },
+            {
+              "$ref": "#/$defs/ArtifactIdentity"
+            }
+          ]
+        },
+        "valueDigest": {
+          "$ref": "#/$defs/Sha256"
+        }
+      },
+      "required": [
+        "nodeId",
+        "name",
+        "value",
+        "valueDigest"
+      ],
+      "additionalProperties": false
+    },
+    "PreDerivationEvidence": {
+      "type": "object",
+      "properties": {
+        "rawSourceEvidence": {
+          "$ref": "#/$defs/RawSourceEvidence"
+        },
+        "failedNodeId": {
+          "enum": [
+            "N00_PREFLIGHT",
+            "N01_JSON_DECODE",
+            "N02_SCHEMA_VALIDATE",
+            "N03_MODE",
+            "N04_INPUT_PAIR",
+            "N05_SOURCE_SIDECAR",
+            "N06_TARGET_SIDECAR",
+            "N07_COMMON_LENGTH",
+            "N08_CANDIDATES",
+            "N09_ALPHA",
+            "N10_SELECTION_RULE",
+            "N11_TIE_TOLERANCE",
+            "N12_STATISTIC",
+            "N13_NULL",
+            "N14_REPLICATES",
+            "N15_ADMISSION"
+          ]
+        },
+        "location": {
+          "oneOf": [
+            {
+              "oneOf": [
+                {
+                  "type": "object",
+                  "properties": {
+                    "kind": {
+                      "const": "BYTE_OFFSET"
+                    },
+                    "offset": {
+                      "type": "integer",
+                      "minimum": 0,
+                      "maximum": 536870912
+                    }
+                  },
+                  "required": [
+                    "kind",
+                    "offset"
+                  ],
+                  "additionalProperties": false
+                },
+                {
+                  "type": "object",
+                  "properties": {
+                    "kind": {
+                      "const": "JSON_POINTER_INDEX"
+                    },
+                    "pointer": {
+                      "$ref": "#/$defs/FieldPath"
+                    },
+                    "index": {
+                      "oneOf": [
+                        {
+                          "type": "integer",
+                          "minimum": 0,
+                          "maximum": 115792089237316195423570985008687907853269984665640564039457584007913129639935
+                        },
+                        {
+                          "type": "null"
+                        }
+                      ]
+                    }
+                  },
+                  "required": [
+                    "kind",
+                    "pointer",
+                    "index"
+                  ],
+                  "additionalProperties": false
+                }
+              ]
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "failedValueEvidence": {
+          "$ref": "#/$defs/FailedValueEvidence"
+        },
+        "completeKnownPrefix": {
+          "type": "array",
+          "minItems": 0,
+          "maxItems": 16,
+          "items": {
+            "$ref": "#/$defs/KnownOperand"
+          }
+        }
+      },
+      "required": [
+        "rawSourceEvidence",
+        "failedNodeId",
+        "location",
+        "failedValueEvidence",
+        "completeKnownPrefix"
+      ],
+      "additionalProperties": false
+    },
+    "RetainedArtifact": {
+      "type": "object",
+      "properties": {
+        "artifactId": {
+          "$ref": "#/$defs/AsciiId"
+        },
+        "relativePath": {
+          "$ref": "#/$defs/NormalizedRelativePath"
+        },
+        "bytes": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 536870912
+        },
+        "digestStatus": {
+          "enum": [
+            "VERIFIED",
+            "UNVERIFIED"
+          ]
+        },
+        "sha256": {
+          "oneOf": [
+            {
+              "$ref": "#/$defs/Sha256"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "verificationBytesRead": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 536870912
+        },
+        "disposition": {
+          "enum": [
+            "RETAINED_PARTIAL",
+            "INSTALLED"
+          ]
+        }
+      },
+      "required": [
+        "artifactId",
+        "relativePath",
+        "bytes",
+        "digestStatus",
+        "sha256",
+        "verificationBytesRead",
+        "disposition"
+      ],
+      "additionalProperties": false,
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "digestStatus": {
+                "const": "VERIFIED"
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "sha256": {
+                "$ref": "#/$defs/Sha256"
+              }
+            }
+          },
+          "else": {
+            "properties": {
+              "sha256": {
+                "type": "null"
+              },
+              "disposition": {
+                "const": "RETAINED_PARTIAL"
+              }
+            }
+          }
+        }
+      ]
+    },
+    "WriterProgress": {
+      "type": "object",
+      "properties": {
+        "writerId": {
+          "$ref": "#/$defs/AsciiId"
+        },
+        "disposition": {
+          "enum": [
+            "NOT_OPENED",
+            "RETAINED_PARTIAL",
+            "DISCARDED_PARTIAL",
+            "INSTALLED"
+          ]
+        },
+        "operation": {
+          "enum": [
+            "WRITE",
+            "FILE_FSYNC",
+            "RENAME",
+            "DIRECTORY_FSYNC",
+            "INSTALLED"
+          ]
+        },
+        "rowsCommitted": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 1000000
+        },
+        "bytesWritten": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 536870912
+        },
+        "retainedArtifact": {
+          "oneOf": [
+            {
+              "$ref": "#/$defs/RetainedArtifact"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        }
+      },
+      "required": [
+        "writerId",
+        "disposition",
+        "operation",
+        "rowsCommitted",
+        "bytesWritten",
+        "retainedArtifact"
+      ],
+      "additionalProperties": false,
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "disposition": {
+                "enum": [
+                  "RETAINED_PARTIAL",
+                  "INSTALLED"
+                ]
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "retainedArtifact": {
+                "$ref": "#/$defs/RetainedArtifact"
+              }
+            }
+          },
+          "else": {
+            "properties": {
+              "retainedArtifact": {
+                "type": "null"
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "disposition": {
+                "const": "INSTALLED"
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "operation": {
+                "const": "INSTALLED"
+              }
+            }
+          }
+        }
+      ]
+    },
+    "InterruptedCause": {
+      "oneOf": [
+        {
+          "type": "object",
+          "properties": {
+            "kind": {
+              "const": "SIGNAL"
+            },
+            "signalNumber": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 128
+            }
+          },
+          "required": [
+            "kind",
+            "signalNumber"
+          ],
+          "additionalProperties": false
+        },
+        {
+          "type": "object",
+          "properties": {
+            "kind": {
+              "const": "CANCEL"
+            },
+            "cancelTokenId": {
+              "$ref": "#/$defs/AsciiId"
+            }
+          },
+          "required": [
+            "kind",
+            "cancelTokenId"
+          ],
+          "additionalProperties": false
+        },
+        {
+          "type": "object",
+          "properties": {
+            "kind": {
+              "const": "TIMEOUT"
+            },
+            "deadlineUtc": {
+              "$ref": "#/$defs/UTCInstant"
+            },
+            "elapsedNanoseconds": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 115792089237316195423570985008687907853269984665640564039457584007913129639935
+            }
+          },
+          "required": [
+            "kind",
+            "deadlineUtc",
+            "elapsedNanoseconds"
+          ],
+          "additionalProperties": false
+        },
+        {
+          "type": "object",
+          "properties": {
+            "kind": {
+              "const": "DEPENDENCY"
+            },
+            "dependencyId": {
+              "$ref": "#/$defs/AsciiId"
+            },
+            "upstreamFailureCode": {
+              "$ref": "#/$defs/TerminalFailure"
+            }
+          },
+          "required": [
+            "kind",
+            "dependencyId",
+            "upstreamFailureCode"
+          ],
+          "additionalProperties": false
+        }
+      ]
+    },
+    "ResourceProjection": {
+      "type": "object",
+      "properties": {
+        "ioByteVisitsAdmitUpper": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 4294967296
+        },
+        "ioByteVisitsExecuted": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 4294967296
+        },
+        "packageBytesAdmitUpper": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 536870912
+        },
+        "referenceOwnedPeakBytesAdmitUpper": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 536870912
+        },
+        "primaryComputeWorkUnitsAdmitUpper": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 50000000
+        },
+        "comparisonComputeWorkUnitsAdmitUpper": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 10000000
+        },
+        "diagnosticComputeWorkUnitsAdmitUpper": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 50000000
+        },
+        "totalComputeWorkUnitsAdmitUpper": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 90000000
+        }
+      },
+      "required": [
+        "ioByteVisitsAdmitUpper",
+        "ioByteVisitsExecuted",
+        "packageBytesAdmitUpper",
+        "referenceOwnedPeakBytesAdmitUpper",
+        "primaryComputeWorkUnitsAdmitUpper",
+        "comparisonComputeWorkUnitsAdmitUpper",
+        "diagnosticComputeWorkUnitsAdmitUpper",
+        "totalComputeWorkUnitsAdmitUpper"
+      ],
+      "additionalProperties": false
+    },
+    "SuccessManifest": {
+      "type": "object",
+      "properties": {
+        "artifactType": {
+          "const": "SUCCESS_MANIFEST"
+        },
+        "artifactId": {
+          "$ref": "#/$defs/AsciiId"
+        },
+        "schemaVersion": {
+          "const": "selcal.m6-p1.artifact.v9"
+        },
+        "lifecycle": {
+          "$ref": "#/$defs/Lifecycle"
+        },
+        "declaredRunGraph": {
+          "$ref": "#/$defs/ArtifactIdentity"
+        },
+        "sourceInventories": {
+          "$ref": "#/$defs/SourceInventoryLocators"
+        },
+        "referenceSpecLocator": {
+          "oneOf": [
+            {
+              "$ref": "#/$defs/ArtifactIdentity"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "calculationMode": {
+          "$ref": "#/$defs/CalculationMode"
+        },
+        "executionBranch": {
+          "$ref": "#/$defs/ExecutionBranch"
+        },
+        "primaryTerminalClass": {
+          "$ref": "#/$defs/TerminalClass"
+        },
+        "retainedArtifacts": {
+          "type": "array",
+          "minItems": 0,
+          "maxItems": 1000000,
+          "items": {
+            "$ref": "#/$defs/RetainedArtifact"
+          }
+        },
+        "writers": {
+          "type": "array",
+          "minItems": 0,
+          "maxItems": 1000000,
+          "items": {
+            "$ref": "#/$defs/WriterProgress"
+          }
+        },
+        "rawCounters": {
+          "$ref": "#/$defs/RawCounters"
+        },
+        "productionManifestLocator": {
+          "$ref": "#/$defs/ArtifactIdentity"
+        },
+        "primaryManifestLocator": {
+          "$ref": "#/$defs/ArtifactIdentity"
+        },
+        "comparisonManifestLocator": {
+          "$ref": "#/$defs/ArtifactIdentity"
+        },
+        "diagnosticManifestLocator": {
+          "$ref": "#/$defs/ArtifactIdentity"
+        },
+        "resourceProjection": {
+          "$ref": "#/$defs/ResourceProjection"
+        }
+      },
+      "required": [
+        "artifactType",
+        "artifactId",
+        "schemaVersion",
+        "lifecycle",
+        "declaredRunGraph",
+        "sourceInventories",
+        "referenceSpecLocator",
+        "calculationMode",
+        "executionBranch",
+        "primaryTerminalClass",
+        "retainedArtifacts",
+        "writers",
+        "rawCounters",
+        "productionManifestLocator",
+        "primaryManifestLocator",
+        "comparisonManifestLocator",
+        "diagnosticManifestLocator",
+        "resourceProjection"
+      ],
+      "additionalProperties": false
+    },
+    "FailureManifest": {
+      "type": "object",
+      "properties": {
+        "artifactType": {
+          "const": "FAILURE_MANIFEST"
+        },
+        "artifactId": {
+          "$ref": "#/$defs/AsciiId"
+        },
+        "schemaVersion": {
+          "const": "selcal.m6-p1.artifact.v9"
+        },
+        "lifecycle": {
+          "$ref": "#/$defs/Lifecycle"
+        },
+        "declaredRunGraph": {
+          "$ref": "#/$defs/ArtifactIdentity"
+        },
+        "sourceInventories": {
+          "$ref": "#/$defs/SourceInventoryLocators"
+        },
+        "referenceSpecLocator": {
+          "oneOf": [
+            {
+              "$ref": "#/$defs/ArtifactIdentity"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "calculationMode": {
+          "$ref": "#/$defs/CalculationMode"
+        },
+        "executionBranch": {
+          "$ref": "#/$defs/ExecutionBranch"
+        },
+        "primaryTerminalClass": {
+          "oneOf": [
+            {
+              "$ref": "#/$defs/TerminalClass"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "retainedArtifacts": {
+          "type": "array",
+          "minItems": 0,
+          "maxItems": 1000000,
+          "items": {
+            "$ref": "#/$defs/RetainedArtifact"
+          }
+        },
+        "writers": {
+          "type": "array",
+          "minItems": 0,
+          "maxItems": 1000000,
+          "items": {
+            "$ref": "#/$defs/WriterProgress"
+          }
+        },
+        "rawCounters": {
+          "$ref": "#/$defs/RawCounters"
+        },
+        "failure": {
+          "$ref": "#/$defs/TerminalFailure"
+        },
+        "failureStage": {
+          "enum": [
+            "BYTE_STAT_HASH_PREFLIGHT",
+            "JSON_AND_SCHEMA_ADMISSION",
+            "SOURCE_IDENTITY",
+            "INPUT_SIDECAR_STREAM_VALIDATION",
+            "NORMALIZATION",
+            "RESOURCE_ADMISSION",
+            "NULL_BIND",
+            "PRODUCTION_CALL",
+            "OBSERVED_SCAN",
+            "STATE_GENERATION",
+            "STATE_IDENTITY_VALIDATION",
+            "STATE_APPLICATION",
+            "REFERENCE_CANDIDATE_SCAN",
+            "PRIMARY_LEDGER_DURABILITY",
+            "COMPARISON_DISCOVERY",
+            "DIAGNOSTIC_REPLAY",
+            "COMPARISON_LEDGER_DURABILITY",
+            "DIAGNOSTIC_LEDGER_DURABILITY",
+            "TERMINAL_ROOT_DURABILITY",
+            "N00_PREFLIGHT",
+            "N01_JSON_DECODE",
+            "N02_SCHEMA_VALIDATE",
+            "N03_MODE",
+            "N04_INPUT_PAIR",
+            "N05_SOURCE_SIDECAR",
+            "N06_TARGET_SIDECAR",
+            "N07_COMMON_LENGTH",
+            "N08_CANDIDATES",
+            "N09_ALPHA",
+            "N10_SELECTION_RULE",
+            "N11_TIE_TOLERANCE",
+            "N12_STATISTIC",
+            "N13_NULL",
+            "N14_REPLICATES",
+            "N15_ADMISSION"
+          ]
+        },
+        "operatorCursor": {
+          "oneOf": [
+            {
+              "$ref": "#/$defs/OperatorCursor"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "preDerivationEvidence": {
+          "oneOf": [
+            {
+              "$ref": "#/$defs/PreDerivationEvidence"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "interruptedCause": {
+          "oneOf": [
+            {
+              "$ref": "#/$defs/InterruptedCause"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "resourceProjection": {
+          "oneOf": [
+            {
+              "$ref": "#/$defs/ResourceProjection"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        }
+      },
+      "required": [
+        "artifactType",
+        "artifactId",
+        "schemaVersion",
+        "lifecycle",
+        "declaredRunGraph",
+        "sourceInventories",
+        "referenceSpecLocator",
+        "calculationMode",
+        "executionBranch",
+        "primaryTerminalClass",
+        "retainedArtifacts",
+        "writers",
+        "rawCounters",
+        "failure",
+        "failureStage",
+        "operatorCursor",
+        "preDerivationEvidence",
+        "interruptedCause",
+        "resourceProjection"
+      ],
+      "additionalProperties": false,
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "executionBranch": {
+                "enum": [
+                  "EXACT_BRANCH_UNRESOLVED",
+                  "FINITE_BRANCH_UNRESOLVED"
+                ]
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "primaryTerminalClass": {
+                "type": "null"
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "failureStage": {
+                "enum": [
+                  "N00_PREFLIGHT",
+                  "N01_JSON_DECODE",
+                  "N02_SCHEMA_VALIDATE",
+                  "N03_MODE",
+                  "N04_INPUT_PAIR",
+                  "N05_SOURCE_SIDECAR",
+                  "N06_TARGET_SIDECAR",
+                  "N07_COMMON_LENGTH",
+                  "N08_CANDIDATES",
+                  "N09_ALPHA",
+                  "N10_SELECTION_RULE",
+                  "N11_TIE_TOLERANCE",
+                  "N12_STATISTIC",
+                  "N13_NULL",
+                  "N14_REPLICATES",
+                  "N15_ADMISSION"
+                ]
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "preDerivationEvidence": {
+                "$ref": "#/$defs/PreDerivationEvidence"
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "failure": {
+                "properties": {
+                  "emitter": {
+                    "const": "INTERRUPTION"
+                  }
+                }
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "interruptedCause": {
+                "$ref": "#/$defs/InterruptedCause"
+              }
+            }
+          },
+          "else": {
+            "properties": {
+              "interruptedCause": {
+                "type": "null"
+              }
+            }
+          }
+        }
+      ]
+    },
+    "BudgetProfile": {
+      "type": "object",
+      "properties": {
+        "artifactType": {
+          "const": "BUDGET_PROFILE"
+        },
+        "artifactId": {
+          "$ref": "#/$defs/AsciiId"
+        },
+        "schemaVersion": {
+          "const": "selcal.m6-p1.artifact.v9"
+        },
+        "budgetProfileId": {
+          "const": "m6-p1-reference-envelope-v1.1-revision9"
+        },
+        "lifecycle": {
+          "$ref": "#/$defs/Lifecycle"
+        },
+        "constants": {
+          "type": "object",
+          "properties": {
+            "maxOperandBits": {
+              "const": 256
+            },
+            "maxVectorLength": {
+              "const": 2500000
+            },
+            "maxCandidateCount": {
+              "const": 2500
+            },
+            "maxFiniteReplicateCount": {
+              "const": 1000
+            },
+            "maxExactStateCount": {
+              "const": 100000
+            },
+            "maxBlockCount": {
+              "const": 4096
+            },
+            "maxLiveCandidateRecords": {
+              "const": 5000
+            },
+            "maxPersistedCandidateRecordsPerLedger": {
+              "const": 100000
+            },
+            "maxChunkRows": {
+              "const": 256
+            },
+            "maxChunkCountPerStream": {
+              "const": 1000000
+            },
+            "maxDisagreementDiagnostics": {
+              "const": 256
+            },
+            "maxDisagreementCodesPerRecord": {
+              "const": 32
+            },
+            "maxDiagnosticReplayCandidateOperations": {
+              "const": 640000
+            },
+            "maxDiagnosticRowsPerGroup": {
+              "const": 12
+            },
+            "maxDiagnosticCounterEntries": {
+              "const": 250000
+            },
+            "maxDiagnosticCounterKeyBytes": {
+              "const": 192
+            },
+            "maxDiagnosticCounterKeySegments": {
+              "const": 12
+            },
+            "maxSourceFilesPerInventory": {
+              "const": 256
+            },
+            "maxDependenciesPerInventory": {
+              "const": 256
+            },
+            "maxSourceFileBytes": {
+              "const": 16777216
+            },
+            "maxSourceInventoryBytes": {
+              "const": 67108864
+            },
+            "maxJsonDocumentBytes": {
+              "const": 16777216
+            },
+            "maxInputSidecarBytes": {
+              "const": 67108864
+            },
+            "maxPrimaryLedgerBytes": {
+              "const": 268435456
+            },
+            "maxComparisonLedgerBytes": {
+              "const": 134217728
+            },
+            "maxDiagnosticLedgerBytes": {
+              "const": 67108864
+            },
+            "maxTerminalRootBytes": {
+              "const": 16777216
+            },
+            "maxRunPackageBytes": {
+              "const": 536870912
+            },
+            "failureManifestReserveBytes": {
+              "const": 16777216
+            },
+            "maxReferenceOwnedPeakBytes": {
+              "const": 536870912
+            },
+            "maxIoByteVisits": {
+              "const": 4294967296
+            },
+            "maxTransformValueVisits": {
+              "const": 2500000
+            },
+            "maxCandidateSupportVisits": {
+              "const": 2500000
+            },
+            "maxPearsonValueVisits": {
+              "const": 15000000
+            },
+            "maxNetteEdgeWorkUnits": {
+              "const": 2500000
+            },
+            "maxNetteCodingValueVisits": {
+              "const": 15000000
+            },
+            "maxNetteDirectionalSupportVisits": {
+              "const": 5000000
+            },
+            "maxNetteCounterUpdateVisits": {
+              "const": 20000000
+            },
+            "maxNetteSortUnits": {
+              "const": 25000000
+            },
+            "maxNetteCmiArithmeticUnits": {
+              "const": 30000000
+            },
+            "maxSelectionWorkUnits": {
+              "const": 1000000
+            },
+            "maxStateGenerationUnits": {
+              "const": 2500000
+            },
+            "maxStateIdentityValidationUnits": {
+              "const": 10000000
+            },
+            "maxStateApplicationUnits": {
+              "const": 2500000
+            },
+            "maxNullBindWorkUnits": {
+              "const": 16
+            },
+            "maxPrimaryComputeWorkUnits": {
+              "const": 50000000
+            },
+            "maxComparisonComputeWorkUnits": {
+              "const": 10000000
+            },
+            "maxDiagnosticComputeWorkUnits": {
+              "const": 50000000
+            },
+            "maxTotalComputeWorkUnits": {
+              "const": 90000000
+            },
+            "floatAbsoluteToleranceHex": {
+              "const": "0x1.0000000000000p-46"
+            }
+          },
+          "required": [
+            "maxOperandBits",
+            "maxVectorLength",
+            "maxCandidateCount",
+            "maxFiniteReplicateCount",
+            "maxExactStateCount",
+            "maxBlockCount",
+            "maxLiveCandidateRecords",
+            "maxPersistedCandidateRecordsPerLedger",
+            "maxChunkRows",
+            "maxChunkCountPerStream",
+            "maxDisagreementDiagnostics",
+            "maxDisagreementCodesPerRecord",
+            "maxDiagnosticReplayCandidateOperations",
+            "maxDiagnosticRowsPerGroup",
+            "maxDiagnosticCounterEntries",
+            "maxDiagnosticCounterKeyBytes",
+            "maxDiagnosticCounterKeySegments",
+            "maxSourceFilesPerInventory",
+            "maxDependenciesPerInventory",
+            "maxSourceFileBytes",
+            "maxSourceInventoryBytes",
+            "maxJsonDocumentBytes",
+            "maxInputSidecarBytes",
+            "maxPrimaryLedgerBytes",
+            "maxComparisonLedgerBytes",
+            "maxDiagnosticLedgerBytes",
+            "maxTerminalRootBytes",
+            "maxRunPackageBytes",
+            "failureManifestReserveBytes",
+            "maxReferenceOwnedPeakBytes",
+            "maxIoByteVisits",
+            "maxTransformValueVisits",
+            "maxCandidateSupportVisits",
+            "maxPearsonValueVisits",
+            "maxNetteEdgeWorkUnits",
+            "maxNetteCodingValueVisits",
+            "maxNetteDirectionalSupportVisits",
+            "maxNetteCounterUpdateVisits",
+            "maxNetteSortUnits",
+            "maxNetteCmiArithmeticUnits",
+            "maxSelectionWorkUnits",
+            "maxStateGenerationUnits",
+            "maxStateIdentityValidationUnits",
+            "maxStateApplicationUnits",
+            "maxNullBindWorkUnits",
+            "maxPrimaryComputeWorkUnits",
+            "maxComparisonComputeWorkUnits",
+            "maxDiagnosticComputeWorkUnits",
+            "maxTotalComputeWorkUnits",
+            "floatAbsoluteToleranceHex"
+          ],
+          "additionalProperties": false
+        },
+        "semanticContractIdentity": {
+          "$ref": "#/$defs/ArtifactIdentity"
+        }
+      },
+      "required": [
+        "artifactType",
+        "artifactId",
+        "schemaVersion",
+        "budgetProfileId",
+        "lifecycle",
+        "constants",
+        "semanticContractIdentity"
+      ],
+      "additionalProperties": false
+    },
+    "RuntimeProbe": {
+      "type": "object",
+      "properties": {
+        "artifactType": {
+          "const": "RUNTIME_PROBE"
+        },
+        "artifactId": {
+          "$ref": "#/$defs/AsciiId"
+        },
+        "schemaVersion": {
+          "const": "selcal.m6-p1.artifact.v9"
+        },
+        "runtimeProbeContractId": {
+          "const": "selcal.m6-p1.runtime-probe.v9"
+        },
+        "runtimeLayoutProfileId": {
+          "const": "m6-p1-runtime-layout-v9"
+        },
+        "lifecycle": {
+          "$ref": "#/$defs/Lifecycle"
+        },
+        "status": {
+          "enum": [
+            "NOT_EXECUTED",
+            "MEASURED"
+          ]
+        },
+        "runtimeIdentity": {
+          "$ref": "#/$defs/ArtifactIdentity"
+        },
+        "measuredAtUtc": {
+          "oneOf": [
+            {
+              "$ref": "#/$defs/UTCInstant"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "namedComponentUppers": {
+          "type": "array",
+          "minItems": 0,
+          "maxItems": 32,
+          "items": {
+            "type": "object",
+            "properties": {
+              "component": {
+                "enum": [
+                  "hashReadBuffer",
+                  "hashState",
+                  "pathBuffer",
+                  "rawJsonBuffer",
+                  "parserArena",
+                  "duplicateKeyTracker",
+                  "binaryReadBuffer",
+                  "decodedElementWindow",
+                  "finiteScanState",
+                  "decodedJsonObject",
+                  "schemaObject",
+                  "validationStack",
+                  "sourceWindow",
+                  "targetWindow",
+                  "referenceCandidateVector",
+                  "stateWorkspace",
+                  "writerBuffer",
+                  "productionCandidateVector",
+                  "fieldPlan",
+                  "diagnosticCounterMap"
+                ]
+              },
+              "bytes": {
+                "type": "integer",
+                "minimum": 0,
+                "maximum": 536870912
+              }
+            },
+            "required": [
+              "component",
+              "bytes"
+            ],
+            "additionalProperties": false
+          }
+        }
+      },
+      "required": [
+        "artifactType",
+        "artifactId",
+        "schemaVersion",
+        "runtimeProbeContractId",
+        "runtimeLayoutProfileId",
+        "lifecycle",
+        "status",
+        "runtimeIdentity",
+        "measuredAtUtc",
+        "namedComponentUppers"
+      ],
+      "additionalProperties": false,
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "status": {
+                "const": "NOT_EXECUTED"
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "measuredAtUtc": {
+                "type": "null"
+              },
+              "namedComponentUppers": {
+                "maxItems": 0
+              }
+            }
+          },
+          "else": {
+            "properties": {
+              "measuredAtUtc": {
+                "$ref": "#/$defs/UTCInstant"
+              },
+              "namedComponentUppers": {
+                "minItems": 1
+              }
+            }
+          }
+        }
+      ]
+    },
+    "ExternalApprovalEnvelope": {
+      "type": "object",
+      "properties": {
+        "artifactType": {
+          "const": "EXTERNAL_APPROVAL_ENVELOPE"
+        },
+        "artifactId": {
+          "$ref": "#/$defs/AsciiId"
+        },
+        "schemaVersion": {
+          "const": "selcal.m6-p1.artifact.v9"
+        },
+        "approvalId": {
+          "$ref": "#/$defs/AsciiId"
+        },
+        "trustStatus": {
+          "const": "UNTRUSTED_CLAIM_ONLY"
+        },
+        "approverId": {
+          "$ref": "#/$defs/AsciiId"
+        },
+        "decision": {
+          "const": "APPROVED_FROZEN"
+        },
+        "decisionUtc": {
+          "$ref": "#/$defs/UTCInstant"
+        },
+        "bindings": {
+          "type": "array",
+          "minItems": 10,
+          "maxItems": 10,
+          "prefixItems": [
+            {
+              "type": "object",
+              "properties": {
+                "role": {
+                  "const": "FORMULA_DOCUMENT"
+                },
+                "identity": {
+                  "$ref": "#/$defs/ArtifactIdentity"
+                }
+              },
+              "required": [
+                "role",
+                "identity"
+              ],
+              "additionalProperties": false
+            },
+            {
+              "type": "object",
+              "properties": {
+                "role": {
+                  "const": "ARTIFACT_SCHEMA"
+                },
+                "identity": {
+                  "$ref": "#/$defs/ArtifactIdentity"
+                }
+              },
+              "required": [
+                "role",
+                "identity"
+              ],
+              "additionalProperties": false
+            },
+            {
+              "type": "object",
+              "properties": {
+                "role": {
+                  "const": "SEMANTIC_CONTRACT"
+                },
+                "identity": {
+                  "$ref": "#/$defs/ArtifactIdentity"
+                }
+              },
+              "required": [
+                "role",
+                "identity"
+              ],
+              "additionalProperties": false
+            },
+            {
+              "type": "object",
+              "properties": {
+                "role": {
+                  "const": "BUDGET_PROFILE"
+                },
+                "identity": {
+                  "$ref": "#/$defs/ArtifactIdentity"
+                }
+              },
+              "required": [
+                "role",
+                "identity"
+              ],
+              "additionalProperties": false
+            },
+            {
+              "type": "object",
+              "properties": {
+                "role": {
+                  "const": "RUNTIME_PROBE"
+                },
+                "identity": {
+                  "$ref": "#/$defs/ArtifactIdentity"
+                }
+              },
+              "required": [
+                "role",
+                "identity"
+              ],
+              "additionalProperties": false
+            },
+            {
+              "type": "object",
+              "properties": {
+                "role": {
+                  "const": "SEMANTIC_VALIDATOR"
+                },
+                "identity": {
+                  "$ref": "#/$defs/ArtifactIdentity"
+                }
+              },
+              "required": [
+                "role",
+                "identity"
+              ],
+              "additionalProperties": false
+            },
+            {
+              "type": "object",
+              "properties": {
+                "role": {
+                  "const": "SOURCE_INVENTORY_REFERENCE"
+                },
+                "identity": {
+                  "$ref": "#/$defs/ArtifactIdentity"
+                }
+              },
+              "required": [
+                "role",
+                "identity"
+              ],
+              "additionalProperties": false
+            },
+            {
+              "type": "object",
+              "properties": {
+                "role": {
+                  "const": "SOURCE_INVENTORY_PRODUCTION"
+                },
+                "identity": {
+                  "$ref": "#/$defs/ArtifactIdentity"
+                }
+              },
+              "required": [
+                "role",
+                "identity"
+              ],
+              "additionalProperties": false
+            },
+            {
+              "type": "object",
+              "properties": {
+                "role": {
+                  "const": "SOURCE_INVENTORY_COMPARISON_DRIVER"
+                },
+                "identity": {
+                  "$ref": "#/$defs/ArtifactIdentity"
+                }
+              },
+              "required": [
+                "role",
+                "identity"
+              ],
+              "additionalProperties": false
+            },
+            {
+              "type": "object",
+              "properties": {
+                "role": {
+                  "const": "DECLARED_ROOT_GRAPH"
+                },
+                "identity": {
+                  "$ref": "#/$defs/ArtifactIdentity"
+                }
+              },
+              "required": [
+                "role",
+                "identity"
+              ],
+              "additionalProperties": false
+            }
+          ],
+          "items": false
+        }
+      },
+      "required": [
+        "artifactType",
+        "artifactId",
+        "schemaVersion",
+        "approvalId",
+        "trustStatus",
+        "approverId",
+        "decision",
+        "decisionUtc",
+        "bindings"
+      ],
+      "additionalProperties": false
+    },
+    "ValidationReport": {
+      "type": "object",
+      "properties": {
+        "artifactType": {
+          "const": "VALIDATION_REPORT"
+        },
+        "artifactId": {
+          "$ref": "#/$defs/AsciiId"
+        },
+        "schemaVersion": {
+          "const": "selcal.m6-p1.artifact.v9"
+        },
+        "validatorIdentity": {
+          "$ref": "#/$defs/ArtifactIdentity"
+        },
+        "semanticContractIdentity": {
+          "$ref": "#/$defs/ArtifactIdentity"
+        },
+        "schemaIdentity": {
+          "$ref": "#/$defs/ArtifactIdentity"
+        },
+        "validatedRootIdentity": {
+          "$ref": "#/$defs/ArtifactIdentity"
+        },
+        "startedAtUtc": {
+          "$ref": "#/$defs/UTCInstant"
+        },
+        "completedAtUtc": {
+          "$ref": "#/$defs/UTCInstant"
+        },
+        "scope": {
+          "enum": [
+            "LOCAL_SCHEMA_ONLY",
+            "SEMANTIC_PROPOSAL_AUDIT",
+            "APPROVED_EXECUTION"
+          ]
+        },
+        "outcome": {
+          "enum": [
+            "PASS",
+            "FAIL"
+          ]
+        },
+        "findings": {
+          "type": "array",
+          "minItems": 0,
+          "maxItems": 10000,
+          "items": {
+            "type": "object",
+            "properties": {
+              "failure": {
+                "$ref": "#/$defs/TerminalFailure"
+              },
+              "artifactId": {
+                "$ref": "#/$defs/AsciiId"
+              },
+              "pointer": {
+                "$ref": "#/$defs/FieldPath"
+              }
+            },
+            "required": [
+              "failure",
+              "artifactId",
+              "pointer"
+            ],
+            "additionalProperties": false
+          }
+        }
+      },
+      "required": [
+        "artifactType",
+        "artifactId",
+        "schemaVersion",
+        "validatorIdentity",
+        "semanticContractIdentity",
+        "schemaIdentity",
+        "validatedRootIdentity",
+        "startedAtUtc",
+        "completedAtUtc",
+        "scope",
+        "outcome",
+        "findings"
+      ],
+      "additionalProperties": false,
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "outcome": {
+                "const": "PASS"
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "findings": {
+                "maxItems": 0
+              }
+            }
+          },
+          "else": {
+            "properties": {
+              "findings": {
+                "minItems": 1
+              }
+            }
+          }
+        }
+      ]
+    },
+    "RawSourceEvidence": {
+      "oneOf": [
+        {
+          "type": "object",
+          "properties": {
+            "status": {
+              "const": "VERIFIED"
+            },
+            "rawInputLocator": {
+              "$ref": "#/$defs/ArtifactIdentity"
+            },
+            "observedBytes": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 536870912
+            },
+            "observedSha256": {
+              "$ref": "#/$defs/Sha256"
+            }
+          },
+          "required": [
+            "status",
+            "rawInputLocator",
+            "observedBytes",
+            "observedSha256"
+          ],
+          "additionalProperties": false
+        },
+        {
+          "type": "object",
+          "properties": {
+            "status": {
+              "const": "UNAVAILABLE"
+            },
+            "relativePath": {
+              "$ref": "#/$defs/NormalizedRelativePath"
+            },
+            "expectedIdentity": {
+              "oneOf": [
+                {
+                  "$ref": "#/$defs/ArtifactIdentity"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "observedBytes": {
+              "oneOf": [
+                {
+                  "type": "integer",
+                  "minimum": 0,
+                  "maximum": 536870912
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "observedSha256": {
+              "type": "null"
+            },
+            "reason": {
+              "enum": [
+                "STAT_FAILED",
+                "HASH_INCOMPLETE",
+                "RAW_BYTES_NOT_RETAINED"
+              ]
+            }
+          },
+          "required": [
+            "status",
+            "relativePath",
+            "expectedIdentity",
+            "observedBytes",
+            "observedSha256",
+            "reason"
+          ],
+          "additionalProperties": false
+        }
+      ]
+    },
+    "FailedValueEvidence": {
+      "oneOf": [
+        {
+          "type": "object",
+          "properties": {
+            "status": {
+              "const": "AVAILABLE"
+            },
+            "observedType": {
+              "enum": [
+                "NULL",
+                "BOOLEAN",
+                "INTEGER",
+                "NUMBER",
+                "STRING",
+                "ARRAY",
+                "OBJECT",
+                "BINARY"
+              ]
+            },
+            "encodedLengthBytes": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 536870912
+            },
+            "bitLength": {
+              "oneOf": [
+                {
+                  "type": "integer",
+                  "minimum": 0,
+                  "maximum": 536870912
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "valueDigest": {
+              "$ref": "#/$defs/Sha256"
+            }
+          },
+          "required": [
+            "status",
+            "observedType",
+            "encodedLengthBytes",
+            "bitLength",
+            "valueDigest"
+          ],
+          "additionalProperties": false
+        },
+        {
+          "type": "object",
+          "properties": {
+            "status": {
+              "const": "UNAVAILABLE"
+            },
+            "reason": {
+              "enum": [
+                "NOT_DECODED",
+                "VALUE_NOT_REACHED",
+                "ENCODED_BYTES_UNAVAILABLE"
+              ]
+            }
+          },
+          "required": [
+            "status",
+            "reason"
+          ],
+          "additionalProperties": false
+        }
+      ]
+    }
+  }
+}

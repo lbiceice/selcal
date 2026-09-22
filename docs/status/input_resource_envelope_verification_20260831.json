@@ -1,0 +1,794 @@
+{
+  "claimCeiling": "LOCAL_ENGINEERING_VERIFICATION_NOT_STREAMING_NOT_SECURITY_CERTIFICATION_NOT_CROSS_PLATFORM_NOT_M6_NOT_RELEASE_NOT_SUBMISSION",
+  "compatibilityMatrix": {
+    "crossPlatform": false,
+    "entries": [
+      {
+        "command": "PYTHONPATH=src uv run --no-project --python 3.11 --with numpy==1.26.4 --with pytest==8.4.2 python -m pytest tests/test_input_npz_limits.py -q",
+        "environment": {
+          "architecture": "arm64",
+          "numpy": "1.26.4",
+          "os": "Darwin",
+          "osRelease": "25.6.0",
+          "python": "3.11.12",
+          "pythonImplementation": "CPython",
+          "zlib": "1.2.12"
+        },
+        "exitCode": 0,
+        "passed": 150,
+      "requestedNumPy": "1.26.4",
+      "requestedPython": "3.11",
+      "resolvedNumPyAtCheckpoint": "1.26.4",
+        "skipped": 0,
+        "status": "PASS",
+        "testTarget": "tests/test_input_npz_limits.py"
+      },
+      {
+        "command": "PYTHONPATH=src uv run --no-project --python 3.11 --with numpy==2.4.6 --with pytest==8.4.2 python -m pytest tests/test_input_npz_limits.py -q",
+        "environment": {
+          "architecture": "arm64",
+          "numpy": "2.4.6",
+          "os": "Darwin",
+          "osRelease": "25.6.0",
+          "python": "3.11.12",
+          "pythonImplementation": "CPython",
+          "zlib": "1.2.12"
+        },
+        "exitCode": 0,
+        "passed": 150,
+      "requestedNumPy": "2.4.6",
+      "requestedPython": "3.11",
+      "resolvedNumPyAtCheckpoint": "2.4.6",
+        "skipped": 0,
+        "status": "PASS",
+        "testTarget": "tests/test_input_npz_limits.py"
+      },
+      {
+        "command": "PYTHONPATH=src uv run --no-project --python 3.12 --with numpy==1.26.4 --with pytest==8.4.2 python -m pytest tests/test_input_npz_limits.py -q",
+        "environment": {
+          "architecture": "arm64",
+          "numpy": "1.26.4",
+          "os": "Darwin",
+          "osRelease": "25.6.0",
+          "python": "3.12.10",
+          "pythonImplementation": "CPython",
+          "zlib": "1.2.12"
+        },
+        "exitCode": 0,
+        "passed": 150,
+      "requestedNumPy": "1.26.4",
+      "requestedPython": "3.12",
+      "resolvedNumPyAtCheckpoint": "1.26.4",
+        "skipped": 0,
+        "status": "PASS",
+        "testTarget": "tests/test_input_npz_limits.py"
+      },
+      {
+        "command": "PYTHONPATH=src uv run --no-project --python 3.12 --with numpy==2.4.6 --with pytest==8.4.2 python -m pytest tests/test_input_npz_limits.py -q",
+        "environment": {
+          "architecture": "arm64",
+          "numpy": "2.4.6",
+          "os": "Darwin",
+          "osRelease": "25.6.0",
+          "python": "3.12.10",
+          "pythonImplementation": "CPython",
+          "zlib": "1.2.12"
+        },
+        "exitCode": 0,
+        "passed": 150,
+      "requestedNumPy": "2.4.6",
+      "requestedPython": "3.12",
+      "resolvedNumPyAtCheckpoint": "2.4.6",
+        "skipped": 0,
+        "status": "PASS",
+        "testTarget": "tests/test_input_npz_limits.py"
+      },
+      {
+        "command": "PYTHONPATH=src uv run --no-project --python 3.13 --with 'numpy>=2,<3' --with pytest==8.4.2 python -m pytest tests/test_input_npz_limits.py -q",
+        "environment": {
+          "architecture": "arm64",
+          "numpy": "2.4.3",
+          "os": "Darwin",
+          "osRelease": "25.6.0",
+          "python": "3.13.12",
+          "pythonImplementation": "CPython",
+          "zlib": "1.3.1"
+        },
+        "exitCode": 0,
+        "passed": 150,
+      "requestedNumPy": "LATEST_INSTALLABLE_2_X_AT_CHECKPOINT",
+      "requestedPython": "3.13",
+      "resolvedNumPyAtCheckpoint": "2.4.3",
+        "skipped": 0,
+        "status": "PASS",
+        "testTarget": "tests/test_input_npz_limits.py"
+      },
+      {
+        "command": "PYTHONPATH=src uv run --no-project --python 3.14 --with 'numpy>=2,<3' --with pytest==8.4.2 python -m pytest tests/test_input_npz_limits.py -q",
+        "environment": {
+          "architecture": "arm64",
+          "numpy": "2.5.2",
+          "os": "Darwin",
+          "osRelease": "25.6.0",
+          "python": "3.14.3",
+          "pythonImplementation": "CPython",
+          "zlib": "1.2.12"
+        },
+        "exitCode": 0,
+        "passed": 150,
+      "requestedNumPy": "LATEST_INSTALLABLE_2_X_AT_CHECKPOINT",
+      "requestedPython": "3.14",
+      "resolvedNumPyAtCheckpoint": "2.5.2",
+        "skipped": 0,
+        "status": "PASS",
+        "testTarget": "tests/test_input_npz_limits.py"
+      }
+    ],
+    "status": "FINITE_SAME_MACHINE_COMPATIBILITY_EVIDENCE_ONLY"
+  },
+  "environment": {
+    "architecture": "arm64",
+    "availableDiskObservation": "13.35 GB available; 96.9% used",
+    "availableMemoryObservation": "approximately 20.96 GB",
+    "cpu": "Apple M4 Pro",
+    "logicalCpuCount": 14,
+    "os": "Darwin",
+    "physicalMemoryObservation": "48 GB",
+    "serialExecutionRequired": true
+  },
+  "exactLimits": {
+    "CSV_DATA_ROWS": 1000000,
+    "CSV_FIELD_CHARACTERS": 256,
+    "CSV_RAW_BYTES": 67108864,
+    "CSV_RECORD_CHARACTERS": 1024,
+    "NPY_ELEMENTS": 1000000,
+    "NPY_HEADER_BYTES": 4096,
+    "NPZ_CENTRAL_DIRECTORY_BYTES": 16384,
+    "NPZ_MEMBER_UNCOMPRESSED_BYTES": 8004108,
+    "NPZ_RAW_BYTES": 33554432,
+    "NPZ_TOTAL_UNCOMPRESSED_BYTES": 16008216
+  },
+  "finalVerificationObservedAt": "2026-09-01T11:33:37+08:00",
+  "observedAt": "2026-09-01T09:42:02+08:00",
+  "packageBuildCleanInstall": {
+    "build": {
+      "artifacts": [
+        {
+          "bytes": 149930,
+          "name": "selcal-0.1.0.dev0-py3-none-any.whl",
+          "sha256": "d70aa2ed8e31bdca325a08b3a0bb7cf72a2a5d1b53ccb6b88e0882471fd96681"
+        },
+        {
+          "bytes": 334409,
+          "name": "selcal-0.1.0.dev0.tar.gz",
+          "sha256": "f189694ecb8a07dd6829dd96dfcfcebe5f5997b4ef1e90cf2832cb9156f23031"
+        }
+      ],
+      "command": "<verification-python> -m build --outdir <temporary-build-dir>/artifacts",
+      "environment": {
+        "architecture": "arm64",
+        "os": "Darwin",
+        "osRelease": "25.6.0",
+        "python": "3.11.12",
+        "pythonImplementation": "CPython"
+      },
+      "exitCode": 0,
+      "result": "Successfully built selcal-0.1.0.dev0.tar.gz and selcal-0.1.0.dev0-py3-none-any.whl"
+    },
+    "artifactDisposition": "DELETED_AFTER_TEMPORARY_VERIFICATION",
+    "artifactHashEvidence": "EXECUTION_TIME_OBSERVATION_NOT_INDEPENDENTLY_REINSPECTABLE",
+    "claimCeiling": "LOCAL_PACKAGE_BUILD_AND_CLEAN_INSTALL_EVIDENCE_NOT_RELEASE_NOT_LICENCE_NOT_CROSS_PLATFORM_NOT_M6_NOT_SUBMISSION",
+    "cleanInstall": {
+      "commands": [
+        "uv venv --python 3.11 <temporary-build-dir>/clean-venv",
+        "uv pip install --python <temporary-build-dir>/clean-venv/bin/python <temporary-build-dir>/artifacts/selcal-0.1.0.dev0-py3-none-any.whl",
+        "<temporary-build-dir>/clean-venv/bin/python - < wheel-only public smoke on stdin"
+      ],
+      "cwd": "selcal-task4-package-garte4oa",
+      "cwdWasTemporaryWorkspace": true,
+      "deflateDecompressorConstructions": 2,
+      "environment": {
+        "architecture": "arm64",
+        "numpy": "2.4.6",
+        "os": "Darwin",
+        "osRelease": "25.6.0",
+        "python": "3.11.12",
+        "pythonImplementation": "CPython"
+      },
+      "exitCode": 0,
+      "installedFrom": "CURRENT_WHEEL_ONLY_NOT_EDITABLE_NOT_SOURCE_TREE",
+      "packageFile": "selcal-task4-package-garte4oa/clean-venv/lib/python3.11/site-packages/selcal/__init__.py",
+      "pathObservation": "ACTUAL_EPHEMERAL_PATH_RECORDED_RELATIVE_TO_PLATFORM_TEMP_ROOT",
+      "packageMetadata": {
+        "name": "selcal",
+        "version": "0.1.0.dev0"
+      },
+      "publicSmoke": {
+        "csv": "PASS",
+        "npzDeflatedPublicZlib": "PASS",
+        "npzStored": "PASS"
+      },
+      "repositoryPathOnSysPath": false,
+      "sourceModulePresence": [
+        "selcal/input_resources.py",
+        "selcal/inputs.py",
+        "selcal/npz_safe.py"
+      ],
+      "sourceTreeExcluded": true,
+      "wheelRecordCheck": "PASS",
+      "result": "PASS: metadata plus CSV, stored NPZ and deflated NPZ public loaders from wheel site-packages; zipfile.ZipFile forbidden and two public-zlib decompressors observed"
+    },
+    "exactArtifactsRetained": false,
+    "harness": {
+      "path": "scripts/verify_input_package_install.py",
+      "sha256": "e929699d14e579efef31d894c398d1f7251abd366994789c4b6d45f9921d02c3"
+    },
+    "status": "PASS_LOCAL_CURRENT_WHEEL_ONLY",
+    "supersededDistArtifact": {
+      "path": "dist/selcal-0.1.0.dev0-py3-none-any.whl",
+      "sha256": "41ff1ea7c303008e9eebc1f6c64c9324e2eb8645b3fdc23174da27456f2d27f7",
+      "status": "SUPERSEDED_NOT_CURRENT_NOT_USED"
+    },
+    "temporaryArtifactsRetained": false,
+    "temporaryWorkspace": "Created with tempfile.TemporaryDirectory; current artifacts and clean venv were deleted after execution-time hashes and smoke observations were recorded"
+  },
+  "pressureObservation": {
+    "claimCeiling": "LOCAL_DESIGN_PRESSURE_OBSERVATION_ONLY_NOT_PERFORMANCE_GUARANTEE_NOT_STREAMING_NOT_SECURITY_CERTIFICATION_NOT_CROSS_PLATFORM_NOT_M6",
+    "cases": [
+      {
+        "arrayPayloadBytes": 160000,
+        "dtype": "float64",
+        "format": "CSV",
+        "generationContractSha256": "daff549bf14a4461d93e95de115b6476f3f06d72f702502309a92d2818db40be",
+        "inputSha256": "91a95b143ad147e25216df7e8a8147afe3557fcaa7d5a7e100af15fbe62f4ac0",
+        "rawBytes": 103349,
+        "repeatIndex": 1,
+        "rowsOrElements": 10000,
+        "rssBaselineBytes": 42926080,
+        "rssDeltaBytes": 393216,
+        "rssPeakBytes": 43319296,
+        "status": "PASS",
+        "tracemallocPeakBytes": 1152751,
+        "wallSeconds": 0.1310677500005113
+      },
+      {
+        "arrayPayloadBytes": 1600000,
+        "dtype": "float64",
+        "format": "CSV",
+        "generationContractSha256": "daff549bf14a4461d93e95de115b6476f3f06d72f702502309a92d2818db40be",
+        "inputSha256": "1076e9095e809020f8ea73ae9f369266bc53d3747cfcda00a2a20e1952a19cb8",
+        "rawBytes": 1233349,
+        "repeatIndex": 1,
+        "rowsOrElements": 100000,
+        "rssBaselineBytes": 44384256,
+        "rssDeltaBytes": 5603328,
+        "rssPeakBytes": 49987584,
+        "status": "PASS",
+        "tracemallocPeakBytes": 5282148,
+        "wallSeconds": 1.3189037080010166
+      },
+      {
+        "arrayPayloadBytes": 4000000,
+        "dtype": "float64",
+        "format": "CSV",
+        "generationContractSha256": "daff549bf14a4461d93e95de115b6476f3f06d72f702502309a92d2818db40be",
+        "inputSha256": "08800268e4490ad1d613034b80c10824cda4f886b3e08542d8dda49ac3459544",
+        "rawBytes": 3333349,
+        "repeatIndex": 1,
+        "rowsOrElements": 250000,
+        "rssBaselineBytes": 46907392,
+        "rssDeltaBytes": 12206080,
+        "rssPeakBytes": 59113472,
+        "status": "PASS",
+        "tracemallocPeakBytes": 13416012,
+        "wallSeconds": 3.266801666992251
+      },
+      {
+        "arrayPayloadBytes": 16000000,
+        "dtype": "float64",
+        "format": "CSV",
+        "generationContractSha256": "daff549bf14a4461d93e95de115b6476f3f06d72f702502309a92d2818db40be",
+        "inputSha256": "6fabe357d599dc5897e1cfc17643eadcf39c7f78e10d945fbfc092dfd732b0a9",
+        "rawBytes": 14333349,
+        "repeatIndex": 1,
+        "rowsOrElements": 1000000,
+        "rssBaselineBytes": 63307776,
+        "rssDeltaBytes": 55771136,
+        "rssPeakBytes": 119078912,
+        "status": "PASS",
+        "tracemallocPeakBytes": 54777465,
+        "wallSeconds": 13.585475332991336
+      },
+      {
+        "arrayPayloadBytes": 160000,
+        "dtype": "float64",
+        "format": "NPZ",
+        "generationContractSha256": "daff549bf14a4461d93e95de115b6476f3f06d72f702502309a92d2818db40be",
+        "inputSha256": "883c2f2fa1a4517a25d9ee5e441ed545d68737a59b73c64f314b8ef678520208",
+        "rawBytes": 160510,
+        "repeatIndex": 1,
+        "rowsOrElements": 10000,
+        "rssBaselineBytes": 42909696,
+        "rssDeltaBytes": 65536,
+        "rssPeakBytes": 42975232,
+        "status": "PASS",
+        "tracemallocPeakBytes": 1209944,
+        "wallSeconds": 0.0010192079935222864
+      },
+      {
+        "arrayPayloadBytes": 1600000,
+        "dtype": "float64",
+        "format": "NPZ",
+        "generationContractSha256": "daff549bf14a4461d93e95de115b6476f3f06d72f702502309a92d2818db40be",
+        "inputSha256": "52d5fe1dd04f8858d3fdc0a92a57600d319c9afbbc3b9104fa5b8d81d3038c9b",
+        "rawBytes": 1600510,
+        "repeatIndex": 1,
+        "rowsOrElements": 100000,
+        "rssBaselineBytes": 45006848,
+        "rssDeltaBytes": 4259840,
+        "rssPeakBytes": 49266688,
+        "status": "PASS",
+        "tracemallocPeakBytes": 5608765,
+        "wallSeconds": 0.002735332993324846
+      },
+      {
+        "arrayPayloadBytes": 4000000,
+        "dtype": "float64",
+        "format": "NPZ",
+        "generationContractSha256": "daff549bf14a4461d93e95de115b6476f3f06d72f702502309a92d2818db40be",
+        "inputSha256": "c2b5d3c2fdb1498037010ea90e7222e2130840640f2636be175417c645889d5c",
+        "rawBytes": 4000510,
+        "repeatIndex": 1,
+        "rowsOrElements": 250000,
+        "rssBaselineBytes": 50987008,
+        "rssDeltaBytes": 12369920,
+        "rssPeakBytes": 63356928,
+        "status": "PASS",
+        "tracemallocPeakBytes": 14008768,
+        "wallSeconds": 0.005959249989246018
+      },
+      {
+        "arrayPayloadBytes": 16000000,
+        "dtype": "float64",
+        "format": "NPZ",
+        "generationContractSha256": "daff549bf14a4461d93e95de115b6476f3f06d72f702502309a92d2818db40be",
+        "inputSha256": "b22359247e3599d9fc0510a6f7331acabe9cf2153a46f8028832bf6cb5f4e307",
+        "rawBytes": 16000510,
+        "repeatIndex": 1,
+        "rowsOrElements": 1000000,
+        "rssBaselineBytes": 68845568,
+        "rssDeltaBytes": 47529984,
+        "rssPeakBytes": 116375552,
+        "status": "PASS",
+        "tracemallocPeakBytes": 56009165,
+        "wallSeconds": 0.01957420801045373
+      }
+    ],
+    "environment": {
+      "architecture": "arm64",
+      "numpy": "2.4.6",
+      "os": "Darwin",
+      "osRelease": "25.6.0",
+      "psutil": "7.0.0",
+      "python": "3.11.12",
+      "pythonImplementation": "CPython"
+    },
+    "execution": {
+      "freshSubprocessPerCase": true,
+      "parallel": false,
+      "temporaryInputsRetained": false
+    },
+    "method": {
+      "arrayPayloadDefinition": "source.nbytes plus target.nbytes after the public loader returns",
+      "command": "PYTHONPATH=src uv run --no-project --python 3.11 --with numpy==2.4.6 --with psutil==7.0.0 python scripts/verify_input_resource_pressure.py --output <temporary-receipt-path>",
+      "dtype": "float64",
+      "formats": [
+        "CSV",
+        "NPZ"
+      ],
+      "harnessPath": "scripts/verify_input_resource_pressure.py",
+      "harnessSha256": "37626e07be2fbf220b98aac75d0ea974d72810848a931ad1bbe95bcaf394cf62",
+      "inputGenerationContract": "For N rows, source=float64 arange(0,N), target=2*source; CSV is strict UTF-8 with header source,target and base-10 integer rows; NPZ_STORED is numpy.savez with exact source and target keys. Each generated file is SHA-256 hashed before one public load in its own fresh worker process.",
+      "inputGenerationContractSha256": "daff549bf14a4461d93e95de115b6476f3f06d72f702502309a92d2818db40be",
+      "npzStorage": "NPZ_STORED",
+      "repeatCount": 1,
+      "rssSampleIntervalSeconds": 0.001,
+      "rssSamplingLimitation": "Loads shorter than the 0.001-second sampling interval may miss a transient RSS peak; sampled RSS is observational and not a performance guarantee.",
+      "sizes": [
+        10000,
+        100000,
+        250000,
+        1000000
+      ],
+      "temporaryWorkspace": "Created with tempfile.TemporaryDirectory outside the repository and removed before the receipt was written",
+      "tracemalloc": "tracemalloc peak around public load only",
+      "wallTimer": "time.perf_counter around public load only"
+    },
+    "sourceIdentity": [
+      {
+        "path": "src/selcal/input_resources.py",
+        "sha256": "43416d1ed2310d68b5286e7b84e7270930090a8f8b649d911c733bac3e64a44b"
+      },
+      {
+        "path": "src/selcal/inputs.py",
+        "sha256": "124cee19bb3d945ed20ecb7e67bf737b67e548d78be963a380e296a752f83c67"
+      },
+      {
+        "path": "src/selcal/npz_safe.py",
+        "sha256": "5e3c2b95aef63aebc4a3b57f7123ec3b0038c37855257d2764e11ea64d2c7850"
+      }
+    ],
+    "status": "LOCAL_DESIGN_PRESSURE_OBSERVATION_ONLY"
+  },
+  "postWriteFinalVerification": {
+    "commands": [
+      ".venv/bin/python -m pytest tests/test_input_resources.py tests/test_input_csv_limits.py tests/test_input_npz_limits.py tests/test_inputs.py -q",
+      ".venv/bin/python -m pytest --ignore=tests/task10/test_authority_amendment_scope_v1.py -q",
+      ".venv/bin/python -m pytest --ignore=tests/task10/test_authority_amendment_scope_v1.py --cov=selcal --cov-branch --cov-report=term-missing -q",
+      ".venv/bin/python -m pytest -q",
+      ".venv/bin/python -m ruff check src tests scripts examples docs/api/conf.py",
+      ".venv/bin/python -m mypy --strict src/selcal",
+      ".venv/bin/python -m pytest tests/test_repository_hygiene.py -q",
+      "uv lock --check",
+      "git diff --check",
+      ".venv/bin/python -m pytest tests/test_benchmark_in_memory.py tests/test_benchmark_plot.py tests/test_scientific_code_smell_audit.py -q",
+      ".venv/bin/python -m pytest tests/test_input_npz_limits.py tests/test_input_csv_limits.py -k 'reach_target_branch or cursor_contract_drift or malformed_header' -q",
+      ".venv/bin/python -m pytest tests/task10 -q",
+      ".venv/bin/python scripts/verify_input_package_install.py --output <temporary-receipt-path>",
+      "PYTHONPATH=src uv run --no-project --python 3.11 --with numpy==2.4.6 --with psutil==7.0.0 python scripts/verify_input_resource_pressure.py --output <temporary-receipt-path>"
+    ],
+    "limitation": "finalVerificationObservedAt records the start of the final serial observation. The receipt can list observed outputs and be tested after writing, but it cannot cryptographically prove its own immutable hash or exclusive ownership of a pre-existing dirty tree.",
+    "observedAt": "2026-09-01T11:33:37+08:00",
+    "receiptSelfVerification": "TARGETED_POST_RECEIPT_TEST_ONLY_NOT_SELF_CONTAINED_CRYPTOGRAPHIC_PROOF",
+    "results": {
+      "benchmarkAndAudit": "18 passed",
+      "buildCleanInstall": "PASS_LOCAL_CURRENT_WHEEL_ONLY",
+      "coverageCombinedOpportunityPercent": 95.14908256880734,
+      "diffCheck": "PASS",
+      "focusedInput": "314 passed, 1 skipped",
+      "hygiene": "12 passed",
+      "lock": "51 packages resolved",
+      "moduleAcceptance": "2851 passed, 1 skipped",
+      "mypy": "PASS_STRICT_32_FILES",
+      "ruff": "PASS_RUFF_0.16.5",
+      "unfiltered": "2891 passed, 1 skipped, 12 expected failures"
+    },
+    "sourceIdentity": [
+      {
+        "path": "src/selcal/input_resources.py",
+        "sha256": "43416d1ed2310d68b5286e7b84e7270930090a8f8b649d911c733bac3e64a44b"
+      },
+      {
+        "path": "src/selcal/inputs.py",
+        "sha256": "124cee19bb3d945ed20ecb7e67bf737b67e548d78be963a380e296a752f83c67"
+      },
+      {
+        "path": "src/selcal/npz_safe.py",
+        "sha256": "5e3c2b95aef63aebc4a3b57f7123ec3b0038c37855257d2764e11ea64d2c7850"
+      }
+    ],
+    "status": "PASS_WITH_EXPECTED_TASK10_ADVERSE_RESULT"
+  },
+  "redGreenEvidence": [
+    {
+      "command": ".venv/bin/python -m pytest tests/test_scientific_code_smell_audit.py -q",
+      "counts": {
+        "failed": 10,
+        "passed": 0,
+        "skipped": 0
+      },
+      "evidenceId": "INITIAL_AUDIT_MISSING_RED",
+      "exitCode": 1,
+      "phase": "RED",
+      "provenance": "RAW_OUTPUT_NOT_RETAINED_COUNT_SUMMARY_RECORDED_DURING_ORIGINAL_RUN",
+      "result": "10 failed because the canonical v3 audit, input verification receipt and README contract section did not yet exist",
+      "status": "EXPECTED_TDD_RED"
+    },
+    {
+      "command": ".venv/bin/python -m pytest tests/test_benchmark_in_memory.py tests/test_benchmark_plot.py -q",
+      "counts": {
+        "failed": 1,
+        "passed": 5,
+        "skipped": 0
+      },
+      "evidenceId": "BENCHMARK_SOURCE_BINDING_RED",
+      "exitCode": 1,
+      "phase": "RED",
+      "provenance": "RAW_OUTPUT_NOT_RETAINED_COUNT_SUMMARY_RECORDED_DURING_ORIGINAL_RUN",
+      "result": "1 source-identity failure because the retained benchmark receipt bound 30 source files while the frozen candidate contained 32",
+      "status": "EXPECTED_SOURCE_BINDING_RED"
+    },
+    {
+      "command": ".venv/bin/python -m pytest tests/test_input_npz_limits.py tests/test_input_csv_limits.py -k 'reach_target_branch or cursor_contract_drift or malformed_header' -q",
+      "counts": {
+        "failed": 0,
+        "passed": 15,
+        "skipped": 0
+      },
+      "evidenceId": "CHARACTERIZATION_BRANCH_COVERAGE_GREEN",
+      "exitCode": 0,
+      "nodeIds": [
+        "tests/test_input_npz_limits.py::test_public_npz_rejection_mutations_reach_target_branch[trailing_partial_extra_header]",
+        "tests/test_input_npz_limits.py::test_public_npz_rejection_mutations_reach_target_branch[zip64_payload_missing]",
+        "tests/test_input_npz_limits.py::test_public_npz_rejection_mutations_reach_target_branch[zip64_ordinary_uncompressed_mismatch]",
+        "tests/test_input_npz_limits.py::test_public_npz_rejection_mutations_reach_target_branch[zip64_ordinary_compressed_mismatch]",
+        "tests/test_input_npz_limits.py::test_public_npz_rejection_mutations_reach_target_branch[local_offset_out_of_range]",
+        "tests/test_input_npz_limits.py::test_public_npz_rejection_mutations_reach_target_branch[bad_local_signature]",
+        "tests/test_input_npz_limits.py::test_public_npz_rejection_mutations_reach_target_branch[local_variable_fields_enter_central]",
+        "tests/test_input_npz_limits.py::test_public_npz_rejection_mutations_reach_target_branch[member_data_enters_central]",
+        "tests/test_input_npz_limits.py::test_public_npz_rejection_mutations_reach_target_branch[central_record_too_short]",
+        "tests/test_input_npz_limits.py::test_public_npz_rejection_mutations_reach_target_branch[bad_central_signature]",
+        "tests/test_input_npz_limits.py::test_public_npz_rejection_mutations_reach_target_branch[central_size_sentinel]",
+        "tests/test_input_npz_limits.py::test_public_npz_rejection_mutations_reach_target_branch[central_record_overflow]",
+        "tests/test_input_npz_limits.py::test_public_npz_rejection_mutations_reach_target_branch[npy_missing_header_length]",
+        "tests/test_input_npz_limits.py::test_public_npz_rejects_numpy_header_cursor_contract_drift",
+        "tests/test_input_csv_limits.py::test_public_csv_malformed_header_uses_header_exception_boundary"
+      ],
+      "phase": "GREEN",
+      "provenance": "CURRENT_REPLAYABLE_COMMAND_OBSERVATION",
+      "result": "15 passed",
+      "selector": "reach_target_branch or cursor_contract_drift or malformed_header",
+      "status": "CHARACTERIZATION_COVERAGE_PASS_NOT_CLAIMED_AS_RED"
+    },
+    {
+      "command": ".venv/bin/python -m pytest tests/test_benchmark_in_memory.py tests/test_benchmark_plot.py -q",
+      "counts": {
+        "failed": 0,
+        "passed": 6,
+        "skipped": 0
+      },
+      "evidenceId": "BENCHMARK_REGEN_GREEN",
+      "exitCode": 0,
+      "phase": "GREEN",
+      "provenance": "CURRENT_REPLAYABLE_COMMAND_OBSERVATION",
+      "result": "6 passed after serial regeneration through the existing benchmark and plot route",
+      "status": "PASS"
+    },
+    {
+      "command": ".venv/bin/python -m pytest tests/test_scientific_code_smell_audit.py -q",
+      "counts": {
+        "failed": 5,
+        "passed": 10,
+        "skipped": 0
+      },
+      "evidenceId": "SPEC_REVIEW_EVIDENCE_RED",
+      "exitCode": 1,
+      "phase": "RED",
+      "provenance": "RAW_OUTPUT_NOT_RETAINED_COUNT_SUMMARY_RECORDED_DURING_ORIGINAL_RUN",
+      "result": "5 failed and 10 passed because pressure claim ceiling, Task3 RED provenance, Task4 attribution, current-wheel build/clean-install and final-verification identity were absent",
+      "status": "EXPECTED_SPEC_REVIEW_TDD_RED"
+    },
+    {
+      "command": ".venv/bin/python -m pytest tests/test_scientific_code_smell_audit.py -q",
+      "counts": {
+        "failed": 6,
+        "passed": 6,
+        "skipped": 0
+      },
+      "evidenceId": "QUALITY_REVIEW_EVIDENCE_RED",
+      "exitCode": 1,
+      "phase": "RED",
+      "provenance": "RAW_OUTPUT_NOT_RETAINED_COUNT_SUMMARY_RECORDED_DURING_ORIGINAL_RUN",
+      "result": "6 failed and 6 passed because exact selector/count provenance, resolved matrix cells, replayable pressure/package harness bindings, Task10 aggregation and readiness recomputation were absent",
+      "status": "EXPECTED_QUALITY_HOLD_TDD_RED"
+    }
+  ],
+  "repositoryIdentity": {
+    "branch": "codex/contract-resolution-pearson",
+    "state": "DIRTY_UNCOMMITTED_IMPLEMENTATION_CANDIDATE",
+    "trackedBase": "94f993bfd5240739f23dd5f5309a51e51034b962"
+  },
+  "schemaVersion": "selcal-input-resource-envelope-verification-v1.1",
+  "sourceIdentity": [
+    {
+      "path": "src/selcal/input_resources.py",
+      "sha256": "43416d1ed2310d68b5286e7b84e7270930090a8f8b649d911c733bac3e64a44b"
+    },
+    {
+      "path": "src/selcal/inputs.py",
+      "sha256": "124cee19bb3d945ed20ecb7e67bf737b67e548d78be963a380e296a752f83c67"
+    },
+    {
+      "path": "src/selcal/npz_safe.py",
+      "sha256": "5e3c2b95aef63aebc4a3b57f7123ec3b0038c37855257d2764e11ea64d2c7850"
+    }
+  ],
+  "stableErrorPrefix": "INPUT_RESOURCE_LIMIT_EXCEEDED_V1 reason=<CODE> limit=<INTEGER>",
+  "status": "INPUT_RESOURCE_ENVELOPE_V1_1_RESOLVED_IN_CURRENT_CANDIDATE",
+  "task3TddRedEvidence": [
+    {
+      "failureNature": "The pre-v1.1 implementation depended on private ZipExtFile state instead of the approved public-zlib extraction path.",
+      "requirement": "PUBLIC_ZLIB_PATH",
+      "status": "TDD_RED_OBSERVED_DURING_TASK3_IMPLEMENTATION_NOT_RETAINED_AS_RAW_LOG",
+      "subsequentGreen": "CURRENT_TARGET_TESTS_PASS",
+      "testNames": [
+        "test_production_npz_ast_allows_only_the_zip_exception_import",
+        "test_no_tail_deflate_uses_one_bounded_no_flush_decompressor_and_offers_exact_range"
+      ]
+    },
+    {
+      "failureNature": "The public loader still constructed the stdlib ZIP parser before the production route was replaced.",
+      "requirement": "STDLIB_ZIPFILE_FORBIDDEN",
+      "status": "TDD_RED_OBSERVED_DURING_TASK3_IMPLEMENTATION_NOT_RETAINED_AS_RAW_LOG",
+      "subsequentGreen": "CURRENT_TARGET_TESTS_PASS",
+      "testNames": [
+        "test_public_load_never_constructs_the_stdlib_zip_parser"
+      ]
+    },
+    {
+      "failureNature": "The deflate path did not yet prove exactly one decompressor object per compressed member.",
+      "requirement": "SINGLE_DECOMPRESSOR",
+      "status": "TDD_RED_OBSERVED_DURING_TASK3_IMPLEMENTATION_NOT_RETAINED_AS_RAW_LOG",
+      "subsequentGreen": "CURRENT_TARGET_TESTS_PASS",
+      "testNames": [
+        "test_no_tail_deflate_uses_one_bounded_no_flush_decompressor_and_offers_exact_range"
+      ]
+    },
+    {
+      "failureNature": "The deflate loop did not yet satisfy the requirement to drain unconsumed_tail before offering new raw input.",
+      "requirement": "UNCONSUMED_TAIL_DRAINED_FIRST",
+      "status": "TDD_RED_OBSERVED_DURING_TASK3_IMPLEMENTATION_NOT_RETAINED_AS_RAW_LOG",
+      "subsequentGreen": "CURRENT_TARGET_TESTS_PASS",
+      "testNames": [
+        "test_deflate_drains_unconsumed_tail_before_offering_new_raw_input"
+      ]
+    },
+    {
+      "failureNature": "The replacement route had not yet demonstrated that production extraction never calls decompressobj.flush().",
+      "requirement": "NO_FLUSH",
+      "status": "TDD_RED_OBSERVED_DURING_TASK3_IMPLEMENTATION_NOT_RETAINED_AS_RAW_LOG",
+      "subsequentGreen": "CURRENT_TARGET_TESTS_PASS",
+      "testNames": [
+        "test_no_tail_deflate_uses_one_bounded_no_flush_decompressor_and_offers_exact_range"
+      ]
+    },
+    {
+      "failureNature": "The loader did not yet enforce true deflate EOF, exact compressed-range consumption and no calls after first real EOF.",
+      "requirement": "TRUE_EOF_AND_EXACT_RANGE",
+      "status": "TDD_RED_OBSERVED_DURING_TASK3_IMPLEMENTATION_NOT_RETAINED_AS_RAW_LOG",
+      "subsequentGreen": "CURRENT_TARGET_TESTS_PASS",
+      "testNames": [
+        "test_public_load_stops_at_first_real_deflate_eof_without_reading_trailing_blocks",
+        "test_public_load_requires_true_deflate_eof_and_exact_compressed_range"
+      ]
+    },
+    {
+      "failureNature": "CRC failure ordering had not yet been demonstrated to stop before NPY preflight and numpy loading.",
+      "requirement": "CRC_ORDER",
+      "status": "TDD_RED_OBSERVED_DURING_TASK3_IMPLEMENTATION_NOT_RETAINED_AS_RAW_LOG",
+      "subsequentGreen": "CURRENT_TARGET_TESTS_PASS",
+      "testNames": [
+        "test_public_stored_crc_failure_stops_before_npy_preflight_and_np_load"
+      ]
+    },
+    {
+      "failureNature": "Actual expanded-size resource failure had not yet been demonstrated to precede equality, CRC and NPY parsing failures.",
+      "requirement": "RESOURCE_PRIORITY",
+      "status": "TDD_RED_OBSERVED_DURING_TASK3_IMPLEMENTATION_NOT_RETAINED_AS_RAW_LOG",
+      "subsequentGreen": "CURRENT_TARGET_TESTS_PASS",
+      "testNames": [
+        "test_stored_actual_range_limit_plus_one_precedes_equality_crc_and_npy",
+        "test_public_load_observes_actual_deflate_member_limit_plus_one_before_crc"
+      ]
+    }
+  ],
+  "task4Attribution": {
+    "implementerActionLogTouchedPaths": [
+      "README.md",
+      "docs/benchmarks/in_memory_standard_20260831.json",
+      "docs/benchmarks/in_memory_standard_20260831_figure.png",
+      "docs/benchmarks/in_memory_standard_20260831_figure.svg",
+      "docs/status/input_resource_envelope_verification_20260831.json",
+      "docs/status/scientific_code_smell_audit_20260831_v3.json",
+      "docs/status/softwarex_readiness_20260831.md",
+      "scripts/verify_input_package_install.py",
+      "scripts/verify_input_resource_pressure.py",
+      "tests/test_input_csv_limits.py",
+      "tests/test_input_npz_limits.py",
+      "tests/test_scientific_code_smell_audit.py"
+    ],
+    "limitation": "The repository was already heavily dirty when Task4 began. The action log and current diff can bound this implementer's recorded actions but cannot cryptographically prove ownership of every dirty byte or exclude concurrent edits.",
+    "productionBytesChangedByTask4": false,
+    "productionHashesAtFinal": {
+      "src/selcal/input_resources.py": "43416d1ed2310d68b5286e7b84e7270930090a8f8b649d911c733bac3e64a44b",
+      "src/selcal/inputs.py": "124cee19bb3d945ed20ecb7e67bf737b67e548d78be963a380e296a752f83c67",
+      "src/selcal/npz_safe.py": "5e3c2b95aef63aebc4a3b57f7123ec3b0038c37855257d2764e11ea64d2c7850"
+    },
+    "productionHashesAtStart": {
+      "src/selcal/input_resources.py": "43416d1ed2310d68b5286e7b84e7270930090a8f8b649d911c733bac3e64a44b",
+      "src/selcal/inputs.py": "124cee19bb3d945ed20ecb7e67bf737b67e548d78be963a380e296a752f83c67",
+      "src/selcal/npz_safe.py": "5e3c2b95aef63aebc4a3b57f7123ec3b0038c37855257d2764e11ea64d2c7850"
+    },
+    "provenance": "IMPLEMENTER_ACTION_LOG_PLUS_CURRENT_DIFF_NOT_CRYPTOGRAPHIC_OWNERSHIP_PROOF",
+    "startSnapshot": {
+      "observationSource": "TASK4_DISPATCH_SUMMARY_CONFIRMED_AGAINST_CURRENT_BYTES",
+      "sourceHashes": {
+        "src/selcal/input_resources.py": "43416d1ed2310d68b5286e7b84e7270930090a8f8b649d911c733bac3e64a44b",
+        "src/selcal/inputs.py": "124cee19bb3d945ed20ecb7e67bf737b67e548d78be963a380e296a752f83c67",
+        "src/selcal/npz_safe.py": "5e3c2b95aef63aebc4a3b57f7123ec3b0038c37855257d2764e11ea64d2c7850"
+      }
+    }
+  },
+  "verification": {
+    "coverage": {
+      "branchCoveragePercent": 91.54478976234003,
+      "command": ".venv/bin/python -m pytest --ignore=tests/task10/test_authority_amendment_scope_v1.py --cov=selcal --cov-branch --cov-report=term-missing -q",
+      "combinedOpportunityCoveragePercent": 95.14908256880734,
+      "coveredBranches": 2003,
+      "coveredLines": 6294,
+      "coveredOpportunities": 8297,
+      "exitCode": 0,
+      "lineCoveragePercent": 96.35639926515616,
+      "missingBranches": 185,
+      "missingLines": 238,
+      "newlyCoveredOpportunities": 30,
+      "numBranches": 2188,
+      "numPartialBranches": 165,
+      "numStatements": 6532,
+      "status": "PASS",
+      "thresholdPercent": 80.0,
+      "totalOpportunities": 8720
+    },
+    "focusedInputSuite": {
+      "command": ".venv/bin/python -m pytest tests/test_input_resources.py tests/test_input_csv_limits.py tests/test_input_npz_limits.py tests/test_inputs.py -q",
+      "exitCode": 0,
+      "result": "314 passed, 1 skipped",
+      "status": "PASS"
+    },
+    "gitDiffCheck": {
+      "command": "git diff --check",
+      "exitCode": 0,
+      "status": "PASS"
+    },
+    "moduleAcceptance": {
+      "command": ".venv/bin/python -m pytest --ignore=tests/task10/test_authority_amendment_scope_v1.py -q",
+      "exitCode": 0,
+      "passed": 2851,
+      "skipped": 1,
+      "status": "PASS"
+    },
+    "mypy": {
+      "command": ".venv/bin/python -m mypy --strict src/selcal",
+      "exitCode": 0,
+      "result": "Success: no issues found in 32 source files",
+      "status": "PASS_STRICT"
+    },
+    "repositoryHygiene": {
+      "command": ".venv/bin/python -m pytest tests/test_repository_hygiene.py -q",
+      "exitCode": 0,
+      "result": "12 passed",
+      "status": "PASS_ZERO_FINDINGS"
+    },
+    "ruff": {
+      "command": ".venv/bin/python -m ruff check src tests scripts examples docs/api/conf.py",
+      "exitCode": 0,
+      "result": "All checks passed",
+      "status": "PASS_RUFF_0.16.5"
+    },
+    "task10Aggregate": {
+      "command": ".venv/bin/python -m pytest tests/task10 -q",
+      "exitCode": 1,
+      "failed": 12,
+      "passed": 176,
+      "skipped": 0,
+      "status": "EXPECTED_ADVERSE_SCOPE_V1_FAILURES_RETAINED"
+    },
+    "unfilteredSuite": {
+      "command": ".venv/bin/python -m pytest -q",
+      "exitCode": 1,
+      "failed": 12,
+      "currentPathCount": 168,
+      "currentPathSetSha256": "6d630c3942ea79d7396d6e1144c99ab45ea63e499b1cacb7fdff488db08e6cca",
+      "frozenPathCount": 109,
+      "passed": 2891,
+      "skipped": 1,
+      "status": "EXPECTED_ADVERSE_TASK10_SCOPE_V1_RETAINED"
+    },
+    "uvLockCheck": {
+      "command": "uv lock --check",
+      "exitCode": 0,
+      "result": "Resolved 51 packages",
+      "status": "PASS"
+    }
+  }
+}

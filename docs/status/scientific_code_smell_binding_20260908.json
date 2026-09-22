@@ -1,0 +1,24 @@
+{
+  "schemaVersion": "selcal-historical-code-audit-binding-v1",
+  "checkedDate": "2026-09-08",
+  "status": "HISTORICAL_AUDIT_CURRENT_SOURCE_DELTA_ONLY",
+  "priorAuditPath": "docs/status/scientific_code_smell_audit_20260831_v3.json",
+  "priorAuditSha256": "2f61dbce8c41cf8a0298407d61478936925d54c2a47716fa6b3c38de85d4dccc",
+  "changedSource": {
+    "path": "src/selcal/contracts_v2.py",
+    "priorSha256": "9e4cb4a945602c3ca8e299aefa73b01e753d3b90bdaa465b849d81bcc2b80ef5",
+    "currentSha256": "85e201ad5efdf6f3a31064d69557d5dd641d43c14edf5f868ce682088e53961d",
+    "preimagePath": "docs/status/evidence/product_gate_repair_20260908/contracts_v2.pre-extraction-20260908.py.txt",
+    "preimageProvenance": "Exact bytes read from the retained pre-refactor installed package, SHA-256 independently equals the original audit's contracts source identity."
+  },
+  "extractedSource": {
+    "path": "src/selcal/_verifier_primitives_v2.py",
+    "sha256": "314bd108c242bc19bf2cf4ccfbf6a311633e2577f3097e063ebcbb23cc064060"
+  },
+  "unchangedPriorSourceCount": 12,
+  "fullCodeSmellAuditReperformed": false,
+  "historicalFindingsPromoted": false,
+  "scientificValidation": false,
+  "releaseApproved": false,
+  "method": "Retain the immutable prior audit and its adverse findings as historical. For its one changed source, retain a verified exact preimage and bind the current contracts plus extracted primitive bytes. All other 12 cited source identities still match current bytes. This establishes source evolution only; it does not transfer historical complexity measurements or promote old findings to a current whole-code audit. Current bounded behavior/spec/quality evidence is recorded separately."
+}

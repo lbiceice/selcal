@@ -1,0 +1,1947 @@
+{
+  "contractType": "M6P1_SEMANTIC_CONTRACT",
+  "contractId": "selcal.m6-p1.semantic-contract.v9",
+  "contractVersion": 9,
+  "status": {
+    "design": "PROPOSAL",
+    "approval": "NOT_APPROVED",
+    "freeze": "NOT_FROZEN",
+    "implementation": "NOT_IMPLEMENTED",
+    "m6Execution": "NOT_EXECUTED"
+  },
+  "claimCeiling": "This machine-readable contract is a revision-9 design proposal. It is not an implemented validator, an execution approval, scientific evidence, a resource measurement, or SoftwareX readiness evidence.",
+  "authority": {
+    "normativeForDynamicSemantics": true,
+    "humanFormulaDocumentIsExplanatory": true,
+    "artifactSchemaAuthority": "LOCAL_SHAPE_ONLY",
+    "soleFutureInterpreterId": "selcal.m6-p1.semantic-validator.v9",
+    "soleFutureInterpreterStatus": "ABSENT_NOT_IMPLEMENTED",
+    "repairPolicy": "REJECT_NEVER_REPAIR",
+    "scientificEngineMayBeInvoked": false,
+    "externalApprovalMayBeInferredFromLocalFiles": false
+  },
+  "companionIds": {
+    "formulaDocumentId": "selcal.m6-p1.resource-envelope.formulas.v9",
+    "artifactSchemaId": "https://selcal.dev/schemas/m6-p1-artifact-contract-v9-proposal.schema.json",
+    "budgetProfileId": "m6-p1-reference-envelope-v1.1-revision9",
+    "runtimeLayoutProfileId": "m6-p1-runtime-layout-v9",
+    "runtimeProbeContractId": "selcal.m6-p1.runtime-probe.v9",
+    "rootGraphContractId": "selcal.m6-p1.declared-run-graph.v9",
+    "canonicalJsonProfileId": "selcal-m6-p1-canonical-json-v2",
+    "binary64SidecarFormatId": "selcal-m6-p1-f64le-v1"
+  },
+  "closedConstants": {
+    "maxOperandBits": 256,
+    "maxVectorLength": 2500000,
+    "maxCandidateCount": 2500,
+    "maxFiniteReplicateCount": 1000,
+    "maxExactStateCount": 100000,
+    "maxBlockCount": 4096,
+    "maxLiveCandidateRecords": 5000,
+    "maxPersistedCandidateRecordsPerLedger": 100000,
+    "maxChunkRows": 256,
+    "maxChunkCountPerStream": 1000000,
+    "maxDisagreementDiagnostics": 256,
+    "maxDisagreementCodesPerRecord": 32,
+    "maxDiagnosticReplayCandidateOperations": 640000,
+    "maxDiagnosticRowsPerGroup": 12,
+    "maxDiagnosticCounterEntries": 250000,
+    "maxDiagnosticCounterKeyBytes": 192,
+    "maxDiagnosticCounterKeySegments": 12,
+    "maxSourceFilesPerInventory": 256,
+    "maxDependenciesPerInventory": 256,
+    "maxSourceFileBytes": 16777216,
+    "maxSourceInventoryBytes": 67108864,
+    "maxJsonDocumentBytes": 16777216,
+    "maxInputSidecarBytes": 67108864,
+    "maxPrimaryLedgerBytes": 268435456,
+    "maxComparisonLedgerBytes": 134217728,
+    "maxDiagnosticLedgerBytes": 67108864,
+    "maxTerminalRootBytes": 16777216,
+    "maxRunPackageBytes": 536870912,
+    "failureManifestReserveBytes": 16777216,
+    "maxReferenceOwnedPeakBytes": 536870912,
+    "maxIoByteVisits": 4294967296,
+    "maxTransformValueVisits": 2500000,
+    "maxCandidateSupportVisits": 2500000,
+    "maxPearsonValueVisits": 15000000,
+    "maxNetteEdgeWorkUnits": 2500000,
+    "maxNetteCodingValueVisits": 15000000,
+    "maxNetteDirectionalSupportVisits": 5000000,
+    "maxNetteCounterUpdateVisits": 20000000,
+    "maxNetteSortUnits": 25000000,
+    "maxNetteCmiArithmeticUnits": 30000000,
+    "maxSelectionWorkUnits": 1000000,
+    "maxStateGenerationUnits": 2500000,
+    "maxStateIdentityValidationUnits": 10000000,
+    "maxStateApplicationUnits": 2500000,
+    "maxNullBindWorkUnits": 16,
+    "maxPrimaryComputeWorkUnits": 50000000,
+    "maxComparisonComputeWorkUnits": 10000000,
+    "maxDiagnosticComputeWorkUnits": 50000000,
+    "maxTotalComputeWorkUnits": 90000000,
+    "floatAbsoluteToleranceHex": "0x1.0000000000000p-46"
+  },
+  "canonicalScalarRules": {
+    "FloatHex": {
+      "acceptedJsonType": "string",
+      "algorithm": [
+        "x = float.fromhex(token)",
+        "require math.isfinite(x)",
+        "require x.hex() == token"
+      ],
+      "canonicalExamples": [
+        "0x0.0p+0",
+        "-0x0.0p+0",
+        "0x1.0000000000000p-1",
+        "0x1.fffffffffffffp+1023"
+      ],
+      "rejectedExamples": [
+        "0X1.0P+0",
+        "+0x1.0000000000000p+0",
+        "0x1p+0",
+        "inf",
+        "nan"
+      ]
+    },
+    "StrictProbability": {
+      "representation": "FloatHex",
+      "predicate": "0 < float.fromhex(token) < 1"
+    },
+    "NonnegativeTolerance": {
+      "representation": "FloatHex",
+      "predicate": "0 <= float.fromhex(token) and math.isfinite(float.fromhex(token))"
+    },
+    "UTCInstant": {
+      "jsonPattern": "^[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}Z$",
+      "algorithm": [
+        "dt = datetime.datetime.strptime(token, '%Y-%m-%dT%H:%M:%SZ')",
+        "roundtrip = dt.strftime('%Y-%m-%dT%H:%M:%SZ')",
+        "require roundtrip == token"
+      ],
+      "timezone": "UTC",
+      "leapSecondPolicy": "REJECT"
+    },
+    "NormalizedRelativePath": {
+      "encoding": "ASCII",
+      "maxBytes": 512,
+      "segmentPattern": "^[A-Za-z0-9._-]+$",
+      "forbiddenSegments": [
+        ".",
+        ".."
+      ],
+      "forbiddenProperties": [
+        "LEADING_SLASH",
+        "TRAILING_SLASH",
+        "EMPTY_SEGMENT",
+        "BACKSLASH",
+        "NUL",
+        "UNICODE",
+        "SYMLINK",
+        "REALPATH_ESCAPE"
+      ]
+    }
+  },
+  "guardedIntegerOperatorRegistry": {
+    "domain": {
+      "jsonType": "integer_not_boolean",
+      "minimum": 0,
+      "maximumExpression": "2**maxOperandBits-1"
+    },
+    "operators": [
+      {
+        "name": "I",
+        "arity": 1,
+        "input": "boolean_only",
+        "result": "1 if true else 0"
+      },
+      {
+        "name": "gadd",
+        "arity": 2,
+        "precondition": "a <= OPERAND_MAX-b",
+        "result": "a+b"
+      },
+      {
+        "name": "ginc",
+        "arity": 1,
+        "definition": {
+          "op": "gadd",
+          "args": [
+            {
+              "var": "a"
+            },
+            1
+          ]
+        }
+      },
+      {
+        "name": "gsub",
+        "arity": 2,
+        "precondition": "b<=a",
+        "result": "a-b"
+      },
+      {
+        "name": "gmul",
+        "arity": 2,
+        "precondition": "a==0 or b<=OPERAND_MAX//a",
+        "result": "a*b"
+      },
+      {
+        "name": "gceil",
+        "arity": 2,
+        "precondition": "b>0",
+        "result": "divmod(a,b)[0]+I(divmod(a,b)[1]!=0)"
+      },
+      {
+        "name": "ceil_log2",
+        "arity": 1,
+        "result": "0 if x<=1 else (x-1).bit_length()"
+      },
+      {
+        "name": "decimal_digits",
+        "arity": 1,
+        "result": "1 if x==0 else len(str(x))"
+      }
+    ],
+    "failureCode": "OPERAND_BITS_LIMIT"
+  },
+  "closedEnumRegistries": {
+    "calculationMode": [
+      "ALL_STATE_EXACT",
+      "FINITE_B_COMPLETED_STATE_REPLAY"
+    ],
+    "executionBranch": [
+      "EXACT_BRANCH_UNRESOLVED",
+      "FINITE_BRANCH_UNRESOLVED",
+      "ALL_STATE_EXACT_COMPONENT",
+      "FINITE_NORMAL",
+      "FINITE_REPLICATE_FAILURE",
+      "FINITE_OBSERVED_ANALYTIC_FAILURE",
+      "NULL_BIND_DISABLED"
+    ],
+    "terminalClass": [
+      "COMPLETE",
+      "NULL_DISABLED",
+      "OBSERVED_ANALYTIC_FAILURE",
+      "REPLICATE_ANALYTIC_FAILURE",
+      "EXACT_ANALYTIC_FAILURE",
+      "INTERRUPTED",
+      "RESOURCE_FAILURE",
+      "INTEGRITY_FAILURE",
+      "VALIDATION_FAILURE"
+    ],
+    "statisticFamily": [
+      "LAGGED_PEARSON",
+      "NET_TRANSFER_ENTROPY"
+    ],
+    "nullFamily": [
+      "CIRCULAR_SHIFT",
+      "BLOCK_SHUFFLE"
+    ],
+    "selectionRule": [
+      "max_upper",
+      "max_absolute"
+    ],
+    "sourceRole": [
+      "REFERENCE_IMPLEMENTATION",
+      "PRODUCTION_IMPLEMENTATION",
+      "COMPARISON_DRIVER"
+    ],
+    "writerDisposition": [
+      "NOT_OPENED",
+      "RETAINED_PARTIAL",
+      "DISCARDED_PARTIAL",
+      "INSTALLED"
+    ],
+    "digestStatus": [
+      "VERIFIED",
+      "UNVERIFIED"
+    ]
+  },
+  "failureRegistries": {
+    "CandidateAnalyticFailureCode": {
+      "emitters": [
+        "PEARSON_SCAN",
+        "NETTE_SCAN"
+      ],
+      "codes": [
+        "INSUFFICIENT_EFFECTIVE_PAIRS",
+        "CONSTANT_SOURCE_WINDOW",
+        "CONSTANT_TARGET_WINDOW",
+        "NONFINITE_PEARSON_RESULT",
+        "NETTE_EMPTY_SOURCE_SUPPORT",
+        "NETTE_EMPTY_TARGET_SUPPORT",
+        "NETTE_EMPTY_JOINT_SUPPORT",
+        "NETTE_NEGATIVE_CMI_BEYOND_TOLERANCE",
+        "NETTE_NONFINITE_RESULT"
+      ]
+    },
+    "ComparisonDisagreementCode": {
+      "emitters": [
+        "COMPARISON_FIELD",
+        "COMPARISON_LOCATOR",
+        "COMPARISON_AGGREGATE"
+      ],
+      "codesInSeverityOrder": [
+        "LOCATOR_IDENTITY_MISMATCH",
+        "RECORD_KIND_MISMATCH",
+        "TERMINAL_CLASS_MISMATCH",
+        "STATE_COMPONENT_MISMATCH",
+        "CANDIDATE_INDEX_MISMATCH",
+        "CANDIDATE_VALUE_MISMATCH",
+        "CANDIDATE_STATUS_MISMATCH",
+        "CANDIDATE_ESTIMATE_MISMATCH",
+        "CANDIDATE_FAILURE_CODE_MISMATCH",
+        "SELECTION_STATUS_MISMATCH",
+        "SELECTED_INDEX_MISMATCH",
+        "TIED_INDEX_MISMATCH",
+        "TAIL_INDICATOR_MISMATCH",
+        "AGGREGATE_COUNT_MISMATCH",
+        "AGGREGATE_FRACTION_MISMATCH",
+        "AGGREGATE_FLOAT_MISMATCH",
+        "DECISION_MISMATCH"
+      ]
+    },
+    "TerminalFailureCode": {
+      "emitterToCodes": {
+        "BYTE_STAT_HASH_PREFLIGHT": [
+          "PATH_POLICY_VIOLATION",
+          "SYMLINK_REJECTED",
+          "FILE_NOT_REGULAR",
+          "FILE_SIZE_LIMIT",
+          "FILE_SIZE_MISMATCH",
+          "FILE_DIGEST_MISMATCH",
+          "SOURCE_INVENTORY_ID_MISMATCH"
+        ],
+        "JSON_DECODE": [
+          "JSON_BYTE_LIMIT",
+          "JSON_DECODE_FAILED",
+          "JSON_DUPLICATE_KEY",
+          "JSON_NONCANONICAL"
+        ],
+        "BINARY_HEADER_PARSE": [
+          "SIDECAR_MAGIC_MISMATCH",
+          "SIDECAR_VERSION_MISMATCH",
+          "SIDECAR_FLAGS_MISMATCH",
+          "SIDECAR_LENGTH_MISMATCH"
+        ],
+        "BINARY_PAYLOAD_SCAN": [
+          "SIDECAR_NONFINITE_VALUE",
+          "INPUT_LENGTH_MISMATCH",
+          "INPUT_LENGTH_LIMIT"
+        ],
+        "SCHEMA_VALIDATE": [
+          "SCHEMA_VALIDATION_FAILED"
+        ],
+        "NORMALIZATION": [
+          "INVALID_BOOLEAN_AS_INTEGER",
+          "INVALID_NUMERIC_TYPE",
+          "NONFINITE_FLOAT",
+          "FLOAT_HEX_NONCANONICAL",
+          "ALPHA_OUT_OF_RANGE",
+          "TIE_TOLERANCE_NEGATIVE",
+          "CANDIDATE_NONPOSITIVE",
+          "CANDIDATE_NOT_STRICTLY_ASCENDING",
+          "CANDIDATE_COUNT_LIMIT",
+          "CANDIDATE_EXCEEDS_INPUT",
+          "BLOCK_LENGTH_NOT_DIVISOR",
+          "BLOCK_COUNT_OUT_OF_RANGE",
+          "REPLICATE_MAPPING_INVALID"
+        ],
+        "ADMISSION": [
+          "EXACT_STATE_LIMIT",
+          "LIVE_CANDIDATE_LIMIT",
+          "LEDGER_CANDIDATE_LIMIT",
+          "DIAGNOSTIC_REPLAY_LIMIT",
+          "BYTE_ADMISSION_LIMIT",
+          "MEMORY_ADMISSION_LIMIT",
+          "IO_ADMISSION_LIMIT",
+          "COMPUTE_ADMISSION_LIMIT",
+          "OPERAND_BITS_LIMIT"
+        ],
+        "RUNTIME_BINDING": [
+          "RUNTIME_PROFILE_MISMATCH",
+          "RUNTIME_PROBE_MISMATCH",
+          "EXTERNAL_BINDING_MISMATCH",
+          "PINNED_APPROVAL_ABSENT",
+          "PINNED_APPROVAL_DIGEST_MISMATCH",
+          "LOCAL_APPROVAL_NOT_TRUSTED"
+        ],
+        "SCIENTIFIC_CALL": [
+          "PRODUCTION_PROTOCOL_FAILURE",
+          "REFERENCE_PROTOCOL_FAILURE",
+          "CANDIDATE_ANALYTIC_FAILURE_ESCALATED"
+        ],
+        "COMPARISON": [
+          "REQUIRED_FIELD_PLAN_MISMATCH",
+          "COMPARISON_AGGREGATE_INVALID",
+          "DIAGNOSTIC_BIJECTION_INVALID"
+        ],
+        "DURABILITY": [
+          "WRITE_FAILED",
+          "FILE_FSYNC_FAILED",
+          "RENAME_FAILED",
+          "DIRECTORY_FSYNC_FAILED",
+          "RETAINED_ARTIFACT_INVALID"
+        ],
+        "INTERRUPTION": [
+          "SIGNAL_INTERRUPT",
+          "USER_CANCELLED",
+          "DEADLINE_TIMEOUT",
+          "DEPENDENCY_CANCELLED"
+        ]
+      },
+      "closed": true
+    },
+    "InterruptedCause": {
+      "SIGNAL": {
+        "required": [
+          "signalNumber"
+        ]
+      },
+      "CANCEL": {
+        "required": [
+          "cancelTokenId"
+        ]
+      },
+      "TIMEOUT": {
+        "required": [
+          "deadlineUtc",
+          "elapsedNanoseconds"
+        ]
+      },
+      "DEPENDENCY": {
+        "required": [
+          "dependencyId",
+          "upstreamFailureCode"
+        ]
+      }
+    }
+  },
+  "binary64SidecarRegistry": {
+    "formatId": "selcal-m6-p1-f64le-v1",
+    "headerBytes": 16,
+    "headerLayout": [
+      {
+        "offset": 0,
+        "bytes": 8,
+        "field": "magic",
+        "encoding": "EXACT_BYTES_FROM_HEX",
+        "valueHex": "53434636344c3100",
+        "display": "ASCII SCF64L1 followed by one NUL byte; exactly eight bytes"
+      },
+      {
+        "offset": 8,
+        "bytes": 2,
+        "field": "version",
+        "encoding": "UINT16_LE",
+        "value": 1
+      },
+      {
+        "offset": 10,
+        "bytes": 2,
+        "field": "flags",
+        "encoding": "UINT16_LE",
+        "value": 1,
+        "meaning": "FINITE_REQUIRED; all other bits zero"
+      },
+      {
+        "offset": 12,
+        "bytes": 4,
+        "field": "count",
+        "encoding": "UINT32_LE",
+        "minimum": 1,
+        "maximum": 2500000
+      }
+    ],
+    "payload": {
+      "elementEncoding": "IEEE754_BINARY64_LITTLE_ENDIAN",
+      "elementBytes": 8,
+      "finiteRequired": true,
+      "trailingBytesAllowed": false,
+      "exactTotalBytesExpression": {
+        "op": "gadd",
+        "args": [
+          16,
+          {
+            "op": "gmul",
+            "args": [
+              {
+                "var": "count"
+              },
+              8
+            ]
+          }
+        ]
+      }
+    },
+    "streaming": {
+      "maxReadChunkBytes": 1048576,
+      "wholePayloadBufferForbidden": true,
+      "hashBeforeHeaderParse": true,
+      "statBeforeHash": true
+    }
+  },
+  "sourceInventoryRegistry": {
+    "rolesInCanonicalOrder": [
+      "REFERENCE_IMPLEMENTATION",
+      "PRODUCTION_IMPLEMENTATION",
+      "COMPARISON_DRIVER"
+    ],
+    "sourceSetIdDefinition": {
+      "hash": "SHA256",
+      "domainPrefixHex": "73656c63616c3a6d363a70313a76393a736f757263652d73657400",
+      "preimageSequence": [
+        "bytes.fromhex(domainPrefixHex)",
+        "role ASCII",
+        "NUL byte",
+        "canonical JSON bytes of {inventoryVersion,role,entries,dependencies}"
+      ]
+    },
+    "entryOrder": "strictly ascending by ASCII relativePath bytes",
+    "entryOrdinal": "exactly 0..len(entries)-1",
+    "pathUniqueness": "relativePath unique independent of bytes and digest",
+    "lifecycleFieldAllowed": false,
+    "terminalPreservation": "Every success and failure root retains the same ordered three immutable inventory locators declared before execution."
+  },
+  "referenceSpecRegistry": {
+    "normalizationOrder": [
+      "calculationMode",
+      "inputPairLocator",
+      "sourceDescriptor",
+      "targetDescriptor",
+      "commonLength",
+      "candidates",
+      "alphaHex",
+      "selectionRule",
+      "tieToleranceHex",
+      "statisticSpec",
+      "nullSpec",
+      "finiteReplicateCount",
+      "replicateMappingLocator"
+    ],
+    "constraints": {
+      "alphaHex": "FloatHex and strict 0<alpha<1",
+      "tieToleranceHex": "FloatHex and value>=0",
+      "candidates": "1..2500 positive built-in integer lag indices, excluding booleans and floats; strictly ascending; greatest candidate < commonLength",
+      "selectionRule": "exactly max_upper or max_absolute",
+      "replicateIdMapping": "finite row at productionOrderIndex i has replicateId i for every i in 0..B-1",
+      "replicateOrder": "finite, total, duplicate-free, and exactly 0..B-1"
+    }
+  },
+  "normalizationDAG": {
+    "dagId": "selcal.m6-p1.normalization-dag.v9",
+    "root": "N00_PREFLIGHT",
+    "nodes": [
+      {
+        "id": "N00_PREFLIGHT",
+        "operator": "BYTE_STAT_HASH_PREFLIGHT",
+        "predecessors": [],
+        "successor": "N01_JSON_DECODE",
+        "evidenceFields": [
+          "rawInputLocator",
+          "observedBytes",
+          "observedSha256"
+        ]
+      },
+      {
+        "id": "N01_JSON_DECODE",
+        "operator": "JSON_DECODE_REJECT_DUPLICATES",
+        "predecessors": [
+          "N00_PREFLIGHT"
+        ],
+        "successor": "N02_SCHEMA_VALIDATE"
+      },
+      {
+        "id": "N02_SCHEMA_VALIDATE",
+        "operator": "DRAFT202012_LOCAL_SCHEMA_VALIDATE",
+        "predecessors": [
+          "N01_JSON_DECODE"
+        ],
+        "successor": "N03_MODE"
+      },
+      {
+        "id": "N03_MODE",
+        "operator": "NORMALIZE_ENUM",
+        "pointer": "/calculationMode",
+        "predecessors": [
+          "N02_SCHEMA_VALIDATE"
+        ],
+        "successor": "N04_INPUT_PAIR"
+      },
+      {
+        "id": "N04_INPUT_PAIR",
+        "operator": "LOAD_AND_PREFLIGHT_INPUT_PAIR",
+        "pointer": "/inputPairLocator",
+        "predecessors": [
+          "N03_MODE"
+        ],
+        "successor": "N05_SOURCE_SIDECAR"
+      },
+      {
+        "id": "N05_SOURCE_SIDECAR",
+        "operator": "STREAM_BINARY64_SIDECAR",
+        "pointer": "/sourceDescriptor",
+        "predecessors": [
+          "N04_INPUT_PAIR"
+        ],
+        "successor": "N06_TARGET_SIDECAR"
+      },
+      {
+        "id": "N06_TARGET_SIDECAR",
+        "operator": "STREAM_BINARY64_SIDECAR",
+        "pointer": "/targetDescriptor",
+        "predecessors": [
+          "N05_SOURCE_SIDECAR"
+        ],
+        "successor": "N07_COMMON_LENGTH"
+      },
+      {
+        "id": "N07_COMMON_LENGTH",
+        "operator": "REQUIRE_EQUAL_COUNT",
+        "pointer": "/commonLength",
+        "predecessors": [
+          "N06_TARGET_SIDECAR"
+        ],
+        "successor": "N08_CANDIDATES"
+      },
+      {
+        "id": "N08_CANDIDATES",
+        "operator": "NORMALIZE_STRICT_ASCENDING_POSITIVE_INTEGERS",
+        "pointer": "/candidates",
+        "predecessors": [
+          "N07_COMMON_LENGTH"
+        ],
+        "successor": "N09_ALPHA"
+      },
+      {
+        "id": "N09_ALPHA",
+        "operator": "NORMALIZE_STRICT_PROBABILITY",
+        "pointer": "/alphaHex",
+        "predecessors": [
+          "N08_CANDIDATES"
+        ],
+        "successor": "N10_SELECTION_RULE"
+      },
+      {
+        "id": "N10_SELECTION_RULE",
+        "operator": "NORMALIZE_ENUM",
+        "pointer": "/selectionRule",
+        "predecessors": [
+          "N09_ALPHA"
+        ],
+        "successor": "N11_TIE_TOLERANCE"
+      },
+      {
+        "id": "N11_TIE_TOLERANCE",
+        "operator": "NORMALIZE_NONNEGATIVE_FINITE_FLOAT",
+        "pointer": "/tieToleranceHex",
+        "predecessors": [
+          "N10_SELECTION_RULE"
+        ],
+        "successor": "N12_STATISTIC"
+      },
+      {
+        "id": "N12_STATISTIC",
+        "operator": "NORMALIZE_STATISTIC_UNION",
+        "pointer": "/statisticSpec",
+        "predecessors": [
+          "N11_TIE_TOLERANCE"
+        ],
+        "successor": "N13_NULL"
+      },
+      {
+        "id": "N13_NULL",
+        "operator": "NORMALIZE_NULL_UNION_AND_DERIVE_Q",
+        "pointer": "/nullSpec",
+        "predecessors": [
+          "N12_STATISTIC"
+        ],
+        "successor": "N14_REPLICATES"
+      },
+      {
+        "id": "N14_REPLICATES",
+        "operator": "NORMALIZE_MODE_REPLICATE_MAPPING",
+        "pointer": "/finiteReplicateCount",
+        "predecessors": [
+          "N13_NULL"
+        ],
+        "successor": "N15_ADMISSION"
+      },
+      {
+        "id": "N15_ADMISSION",
+        "operator": "DERIVE_AND_CHECK_ALL_RESOURCE_UPPERS",
+        "predecessors": [
+          "N14_REPLICATES"
+        ],
+        "successor": null
+      }
+    ],
+    "preDerivationEvidenceContract": {
+      "rawInputBinding": "A VERIFIED rawSourceEvidence contains rawInputLocator plus observedBytes/observedSha256 equal to completed N00 evidence. An UNAVAILABLE rawSourceEvidence preserves relativePath, nullable expectedIdentity, observedBytes if stat committed, null observedSha256, and a closed failure reason. Neither expected identity nor a partial hash is a verified actual digest.",
+      "unavailableRawSourceReasons": ["STAT_FAILED", "HASH_INCOMPLETE", "RAW_BYTES_NOT_RETAINED"],
+      "unavailableFailedValueReasons": ["NOT_DECODED", "VALUE_NOT_REACHED", "ENCODED_BYTES_UNAVAILABLE"],
+      "failedValueEvidenceRule": "AVAILABLE retains observedType, encodedLengthBytes, nullable bitLength, and digest over the exact encoded value bytes. UNAVAILABLE retains its closed reason only; no value, type, length or digest is invented.",
+      "locationUnion": [
+        "BYTE_OFFSET",
+        "JSON_POINTER_INDEX"
+      ],
+      "observedTypes": [
+        "NULL",
+        "BOOLEAN",
+        "INTEGER",
+        "NUMBER",
+        "STRING",
+        "ARRAY",
+        "OBJECT",
+        "BINARY"
+      ],
+      "valueDigestDefinition": "SHA256(bytes.fromhex('73656c63616c3a6d363a70313a76393a6f627365727665642d76616c756500') || exact encoded bytes)",
+      "requiredMeasurements": [
+        "encodedLengthBytes",
+        "bitLength when integer else null",
+        "valueDigest",
+        "completeKnownPrefix"
+      ],
+      "knownPrefixRule": "exactly one entry for every successfully committed predecessor node, in DAG order; no failed/current/later node",
+      "reasonMapping": "failure emitter and TerminalFailureCode must be a member of that normalization node operator's closed mapping"
+    }
+  },
+  "branchRegistry": {
+    "resolutionRules": [
+      {
+        "calculationMode": "ALL_STATE_EXACT",
+        "beforeNullBind": "EXACT_BRANCH_UNRESOLVED",
+        "primaryTerminalClass": null
+      },
+      {
+        "calculationMode": "FINITE_B_COMPLETED_STATE_REPLAY",
+        "beforeProductionReturn": "FINITE_BRANCH_UNRESOLVED",
+        "primaryTerminalClass": null
+      }
+    ],
+    "resolvedCountVectors": [
+      {
+        "branch": "ALL_STATE_EXACT_COMPONENT",
+        "terminalVariant": "COMPLETE_OR_ANALYTIC_FAILURE",
+        "Q": "T",
+        "X": "T",
+        "L": "T",
+        "R": "T+1",
+        "observedRecords": 0
+      },
+      {
+        "branch": "FINITE_NORMAL",
+        "terminalVariant": "COMPLETE",
+        "Q": "B+1",
+        "X": "B",
+        "L": "B",
+        "R": "B+2",
+        "observedRecords": 1
+      },
+      {
+        "branch": "FINITE_REPLICATE_FAILURE",
+        "terminalVariant": "REPLICATE_ANALYTIC_FAILURE",
+        "Q": "B+1",
+        "X": "B",
+        "L": "B",
+        "R": "B+2",
+        "observedRecords": 1
+      },
+      {
+        "branch": "FINITE_OBSERVED_ANALYTIC_FAILURE",
+        "terminalVariant": "OBSERVED_ANALYTIC_FAILURE",
+        "Q": 1,
+        "X": 0,
+        "L": 0,
+        "R": 2,
+        "observedRecords": 1
+      },
+      {
+        "branch": "NULL_BIND_DISABLED",
+        "terminalVariant": "NULL_DISABLED",
+        "Q": 0,
+        "X": 0,
+        "L": 0,
+        "R": 1,
+        "observedRecords": 0
+      }
+    ],
+    "blockShuffle": {
+      "preconditions": [
+        "1<=blockLength<=1250000",
+        "n % blockLength == 0",
+        "q = n // blockLength",
+        "2<=q<=4096"
+      ],
+      "orderRule": "order is an exact permutation of integers 0..q-1",
+      "identityRule": "isIdentity iff order equals [0,1,...,q-1]",
+      "boundaryTests": [
+        "q=4096 ACCEPT when all other constraints pass",
+        "q=4097 REJECT"
+      ]
+    }
+  },
+  "artifactRootRegistry": {
+    "topLevelArtifactTypesInOrder": [
+      "DECLARED_SOURCE_INVENTORY",
+      "DECLARED_RUN_GRAPH",
+      "INPUT_PAIR_DESCRIPTOR",
+      "REFERENCE_SPEC",
+      "OBSERVED_RECORD",
+      "PRODUCTION_REPLAY_ROW",
+      "PRODUCTION_RUN_MANIFEST",
+      "PRIMARY_RECORD",
+      "PRIMARY_MANIFEST",
+      "COMPARISON_RECORD",
+      "COMPARISON_MANIFEST",
+      "DIAGNOSTIC_RECORD",
+      "DIAGNOSTIC_MANIFEST",
+      "SUCCESS_MANIFEST",
+      "FAILURE_MANIFEST",
+      "BUDGET_PROFILE",
+      "RUNTIME_PROBE",
+      "EXTERNAL_APPROVAL_ENVELOPE",
+      "VALIDATION_REPORT"
+    ],
+    "recordRoles": {
+      "OBSERVED_RECORD": "immutable production observed projection",
+      "PRODUCTION_REPLAY_ROW": "immutable production finite replicate or exact-state component projection",
+      "PRIMARY_RECORD": "immutable independent reference projection",
+      "COMPARISON_RECORD": "two immutable record locators plus rebuilt FieldComparison values; no candidate vectors",
+      "DIAGNOSTIC_RECORD": "bounded diagnostic row"
+    },
+    "terminalReachability": {
+      "roots": [
+        "SUCCESS_MANIFEST",
+        "FAILURE_MANIFEST"
+      ],
+      "rule": "Following each root's declaredRunGraph locator and the graph's canonical edges reaches every artifact emitted or retained by the run exactly once by artifactId. No orphan output is permitted.",
+      "sourceInventoryRule": "Both terminal roots preserve the same three declared source inventory locators in canonical role order."
+    }
+  },
+  "declaredRunGraphRegistry": {
+    "nodeIdentity": "artifactId unique; artifactType and path slot immutable",
+    "additionalMaterializedNodeTypes": ["BINARY64_SIDECAR", "RAW_INPUT", "SOURCE_FILE", "DEPENDENCY_ARTIFACT", "FORMULA_DOCUMENT", "ARTIFACT_SCHEMA", "SEMANTIC_CONTRACT", "SEMANTIC_VALIDATOR", "TRUST_STORE"],
+    "nodeTypeRule": "Nodes may use every topLevelArtifactTypesInOrder member plus additionalMaterializedNodeTypes. The latter are graph slots for bound non-row artifacts, not extra top-level artifact-schema roots.",
+    "edgeIdentity": "ordered unique triples {fromArtifactId,relationship,toArtifactId}",
+    "allowedRelationships": [
+      "BINDS_SOURCE_INVENTORY",
+      "BINDS_INPUT",
+      "BINDS_REFERENCE_SPEC",
+      "BINDS_BUDGET_PROFILE",
+      "BINDS_RUNTIME_PROBE",
+      "CONTAINS_ROW",
+      "CONTAINS_MANIFEST",
+      "COMPARES_REFERENCE",
+      "COMPARES_PRODUCTION",
+      "DIAGNOSES_COMPARISON",
+      "TERMINATES_AS"
+    ],
+    "rootGraphDigestDefinition": "SHA256(bytes.fromhex('73656c63616c3a6d363a70313a76393a6465636c617265642d726f6f742d677261706800') || canonical JSON bytes of graphProjection)",
+    "cyclePolicy": "DAG_REQUIRED",
+    "fullReachabilityRequired": true,
+    "terminalSelfHashCycleAvoidance": "The approved graph is a pre-execution declaration of node ids, types, path slots and edges; it does not contain output digests. Terminal roots bind the declared graph artifact by immutable locator."
+  },
+  "recordProjectionRegistry": {
+    "componentNamesInExactOrder": [
+      "state",
+      "candidateRecords",
+      "selection",
+      "tailIndicator",
+      "aggregate"
+    ],
+    "candidateRecordFieldsInExactOrder": [
+      "candidateIndex",
+      "candidate",
+      "status",
+      "estimateHex",
+      "failureCode"
+    ],
+    "observedRecord": {
+      "recordRole": "OBSERVED",
+      "stateAllowed": false,
+      "candidateVectorLength": "C"
+    },
+    "productionReplayRow": {
+      "rowRoles": [
+        "FINITE_REPLICATE",
+        "EXACT_STATE"
+      ],
+      "candidateVectorLength": "C",
+      "finiteMapping": "productionOrderIndex==replicateId and indices are exactly 0..B-1",
+      "exactMapping": "productionOrderIndex==exactStateIndex and indices are exactly 0..T-1"
+    },
+    "productionRunManifest": {
+      "immutability": "Canonical manifest and rows are content-addressed and never rewritten after verification.",
+      "observedProjection": "Exactly one locator for finite resolved branches that have an observed scan; null otherwise.",
+      "replayProjection": "Ordered locator array exactly matching finite replicate or exact-state order.",
+      "rootReachability": "All observed and replay row locators occur in the declared run graph and are reachable from the terminal root."
+    }
+  },
+  "requiredFieldPlanRegistry": {
+    "registryId": "selcal.m6-p1.required-field-plan.v9",
+    "planOrder": [
+      "stateComponentPlan",
+      "fieldComparisonPlan"
+    ],
+    "stateComponentPlan": {
+      "NONE": [],
+      "CIRCULAR_SHIFT": [
+        {
+          "pathTemplate": "/state/kind",
+          "pathClass": "EXACT_SCALAR",
+          "rule": "EXACT",
+          "disagreementCode": "STATE_COMPONENT_MISMATCH"
+        },
+        {
+          "pathTemplate": "/state/offset",
+          "pathClass": "EXACT_SCALAR",
+          "rule": "EXACT",
+          "disagreementCode": "STATE_COMPONENT_MISMATCH"
+        },
+        {
+          "pathTemplate": "/state/isIdentity",
+          "pathClass": "EXACT_SCALAR",
+          "rule": "EXACT",
+          "disagreementCode": "STATE_COMPONENT_MISMATCH"
+        }
+      ],
+      "BLOCK_SHUFFLE_GENERATOR": {
+        "prefix": [
+          {
+            "pathTemplate": "/state/kind",
+            "pathClass": "EXACT_SCALAR",
+            "rule": "EXACT",
+            "disagreementCode": "STATE_COMPONENT_MISMATCH"
+          },
+          {
+            "pathTemplate": "/state/q",
+            "pathClass": "EXACT_SCALAR",
+            "rule": "EXACT",
+            "disagreementCode": "STATE_COMPONENT_MISMATCH"
+          }
+        ],
+        "repeat": {
+          "indexRange": "0..q-1",
+          "pathTemplate": "/state/order/{j}",
+          "pathClass": "EXACT_SCALAR",
+          "rule": "EXACT",
+          "disagreementCode": "STATE_COMPONENT_MISMATCH"
+        },
+        "suffix": [
+          {
+            "pathTemplate": "/state/isIdentity",
+            "pathClass": "EXACT_SCALAR",
+            "rule": "EXACT",
+            "disagreementCode": "STATE_COMPONENT_MISMATCH"
+          }
+        ]
+      }
+    },
+    "fieldComparisonPlan": {
+      "candidateBearingGenerator": {
+        "prefix": [
+          {
+            "pathTemplate": "/recordRole",
+            "pathClass": "EXACT_SCALAR",
+            "rule": "EXACT",
+            "disagreementCode": "RECORD_KIND_MISMATCH"
+          },
+          {
+            "pathTemplate": "/terminalClass",
+            "pathClass": "EXACT_SCALAR",
+            "rule": "EXACT",
+            "disagreementCode": "TERMINAL_CLASS_MISMATCH"
+          }
+        ],
+        "repeat": {
+          "indexRange": "0..C-1",
+          "fieldsInOrder": [
+            {
+              "pathTemplate": "/candidateRecords/{i}/candidateIndex",
+              "pathClass": "EXACT_SCALAR",
+              "rule": "EXACT",
+              "disagreementCode": "CANDIDATE_INDEX_MISMATCH"
+            },
+            {
+              "pathTemplate": "/candidateRecords/{i}/candidate",
+              "pathClass": "EXACT_SCALAR",
+              "rule": "EXACT",
+              "disagreementCode": "CANDIDATE_VALUE_MISMATCH"
+            },
+            {
+              "pathTemplate": "/candidateRecords/{i}/status",
+              "pathClass": "EXACT_SCALAR",
+              "rule": "EXACT",
+              "disagreementCode": "CANDIDATE_STATUS_MISMATCH"
+            },
+            {
+              "pathTemplate": "/candidateRecords/{i}/estimateHex",
+              "pathClass": "APPROXIMATE_FLOAT_OR_NULL",
+              "rule": "OPTIONAL_FLOAT_ABS_TOL",
+              "disagreementCode": "CANDIDATE_ESTIMATE_MISMATCH"
+            },
+            {
+              "pathTemplate": "/candidateRecords/{i}/failureCode",
+              "pathClass": "EXACT_SCALAR",
+              "rule": "EXACT",
+              "disagreementCode": "CANDIDATE_FAILURE_CODE_MISMATCH"
+            }
+          ]
+        },
+        "suffix": [
+          {
+            "pathTemplate": "/selection/status",
+            "pathClass": "EXACT_SCALAR",
+            "rule": "EXACT",
+            "disagreementCode": "SELECTION_STATUS_MISMATCH"
+          },
+          {
+            "pathTemplate": "/selection/selectedIndex",
+            "pathClass": "EXACT_SCALAR",
+            "rule": "EXACT",
+            "disagreementCode": "SELECTED_INDEX_MISMATCH"
+          },
+          {
+            "pathTemplate": "/selection/tiedIndices",
+            "pathClass": "EXACT_SCALAR",
+            "rule": "EXACT",
+            "disagreementCode": "TIED_INDEX_MISMATCH"
+          },
+          {
+            "pathTemplate": "/tailIndicator",
+            "pathClass": "TAIL",
+            "rule": "TAIL_EXACT",
+            "disagreementCode": "TAIL_INDICATOR_MISMATCH"
+          }
+        ]
+      },
+      "aggregatePlanInExactOrder": [
+        {
+          "pathTemplate": "/aggregate/E",
+          "pathClass": "EXACT_SCALAR",
+          "rule": "EXACT",
+          "disagreementCode": "AGGREGATE_COUNT_MISMATCH"
+        },
+        {
+          "pathTemplate": "/aggregate/F",
+          "pathClass": "EXACT_SCALAR",
+          "rule": "EXACT",
+          "disagreementCode": "AGGREGATE_COUNT_MISMATCH"
+        },
+        {
+          "pathTemplate": "/aggregate/validReplicateCount",
+          "pathClass": "EXACT_SCALAR",
+          "rule": "EXACT",
+          "disagreementCode": "AGGREGATE_COUNT_MISMATCH"
+        },
+        {
+          "pathTemplate": "/aggregate/numerator",
+          "pathClass": "EXACT_SCALAR",
+          "rule": "EXACT",
+          "disagreementCode": "AGGREGATE_FRACTION_MISMATCH"
+        },
+        {
+          "pathTemplate": "/aggregate/lowerNumerator",
+          "pathClass": "EXACT_SCALAR",
+          "rule": "EXACT",
+          "disagreementCode": "AGGREGATE_FRACTION_MISMATCH"
+        },
+        {
+          "pathTemplate": "/aggregate/upperNumerator",
+          "pathClass": "EXACT_SCALAR",
+          "rule": "EXACT",
+          "disagreementCode": "AGGREGATE_FRACTION_MISMATCH"
+        },
+        {
+          "pathTemplate": "/aggregate/denominator",
+          "pathClass": "EXACT_SCALAR",
+          "rule": "EXACT",
+          "disagreementCode": "AGGREGATE_FRACTION_MISMATCH"
+        },
+        {
+          "pathTemplate": "/aggregate/pValueHex",
+          "pathClass": "APPROXIMATE_FLOAT_OR_NULL",
+          "rule": "OPTIONAL_FLOAT_ABS_TOL",
+          "disagreementCode": "AGGREGATE_FLOAT_MISMATCH"
+        },
+        {
+          "pathTemplate": "/aggregate/lowerBoundHex",
+          "pathClass": "APPROXIMATE_FLOAT_OR_NULL",
+          "rule": "OPTIONAL_FLOAT_ABS_TOL",
+          "disagreementCode": "AGGREGATE_FLOAT_MISMATCH"
+        },
+        {
+          "pathTemplate": "/aggregate/upperBoundHex",
+          "pathClass": "APPROXIMATE_FLOAT_OR_NULL",
+          "rule": "OPTIONAL_FLOAT_ABS_TOL",
+          "disagreementCode": "AGGREGATE_FLOAT_MISMATCH"
+        },
+        {
+          "pathTemplate": "/aggregate/decision",
+          "pathClass": "EXACT_SCALAR",
+          "rule": "EXACT",
+          "disagreementCode": "DECISION_MISMATCH"
+        }
+      ]
+    },
+    "reconstructionRule": "The validator generates the unique plan from record role, terminal branch, C and q. It rejects empty, removal, duplicate path, reorder, extra path, and rule substitution before comparing values.",
+    "disagreementCodeOrderRule": "Deduplicate encountered codes and emit them in ComparisonDisagreementCode.codesInSeverityOrder, never encounter order."
+  },
+  "comparisonRuleRegistry": {
+    "EXACT": {
+      "match": "same JSON type and same value; boolean is not integer"
+    },
+    "FLOAT_HEX_EXACT": {
+      "match": "canonical FloatHex strings equal"
+    },
+    "TAIL_EXACT": {
+      "match": "same boolean-or-null type and value; no tolerance"
+    },
+    "OPTIONAL_FLOAT_ABS_TOL": {
+      "nullCases": "both null match; mixed null/FloatHex does not match; residual fields are absent",
+      "finiteCases": "delegate to FLOAT_ABS_TOL"
+    },
+    "FLOAT_ABS_TOL": {
+      "inputs": "two canonical finite FloatHex values and the fixed tolerance",
+      "totalComparisonAlgorithm": [
+        "p = float.fromhex(productionHex)",
+        "r = float.fromhex(referenceHex)",
+        "t = float.fromhex(toleranceHex)",
+        "deltaRational = fractions.Fraction.from_float(p) - fractions.Fraction.from_float(r)",
+        "matches = abs(deltaRational) <= fractions.Fraction.from_float(t)",
+        "nativeResidual = p-r",
+        "if math.isfinite(nativeResidual): residualStatus='FINITE'; residualHex=nativeResidual.hex()",
+        "else: residualStatus='OVERFLOW'; residualHex=null"
+      ],
+      "overflowRule": "OVERFLOW does not make comparison undefined; exact Fraction arithmetic decides matches without dependence on a decimal context, and residualHex is null.",
+      "residualStatusValues": [
+        "FINITE",
+        "OVERFLOW"
+      ]
+    }
+  },
+  "exactOracleRegistry": {
+    "stateUniverse": "contains identity exactly once",
+    "identityContribution": "identity is not included in E",
+    "E": "count of nonidentity states whose inclusive-tail indicator is true",
+    "constraints": [
+      "1<=T<=100000",
+      "0<=E<T",
+      "numerator=1+E",
+      "1<=numerator<=T",
+      "denominator=T",
+      "pValueHex=canonical FloatHex of numerator/denominator",
+      "0<=decoded pValueHex<=1",
+      "decision=(decoded pValueHex<=decoded alphaHex)"
+    ],
+    "boundaryExamples": [
+      {
+        "T": 1,
+        "E": 0,
+        "numerator": 1,
+        "denominator": 1,
+        "pValueHex": "0x1.0000000000000p+0",
+        "meaning": "identity-only universe"
+      },
+      {
+        "T": 2,
+        "E": 0,
+        "numerator": 1,
+        "denominator": 2,
+        "pValueHex": "0x1.0000000000000p-1"
+      },
+      {
+        "T": 2,
+        "E": 1,
+        "numerator": 2,
+        "denominator": 2,
+        "pValueHex": "0x1.0000000000000p+0"
+      },
+      {
+        "T": 100000,
+        "E": 99999,
+        "numerator": 100000,
+        "denominator": 100000,
+        "pValueHex": "0x1.0000000000000p+0"
+      }
+    ],
+    "forbiddenLegacyInterpretation": "E includes identity or numerator=E"
+  },
+  "finiteOracleRegistry": {
+    "constraints": [
+      "validReplicateCount+F=B",
+      "0<=E<=validReplicateCount",
+      "denominator=B+1",
+      "lowerNumerator=1+E",
+      "upperNumerator=1+E+F",
+      "lowerNumerator<=upperNumerator<=denominator",
+      "lowerBoundHex=canonical FloatHex of lowerNumerator/denominator",
+      "upperBoundHex=canonical FloatHex of upperNumerator/denominator",
+      "if observed valid and F==0 then pValueHex=lowerBoundHex=upperBoundHex and decision is defined",
+      "otherwise pValueHex and decision are null"
+    ]
+  },
+  "candidateAccountingRegistry": {
+    "definitions": {
+      "candidateEvaluationOperationsAdmit": "QAdmit*C",
+      "candidateEvaluationOperationsExecuted": "sum raw committed candidate-scan events across observed/reference/diagnostic domains",
+      "primaryCandidateObjectsPersisted": "LExecuted*C",
+      "observedCandidateObjectsPersisted": "completedObservedRecordCount*C",
+      "productionCandidateObjectsPersisted": "completedProductionCandidateBearingRowCount*C",
+      "comparisonCandidateObjectsPersisted": 0,
+      "fieldComparisonObjectsPersisted": "sum H(recordBranch,C,q) over completed comparison rows",
+      "diagnosticReplayCandidateOperationsExecuted": "sum per-group committed replay candidate events, including current partial group",
+      "simultaneousCandidateObjectsUpper": "2*C"
+    },
+    "hardChecks": [
+      "2*C<=5000",
+      "each persisted candidate ledger count<=100000",
+      "diagnosticReplayCandidateOperationsExecuted<=640000"
+    ],
+    "forbiddenEquation": "diagnosticReplayCandidateOperationsExecuted=DStarted*C",
+    "boundaries": [
+      "C=2500 ACCEPT when every other cap passes",
+      "C=2501 REJECT",
+      "persisted ledger count=100000 ACCEPT",
+      "persisted ledger count=100001 REJECT",
+      "diagnostic replay=640000 ACCEPT",
+      "diagnostic replay=640001 REJECT"
+    ]
+  },
+  "executionDAG": {
+    "dagId": "selcal.m6-p1.execution-dag.v9",
+    "nodesInTopologicalOrder": [
+      "BYTE_STAT_HASH_PREFLIGHT",
+      "JSON_AND_SCHEMA_ADMISSION",
+      "SOURCE_IDENTITY",
+      "INPUT_SIDECAR_STREAM_VALIDATION",
+      "NORMALIZATION",
+      "RESOURCE_ADMISSION",
+      "NULL_BIND",
+      "PRODUCTION_CALL",
+      "OBSERVED_SCAN",
+      "STATE_GENERATION",
+      "STATE_IDENTITY_VALIDATION",
+      "STATE_APPLICATION",
+      "REFERENCE_CANDIDATE_SCAN",
+      "PRIMARY_LEDGER_DURABILITY",
+      "COMPARISON_DISCOVERY",
+      "DIAGNOSTIC_REPLAY",
+      "COMPARISON_LEDGER_DURABILITY",
+      "DIAGNOSTIC_LEDGER_DURABILITY",
+      "TERMINAL_ROOT_DURABILITY"
+    ],
+    "conditionalEdges": [
+      {
+        "from": "NULL_BIND",
+        "condition": "NULL_BIND_DISABLED",
+        "to": "TERMINAL_ROOT_DURABILITY"
+      },
+      {
+        "from": "NULL_BIND",
+        "condition": "FINITE_MODE_ENABLED",
+        "to": "PRODUCTION_CALL"
+      },
+      {
+        "from": "NULL_BIND",
+        "condition": "EXACT_MODE_ENABLED",
+        "to": "STATE_GENERATION"
+      },
+      {
+        "from": "PRODUCTION_CALL",
+        "condition": "OBSERVED_RECORD_PRESENT",
+        "to": "OBSERVED_SCAN"
+      },
+      {
+        "from": "OBSERVED_SCAN",
+        "condition": "OBSERVED_ANALYTIC_FAILURE",
+        "to": "COMPARISON_DISCOVERY"
+      },
+      {
+        "from": "OBSERVED_SCAN",
+        "condition": "OBSERVED_VALID",
+        "to": "STATE_IDENTITY_VALIDATION"
+      },
+      {
+        "from": "REFERENCE_CANDIDATE_SCAN",
+        "condition": "PRIMARY_ROW_COMMITTED",
+        "to": "PRIMARY_LEDGER_DURABILITY"
+      },
+      {
+        "from": "PRIMARY_LEDGER_DURABILITY",
+        "condition": "PRIMARY_INSTALLED",
+        "to": "COMPARISON_DISCOVERY"
+      },
+      {
+        "from": "COMPARISON_DISCOVERY",
+        "condition": "DISAGREEMENT",
+        "to": "DIAGNOSTIC_REPLAY"
+      },
+      {
+        "from": "COMPARISON_DISCOVERY",
+        "condition": "NO_MORE_RECORDS",
+        "to": "COMPARISON_LEDGER_DURABILITY"
+      },
+      {
+        "from": "DIAGNOSTIC_REPLAY",
+        "condition": "GROUP_COMMITTED",
+        "to": "COMPARISON_DISCOVERY"
+      },
+      {
+        "from": "DIAGNOSTIC_LEDGER_DURABILITY",
+        "condition": "INSTALLED",
+        "to": "TERMINAL_ROOT_DURABILITY"
+      }
+    ],
+    "branchResolution": "No preflight, source, parse, schema, normalization or admission failure may carry a resolved primaryTerminalClass. Exact uses EXACT_BRANCH_UNRESOLVED and finite uses FINITE_BRANCH_UNRESOLVED until the designated commit event.",
+    "row01SourceIdentity": "Source identity progress is a dedicated operator cursor and can be partial at any entry, byte offset, hash block or dependency index; it is never inferred from a completed count alone."
+  },
+  "operatorCursorRegistry": {
+    "atomicCommitRule": "A counter increments only after its named atomic event commits. Cursor points to the next uncommitted event. On failure, committed counters plus cursor are the entire prefix; no summary inversion is permitted.",
+    "cursorKinds": {
+      "SOURCE_IDENTITY_CURSOR": {
+        "fields": [
+          "sourceRoleIndex",
+          "entryIndex",
+          "operation",
+          "byteOffset",
+          "hashBlockIndex",
+          "dependencyIndex"
+        ],
+        "operations": [
+          "STAT",
+          "HASH",
+          "PATH_VERIFY",
+          "DEPENDENCY_VERIFY"
+        ]
+      },
+      "SIDECAR_CURSOR": {
+        "fields": [
+          "vectorRole",
+          "operation",
+          "byteOffset",
+          "elementIndex"
+        ],
+        "operations": [
+          "STAT",
+          "HASH",
+          "HEADER_PARSE",
+          "PAYLOAD_FINITE_SCAN"
+        ]
+      },
+      "PEARSON_SCAN_CURSOR": {
+        "fields": [
+          "scanDomain",
+          "recordIndex",
+          "candidateIndex",
+          "phase",
+          "sampleIndex"
+        ],
+        "phases": [
+          "PAIR_ACCUMULATION",
+          "FINALIZE"
+        ]
+      },
+      "NETTE_SCAN_CURSOR": {
+        "fields": [
+          "scanDomain",
+          "recordIndex",
+          "candidateIndex",
+          "direction",
+          "phase",
+          "sampleIndex",
+          "familyIndex",
+          "counterEntryIndex"
+        ],
+        "phases": [
+          "CODING",
+          "SUPPORT",
+          "COUNTER_UPDATE",
+          "SORT",
+          "CMI",
+          "DIRECTION_FINALIZE",
+          "PAIR_FINALIZE"
+        ]
+      },
+      "STATE_CURSOR": {
+        "fields": [
+          "operation",
+          "stateIndex",
+          "componentIndex",
+          "sampleIndex"
+        ],
+        "operations": [
+          "GENERATE",
+          "VALIDATE_IDENTITY",
+          "APPLY"
+        ]
+      },
+      "COMPARISON_CURSOR": {
+        "fields": [
+          "comparisonIndex",
+          "planKind",
+          "fieldIndex",
+          "atomicOperation"
+        ],
+        "atomicOperations": [
+          "LOAD_REFERENCE_LOCATOR",
+          "LOAD_PRODUCTION_LOCATOR",
+          "REBUILD_PLAN",
+          "COMPARE_FIELD",
+          "EMIT_CODE",
+          "FINALIZE_RECORD"
+        ]
+      },
+      "DIAGNOSTIC_CURSOR": {
+        "fields": [
+          "diagnosticIndex",
+          "targetComparisonIndex",
+          "operation",
+          "replayCandidateIndex",
+          "rowIndex"
+        ],
+        "operations": [
+          "WRITE_HEADER",
+          "REPLAY_CANDIDATE",
+          "WRITE_BODY",
+          "WRITE_FOOTER"
+        ]
+      },
+      "WRITER_CURSOR": {
+        "fields": [
+          "writerId",
+          "streamKind",
+          "chunkIndex",
+          "operation",
+          "rowsCommitted",
+          "bytesWritten",
+          "verificationBytesRead"
+        ],
+        "operations": [
+          "WRITE",
+          "FILE_FSYNC",
+          "RENAME",
+          "DIRECTORY_FSYNC",
+          "INSTALLED"
+        ]
+      }
+    },
+    "forbiddenFields": [
+      "fabricatedPearsonMomentFields",
+      "fabricatedNetTEEntropyFields",
+      "genericActiveScanProgress"
+    ]
+  },
+  "rawCounterRegistry": {
+    "counterStatusUnion": {
+      "AVAILABLE": {
+        "value": "unsigned integer",
+        "reason": null
+      },
+      "UNAVAILABLE": {
+        "value": null,
+        "reasonEnum": [
+          "NOT_APPLICABLE",
+          "NOT_STARTED",
+          "INTERRUPTED_BEFORE_COMMIT",
+          "SOURCE_COUNTER_ABSENT"
+        ]
+      }
+    },
+    "diagnosticCounterKey": {
+      "encoding": "ASCII",
+      "maxBytes": 192,
+      "maxSegments": 12,
+      "segmentPattern": "^[A-Za-z0-9_.:-]+$",
+      "ordering": "strict ASCII ascending",
+      "uniqueness": true
+    },
+    "sortOccupancy": {
+      "bucketOrder": "strictly ascending occupiedEntries",
+      "occupiedEntriesMinimum": 1,
+      "familyCountMinimum": 1,
+      "sortWorkExpression": "sum(familyCount*occupiedEntries*ceil_log2(occupiedEntries))",
+      "counterexample": "one bucket (4,1) yields 8; one bucket (2,2) yields 4"
+    }
+  },
+  "comparisonAndDiagnosticRegistry": {
+    "comparisonStorage": "ComparisonRecord stores referenceRecordLocator, productionRecordLocator and exact FieldComparison values only. It never stores either candidate vector.",
+    "fieldPlanCardinality": "H(recordBranch,C,q)=len(stateComponentPlan)+len(fieldComparisonPlan) after generator expansion",
+    "diagnosticBijection": "Each finalized DISAGREEMENT ComparisonRecord targets exactly one completed diagnostic group, and each completed diagnostic group targets exactly one such record.",
+    "diagnosticIndexOrder": "0..DCompleted-1 in comparison discovery order",
+    "diagnosticReplayCap": 640000,
+    "countDefinitions": {
+      "DAdmitUpper": "min(RAdmit, maxDisagreementDiagnostics)",
+      "DStarted": "count of diagnostic groups whose header row commit event occurred",
+      "DCompleted": "count of started diagnostic groups whose footer row commit event occurred",
+      "ZAdmitUpper": "gmul(DAdmitUpper, maxDiagnosticRowsPerGroup)",
+      "ZExecuted": "guarded sum of committed diagnostic row counts across every started group, including the current partial group",
+      "completedGroupRows": "2 + bodyRows, with 0 <= bodyRows <= 10",
+      "diagnosticReplayCandidateOperationsExecuted": "guarded sum of committed candidate evaluation events across every diagnostic group, including the current partial group",
+      "failureOnNextGroupOverCap": "Before starting group 257, terminate with ADMISSION/DIAGNOSTIC_REPLAY_LIMIT and retain the comparison discovery prefix; never truncate disagreements and report success.",
+      "partialByteCustody": "Uncommitted partial-row bytes do not increase ZExecuted but remain in per-writer bytesWritten and retained-artifact evidence."
+    },
+    "diagnosticHeaderCounterUnion": "Each header counter is the counterStatusUnion; missing, null-without-reason and value-with-reason are invalid."
+  },
+  "canonicalByteRegistry": {
+    "jsonProfile": {
+      "encoding": "UTF-8",
+      "objectKeyOrder": "ascending Unicode code point order after ASCII-only field-name check",
+      "separators": [
+        ",",
+        ":"
+      ],
+      "whitespace": false,
+      "bom": false,
+      "ensureAscii": true,
+      "allowNaNInfinity": false,
+      "integerFormat": "minimal base-10",
+      "floatRepresentation": "FloatHex string only",
+      "jsonlTerminatorBytes": 1
+    },
+    "escapeSafeStringUpper": {
+      "algorithm": "For an ASCII string domain, sum exact escaped UTF-8 byte costs per allowed byte: quote/backslash/control use JSON escape cost, other allowed ASCII uses one; add two quote bytes.",
+      "forbiddenShortcut": "2+maxCharacters unless every admitted byte is proven one-byte and non-escaping"
+    },
+    "JUpper": {
+      "authority": "rowShapeRegistry plus full environment",
+      "failureOn": [
+        "UNRESOLVED_BRANCH",
+        "UNBOUNDED_FIELD",
+        "UNKNOWN_SHAPE",
+        "UNUSED_ENVIRONMENT_OPERAND",
+        "OPEN_OBJECT",
+        "NONMONOTONE_BOUND"
+      ],
+      "jsonlRowUpper": "ginc(canonicalJsonUpper)"
+    }
+  },
+  "rowShapeRegistry": {
+    "environmentFieldsInOrder": [
+      "calculationMode",
+      "executionBranch",
+      "terminalClass",
+      "statisticFamily",
+      "nullFamily",
+      "C",
+      "q",
+      "B",
+      "T",
+      "statePlanLength",
+      "fieldPlanLength",
+      "disagreementCodeCountUpper",
+      "counterEntryCountUpper"
+    ],
+    "shapes": [
+      {
+        "shapeId": "OBSERVED_RECORD_ROW",
+        "dynamicCardinalities": {
+          "candidateRecords": "C"
+        }
+      },
+      {
+        "shapeId": "PRODUCTION_REPLAY_ROW",
+        "dynamicCardinalities": {
+          "candidateRecords": "C",
+          "state.order": "q when BLOCK_SHUFFLE else absent"
+        }
+      },
+      {
+        "shapeId": "PRIMARY_RECORD_ROW",
+        "dynamicCardinalities": {
+          "candidateRecords": "C",
+          "state.order": "q when BLOCK_SHUFFLE else absent"
+        }
+      },
+      {
+        "shapeId": "COMPARISON_RECORD_ROW",
+        "dynamicCardinalities": {
+          "stateComparisons": "statePlanLength",
+          "fieldComparisons": "fieldPlanLength",
+          "disagreementCodes": "0..disagreementCodeCountUpper"
+        }
+      },
+      {
+        "shapeId": "DIAGNOSTIC_HEADER_ROW",
+        "dynamicCardinalities": {
+          "counters": "counterEntryCountUpper"
+        }
+      },
+      {
+        "shapeId": "DIAGNOSTIC_BODY_ROW",
+        "dynamicCardinalities": {
+          "payload": "branch-specific bounded union"
+        }
+      },
+      {
+        "shapeId": "DIAGNOSTIC_FOOTER_ROW",
+        "dynamicCardinalities": {}
+      }
+    ],
+    "dynamicMonotonicityTests": [
+      "C=1 row upper < C=2 row upper for every candidate-bearing shape",
+      "q=2 block-state row upper <= q=3 block-state row upper",
+      "escape-heavy maximum key/value is within recomputed upper"
+    ]
+  },
+  "resourceDAG": {
+    "byteAdmission": {
+      "ledgerUpper": "guarded sum of exact RowUpper(shape,env) occurrences",
+      "packageEquation": "packageUpper = fixedPoint(manifestBytes => sum(nonManifestArtifactUppers)+manifestBytes+failureManifestReserveBytes)",
+      "fixedPointAlgorithm": "start manifestBytes=0; recompute canonical manifest upper from decimal digit widths of all included byte totals until unchanged; require convergence within 32 iterations and monotone nondecreasing sequence",
+      "failureReserve": "failureManifestReserveBytes is included once in every pre-run package admission and may not be re-used by success bytes",
+      "hardCaps": {
+        "primary": 268435456,
+        "comparison": 134217728,
+        "diagnostic": 67108864,
+        "terminalRoot": 16777216,
+        "package": 536870912
+      }
+    },
+    "ioPhasesInOrder": [
+      "RAW_STAT",
+      "RAW_HASH_STREAM",
+      "JSON_PARSE_READ",
+      "BINARY_HEADER_READ",
+      "BINARY_PAYLOAD_FINITE_SCAN",
+      "SCHEMA_VALIDATION_READ",
+      "SOURCE_IDENTITY_READ",
+      "SCIENTIFIC_INPUT_STREAM_READ",
+      "LEDGER_WRITE",
+      "LEDGER_VERIFY_READ",
+      "FILE_FSYNC",
+      "RENAME",
+      "DIRECTORY_FSYNC",
+      "DIAGNOSTIC_REPLAY_READ",
+      "TERMINAL_WRITE",
+      "TERMINAL_VERIFY_READ"
+    ],
+    "ioNaming": {
+      "admission": "ioByteVisitsAdmitUpper",
+      "executed": "ioByteVisitsExecuted",
+      "forbiddenAlias": "ioBytes"
+    },
+    "memoryPhases": [
+      {
+        "phase": "RAW_HASH_STREAM",
+        "namedComponents": [
+          "hashReadBuffer",
+          "hashState",
+          "pathBuffer"
+        ]
+      },
+      {
+        "phase": "JSON_PARSE",
+        "namedComponents": [
+          "rawJsonBuffer",
+          "parserArena",
+          "duplicateKeyTracker"
+        ]
+      },
+      {
+        "phase": "BINARY_STREAM_PARSE",
+        "namedComponents": [
+          "binaryReadBuffer",
+          "decodedElementWindow",
+          "finiteScanState"
+        ]
+      },
+      {
+        "phase": "SCHEMA_VALIDATION",
+        "namedComponents": [
+          "decodedJsonObject",
+          "schemaObject",
+          "validationStack"
+        ]
+      },
+      {
+        "phase": "PRIMARY_SCAN",
+        "namedComponents": [
+          "sourceWindow",
+          "targetWindow",
+          "referenceCandidateVector",
+          "stateWorkspace",
+          "writerBuffer"
+        ]
+      },
+      {
+        "phase": "COMPARISON",
+        "namedComponents": [
+          "referenceCandidateVector",
+          "productionCandidateVector",
+          "fieldPlan",
+          "writerBuffer"
+        ]
+      },
+      {
+        "phase": "DIAGNOSTIC_REPLAY",
+        "namedComponents": [
+          "referenceCandidateVector",
+          "productionCandidateVector",
+          "diagnosticCounterMap",
+          "writerBuffer"
+        ]
+      }
+    ],
+    "memoryEquation": "phasePeakUpper=sum(namedComponentUpper for component in phase); globalPeakUpper=max(phasePeakUpper)",
+    "candidateTransientRule": "COMPARISON and DIAGNOSTIC_REPLAY include exactly 2*C candidate-record objects, never a persisted comparison candidate vector.",
+    "runtimeLayoutBinding": "Every named component byte upper is evaluated with the one approved runtime layout profile and exact runtime probe identity. Mixed profile ids are invalid."
+  },
+  "durabilityRegistry": {
+    "writerStateOrder": [
+      "WRITE",
+      "FILE_FSYNC",
+      "RENAME",
+      "DIRECTORY_FSYNC",
+      "INSTALLED"
+    ],
+    "transitionRule": "A state is entered only after the previous atomic operation commits. INSTALLED is synonymous with completed DIRECTORY_FSYNC, not completed RENAME.",
+    "perWriterDispositionRequired": true,
+    "retainedArtifactUnion": {
+      "VERIFIED": {
+        "bytesMinimum": 0,
+        "sha256": "required",
+        "verificationBytesRead": "equals bytes"
+      },
+      "UNVERIFIED": {
+        "bytesMinimum": 0,
+        "sha256": null,
+        "verificationBytesRead": "0..bytes"
+      }
+    },
+    "zeroBytePartialAllowed": true,
+    "partialFileRule": "A zero-byte retained partial is admissible only with disposition RETAINED_PARTIAL and digestStatus UNVERIFIED/null digest unless an empty-file digest was actually verified."
+  },
+  "approvalRegistry": {
+    "localApprovalObjectTrust": "UNTRUSTED_CLAIM_ONLY",
+    "outOfBandInputsRequired": [
+      "pinnedApprovalSha256",
+      "trustStoreId",
+      "trustStoreBytesSha256"
+    ],
+    "verificationOrder": [
+      "stat and hash local approval bytes without parsing",
+      "require digest equals pinnedApprovalSha256 supplied out of band",
+      "load trust store by independently supplied identity",
+      "parse approval with duplicate-key rejection",
+      "validate local shape",
+      "verify approver key/record and valid UTC decision",
+      "verify all ten ordered bindings byte-for-byte",
+      "only then allow APPROVED_FROZEN execution mode"
+    ],
+    "orderedBindingRoles": [
+      "FORMULA_DOCUMENT",
+      "ARTIFACT_SCHEMA",
+      "SEMANTIC_CONTRACT",
+      "BUDGET_PROFILE",
+      "RUNTIME_PROBE",
+      "SEMANTIC_VALIDATOR",
+      "SOURCE_INVENTORY_REFERENCE",
+      "SOURCE_INVENTORY_PRODUCTION",
+      "SOURCE_INVENTORY_COMPARISON_DRIVER",
+      "DECLARED_ROOT_GRAPH"
+    ],
+    "bindingRule": "Exactly one binding per role, in this order, with unique artifactId/path and exact bytes/sha256. Nested budget/runtime/source/root ids must equal these bindings; outer A plus nested B is rejected.",
+    "proposalContainmentRule": "A PROPOSAL_UNAPPROVED terminal or graph may not embed or locate an APPROVED_FROZEN child. An APPROVED_FROZEN root requires every governed child to have the same approvalId and authority binding."
+  },
+  "validationReportRegistry": {
+    "artifactType": "VALIDATION_REPORT",
+    "producer": "selcal.m6-p1.semantic-validator.v9 only after implementation",
+    "scopes": [
+      "LOCAL_SCHEMA_ONLY",
+      "SEMANTIC_PROPOSAL_AUDIT",
+      "APPROVED_EXECUTION"
+    ],
+    "outcomes": [
+      "PASS",
+      "FAIL"
+    ],
+    "required": [
+      "validatorIdentity",
+      "semanticContractIdentity",
+      "schemaIdentity",
+      "validatedRootIdentity",
+      "startedAtUtc",
+      "completedAtUtc",
+      "scope",
+      "outcome",
+      "findings"
+    ],
+    "selfApprovalForbidden": true,
+    "passMeaning": "Only the declared validation scope passed for the exact bound bytes; never scientific validity, approval, M6 execution, release, or SoftwareX readiness."
+  },
+  "designTimeTestRegistry": {
+    "suiteId": "selcal.m6-p1.revision9.design-self-check.v1",
+    "criticalCounterexamples": [
+      {
+        "id": "C01_REQUIRED_PLAN_EXHAUSTIVENESS",
+        "mutations": [
+          "empty",
+          "remove",
+          "duplicate",
+          "reorder",
+          "extra",
+          "rule substitution"
+        ],
+        "expected": "REJECT"
+      },
+      {
+        "id": "C02_SINGLE_STAGE_NAMESPACE",
+        "mutations": [
+          "stage/operator cursor contradiction",
+          "writer operation contradiction"
+        ],
+        "expected": "REJECT"
+      },
+      {
+        "id": "C03_PREDERIVATION_COMPLETE_PREFIX",
+        "mutations": [
+          "wrong raw digest",
+          "missing predecessor",
+          "later node present",
+          "reason outside emitter"
+        ],
+        "expected": "REJECT"
+      },
+      {
+        "id": "C04_DYNAMIC_ROW_UPPER_AND_IO_NAME",
+        "mutations": [
+          "C=1 upper reused for C=2",
+          "escape-blind string upper",
+          "io executed substituted for admit"
+        ],
+        "expected": "REJECT"
+      },
+      {
+        "id": "C05_RAW_COUNTER_IRREVERSIBILITY",
+        "mutations": [
+          "derive failed work from completed rows",
+          "sort [4] substituted for sort [2,2]",
+          "DStarted*C substituted for replay events"
+        ],
+        "expected": "REJECT"
+      },
+      {
+        "id": "C06_REFERENCE_SPEC_AND_PRODUCTION_REACHABILITY",
+        "mutations": [
+          "alpha zero",
+          "alpha one",
+          "noncanonical float",
+          "candidate duplicate",
+          "replicate order duplicate",
+          "orphan observed record"
+        ],
+        "expected": "REJECT"
+      },
+      {
+        "id": "C07_EXACT_ORACLE_IDENTITY",
+        "mutations": [
+          "E includes identity",
+          "E equals T",
+          "numerator equals E",
+          "denominator differs from T"
+        ],
+        "expected": "REJECT"
+      },
+      {
+        "id": "C08_STREAMING_PREFLIGHT",
+        "mutations": [
+          "parse before hash",
+          "whole sidecar buffer",
+          "trailing sidecar byte",
+          "nonfinite binary64"
+        ],
+        "expected": "REJECT"
+      },
+      {
+        "id": "C09_FLOAT_OVERFLOW_TOTALITY",
+        "mutations": [
+          "overflow residual persisted",
+          "overflow status with nonnull residual",
+          "native infinity used as comparison"
+        ],
+        "expected": "REJECT"
+      },
+      {
+        "id": "C10_EXTERNAL_AUTHORITY_UNIQUENESS",
+        "mutations": [
+          "outer A nested B",
+          "local approval without pin",
+          "runtime profile mismatch",
+          "missing source inventory binding"
+        ],
+        "expected": "REJECT"
+      },
+      {
+        "id": "C11_DURABILITY_AND_RETENTION",
+        "mutations": [
+          "RENAME treated installed",
+          "UNVERIFIED with digest",
+          "VERIFIED with null digest",
+          "missing per-writer disposition"
+        ],
+        "expected": "REJECT"
+      },
+      {
+        "id": "C12_LIFECYCLE_CONTAINMENT",
+        "mutations": [
+          "proposal embeds approved child",
+          "approved root embeds proposal child",
+          "terminal source inventories differ from declaration",
+          "unreachable artifact"
+        ],
+        "expected": "REJECT"
+      }
+    ],
+    "importantAndBoundaryTests": [
+      "q=4096 accept and q=4097 reject",
+      "C=2500 accept and C=2501 reject",
+      "ledger candidate count=100000 accept and 100001 reject",
+      "diagnostic replay=640000 accept and 640001 reject",
+      "exact T=1,E=0 accept",
+      "exact T=2,E=1 accept",
+      "row upper C=1 to C=2 strictly increases",
+      "row01 partial source hash cursor is representable",
+      "zero-byte UNVERIFIED retained partial is representable",
+      "real UTC invalid dates reject",
+      "each top-level artifact root has a valid representative and is unique",
+      "each local oneOf branch is satisfiable"
+    ]
+  },
+  "knownAbsentImplementations": [
+    "selcal.m6-p1.semantic-validator.v9",
+    "revision-9 scientific reference engine",
+    "revision-9 runtime probe",
+    "revision-9 external execution approval",
+    "revision-9 M6 execution"
+  ],
+  "openIssues": [
+    {
+      "id": "O01_EXTERNAL_REVIEW",
+      "status": "OPEN",
+      "gate": "Independent adversarial review must decide whether this proposal is internally sufficient; this file cannot approve itself."
+    },
+    {
+      "id": "O02_VALIDATOR_TDD",
+      "status": "OPEN_NOT_IMPLEMENTED",
+      "gate": "A future stdlib-only validator and RED/GREEN production-path tests are absent."
+    },
+    {
+      "id": "O03_RUNTIME_PROBE",
+      "status": "OPEN_NOT_EXECUTED",
+      "gate": "No approved runtime layout/profile measurement exists."
+    },
+    {
+      "id": "O04_EXTERNAL_APPROVAL",
+      "status": "OPEN_ABSENT",
+      "gate": "No out-of-band pinned approval or trust-store binding exists."
+    },
+    {
+      "id": "O05_M6",
+      "status": "OPEN_NOT_EXECUTED",
+      "gate": "No M6 scientific or resource execution has occurred."
+    }
+  ]
+}

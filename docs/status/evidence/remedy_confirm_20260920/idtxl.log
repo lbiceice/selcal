@@ -1,0 +1,29 @@
+chunks total 264, pending 264
+10/264 I1_iid_rho-_L2_n64_2500.json 5s
+20/264 I1_iid_rho-_L8_n64_1250.json 10s
+30/264 I1_iid_rho-_L8_n64_3250.json 17s
+40/264 I1_ma2_rho-_L2_n64_1750.json 20s
+50/264 I1_ma2_rho-_L8_n64_0500.json 24s
+60/264 I1_ma2_rho-_L8_n64_2750.json 32s
+70/264 I1_ar1_rho-_L2_n64_1250.json 36s
+80/264 I1_ar1_rho-_L2_n64_3500.json 39s
+90/264 I1_ar1_rho-_L8_n64_2250.json 48s
+100/264 I1_alt_rho0.3_L2_n64_0750.json 53s
+110/264 I1_alt_rho0.6_L8_n64_0500.json 63s
+120/264 I1_iid_rho-_L2_n256_1750.json 70s
+130/264 I1_iid_rho-_L8_n256_0250.json 77s
+140/264 I1_iid_rho-_L8_n256_2500.json 89s
+150/264 I1_ma2_rho-_L2_n256_1250.json 98s
+160/264 I1_ma2_rho-_L2_n256_3750.json 103s
+170/264 I1_ma2_rho-_L8_n256_2250.json 120s
+180/264 I1_ma2_rho-_L8_n256_3750.json 129s
+190/264 I1_ar1_rho-_L2_n256_3250.json 134s
+200/264 I1_ar1_rho-_L8_n256_1750.json 149s
+210/264 I1_ar1_rho-_L8_n256_3750.json 163s
+220/264 I1_alt_rho0.3_L8_n256_0750.json 179s
+230/264 I2_iid_rho-_L8_n64_0000.json 1476s
+240/264 I2_ar1_rho-_L2_n64_0000.json 2871s
+250/264 I2_alt_rho0.3_L2_n64_0500.json 3926s
+260/264 I2_alt_rho0.6_L2_n64_0750.json 5090s
+264/264 I2_alt_rho0.6_L8_n64_0750.json 6190s
+ALL_CHUNKS_DONE

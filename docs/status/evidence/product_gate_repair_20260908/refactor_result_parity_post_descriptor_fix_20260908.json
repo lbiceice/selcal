@@ -1,0 +1,174 @@
+{
+  "scope": "SAME_TEAM_DETERMINISTIC_REGRESSION_NOT_EXTERNAL_OR_DOMAIN_VALIDATION",
+  "source_identity": {
+    "scheme": "installed_python_sources_v1",
+    "file_count": 39,
+    "sha256": "73ccc9621719794645b23b18aa4457629f8f67b85b577f6bb68de976e142418c"
+  },
+  "matched": 18,
+  "total": 18,
+  "cases": [
+    {
+      "case": 0,
+      "status": "complete",
+      "failure_stage": null,
+      "baseline_sha256": "23e0a72c3a234560f21376382b5a1cb1d2cf4b9a2aef5e45a323f2400024a638",
+      "current_sha256": "23e0a72c3a234560f21376382b5a1cb1d2cf4b9a2aef5e45a323f2400024a638",
+      "match": true,
+      "changed_top_level_fields": []
+    },
+    {
+      "case": 1,
+      "status": "not_evaluable",
+      "failure_stage": "observed_statistic_scan",
+      "baseline_sha256": "dfb4469fc3de02e264c7d84814c955e880bd3d5d02ea31ab5838d10e7861203a",
+      "current_sha256": "dfb4469fc3de02e264c7d84814c955e880bd3d5d02ea31ab5838d10e7861203a",
+      "match": true,
+      "changed_top_level_fields": []
+    },
+    {
+      "case": 2,
+      "status": "complete",
+      "failure_stage": null,
+      "baseline_sha256": "bcae84038d5fb8f71855efebbdbf6ccc12c718dbbb0c4d5ce6078673a24be645",
+      "current_sha256": "bcae84038d5fb8f71855efebbdbf6ccc12c718dbbb0c4d5ce6078673a24be645",
+      "match": true,
+      "changed_top_level_fields": []
+    },
+    {
+      "case": 3,
+      "status": "not_evaluable",
+      "failure_stage": "observed_statistic_scan",
+      "baseline_sha256": "c1c641328faa57e04f59fe2e56aac1ac30605a8c72249c5e71eaeaaf87cba201",
+      "current_sha256": "c1c641328faa57e04f59fe2e56aac1ac30605a8c72249c5e71eaeaaf87cba201",
+      "match": true,
+      "changed_top_level_fields": []
+    },
+    {
+      "case": 4,
+      "status": "complete",
+      "failure_stage": null,
+      "baseline_sha256": "70307a7cdb8b0a25c264691a968f670cace558d44966cc3758f5974439542598",
+      "current_sha256": "70307a7cdb8b0a25c264691a968f670cace558d44966cc3758f5974439542598",
+      "match": true,
+      "changed_top_level_fields": []
+    },
+    {
+      "case": 5,
+      "status": "not_evaluable",
+      "failure_stage": "observed_statistic_scan",
+      "baseline_sha256": "c5d9e4ba182df3ea039b2a80549982e18baad57cc779507bcda6e1c8806a90f9",
+      "current_sha256": "c5d9e4ba182df3ea039b2a80549982e18baad57cc779507bcda6e1c8806a90f9",
+      "match": true,
+      "changed_top_level_fields": []
+    },
+    {
+      "case": 6,
+      "status": "complete",
+      "failure_stage": null,
+      "baseline_sha256": "5a8a91ee25ae6f0e4efd451a489286de3ec9f8ca4fb906cc7282917a9d761370",
+      "current_sha256": "5a8a91ee25ae6f0e4efd451a489286de3ec9f8ca4fb906cc7282917a9d761370",
+      "match": true,
+      "changed_top_level_fields": []
+    },
+    {
+      "case": 7,
+      "status": "not_evaluable",
+      "failure_stage": "observed_statistic_scan",
+      "baseline_sha256": "75e4d45cffd2bd591992bb131ec5b4fe030603fbfb0179bd573c45752865a447",
+      "current_sha256": "75e4d45cffd2bd591992bb131ec5b4fe030603fbfb0179bd573c45752865a447",
+      "match": true,
+      "changed_top_level_fields": []
+    },
+    {
+      "case": 8,
+      "status": "complete",
+      "failure_stage": null,
+      "baseline_sha256": "645f2fb1cd8ddab0cb73330b53b3ebc58e2e2560b2158640178bad07256be6d1",
+      "current_sha256": "645f2fb1cd8ddab0cb73330b53b3ebc58e2e2560b2158640178bad07256be6d1",
+      "match": true,
+      "changed_top_level_fields": []
+    },
+    {
+      "case": 9,
+      "status": "not_evaluable",
+      "failure_stage": "observed_statistic_scan",
+      "baseline_sha256": "6c2d2527c94167a57204492d33378e6eb1d9641bb6ed7af724d818df777d5e54",
+      "current_sha256": "6c2d2527c94167a57204492d33378e6eb1d9641bb6ed7af724d818df777d5e54",
+      "match": true,
+      "changed_top_level_fields": []
+    },
+    {
+      "case": 10,
+      "status": "complete",
+      "failure_stage": null,
+      "baseline_sha256": "3d9910b1c96b36a75d0b0465974374c58596a41414caed06d3240eba0570a7eb",
+      "current_sha256": "3d9910b1c96b36a75d0b0465974374c58596a41414caed06d3240eba0570a7eb",
+      "match": true,
+      "changed_top_level_fields": []
+    },
+    {
+      "case": 11,
+      "status": "not_evaluable",
+      "failure_stage": "observed_statistic_scan",
+      "baseline_sha256": "bc98d254ba93ff61a26617038acae9e5f69444fb4209b760b136a5e26268b66c",
+      "current_sha256": "bc98d254ba93ff61a26617038acae9e5f69444fb4209b760b136a5e26268b66c",
+      "match": true,
+      "changed_top_level_fields": []
+    },
+    {
+      "case": 12,
+      "status": "complete",
+      "failure_stage": null,
+      "baseline_sha256": "bd957fe4b8546ee1b643a1cb86652b0afc7b1560beaa2b071fb76791b4c812a7",
+      "current_sha256": "bd957fe4b8546ee1b643a1cb86652b0afc7b1560beaa2b071fb76791b4c812a7",
+      "match": true,
+      "changed_top_level_fields": []
+    },
+    {
+      "case": 13,
+      "status": "not_evaluable",
+      "failure_stage": "observed_statistic_scan",
+      "baseline_sha256": "8eefed97c2c28b4b748c0da40e6a33ee16cf86aa4df3cd0b6bc33e3d10c46b9d",
+      "current_sha256": "8eefed97c2c28b4b748c0da40e6a33ee16cf86aa4df3cd0b6bc33e3d10c46b9d",
+      "match": true,
+      "changed_top_level_fields": []
+    },
+    {
+      "case": 14,
+      "status": "complete",
+      "failure_stage": null,
+      "baseline_sha256": "b7b175edef993b2b9fdbe98ca1eb5977a7d420f025e87f479c0392661856aaa1",
+      "current_sha256": "b7b175edef993b2b9fdbe98ca1eb5977a7d420f025e87f479c0392661856aaa1",
+      "match": true,
+      "changed_top_level_fields": []
+    },
+    {
+      "case": 15,
+      "status": "not_evaluable",
+      "failure_stage": "observed_statistic_scan",
+      "baseline_sha256": "913496c70d692ad6aa8aed92b66e0587bc3d9bc5ab574ff8b7dea2cb7c97faa8",
+      "current_sha256": "913496c70d692ad6aa8aed92b66e0587bc3d9bc5ab574ff8b7dea2cb7c97faa8",
+      "match": true,
+      "changed_top_level_fields": []
+    },
+    {
+      "case": 16,
+      "status": "not_evaluable",
+      "failure_stage": "null_bind",
+      "baseline_sha256": "cb01b7b0c74845ecb12e678ef88e49dbbc6c3cf1f59d2bd370a038da9e125073",
+      "current_sha256": "cb01b7b0c74845ecb12e678ef88e49dbbc6c3cf1f59d2bd370a038da9e125073",
+      "match": true,
+      "changed_top_level_fields": []
+    },
+    {
+      "case": 17,
+      "status": "not_evaluable",
+      "failure_stage": "replicate_execution",
+      "baseline_sha256": "ed9c18ba77909f47f71ba1f214ae01c826891dd3091f0fc12329d44ec399c119",
+      "current_sha256": "ed9c18ba77909f47f71ba1f214ae01c826891dd3091f0fc12329d44ec399c119",
+      "match": true,
+      "changed_top_level_fields": []
+    }
+  ]
+}
