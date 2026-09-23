@@ -486,9 +486,13 @@ def test_package_facing_text_uses_candidate_status_and_retains_every_hold(
 
     assert "M0-M2 IMPLEMENTATION CANDIDATE / FINAL VERIFICATION PENDING" in upper
     assert "M6 SCIENTIFIC IMPACT" in upper and "HOLD" in upper
-    for downstream in ("UI", "RELEASE", "LICENSE", "DOI", "MANUSCRIPT", "SOFTWAREX"):
+    for downstream in ("UI", "RELEASE", "LICENSE", "DOI", "MANUSCRIPT"):
         assert downstream in upper
     assert "NOT DUE" in upper
+    if relative_path == "README.md":
+        assert "DOI: PENDING" in upper and "NOT SUBMITTED" in upper
+    else:
+        assert "HISTORICAL RECORD" in upper and "SUPERSEDED" in upper
     for forbidden_claim in (
         "M0-M2 IN-MEMORY CONTRACT LOCALLY VERIFIED",
         "SCIENTIFICALLY CALIBRATED",

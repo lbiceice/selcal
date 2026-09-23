@@ -47,7 +47,7 @@ Step "environment" {
 }
 
 Step "full test suite" {
-    & $py -m pytest -q -p no:cacheprovider -rfE --junitxml=(Join-Path $out "pytest.xml") 2>&1 |
+    & $py -m pytest -q -p no:cacheprovider -rfE "--junitxml=$(Join-Path $out 'pytest.xml')" 2>&1 |
         Tee-Object -FilePath (Join-Path $out "pytest.txt")
 }
 

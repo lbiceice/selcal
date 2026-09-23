@@ -1,5 +1,9 @@
 # SelCal M0–M2 boundary
 
+> Historical record of the M0-M2 boundary. Its release and licence statements are superseded:
+> SelCal 0.1.0 was released under BSD-3-Clause on 2026-09-22 (see README.md). The rest is kept
+> unchanged as written.
+
 SelCal is a pre-release scientific-plan and statistic core. It is not a causal-edge
 inference product and is not SoftwareX submission-ready. M3–M8 are unpassed. No license
 has been selected, so redistribution is not authorized by this development snapshot.

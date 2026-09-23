@@ -103,8 +103,7 @@ uv run python -m pytest
 
 The lock makes dependency resolution repeatable for the declared Python dependency range;
 it does not prove that every interpreter or operating-system combination in that range is
-supported. It is not a cross-platform test result, a public release, or an open-source
-licence grant.
+supported. It is not a cross-platform test result.
 
 ### Separate verifier memory measurement from coverage
 
@@ -148,8 +147,8 @@ python -m sphinx --fail-on-warning --keep-going -b html docs/api docs/api/_build
 ```
 
 Open `docs/api/_build/html/index.html` in a browser after the command succeeds. The
-generated reference describes the current pre-release public API; it is not evidence of
-M6 scientific validity, a public release, or SoftwareX submission readiness.
+generated reference describes the public API of this release; it is not evidence of
+scientific validity.
 
 ## Run a file-to-report workflow
 
@@ -440,10 +439,11 @@ for a particular data-generating process.
 
 `M6 SCIENTIFIC IMPACT: HOLD / NOT EXECUTED`
 
-`PERSISTENCE, EVIDENCE BUNDLES, UI, RELEASE, LICENSE, DOI, MANUSCRIPT, SOFTWAREX
-READINESS, SUBMISSION: HOLD / NOT DUE / NOT READY`
+`LICENSE: BSD-3-CLAUSE / RELEASE: 0.1.0 SOURCE RELEASE (NOT ON PYPI) / DOI: PENDING /
+MANUSCRIPT: IN PREPARATION, NOT SUBMITTED`
 
-SelCal is not a causal-edge inference product. No persistence, resume/evidence-bundle,
-UI, or release surface is public.
+`RESUME, EVIDENCE BUNDLES, UI: NOT DUE`
 
-No license has been selected, so redistribution is not authorized by this development snapshot.
+SelCal is not a causal-edge inference product. Records are terminal results that can be
+verified and replayed; there is no resume of interrupted runs, no evidence-bundle format and
+no graphical interface.

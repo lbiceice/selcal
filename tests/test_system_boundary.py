@@ -219,6 +219,12 @@ def test_readme_states_implemented_and_absent_product_boundaries() -> None:
     assert "M0-M2 IMPLEMENTATION CANDIDATE / FINAL VERIFICATION PENDING" in readme_text
     assert "Current implementation candidate:" in readme_text
     assert "M6 SCIENTIFIC IMPACT: HOLD / NOT EXECUTED" in readme_text
-    assert "UI, RELEASE, LICENSE, DOI, MANUSCRIPT, SOFTWAREX" in readme_text
-    assert "HOLD / NOT DUE / NOT READY" in readme_text
+    # Status after the 0.1.0 release (2026-09-22/23): licence chosen, source release made, DOI and
+    # manuscript still open. Stale pre-release statements must not come back.
+    assert "LICENSE: BSD-3-CLAUSE" in readme_text
+    assert "DOI: PENDING" in readme_text
+    assert "MANUSCRIPT: IN PREPARATION, NOT SUBMITTED" in readme_text
+    assert "RESUME, EVIDENCE BUNDLES, UI: NOT DUE" in readme_text
+    assert "No license has been selected" not in readme_text
+    assert "release surface is public" not in readme_text
     assert "SelCal is not a causal-edge inference product." in readme_text
