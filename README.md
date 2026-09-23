@@ -34,7 +34,16 @@ selcal report run.sqlite report.html --max-bytes 1048576
 ```
 
 Requirements: Python 3.11-3.13 and NumPy (`numpy>=1.26,<2.5`). Tested on macOS arm64 with CPython 3.11,
-3.12 and 3.13 (clean wheel and sdist installs); Linux and Windows are not yet tested.
+3.12 and 3.13 (clean wheel and sdist installs) and on Linux aarch64 (3.11, 3.13) and x86_64 (3.12);
+the full test suite passes on all of them (`docs/status/evidence/linux_20260923/summary.md`). Windows
+is not yet tested.
+
+`selcal verify --replay` is bit-exact and needs the recording code, Python, NumPy and platform
+(operating system, architecture, C library, BLAS); on another platform it reports
+`environment_mismatch`. `selcal verify --replay-decision` needs only the recording code: seeds,
+surrogate states, selections, exceedance count, p-value and decision must match exactly, and statistic
+values within 64 units in the last place of max(|a|, |b|, 1). A macOS record replayed this way on
+Linux matched (largest difference: 1 unit).
 
 ## Citation, licence and support
 
@@ -152,6 +161,7 @@ selcal validate examples/workflow/series.csv examples/workflow/pearson.json
 selcal run examples/workflow/series.csv examples/workflow/pearson.json run.sqlite --max-bytes 1048576
 selcal verify run.sqlite --max-bytes 1048576
 selcal verify run.sqlite --max-bytes 1048576 --replay
+selcal verify run.sqlite --max-bytes 1048576 --replay-decision
 selcal report run.sqlite report.html --max-bytes 1048576
 selcal doctor
 ```

@@ -1,0 +1,8 @@
+ENV x86_64 Linux-7.0.14-orbstack-00380-ga7e0a2dc9535-x86_64-with-glibc2.41 3.12.14 2.4.6 0.1.0
+FAILED tests/test_m6_pearson_orbit_trace.py::test_every_orbit_position_is_recountable[orbit_2_max_upper-candidates0-max_upper]
+FAILED tests/test_m6_pearson_orbit_trace.py::test_every_orbit_position_is_recountable[orbit_2_max_absolute-candidates1-max_absolute]
+FAILED tests/test_m6_pearson_orbit_trace.py::test_every_orbit_position_is_recountable[orbit_1_2_max_upper-candidates2-max_upper]
+FAILED tests/test_m6_pearson_orbit_trace.py::test_every_orbit_position_is_recountable[orbit_1_2_max_absolute-candidates3-max_absolute]
+FAILED tests/test_public_quality_commands.py::test_pressure_harness_runs_read_only_with_fresh_workers
+5 failed, 3567 passed, 53 skipped in 262.95s (0:04:22)
+exit 0

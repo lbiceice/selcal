@@ -14,7 +14,8 @@ import re
 import tempfile
 from dataclasses import dataclass
 from fractions import Fraction
-from math import exp, floor, lgamma, log
+from functools import cache
+from math import ceil, exp, floor, lgamma, log, ulp
 from pathlib import Path
 from typing import Any
 
@@ -53,6 +54,15 @@ from selcal.workflow_config import (
 from selcal.workflow_store import read_record, write_record
 
 CONFIG_BYTES = 65_536
+RECORD_SCHEMAS = ("selcal.workflow-record.v1", "selcal.workflow-record.v2")
+PLATFORM_KEYS = frozenset({"system", "machine", "libc", "blas"})
+# Decision replay: statistic values may differ by this many units in the last place of
+# max(|a|, |b|, 1), i.e. about 1.4e-14 absolute for correlations and relative above 1; every
+# other result field must match exactly. Rounding error of a correlation scales with its range,
+# not its value: on Linux a correlation of 4.3e-4 differed from macOS by 8e-18, which is 149
+# ULPs of the value but under 1 ULP of 1 (docs/status/evidence/linux_20260923/summary.md).
+DECISION_REPLAY_MAX_ULP = 64
+_TOLERANT_FLOAT_KEYS = frozenset({"estimate", "selection_score", "decision_statistic"})
 
 
 class WorkflowError(ValueError):
@@ -83,6 +93,26 @@ def _json(data: object) -> bytes:
     ).encode()
 
 
+def _blas_identity() -> str:
+    try:
+        blas = np.show_config(mode="dicts")["Build Dependencies"]["blas"]
+        return f"{blas.get('name', 'unknown')} {blas.get('version', 'unknown')}"
+    except (AttributeError, KeyError, TypeError, ValueError):
+        return "unknown"
+
+
+@cache
+def _platform_identity() -> tuple[tuple[str, str], ...]:
+    """Where floating-point results were computed; last bits can differ between platforms."""
+    identity = {
+        "system": platform.system(),
+        "machine": platform.machine(),
+        "libc": " ".join(part for part in platform.libc_ver() if part),
+        "blas": _blas_identity(),
+    }
+    return tuple(sorted((key, value[:256]) for key, value in identity.items()))
+
+
 def _software_identity() -> dict[str, Any]:
     package = Path(__file__).parent
     sources = {}
@@ -99,6 +129,7 @@ def _software_identity() -> dict[str, Any]:
         "python_version": platform.python_version(),
         "numpy_version": np.__version__,
         "source_files": sources,
+        "platform": dict(_platform_identity()),
     }
 
 
@@ -424,7 +455,7 @@ def run_files(
     if software != _software_identity():
         raise WorkflowError("source_changed")
     metadata = {
-        "schema": "selcal.workflow-record.v1",
+        "schema": "selcal.workflow-record.v2",
         "raw_input_sha256": loaded.raw_input_sha256,
         "semantic_input_sha256": result.semantic_input_sha256,
         "scientific_plan_sha256": result.scientific_plan_sha256,
@@ -466,19 +497,23 @@ def _metadata(raw: bytes) -> dict[str, Any]:
         }
         if type(value) is not dict or set(value) != keys:
             raise WorkflowError("invalid_metadata")
-        if value["schema"] != "selcal.workflow-record.v1":
+        if value["schema"] not in RECORD_SCHEMAS:
             raise WorkflowError("invalid_metadata")
         for key in keys - {"schema", "software"}:
             if type(value[key]) is not str or re.fullmatch("[0-9a-f]{64}", value[key]) is None:
                 raise WorkflowError("invalid_metadata")
         software = value["software"]
-        if type(software) is not dict or set(software) != {
-            "selcal_version",
-            "python_version",
-            "numpy_version",
-            "source_files",
-        }:
+        software_keys = {"selcal_version", "python_version", "numpy_version", "source_files"}
+        if value["schema"] == "selcal.workflow-record.v2":
+            software_keys.add("platform")
+        if type(software) is not dict or set(software) != software_keys:
             raise WorkflowError("invalid_metadata")
+        if "platform" in software:
+            identity = software["platform"]
+            if type(identity) is not dict or set(identity) != PLATFORM_KEYS:
+                raise WorkflowError("invalid_metadata")
+            if any(type(item) is not str or len(item) > 256 for item in identity.values()):
+                raise WorkflowError("invalid_metadata")
         for key in ("selcal_version", "python_version", "numpy_version"):
             if type(software[key]) is not str or not software[key] or len(software[key]) > 256:
                 raise WorkflowError("invalid_metadata")
@@ -555,26 +590,122 @@ def result_summary(result: CalibrationResult) -> dict[str, Any]:
     }
 
 
+def _scaled_ulp_gap(left: float, right: float) -> int:
+    """|left - right| in units of the last place of max(|left|, |right|, 1), rounded up."""
+    return ceil(abs(left - right) / ulp(max(abs(left), abs(right), 1.0)))
+
+
+def decision_replay_ulp(saved: bytes, actual: bytes) -> int:
+    """Compare two encoded results for decision replay; return the largest statistic ULP gap.
+
+    Seeds, transform states, selections, counts, p-values, decisions and diagnostics must be
+    equal. Statistic values (estimate, selection score, decision statistic) may differ by at
+    most DECISION_REPLAY_MAX_ULP units in the last place of max(|a|, |b|, 1). A NumPy version
+    inside a statistic
+    backend identity may differ. Anything else raises decision_replay_mismatch.
+    """
+    worst = 0
+
+    def mismatch() -> WorkflowError:
+        return WorkflowError("decision_replay_mismatch")
+
+    def walk(left: object, right: object, key: str | None) -> None:
+        nonlocal worst
+        if type(left) is not type(right):
+            raise mismatch()
+        if isinstance(left, dict):
+            assert isinstance(right, dict)
+            if set(left) != set(right):
+                raise mismatch()
+            if set(left) == {"$float64"}:
+                a, b = float.fromhex(left["$float64"]), float.fromhex(right["$float64"])
+                if key in _TOLERANT_FLOAT_KEYS:
+                    gap = _scaled_ulp_gap(a, b)
+                    if gap > DECISION_REPLAY_MAX_ULP:
+                        raise mismatch()
+                    worst = max(worst, gap)
+                elif left["$float64"] != right["$float64"]:
+                    raise mismatch()
+                return
+            for name in left:
+                walk(left[name], right[name], name)
+        elif isinstance(left, list):
+            assert isinstance(right, list)
+            if len(left) != len(right):
+                raise mismatch()
+            for a, b in zip(left, right, strict=True):
+                walk(a, b, key)
+        elif key == "backend_identity":
+            pattern = r"numpy=[^|]*"
+            if re.sub(pattern, "numpy=*", str(left)) != re.sub(pattern, "numpy=*", str(right)):
+                raise mismatch()
+        elif left != right:
+            raise mismatch()
+
+    try:
+        walk(json.loads(saved), json.loads(actual), None)
+    except (ValueError, TypeError, KeyError, RecursionError) as error:
+        raise mismatch() from error
+    return worst
+
+
+def _environment(software: dict[str, Any]) -> dict[str, Any]:
+    return {
+        "python_version": software["python_version"],
+        "numpy_version": software["numpy_version"],
+        "platform": software.get("platform"),
+    }
+
+
 def verify_record(
-    record_path: str | Path, *, max_bytes: int, replay: bool = False
+    record_path: str | Path,
+    *,
+    max_bytes: int,
+    replay: bool = False,
+    replay_decision: bool = False,
 ) -> dict[str, Any]:
-    """Optionally execute an explicit full replay; never authenticate past execution."""
-    if type(replay) is not bool:
+    """Optionally replay exactly or at decision level; never authenticate past execution.
+
+    Exact replay needs the recorded code, Python, NumPy and platform, and compares result bytes.
+    Decision replay needs the recorded code only; see decision_replay_ulp for what it compares.
+    """
+    if (
+        type(replay) is not bool
+        or type(replay_decision) is not bool
+        or (replay and replay_decision)
+    ):
         raise WorkflowError("invalid_replay_option")
     record, loaded, resolution, saved = _read_context(record_path, max_bytes)
+    decision: dict[str, Any] | None = None
     if replay:
         if record.metadata["software"] != _software_identity():
             raise WorkflowError("environment_mismatch")
         actual = calibrate_selected_family(loaded.pair, resolution)
         if encode_calibration_result(actual, max_bytes=max_bytes) != saved:
             raise WorkflowError("replay_mismatch")
-    return {
+    if replay_decision:
+        recorded, current = record.metadata["software"], _software_identity()
+        if any(recorded[key] != current[key] for key in ("selcal_version", "source_files")):
+            raise WorkflowError("environment_mismatch")
+        actual = calibrate_selected_family(loaded.pair, resolution)
+        gap = decision_replay_ulp(saved, encode_calibration_result(actual, max_bytes=max_bytes))
+        decision = {
+            "max_statistic_ulp": gap,
+            "tolerance_ulp": DECISION_REPLAY_MAX_ULP,
+            "same_environment": recorded == current,
+            "recorded_environment": _environment(recorded),
+            "current_environment": _environment(current),
+        }
+    summary = {
         **result_summary(record.result),
         "attainability": attainability(record.config.request, int(loaded.pair.source.size)),
-        "replay": "MATCH" if replay else "NOT_PERFORMED",
+        "replay": "MATCH" if replay else "DECISION_MATCH" if replay_decision else "NOT_PERFORMED",
         "verification_scope": "input_plan_result_consistency",
         "historical_execution_authenticated": False,
     }
+    if decision is not None:
+        summary["decision_replay"] = decision
+    return summary
 
 
 def report_record(

@@ -50,6 +50,7 @@ EXCLUDE: tuple[tuple[str, str], ...] = (
     ("docs/status/evidence/real_case_*/author_contact_DRAFT.md", "private correspondence draft"),
     ("docs/manuscript/*.md", "unpublished manuscript drafts and internal reviews"),
     ("docs/manuscript/check_numbers_v*.py", "checks the unpublished draft text"),
+    ("docs/manuscript/latex/*", "unpublished manuscript (LaTeX build of the draft)"),
 )
 
 

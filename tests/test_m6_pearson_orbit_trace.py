@@ -4,6 +4,7 @@ from __future__ import annotations
 
 import hashlib
 import json
+import math
 import subprocess
 import sys
 from dataclasses import fields
@@ -68,7 +69,12 @@ def test_every_orbit_position_is_recountable(orbit_runs, case, candidates, rule)
     assert observed["candidate_comparisons"] == out["observed_comparison"]
     ref_a = observed["reference_selection"]["decision_statistic"]
     prod_a = float.fromhex(observed["production_selection"]["maximum_hex"])
-    assert ref_a == prod_a == 1.0
+    # The target is the source shifted by two, so the value is 1 in exact arithmetic. The
+    # independent reference and production use different arithmetic: both give 1.0 on macOS,
+    # while on Linux production gives 1 - 4e-16 (docs/status/evidence/linux_20260923). Both
+    # must lie within 4 ULP of 1; the decision-level agreement is checked above.
+    assert abs(ref_a - 1.0) <= 4 * math.ulp(1.0)
+    assert abs(prod_a - 1.0) <= 4 * math.ulp(1.0)
     exact_tail = sum(r["selection"]["decision_statistic"] >= ref_a for r in table["states"])
     # Count all 64 labels, including identity; this is the exact floor C/N.
     assert exact_tail == table["numerator"] == len(candidates)

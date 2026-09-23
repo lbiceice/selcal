@@ -290,10 +290,41 @@ def _production_random_vector(
     return result.scientific_plan_sha256, tuple(rows)
 
 
+# The expected vector was recorded on macOS arm64. Seeds, shifts and selections must match
+# exactly on every platform; statistic values may differ in the last bits (Linux: up to 1 ULP,
+# docs/status/evidence/linux_20260923/summary.md), so they are compared within 4 ULP.
+_RECORDED_STATISTIC_MAX_ULP = 4
+
+
+def _within_ulp(actual: float, expected: float) -> bool:
+    return abs(actual - expected) <= _RECORDED_STATISTIC_MAX_ULP * math.ulp(expected)
+
+
+def _assert_matches_recorded_vector(
+    actual: tuple[str, tuple[tuple[str, int, tuple[float, ...], int, float], ...]],
+) -> None:
+    plan_digest, rows = actual
+    expected_digest, expected_rows = _EXPECTED_PRODUCTION_RANDOM_VECTOR
+    assert plan_digest == expected_digest
+    assert len(rows) == len(expected_rows)
+    for row, expected in zip(rows, expected_rows, strict=True):
+        seed, shift, scores, selected, statistic = row
+        assert (seed, shift, selected, len(scores)) == (
+            expected[0],
+            expected[1],
+            expected[3],
+            len(expected[2]),
+        )
+        assert all(
+            _within_ulp(value, target) for value, target in zip(scores, expected[2], strict=True)
+        )
+        assert _within_ulp(statistic, expected[4])
+
+
 def _production_random_result() -> tuple[CalibrationResult, PlanResolutionV2]:
     exact = _resolution(replicates=2)
     result = _calibrator()(_pair(), exact)
-    assert _production_random_vector(result) == _EXPECTED_PRODUCTION_RANDOM_VECTOR
+    _assert_matches_recorded_vector(_production_random_vector(result))
     return result, exact
 
 

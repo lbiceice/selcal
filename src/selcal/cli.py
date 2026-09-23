@@ -54,10 +54,18 @@ def _parser() -> argparse.ArgumentParser:
         command.add_argument("record")
         command.add_argument("--max-bytes", type=_positive, required=True)
         if name == "verify":
-            command.add_argument(
+            modes = command.add_mutually_exclusive_group()
+            modes.add_argument(
                 "--replay",
                 action="store_true",
-                help="recompute and compare the complete saved result",
+                help="recompute and compare the complete saved result byte for byte "
+                "(same code, Python, NumPy and platform)",
+            )
+            modes.add_argument(
+                "--replay-decision",
+                action="store_true",
+                help="recompute with the same code on any platform; decisions must match "
+                "exactly, statistic values within a stated number of units in the last place",
             )
         else:
             command.add_argument("output")
@@ -79,7 +87,12 @@ def _execute(args: argparse.Namespace) -> dict[str, Any]:
             )
         )
     if args.command == "verify":
-        return verify_record(args.record, max_bytes=args.max_bytes, replay=args.replay)
+        return verify_record(
+            args.record,
+            max_bytes=args.max_bytes,
+            replay=args.replay,
+            replay_decision=args.replay_decision,
+        )
     if args.command == "report":
         return report_record(args.record, args.output, max_bytes=args.max_bytes)
     return doctor()

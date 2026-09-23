@@ -114,3 +114,9 @@ lag L; rho = 0.3 and 0.6; R = 1,000 per cell; 95% Clopper-Pearson intervals). Se
 refused, IDTxl's circular KSG path keeps some power (no lag-collision floor), a difference confounded with its
 estimator. Power of Bonferroni and IDTxl's default Gaussian path is not usable under autocorrelation because their
 size exceeds nominal there (Fig. 3). Block shuffle: tested, not adopted.
+
+## Manuscript numbering (2026-09-23)
+
+Figures are numbered in order of first citation in the manuscript; file names keep their original
+numbers. Manuscript Fig. 1 = `fig2_guard`, Fig. 2 = `fig1_architecture`, Fig. 3 = `fig5_real_case`,
+Fig. 4 = `fig3_size`, Fig. 5 = `fig4_power` (mapping also in `../latex/build_latex.py`).
